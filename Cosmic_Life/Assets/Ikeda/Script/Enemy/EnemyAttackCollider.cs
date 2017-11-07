@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class EnemyAttackCollider : MonoBehaviour
 {
+    [SerializeField]
     private int m_Damage;
 
     // Use this for initialization

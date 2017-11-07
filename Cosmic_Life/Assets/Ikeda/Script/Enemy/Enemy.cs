@@ -102,6 +102,27 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
 
     }
 
+    public virtual void onShock()
+    {
+
+    }
+
+    public virtual void onThrow()
+    {
+
+    }
+
+    public virtual void onLift(GameObject obj)
+    {
+
+    }
+
+    public virtual void onTakeDown()
+    {
+
+    }
+
+
     public virtual void IsDead()
     {
         if (m_Hp <= 0)
