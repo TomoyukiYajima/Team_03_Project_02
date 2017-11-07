@@ -2,24 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
-
-public enum PlayerState
-{
-    NULL = 1 << 0,
-    IDLE = 1 << 1,
-    ATTACK = 1 << 2,
-    HOLD = 1 << 3,
-
-}
-
 
 public class Player : MonoBehaviour, IGeneralEvent
 {
-
     [SerializeField, Tooltip("移動速度")] private float m_Speed;
     [SerializeField, Tooltip("攻撃判定")] private GameObject m_attackCollision;
     [SerializeField, Tooltip("攻撃生成位置")] private GameObject m_attackPos;
+    [SerializeField] private RectTransform m_hpBar;
+
+    [SerializeField] private PlayerStatus m_status = new PlayerStatus(100, 100);
 
     private Transform m_camera;
     private Animator m_animator;
@@ -28,11 +21,15 @@ public class Player : MonoBehaviour, IGeneralEvent
     private Vector3 m_velocity;
     private Vector3 m_groundNormal;
 
+    private int m_maxHp;
+
     private bool m_isDamaged;
     private bool m_isCanWalk;
     private bool m_isGrounded;
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
+
+    private float m_hpBarLength;
 
     // Use this for initialization
     void Start()
@@ -49,7 +46,6 @@ public class Player : MonoBehaviour, IGeneralEvent
             // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
         }
 
-
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody>();
         m_state = PlayerState.IDLE;
@@ -59,15 +55,20 @@ public class Player : MonoBehaviour, IGeneralEvent
         //ChangeState(Move());
         m_groundCheckDistance = 0.1f;
         m_origGroundCheckDistance = m_groundCheckDistance;
+
+        m_maxHp = m_status.hp;
+
+        m_hpBarLength = m_hpBar.offsetMax.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("X")) { onDamage(0); }
+        float offsetMaxX = m_hpBarLength - ((m_maxHp - m_status.hp) / 100.0f * (Screen.width + m_hpBarLength-m_hpBar.offsetMin.x));
+        m_hpBar.offsetMax = new Vector2(offsetMaxX, m_hpBar.offsetMax.y);
+        if (Input.GetButtonDown("X")) { onDamage(10); }
 
         //m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
-
     }
 
     private void FixedUpdate()
@@ -138,12 +139,8 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         }
 
-       m_animator.SetFloat("Forward", m_rigidbody.velocity.magnitude, 0.1f, Time.fixedDeltaTime);
-
-
+       m_animator.SetFloat("Speed", m_rigidbody.velocity.magnitude, 0.1f, Time.fixedDeltaTime);
     }
-
-
 
     private void UpdateState()
     {
@@ -163,7 +160,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         m_rigidbody.velocity = Vector3.zero;
         m_isCanWalk = false;
-        m_animator.SetFloat("Forward", 0);
+        m_animator.SetFloat("Speed", 0);
         StopAllCoroutines();
         StartCoroutine(coroutine);
     }
@@ -224,18 +221,38 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     private IEnumerator Attack()
     {
+        m_animator.SetBool("Attack",true);
+
+        yield return new WaitForEndOfFrame();
         // 攻撃コリジョン生成
         GameObject attack = Instantiate(m_attackCollision, m_attackPos.transform.position, m_attackPos.transform.rotation) as GameObject;
         DestroyObject(attack, 0.5f);
         // モーション変更
 
         yield return new WaitForSeconds(1.0f);
+
         EndState();
         yield return null;
     }
 
-    private IEnumerator Damage()
+    private IEnumerator Lifted(GameObject crane)
     {
+        while (true)
+        {
+            transform.position = crane.transform.position + (transform.FindChild("LiftPoint").transform.position - transform.position) * 2;
+            if (Input.GetButtonDown("Cancel"))
+            {
+                EndState();
+            }
+            yield return null;
+        }
+    }
+
+
+    private IEnumerator Damaged()
+    {
+        m_animator.SetTrigger("Damaged");
+
         yield return new WaitForSeconds(0.5f);
 
         StartCoroutine(DamageWait());
@@ -263,20 +280,35 @@ public class Player : MonoBehaviour, IGeneralEvent
         m_isDamaged = false;
     }
 
+    private IEnumerator Dead()
+    {
+        // DeadMotion
+
+        // Wait 
+        yield return new WaitForSeconds(1.0f);
+
+        // GameOverUI
+        SceneMgr.Instance.SceneTransition(SceneType.Title);
+        yield return null;
+    }
+
     public void onDamage(int amount)
     {
+        m_status.hp -= amount;
         m_velocity = Vector3.zero;
 
         StopAllCoroutines();
         m_isDamaged = true;
 
-        ChangeState(Damage());
+        IEnumerator nextState = m_status.hp > 0 ? Damaged() : Dead();
+
+        ChangeState(nextState);
     }
 
     public void onLift(GameObject crane)
     {
         // モーション
-        ChangeState(HoldingCrane(crane));
+        ChangeState(Lifted(crane));
     }
 
     public void onTakeDown()
@@ -284,22 +316,13 @@ public class Player : MonoBehaviour, IGeneralEvent
         EndState();
     }
 
-    private IEnumerator HoldingCrane(GameObject crane)
-    {
-        while (true)
-        {
-            transform.position = crane.transform.position + (transform.Find("LiftPoint").transform.position - transform.position) *2;
-            if (Input.GetButtonDown("Cancel"))
-            {
-                EndState();
-            }
-            yield return null;
-        }
-    }
 
     public void EndState()
     {
         StopAllCoroutines();
+        m_animator.SetTrigger("MotionEnd");
+        m_animator.SetBool("Attack", false);
+
         m_isCanWalk = true;
     }
 
@@ -337,6 +360,4 @@ public class Player : MonoBehaviour, IGeneralEvent
             //m_animator.applyRootMotion = false;
         }
     }
-
-
 }

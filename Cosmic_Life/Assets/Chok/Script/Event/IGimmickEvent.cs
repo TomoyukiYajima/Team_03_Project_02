@@ -12,4 +12,6 @@ public interface IGimmickEvent : IEventSystemHandler
 
     void onActivate(string password);
     void onActivate();
+
+    void onReset();
 }

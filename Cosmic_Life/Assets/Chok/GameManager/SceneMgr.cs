@@ -12,6 +12,7 @@ public enum SceneType
 public class SceneMgr : SingletonBehaviour<SceneMgr>
 {
     // 現在のシーン
+    [SerializeField]
     private SceneType m_currentScene = SceneType.Title;
     // 遷移完了か
     private bool m_isEnd = true;
@@ -99,6 +100,8 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
             //FadeMgr.Instance.SetCounter(0);
             //MyDebug.Log(name.ToString() + "_Scene : LoadComplete!!");
         }
+
+        m_isEnd = true;
     }
 
     // 現在読み込んでいるシーンType

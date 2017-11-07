@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class InteractiveButton : MonoBehaviour
 {
 
-    [SerializeField] private int m_interactiveAngle;
+    [SerializeField] private int m_interactiveAngle = 90;
     [SerializeField] private GameObject m_gimmick;
 
     private void OnTriggerStay(Collider other)
@@ -27,7 +27,7 @@ public class InteractiveButton : MonoBehaviour
                 // IRobotEventが実装されていなければreturn
                 if (!ExecuteEvents.CanHandleEvent<IGimmickEvent>(m_gimmick))
                 {
-                    Debug.Log("IGimmickEvent未実装");
+                    Debug.Log("IGimmickEvent未実装 : " + m_gimmick);
                     return;
                 }
 

@@ -13,6 +13,8 @@ public class GimmickLockedDoor : GimmickBase
     [SerializeField] private GameObject m_lock;
     [SerializeField] private GameObject m_leftPoint;
     [SerializeField] private GameObject m_rightPoint;
+    [SerializeField] private GameObject m_leftPointClose;
+    [SerializeField] private GameObject m_rightPointClose;
 
     private bool m_isReceptable = false; // 受付可能か
 
@@ -45,6 +47,11 @@ public class GimmickLockedDoor : GimmickBase
         m_isActivated = true;
     }
 
+    public override void onReset()
+    {
+        StartCoroutine(ResetGimmick());
+    }
+
     private IEnumerator InvalidPassword()
     {
         yield return null;
@@ -59,6 +66,14 @@ public class GimmickLockedDoor : GimmickBase
 
         yield return new WaitForSeconds(2.0f);
         yield return null;
+    }
+
+    private IEnumerator ResetGimmick()
+    {
+        m_doorLeft.transform.DOMove(m_leftPointClose.transform.position, 2.0f);
+        m_doorRight.transform.DOMove(m_rightPointClose.transform.position, 2.0f);
+
+        yield return new WaitForSeconds(2.0f);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -17,15 +17,11 @@ public class GimmickBase : MonoBehaviour,IGimmickEvent {
 		
 	}
 
-    public virtual void onActivate(GameObject obj)
-    {
-    }
+    public virtual void onActivate(GameObject obj) { }
 
-    public virtual void onActivate(string password)
-    {
-    }
+    public virtual void onActivate(string password) { }
 
-    public virtual void onActivate()
-    {
-    }
+    public virtual void onActivate() { }
+
+    public virtual void onReset() { }
 }
