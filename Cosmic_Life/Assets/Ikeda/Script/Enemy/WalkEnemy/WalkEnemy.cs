@@ -48,7 +48,7 @@ public class WalkEnemy : Enemy {
         else
             ChangeState(EnemyStatus.NonRoundState);
 
-        m_PlayerLookPoint = m_Player.transform.Find("RayPos");
+        m_PlayerLookPoint = m_Player.transform.Find("LookPoint");
         m_EyePoint = transform.Find("EyePoint");
 
         //初期位置と向いている方向の保存する
