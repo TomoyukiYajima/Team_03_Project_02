@@ -15,6 +15,16 @@ public class GimmickSpawn : GimmickBase {
         StartCoroutine(Activate());
     }
 
+    private void Update()
+    {
+        foreach(var enemy in m_spawnObj)
+        {
+            if (enemy != null) return;
+            else continue;
+        }
+        SceneMgr.Instance.SceneTransition(SceneType.Title);
+    }
+
     private IEnumerator Activate()
     {
         if (m_doors.Length > 0)
@@ -51,6 +61,6 @@ public class GimmickSpawn : GimmickBase {
 
         Debug.Log(this.gameObject + " 削除");
 
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
