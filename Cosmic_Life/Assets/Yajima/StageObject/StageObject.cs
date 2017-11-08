@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class StageObject : MonoBehaviour
+public class StageObject : MonoBehaviour, IGeneralEvent
 {
+    #region 変数
     // 子オブジェクト
     [SerializeField]
     private GameObject m_Child;
@@ -39,7 +40,9 @@ public class StageObject : MonoBehaviour
 
     // 接地しているか
     private bool m_isGround = false;
+    #endregion
 
+    #region 関数
     // Use this for initialization
     void Start()
     {
@@ -87,6 +90,9 @@ public class StageObject : MonoBehaviour
             {
                 //m_Rigidbody.isKinematic = true;
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                // 衝突判定も消す
+                GameObject collider = this.transform.Find("Collider").gameObject;
+                if (collider != null) collider.SetActive(false);
             }
         }
 
@@ -141,7 +147,9 @@ public class StageObject : MonoBehaviour
         //m_IsFlash = true;
         m_EmissionColor += Color.gray;
         if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, time));
-        m_FlashValue = m_FlashValue | 1 << 0;
+        //m_FlashValue = m_FlashValue | 1 << 0;
+        if ((m_FlashValue & 1 << 0) == 0) m_FlashValue = m_FlashValue | 1 << 0;
+        else if ((m_FlashValue & 1 << 1) == 0) m_FlashValue = m_FlashValue | 1 << 1;
 
         //StartCoroutine(Flash(color, time));
     }
@@ -219,7 +227,9 @@ public class StageObject : MonoBehaviour
     {
         //m_IsFlash = false;
         m_EmissionColor -= Color.gray;
-        m_FlashValue = 0;
+        if((m_FlashValue & 1 << 0) != 0) m_FlashValue = m_FlashValue & 1 << 1;
+        else if ((m_FlashValue & 1 << 1) != 0) m_FlashValue = m_FlashValue & 1 << 0;
+        //m_FlashValue = 0;
     }
 
     public void EndFlashRobot()
@@ -246,6 +256,29 @@ public class StageObject : MonoBehaviour
 
     // オブジェクトと衝突しているかを返します
     public bool IsHit() { return m_HitObjects.Count != 0; }
+
+    #region イベント関数
+    public void onDamage(int amount) { }
+
+    public void onShock() { }
+
+    public void onThrow() { }
+
+    public void onLift(GameObject obj) {
+        if(this.transform.parent.name == "LiftObject")
+        {
+            //var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
+            //// 相手の持ち上げポイントを取得する
+            OrderLift lift = obj.GetComponent<OrderLift>();
+            if (lift == null) return;
+            var point = this.transform.Find("LiftPoint");
+            float length = Mathf.Abs(point.position.y - lift.GetLiftPoint().y);
+            this.transform.position += Vector3.down * length;
+        }
+    }
+
+    public void onTakeDown() { }
+    #endregion
 
     #region Unity関数
     // 衝突判定
@@ -311,5 +344,6 @@ public class StageObject : MonoBehaviour
         //}
         //if (collision.transform.tag == "Player") m_Rigidbody.isKinematic = false;
     }
+    #endregion
     #endregion
 }

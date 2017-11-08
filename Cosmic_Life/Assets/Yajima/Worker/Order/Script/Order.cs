@@ -29,6 +29,8 @@ public class Order : MonoBehaviour {
     private ActionNumber m_ActionNumber = ActionNumber.DEFAULT;
     // 方向
     protected OrderDirection m_Dir = OrderDirection.FORWARD;
+    // アンドロイド
+    protected Worker m_Undroid;
 
     // Action実行配列
     private Dictionary<ActionNumber, Action<float, GameObject, GameObject>> m_Actions =
@@ -61,7 +63,7 @@ public class Order : MonoBehaviour {
     // 更新行動
     protected virtual void UpdateAction(float deltaTime, GameObject obj) { }
     // 更新行動(オブジェクト指定)
-    protected virtual void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj) { }
+    protected virtual void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj) { UpdateAction(deltaTime, obj); }
 
     // 行動終了
     public virtual void EndAction(GameObject obj)
@@ -88,6 +90,9 @@ public class Order : MonoBehaviour {
 
     // 命令状態の設定
     public void SetOrderState(OrderStatus state) { m_OrderState = state; }
+
+    // ロボットをセットします
+    public void SetUndroid(Worker undroid) { m_Undroid = undroid; }
 
     // 命令終了時に実行する命令を設定します
     //public void SetEndPlayOrder(OrderStatus order)

@@ -25,7 +25,7 @@ public class OrderLift : Order {
     protected CheckLiftObject m_CheckLiftObject;
     // 持つポイント
     [SerializeField]
-    private Transform m_LiftPoint;
+    protected Transform m_LiftPoint;
     // 持ったか
     protected bool m_IsLift = false;
     //// 回っているか
@@ -95,6 +95,11 @@ public class OrderLift : Order {
         //CheckLift(obj);
         // 移動
         Move(deltaTime, obj);
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        UpdateAction(deltaTime, obj);
     }
 
     public override void EndAction(GameObject obj)
@@ -187,6 +192,8 @@ public class OrderLift : Order {
     {
         var liftObj = obj.transform.Find("LiftObject");
         m_LiftObject.transform.parent = liftObj;
+        var colliders = m_LiftObject.transform.Find("Colliders");
+        colliders.transform.parent = liftObj;
         // 剛体のキネマティックをオンにする
         var body = m_LiftObject.GetComponent<Rigidbody>();
         body.isKinematic = true;
@@ -205,6 +212,9 @@ public class OrderLift : Order {
         }
     }
 
+    // 上げる座標を返します
+    public Vector3 GetLiftPoint() { return m_LiftPoint.position; }
+
     #region 持ち上げ捜索関数
     // 持ち上げるオブジェクトの捜索
     protected void FindLiftObject(GameObject obj, GameObject actionObj)
@@ -215,10 +225,13 @@ public class OrderLift : Order {
         // 参照するオブジェクトがある場合
         if (actionObj != null)
         {
-            // 見ているものを持つオブジェクトに変更する
-            m_LiftObject = actionObj;
-            m_LiftNumber = LiftObjectNumber.OBJECT_LIFT_NUMBER;
-            return;
+            if(actionObj.tag == "StageObject")
+            {
+                // 見ているものを持つオブジェクトに変更する
+                m_LiftObject = actionObj;
+                m_LiftNumber = LiftObjectNumber.OBJECT_LIFT_NUMBER;
+                return;
+            } 
         }
 
         // プレイヤーとの距離を求める
@@ -284,7 +297,7 @@ public class OrderLift : Order {
     {
         Worker robot = obj.GetComponent<Worker>();
         // 移動ポイントの更新
-        robot.ChangeAgentMovePoint(m_LiftObject.transform);
+        robot.ChangeAgentMovePoint(m_LiftObject.transform.position);
         robot.GetNavMeshAgent().isStopped = false;
     }
 
@@ -297,38 +310,41 @@ public class OrderLift : Order {
         pos.y = obj.transform.position.y;
         var robotLength = Vector3.Distance(pos, obj.transform.position);
 
-        if (robotLength < 3.0f && !m_IsSetPoint)
+        if (robotLength < 3.0f)
         {
-            Transform points = m_LiftObject.transform.Find("Points");
-            // 一番近いポイントの位置に移動
-            Transform movePoint = null;
-            float length = m_ObjectChecker.GetLength();
-            for (int i = 0; i != points.childCount; ++i)
+            if (!m_IsSetPoint)
             {
-                for (int j = 0; j != points.GetChild(i).childCount; ++j)
+                Transform points = m_LiftObject.transform.Find("Points");
+                // 一番近いポイントの位置に移動
+                Transform movePoint = null;
+                float length = m_ObjectChecker.GetLength();
+                for (int i = 0; i != points.childCount; ++i)
                 {
-                    Transform point = points.GetChild(i).GetChild(j);
-                    float pointLenght = Vector3.Distance(point.position, obj.transform.position);
-                    if (length > pointLenght)
+                    for (int j = 0; j != points.GetChild(i).childCount; ++j)
                     {
-                        movePoint = point;
-                        length = pointLenght;
+                        Transform point = points.GetChild(i).GetChild(j);
+                        float pointLenght = Vector3.Distance(point.position, obj.transform.position);
+                        if (length > pointLenght)
+                        {
+                            movePoint = point;
+                            length = pointLenght;
+                        }
                     }
+                    //Transform point = points.GetChild(i);
+                    //float pointLenght = Vector3.Distance(point.position, obj.transform.position);
+                    //if (length > pointLenght)
+                    //{
+                    //    movePoint = point;
+                    //    length = pointLenght;
+                    //}
                 }
-                //Transform point = points.GetChild(i);
-                //float pointLenght = Vector3.Distance(point.position, obj.transform.position);
-                //if (length > pointLenght)
-                //{
-                //    movePoint = point;
-                //    length = pointLenght;
-                //}
+
+                // 移動ポイントの更新
+                robot.ChangeAgentMovePoint(movePoint.position);
+                //robot.GetNavMeshAgent().isStopped = false;
+
+                m_IsSetPoint = true;
             }
-
-            // 移動ポイントの更新
-            robot.ChangeAgentMovePoint(movePoint);
-            //robot.GetNavMeshAgent().isStopped = false;
-
-            m_IsSetPoint = true;
         }
         else robot.UpdateAgentPoint();
     }
@@ -351,8 +367,10 @@ public class OrderLift : Order {
         //    return;
         //}
 
+        float angle2 = Vector2.Angle(otherDir, forward);
+
         print(angle.ToString());
-        if (Mathf.Abs(angle) <= 0.1f)
+        if (Mathf.Abs(angle2) <= 1.0f)
         {
             // 回転が終了したら、持ち上げリストに追加
             AddLiftObj(obj);
@@ -365,9 +383,10 @@ public class OrderLift : Order {
         }
 
         float dir = 1.0f;
-        if (angle > 0.0f) dir = -1.0f;
+        //if(angle2 < )
+        //if (angle < 0.0f) dir = -1.0f;
         // 回転
-        obj.transform.Rotate(obj.transform.up, 30.0f * dir * deltaTime);
+        obj.transform.Rotate(obj.transform.up, m_Undroid.GetRotateSpeed() * dir * deltaTime);
         //obj.transform.Rotate(obj.transform.up, m_TurnSpeed * dir * deltaTime);
     }
     #endregion

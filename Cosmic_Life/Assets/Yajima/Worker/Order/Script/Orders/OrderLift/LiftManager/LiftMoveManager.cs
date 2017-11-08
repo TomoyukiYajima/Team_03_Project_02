@@ -42,11 +42,13 @@ public class LiftMoveManager : MonoBehaviour {
     }
 
     // 持ち上げているオブジェクトの親子関係を解除する
-    public void ReleaseObject()
+    public void ReleaseObject(GameObject colliders)
     {
         if (m_LiftObject == null) return;
 
         var stageObj = m_LiftObject.GetComponent<StageObject>();
+        colliders.transform.parent = this.transform;
+        colliders.transform.localPosition = Vector3.zero;
 
         // 剛体
         var body = stageObj.GetComponent<Rigidbody>();

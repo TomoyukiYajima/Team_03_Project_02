@@ -64,7 +64,7 @@ public class OrderMove : DirectionOrder {
             var robot = obj.GetComponent<Worker>();
             // 移動ポイントの変更
             //robot.GetNavMeshAgent().destination = m_ActionObject.transform.position;
-            robot.ChangeAgentMovePoint(m_ActionObject.transform);
+            robot.ChangeAgentMovePoint(m_ActionObject.transform.position);
             robot.GetNavMeshAgent().isStopped = false;
         }
         //obj.transform.position += m_Direction * m_MoveSpeed * deltaTime;

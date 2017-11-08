@@ -56,7 +56,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // ジャミングされているか？
     private bool m_IsJamming = false;
     // エージェントが参照しているポイント
-    private Transform m_AgentMovePoint;
+    //private Transform m_AgentMovePoint;
+    private Vector3 m_AgentMovePoint;
     #endregion
 
     #region 配列
@@ -147,7 +148,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //// 持ち上げサンプル
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
             if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LIFT);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.THROW);
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_MOW_DOWN);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.PULL_OUT);
@@ -237,6 +238,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
                 //m_Orders[m_OrderNumbers[i]][m_OrderStatus[m_OrderNumbers[i]]].SetOrderNumber(m_OrderNumbers[i]);
                 m_Orders[m_OrderNumbers[i]][state].SetOrderNumber(m_OrderNumbers[i]);
                 m_Orders[m_OrderNumbers[i]][state].SetOrderState(state);
+                m_Orders[m_OrderNumbers[i]][state].SetUndroid(this);
             }
             m_PrevOrders[m_OrderNumbers[i]] = OrderStatus.NULL;
         }
@@ -395,29 +397,50 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     #endregion
 
     #region pubiuc関数
+    #region ステータス関数
+    // 回転速度を取得します
+    public float GetRotateSpeed() { return m_RotateSpeed; }
+    #endregion
+
     #region エージェント
     // ナビメッシュエージェントを取得します
     public NavMeshAgent GetNavMeshAgent() { return m_Agent; }
 
     // エージェントの移動するポイントの変更を行います
-    public void ChangeAgentMovePoint(Transform point)
+    //public void ChangeAgentMovePoint(Transform point)
+    //{
+    //    m_AgentMovePoint = point;
+    //    m_Agent.destination = point.position;
+    //}
+
+    // エージェントの移動するポイントの変更を行います
+    public void ChangeAgentMovePoint(Vector3 point)
     {
         m_AgentMovePoint = point;
-        m_Agent.destination = point.position;
+        m_Agent.destination = point;
     }
 
     // エージェントの移動座標を更新します
     public void UpdateAgentPoint()
     {
-        m_Agent.destination = m_AgentMovePoint.position;
+        if (m_AgentMovePoint == null) return;
+        m_Agent.destination = m_AgentMovePoint;//m_AgentMovePoint.position;
     }
+
+    public Vector3 GetAgentPoint()
+    {
+        return m_AgentMovePoint;
+    }
+
+    // エージェントの移動座標との距離を返します
+    public float GetAgentPointLength() { return Vector3.Distance(this.transform.position, m_AgentMovePoint); }
 
     // エージェントがゴールに辿り着いたかを返します
     public bool IsGoalPoint()
     {
         //Vector3 playerPos = this.transform.position - Vector3.up * (m_BodyHeight / 2);
-        Vector3 agentPos = m_AgentMovePoint.position;
-        float up = this.transform.position.y - m_AgentMovePoint.position.y;
+        Vector3 agentPos = m_AgentMovePoint; //.position;
+        float up = this.transform.position.y - m_AgentMovePoint.y; //.position.y;
         if (up > 1.0f) agentPos.y = this.transform.position.y;
         float length = Vector3.Distance(agentPos, this.transform.position);
         return length < 0.1f;

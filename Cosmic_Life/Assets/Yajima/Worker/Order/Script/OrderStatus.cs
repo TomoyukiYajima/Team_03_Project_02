@@ -20,7 +20,8 @@ public enum OrderStatus {
     DESTRUCT        = 1 << 15,  // 自爆
     THROW           = 1 << 16,  // 投げる
     ALLSTOP         = 1 << 17,  // 全停止
-    LOOK            = 1 << 18   // 向く
+    LOOK            = 1 << 18,  // 向く
+    FOLLOW          = 1 << 19   // ついてくる
 }
 
 // 移動命令状態

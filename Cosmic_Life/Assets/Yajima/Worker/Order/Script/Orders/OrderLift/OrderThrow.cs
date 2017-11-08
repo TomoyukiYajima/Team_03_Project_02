@@ -51,13 +51,17 @@ public class OrderThrow : Order {
         print("投げ命令");
 
         // 親子関係を解除する
-        m_LiftManager.ReleaseObject();
+        var colliders = m_LiftManager.GetLiftObject().transform.parent.Find("Colliders").gameObject;
+        m_LiftManager.ReleaseObject(colliders);
         
         // 方向によってベクトルの加算を行う
         m_Velocity = (obj.transform.forward + m_Velocities[m_Dir]).normalized;
         GameObject obj2 = m_LiftManager.GetLiftObject();
         Rigidbody body = m_LiftManager.GetLiftObject().GetComponent<Rigidbody>();
         body.AddForce(m_Velocity * m_Power, ForceMode.Impulse);
+        // 持ち上げているオブジェクトの衝突判定を設定する
+        GameObject collider = m_LiftManager.GetLiftObject().transform.Find("Collider").gameObject;
+        if (collider != null) collider.SetActive(true);
 
         // 空の状態に遷移
         ChangeOrder(obj, OrderStatus.NULL);

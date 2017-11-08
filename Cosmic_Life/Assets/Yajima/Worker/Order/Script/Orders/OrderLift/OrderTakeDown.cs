@@ -37,6 +37,8 @@ public class OrderTakeDown : Order {
         var point = stageObj.transform.Find("LiftPoint");
         float length = Mathf.Abs(point.position.y - m_Point.transform.position.y);
         stageObj.transform.position += Vector3.down * length;
+        var colliders = liftObj.GetChild(1);
+        colliders.transform.position += Vector3.up * length;
         //stageObj.transform.position -= Vector3.up * 1.0f;
         // 剛体のキネマティックをオフにする
         var body = stageObj.GetComponent<Rigidbody>();

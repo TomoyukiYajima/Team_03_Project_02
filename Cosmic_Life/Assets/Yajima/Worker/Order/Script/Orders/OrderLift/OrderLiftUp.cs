@@ -23,11 +23,31 @@ public class OrderLiftUp : OrderLift {
         if (liftObj.childCount != 0)
         {
             // 持ち上げる動作を行う
-            m_LiftObject = liftObj.GetChild(0).gameObject;
+            //m_LiftObject = liftObj.GetChild(0).gameObject;
+
+            var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
+            // 相手の持ち上げポイントを取得する
+            var point = stageObj.transform.Find("LiftPoint");
+            float length = m_LiftPoint.transform.position.y - point.position.y;
+            stageObj.transform.position += Vector3.up * length;
+            var colliders = liftObj.GetChild(1);
+            colliders.transform.position += Vector3.up * length;
+
             return;
         }
 
+        EndOrder(obj);
         // 持ち上げるオブジェクトの捜索
-        FindLiftObject(obj, actionObj);
+        //FindLiftObject(obj, actionObj);
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj)
+    {
+        UpdateAction(deltaTime, obj, null);
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        print("LiftUp");
     }
 }
