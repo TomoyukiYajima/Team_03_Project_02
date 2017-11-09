@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SoundEnemy : MonoBehaviour, IEnemyEvent {
+public class SoundEnemy : Enemy {
 
     public NavMeshAgent m_SoundAgent;
 
