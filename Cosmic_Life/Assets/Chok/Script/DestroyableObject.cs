@@ -9,4 +9,24 @@ public class DestroyableObject : MonoBehaviour, IGeneralEvent
     {
         Destroy(this.gameObject);
     }
+
+    public void onLift(GameObject obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onShock()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onTakeDown()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onThrow()
+    {
+        throw new NotImplementedException();
+    }
 }

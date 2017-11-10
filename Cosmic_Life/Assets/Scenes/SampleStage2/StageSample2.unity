@@ -10306,7 +10306,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.78431374, g: 0.7411765, b: 0.62352943, a: 1}
+  m_Color: {r: 0.88235295, g: 0.8392157, b: 0.72156864, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -10326,7 +10326,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
@@ -11812,7 +11812,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4152708355947626, guid: 530b68f1d86cb944e9994b946c70c00b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.02
+      value: 12.92
       objectReference: {fileID: 0}
     - target: {fileID: 4152708355947626, guid: 530b68f1d86cb944e9994b946c70c00b, type: 2}
       propertyPath: m_LocalRotation.x

@@ -360,4 +360,14 @@ public class Player : MonoBehaviour, IGeneralEvent
             //m_animator.applyRootMotion = false;
         }
     }
+
+    public void onShock()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void onThrow()
+    {
+        throw new NotImplementedException();
+    }
 }
