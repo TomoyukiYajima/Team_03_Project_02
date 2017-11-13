@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     [SerializeField, Tooltip("攻撃生成位置")] private GameObject m_attackPos;
     [SerializeField] private RectTransform m_hpBar;
 
-    [SerializeField] private PlayerStatus m_status = new PlayerStatus(100, 100);
+    [SerializeField] private PlayerStatus m_status = new PlayerStatus(3, 100);
 
     private Transform m_camera;
     private Animator m_animator;
@@ -28,8 +28,6 @@ public class Player : MonoBehaviour, IGeneralEvent
     private bool m_isGrounded;
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
-
-    private float m_hpBarLength;
 
     // Use this for initialization
     void Start()
@@ -57,16 +55,16 @@ public class Player : MonoBehaviour, IGeneralEvent
         m_origGroundCheckDistance = m_groundCheckDistance;
 
         m_maxHp = m_status.hp;
-
-        m_hpBarLength = m_hpBar.offsetMax.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float offsetMaxX = m_hpBarLength - ((m_maxHp - m_status.hp) / 100.0f * (Screen.width + m_hpBarLength-m_hpBar.offsetMin.x));
-        m_hpBar.offsetMax = new Vector2(offsetMaxX, m_hpBar.offsetMax.y);
-        if (Input.GetButtonDown("X")) { onDamage(10); }
+        m_hpBar.sizeDelta = new Vector2(m_status.hp * 256, 256);
+        if (Input.GetButtonDown("X")) { onDamage(1);}
+
+        string line = "";
+        
 
         //m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
     }
