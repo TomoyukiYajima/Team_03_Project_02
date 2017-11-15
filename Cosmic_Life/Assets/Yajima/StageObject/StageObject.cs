@@ -76,8 +76,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
 
         m_isGround = false;
 
-        //m_Rigidbody.velocity = Vector3.zero;
-        //m_PrevPosition = this.transform.position;
         m_PravPosition = this.transform.position;
         m_PravRotate = this.transform.rotation;
         m_PravVelocity = m_Rigidbody.velocity;
@@ -95,10 +93,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
                 if (collider != null) collider.SetActive(false);
             }
         }
-
-        //if (m_PrevHitObjects.Count == 0) return;
-
-        //ReleasObject();
     }
 
     // 自己発光の設定を行います
@@ -124,62 +118,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public void InitParent()
     {
         this.transform.parent = m_RootParent;
-    }
-
-    // ロボットでの点滅処理を行います
-    public void FlashRobot()
-    {
-        m_EmissionColor += Color.gray;
-        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, 0.5f));
-        m_FlashValue = m_FlashValue | 1 << 1;
-    }
-
-    public void FlashPlayer()
-    {
-        m_EmissionColor += Color.gray;
-        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, 0.5f));
-        m_FlashValue = m_FlashValue | 1 << 0;
-    }
-
-    // Emissionの点滅を行います
-    public void FlashEmission(Color color, float time)
-    {
-        //m_IsFlash = true;
-        m_EmissionColor += Color.gray;
-        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, time));
-        //m_FlashValue = m_FlashValue | 1 << 0;
-        if ((m_FlashValue & 1 << 0) == 0) m_FlashValue = m_FlashValue | 1 << 0;
-        else if ((m_FlashValue & 1 << 1) == 0) m_FlashValue = m_FlashValue | 1 << 1;
-
-        //StartCoroutine(Flash(color, time));
-    }
-
-    public IEnumerator Flash(Color color, float time)
-    {
-        // Emission をオンにする
-        for (int i = 0; i != m_Materials.Length; ++i)
-        {
-            // Tween で色変換
-            m_Materials[i].EnableKeyword("_EMISSION");
-            m_Materials[i].DOColor(color, "_EmissionColor", time);
-            //m_Materials[i].SetColor("_EmissionColor", color);
-        }
-
-        // ディレイ
-        yield return new WaitForSeconds(time);
-
-        // Emission をオフにする
-        for (int i = 0; i != m_Materials.Length; ++i)
-        {
-            m_Materials[i].DOColor(new Color(0.0f, 0.0f, 0.0f), "_EmissionColor", time);
-            //m_Materials[i].DisableKeyword("_EMISSION");
-        }
-
-        // 再帰呼び出し
-        //if (!m_IsFlash) yield break;
-        if(m_FlashValue == 0) yield break;
-        yield return new WaitForSeconds(time);
-        StartCoroutine(Flash(color, time));
     }
 
     // 参照しているオブジェクトの解放
@@ -222,6 +160,71 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         //m_PrevHitObjects.Clear();
     }
 
+    // ステージオブジェクトから除外します
+    public void Exclusion()
+    {
+        this.gameObject.tag = "Untagged";
+        this.enabled = false;
+        EndFlash();
+        // 配列に参照されている場合は、配列から削除する
+        GameObject checker = GameObject.Find("ObjectChecker");
+        checker.GetComponent<ObjectChecker>().DeleteStageObject(this.gameObject); 
+    }
+
+    #region 点滅処理
+    // ロボットでの点滅処理を行います
+    public void FlashRobot()
+    {
+        m_EmissionColor += Color.gray;
+        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, 0.5f));
+        m_FlashValue = m_FlashValue | 1 << 1;
+    }
+
+    public void FlashPlayer()
+    {
+        m_EmissionColor += Color.gray;
+        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, 0.5f));
+        m_FlashValue = m_FlashValue | 1 << 0;
+    }
+
+    // Emissionの点滅を行います
+    public void FlashEmission(Color color, float time)
+    {
+        //m_IsFlash = true;
+        m_EmissionColor += Color.gray;
+        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, time));
+        //m_FlashValue = m_FlashValue | 1 << 0;
+        if ((m_FlashValue & 1 << 0) == 0) m_FlashValue = m_FlashValue | 1 << 0;
+        else if ((m_FlashValue & 1 << 1) == 0) m_FlashValue = m_FlashValue | 1 << 1;
+    }
+
+    public IEnumerator Flash(Color color, float time)
+    {
+        // Emission をオンにする
+        for (int i = 0; i != m_Materials.Length; ++i)
+        {
+            // Tween で色変換
+            m_Materials[i].EnableKeyword("_EMISSION");
+            m_Materials[i].DOColor(color, "_EmissionColor", time);
+            //m_Materials[i].SetColor("_EmissionColor", color);
+        }
+
+        // ディレイ
+        yield return new WaitForSeconds(time);
+
+        // Emission をオフにする
+        for (int i = 0; i != m_Materials.Length; ++i)
+        {
+            m_Materials[i].DOColor(new Color(0.0f, 0.0f, 0.0f), "_EmissionColor", time);
+            //m_Materials[i].DisableKeyword("_EMISSION");
+        }
+
+        // 再帰呼び出し
+        //if (!m_IsFlash) yield break;
+        if (m_FlashValue == 0) yield break;
+        yield return new WaitForSeconds(time);
+        StartCoroutine(Flash(color, time));
+    }
     // Emissionの点滅を終了させます
     public void EndFlashEmission()
     {
@@ -231,7 +234,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         else if ((m_FlashValue & 1 << 1) != 0) m_FlashValue = m_FlashValue & 1 << 0;
         //m_FlashValue = 0;
     }
-
+    public void EndFlash()
+    {
+        m_EmissionColor = Color.black;
+        m_FlashValue = 0;
+    }
     public void EndFlashRobot()
     {
         m_EmissionColor -= Color.gray;
@@ -243,7 +250,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         m_EmissionColor -= Color.gray;
         m_FlashValue = m_FlashValue & 1 << 1;
     }
-
     // 色のリセットを行います
     public void ResetColor()
     {
@@ -253,6 +259,7 @@ public class StageObject : MonoBehaviour, IGeneralEvent
             m_Materials[i].color = m_Colors[i];
         }
     }
+    #endregion
 
     // オブジェクトと衝突しているかを返します
     public bool IsHit() { return m_HitObjects.Count != 0; }
@@ -277,6 +284,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         }
     }
 
+    // アンドロイドに持ち上げられているかを返します
+    public bool IsLift() { return this.transform.parent.parent.GetComponent<Worker>() != null;  }
+
     public void onTakeDown() { }
     #endregion
 
@@ -284,65 +294,16 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 衝突判定
     public void OnCollisionEnter(Collision collision)
     {
-        //if (collision.transform.tag == "Player")
-        //{
-        //    ////if (m_Rigidbody.isKinematic) return;
-        //    //print(m_PravVelocity.ToString());
-        //    ////m_Rigidbody.isKinematic = true;
-        //    //// m_Rigidbody.velocity = Vector3.zero;
-        //    //this.transform.position = m_PravPosition + m_PravVelocity * Time.deltaTime;
-        //    //this.transform.rotation = m_PravRotate;
-        //    //m_Rigidbody.velocity = m_PravVelocity;
-        //}
-
-        if(collision.transform.tag == "StageObject")
+        if (collision.transform.tag == "StageObject")
         {
-            //m_PravPosition = this.transform.position;
-            //m_PravRotate = this.transform.rotation;
             m_Rigidbody.constraints = RigidbodyConstraints.None;
             m_IsStageObjectHit = true;
         }
-        //else if (collision.transform.tag == "Sample")
-        //{
-        //    AddObject(collision.gameObject);
-        //    print("Hit");
-        //}
-    }
-
-    public void OnCollisionStay(Collision collision)
-    {
-        //if (collision.transform.tag == "Player")
-        //{
-        //    //if (m_Rigidbody.isKinematic) return;
-
-        //    //m_Rigidbody.isKinematic = true;
-        //    //m_Rigidbody.velocity = Vector3.zero;
-        //    this.transform.position = m_PravPosition + m_PravVelocity * Time.deltaTime;
-        //    this.transform.rotation = m_PravRotate;
-        //    m_Rigidbody.velocity = m_PravVelocity;
-        //}
-
-        //if (collision.transform.tag == "StageObject")
-        //{
-        //    //m_PravPosition = this.transform.position;
-        //    //m_PravRotate = this.transform.rotation;
-        //    m_Rigidbody.constraints = RigidbodyConstraints.None;
-        //}
     }
 
     public void OnCollisionExit(Collision collision)
     {
-
-        if (collision.transform.tag == "StageObject")
-        {
-            m_IsStageObjectHit = false;
-        }
-        //else if (collision.transform.tag == "Sample")
-        //{
-        //    ReleasObject(collision.gameObject);
-        //    //m_PrevHitObjects.Add(collision.gameObject);
-        //}
-        //if (collision.transform.tag == "Player") m_Rigidbody.isKinematic = false;
+        if (collision.transform.tag == "StageObject") m_IsStageObjectHit = false;
     }
     #endregion
     #endregion

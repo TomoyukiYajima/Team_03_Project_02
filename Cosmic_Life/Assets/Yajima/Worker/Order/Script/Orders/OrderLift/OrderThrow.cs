@@ -29,7 +29,7 @@ public class OrderThrow : Order {
         m_Velocities[OrderDirection.DOWN] = Vector3.down * 0.8f;
 
         // マネージャの追加
-        m_LiftManager = gameObject.GetComponent<LiftMoveManager>();
+        m_LiftManager = this.transform.parent.GetComponent<LiftMoveManager>();
     }
 
     //// Update is called once per frame

@@ -31,12 +31,18 @@ public class ObjectChecker : MonoBehaviour
     // 範囲内にあるステージオブジェクトを返します
     public List<GameObject> GetStageObjects() { return m_StageObjects; }
 
+    // 指定したステージオブジェクトを配列から削除します
+    public void DeleteStageObject(GameObject obj)
+    {
+        m_StageObjects.Remove(obj);
+    }
+
     // 衝突した瞬間(トリガー用)
     public void OnTriggerEnter(Collider other)
     {
         var stageObj = other.gameObject.GetComponent<StageObject>();
         // ステージオブジェクト以外なら返す
-        if (stageObj == null) return;
+        if (stageObj == null || !stageObj.enabled) return;
         //stageObj.EnableEmission(new Color(0.5f, 0.5f, 0.5f));
         stageObj.FlashEmission(new Color(0.5f, 0.5f, 0.5f), 0.5f);
         // 配列に追加

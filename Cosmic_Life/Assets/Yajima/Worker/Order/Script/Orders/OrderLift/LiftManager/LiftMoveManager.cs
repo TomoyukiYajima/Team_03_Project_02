@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LiftMoveManager : MonoBehaviour {
 
@@ -47,7 +48,7 @@ public class LiftMoveManager : MonoBehaviour {
         if (m_LiftObject == null) return;
 
         var stageObj = m_LiftObject.GetComponent<StageObject>();
-        colliders.transform.parent = this.transform;
+        colliders.transform.parent = m_LiftObject.transform;
         colliders.transform.localPosition = Vector3.zero;
 
         // 剛体
@@ -56,6 +57,9 @@ public class LiftMoveManager : MonoBehaviour {
         body.isKinematic = false;
         // 重力をオンにする
         body.useGravity = true;
+        // ナビメッシュオブジェクトをアクティブ状態に変更
+        var nav = m_LiftObject.GetComponent<NavMeshObstacle>();
+        nav.enabled = false;
         // ステージオブジェクトの親を初期化する
         stageObj.InitParent();
     }

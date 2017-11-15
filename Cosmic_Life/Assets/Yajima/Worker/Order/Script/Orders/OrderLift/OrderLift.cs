@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // 持ち命令クラス
 public class OrderLift : Order {
@@ -202,9 +203,21 @@ public class OrderLift : Order {
         // 固定しているステータスを解除
         body.constraints = RigidbodyConstraints.None;
         m_IsLift = true;
+        // ナビメッシュオブジェクトを非アクティブ状態に変更
+        var nav = m_LiftObject.GetComponent<NavMeshObstacle>();
+        nav.enabled = false;
+
+        //var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
+        // 相手の持ち上げポイントを取得する
+        var point = m_LiftObject.transform.Find("LiftPoint");
+        float length = m_LiftPoint.transform.position.y - point.position.y;
+        m_LiftObject.transform.position += Vector3.up * length;
+        //var colliders = liftObj.GetChild(1);
+        colliders.transform.position += Vector3.up * length;
+
         // 持ち上げるオブジェクトがプレイヤーの場合
         // プレイヤーを持ち上げるメッセージを送る
-        if(m_Player == m_LiftObject)
+        if (m_Player == m_LiftObject)
         {
             print("プレイヤーを持ち上げる");
             // メッセージを送る
@@ -340,6 +353,7 @@ public class OrderLift : Order {
                 }
 
                 // 移動ポイントの更新
+                print(movePoint.name);
                 robot.ChangeAgentMovePoint(movePoint.position);
                 //robot.GetNavMeshAgent().isStopped = false;
 
