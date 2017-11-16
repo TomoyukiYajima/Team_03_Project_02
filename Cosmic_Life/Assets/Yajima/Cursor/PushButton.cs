@@ -39,15 +39,20 @@ public class PushButton : MonoBehaviour {
 
     public void StopFlash()
     {
-        m_FlashImage.EndFlash();
-        Color color = m_ShadowImage.color;
-        color.a = 1.0f;
-        m_ShadowImage.color = color;
+        m_FlashImage.EndFlash(ShadowOn);
     }
 
     // シーン遷移処理
     public void ChangeScene()
     {
         SceneMgr.Instance.SceneTransition(m_Type);
+    }
+
+    // シャドウイメージを非透明化します
+    private void ShadowOn()
+    {
+        Color color = m_ShadowImage.color;
+        color.a = 1.0f;
+        m_ShadowImage.color = color;
     }
 }

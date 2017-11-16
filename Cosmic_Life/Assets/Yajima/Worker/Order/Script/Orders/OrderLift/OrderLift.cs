@@ -238,7 +238,7 @@ public class OrderLift : Order {
         // 参照するオブジェクトがある場合
         if (actionObj != null)
         {
-            if(actionObj.tag == "StageObject")
+            if(actionObj != null && actionObj.tag == "StageObject")
             {
                 // 見ているものを持つオブジェクトに変更する
                 m_LiftObject = actionObj;
@@ -268,8 +268,16 @@ public class OrderLift : Order {
         // プレイヤーを持つオブジェクトに設定
         //m_LiftObject = player;
         //m_LiftNumber = LiftObjectNumber.PLAYER_LIFT_NUMBER;
+        if(m_ObjectChecker.GetStageObjects().Count == 0)
+        {
+            print("持ち上げるものがありません");
+            // 空の状態に遷移
+            //ChangeOrder(obj, OrderStatus.NULL);
+            EndOrder(obj);
+            return;
+        }
 
-        GameObject liftStageObj = m_ObjectChecker.GetStageObjects()[0];
+        GameObject liftStageObj =  m_ObjectChecker.GetStageObjects()[0];
         // ステージオブジェクトとの距離を求める
         //var objLength = m_ObjectChecker.GetLength();
         var objLength = Vector3.Distance(liftStageObj.transform.position, this.transform.position);

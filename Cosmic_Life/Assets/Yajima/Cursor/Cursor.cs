@@ -18,12 +18,17 @@ public class Cursor : MonoBehaviour {
     // カーソルが動くか
     private bool m_IsMove = true;
 
+    // 仮
+    private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
         m_ButtonCount = 0;
         // カーソルの座標をボタンの座標にする
         this.transform.position = m_Buttones[m_ButtonCount].transform.position;
         m_Buttones[m_ButtonCount].Flash();
+
+        audio = this.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -43,6 +48,7 @@ public class Cursor : MonoBehaviour {
 
         if (Input.GetButtonDown("OK"))
         {
+            audio.Play();
             m_Buttones[m_ButtonCount].ChangeScene();
             m_IsMove = false;
             return;

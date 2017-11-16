@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class FlashImage : MonoBehaviour {
     private Image m_Image;
     // 発光を停止させるか
     private bool m_IsStop = false;
+    // 終了時に実行する処理
+    private Action m_EndAction = () => { };
 
 	// Use this for initialization
 	void Start () {
@@ -38,8 +41,9 @@ public class FlashImage : MonoBehaviour {
         StartCoroutine(Flash());
     }
 
-    public void EndFlash()
+    public void EndFlash(Action action)
     {
+        m_EndAction = action;
         m_IsStop = true;
     }
 
@@ -54,7 +58,12 @@ public class FlashImage : MonoBehaviour {
         // 再帰呼び出し
         yield return new WaitForSeconds(m_FadeTime / 2 + m_FlashDelay);
         // 停止状態ならブレイクする
-        if (m_IsStop) yield break;
+        if (m_IsStop)
+        {
+            // 終了時に設定されたメソッドを実行
+            m_EndAction();
+            yield break;
+        }
         StartCoroutine(Flash());
     }
 }
