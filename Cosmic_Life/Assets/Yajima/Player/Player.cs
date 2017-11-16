@@ -61,10 +61,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     void Update()
     {
         m_hpBar.sizeDelta = new Vector2(m_status.hp * 256, 256);
-        if (Input.GetButtonDown("X")) { onDamage(1);}
-
-        string line = "";
-        
+        if (Input.GetButtonDown("X")) { onDamage(1); }
 
         //m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
     }
@@ -82,6 +79,10 @@ public class Player : MonoBehaviour, IGeneralEvent
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
         float hR = Input.GetAxis("HorizontalR");
+
+        if (h < 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90, 0);
+        else if (h > 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 90, 0);
+        else if (h == 0.0f && v > 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         Vector3 velocity = Vector3.zero;
 
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
 
         //Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
-        Vector3 ve = (transform.forward * v + transform.right * h) *2.5f;
+        Vector3 ve = (transform.forward * v + transform.right * h) * 2.5f;
 
         // we preserve the existing y part of the current velocity.
         ve.y = m_rigidbody.velocity.y;
@@ -137,7 +138,7 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         }
 
-       m_animator.SetFloat("Speed", m_rigidbody.velocity.magnitude, 0.1f, Time.fixedDeltaTime);
+        m_animator.SetFloat("Speed", m_rigidbody.velocity.magnitude, 0.1f, Time.fixedDeltaTime);
     }
 
     private void UpdateState()
@@ -219,7 +220,7 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     private IEnumerator Attack()
     {
-        m_animator.SetBool("Attack",true);
+        m_animator.SetBool("Attack", true);
 
         yield return new WaitForEndOfFrame();
         // 攻撃コリジョン生成
