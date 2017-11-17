@@ -59,6 +59,12 @@ public class TextController : MonoBehaviour {
 
     public void SetText(string text)
     {
+        m_text.text = text;
+        m_displayChar = 0;
+        m_curText = m_text.text;
+        m_text.text = m_curText.Substring(0, m_displayChar);
+        StopAllCoroutines();
+        StartCoroutine(DisplayText());
 
     }
 }
