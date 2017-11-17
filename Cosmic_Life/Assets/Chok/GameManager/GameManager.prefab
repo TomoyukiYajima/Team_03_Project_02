@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b33585ccd270924dbf2bb4fbe31005b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_currentScene: 1
 --- !u!114 &114563123351079654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,6 +179,8 @@ MonoBehaviour:
       Value: 65536
     - Key: look
       Value: 262144
+    - Key: follow
+      Value: 524288
   m_directionrDictionary:
     list:
     - Key: "\u307E\u3048"

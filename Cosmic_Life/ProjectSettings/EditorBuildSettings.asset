@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LogoScene.unity
     guid: 8738d0bf72b5fe842a6ca1ce34eb69f6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 9dfd6548e72cfa946a049983d330ccf2
   - enabled: 0

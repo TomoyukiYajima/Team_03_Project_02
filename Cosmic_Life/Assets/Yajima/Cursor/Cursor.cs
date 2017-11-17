@@ -13,13 +13,19 @@ public class Cursor : MonoBehaviour {
     // 移動時間
     [SerializeField]
     private float m_MoveTime = 0.1f;
+    //// 仮
+    //[SerializeField]
+    //private AudioClip m_SelectSE;
+    //// 仮
+    //[SerializeField]
+    //private AudioClip m_DicisionSE;
     // 現在のボタンのカウント
     private int m_ButtonCount;
     // カーソルが動くか
     private bool m_IsMove = true;
 
     // 仮
-    private AudioSource audio;
+    //private AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +34,7 @@ public class Cursor : MonoBehaviour {
         this.transform.position = m_Buttones[m_ButtonCount].transform.position;
         m_Buttones[m_ButtonCount].Flash();
 
-        audio = this.GetComponent<AudioSource>();
+        //audio = this.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -48,7 +54,8 @@ public class Cursor : MonoBehaviour {
 
         if (Input.GetButtonDown("OK"))
         {
-            audio.Play();
+            //audio.Play();
+            //audio.PlayOneShot(m_DicisionSE);
             m_Buttones[m_ButtonCount].ChangeScene();
             m_IsMove = false;
             return;
@@ -64,7 +71,7 @@ public class Cursor : MonoBehaviour {
         // カーソルが指定座標に辿り着いる場合は返す。
         //if (m_Buttones[m_ButtonCount].transform.position == this.transform.position) return;
         if (m_ButtonCount == prevCount) return;
-
+        //audio.PlayOneShot(m_SelectSE);
         this.transform.DOMove(m_Buttones[m_ButtonCount].transform.position, m_MoveTime);
         // m_Buttones[m_ButtonCount].Flash();
         // 発光処理処理の停止

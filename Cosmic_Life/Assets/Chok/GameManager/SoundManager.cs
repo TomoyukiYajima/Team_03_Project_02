@@ -63,9 +63,9 @@ public class SoundManager : SingletonBehaviour<SoundManager>
             m_seSources[i] = gameObject.AddComponent<AudioSource>();
         }
 
-        m_seClips = Resources.LoadAll<AudioClip>("Audio/SE");
-        m_bgmClips = Resources.LoadAll<AudioClip>("Audio/BGM");
-        m_voiceClips = Resources.LoadAll<AudioClip>("Audio/VOICE");
+        m_seClips = Resources.LoadAll<AudioClip>("Sounds/SE");
+        m_bgmClips = Resources.LoadAll<AudioClip>("Sounds/BGM");
+        m_voiceClips = Resources.LoadAll<AudioClip>("Sounds/VOICE");
 
         for (int i = 0; i < m_seClips.Length; ++i)
         {
