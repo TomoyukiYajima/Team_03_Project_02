@@ -81,6 +81,8 @@ public class OrderLift : Order {
         // オブジェクトの捜索
         FindLiftObject(obj, actionObj);
 
+        SetStartOrderText();
+
         // リフトクラスを継承した子クラスのオブジェクトチェック関数を呼ぶ
         // m_LiftCheck[checkNumber].CheckObject(obj);
 
@@ -89,7 +91,7 @@ public class OrderLift : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Lift");
+        base.UpdateAction(deltaTime, obj);
 
         if (m_IsLift) return;
         // 持てるかのチェック
@@ -400,7 +402,7 @@ public class OrderLift : Order {
             Worker robot = obj.GetComponent<Worker>();
             robot.AgentStop();
             // 終了処理
-            EndOrder(obj);
+            //EndOrder(obj);
             return;
         }
 

@@ -46,7 +46,8 @@ public class OrderMove : DirectionOrder {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Move");
+        //print("Move");
+        base.UpdateAction(deltaTime, obj);
 
         // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
         if (IsLiftHit(obj)) return;
@@ -116,41 +117,41 @@ public class OrderMove : DirectionOrder {
         //}
     }
 
-    #region エディターのシリアライズ変更
-#if UNITY_EDITOR
-    [CustomEditor(typeof(OrderMove), true)]
-    [CanEditMultipleObjects]
-    public class OrderMoveEditor : Editor
-    {
-        SerializedProperty MoveSpeed;
-        SerializedProperty TurnSpeed;
+//    #region エディターのシリアライズ変更
+//#if UNITY_EDITOR
+//    [CustomEditor(typeof(OrderMove), true)]
+//    [CanEditMultipleObjects]
+//    public class OrderMoveEditor : Editor
+//    {
+//        SerializedProperty MoveSpeed;
+//        SerializedProperty TurnSpeed;
 
-        public void OnEnable()
-        {
-            MoveSpeed = serializedObject.FindProperty("m_MoveSpeed");
-            TurnSpeed = serializedObject.FindProperty("m_TurnSpeed");
-        }
+//        public void OnEnable()
+//        {
+//            MoveSpeed = serializedObject.FindProperty("m_MoveSpeed");
+//            TurnSpeed = serializedObject.FindProperty("m_TurnSpeed");
+//        }
 
-        public override void OnInspectorGUI()
-        {
-            // 更新
-            serializedObject.Update();
+//        public override void OnInspectorGUI()
+//        {
+//            // 更新
+//            serializedObject.Update();
 
-            // 自身の取得;
-            OrderMove order = target as OrderMove;
+//            // 自身の取得;
+//            OrderMove order = target as OrderMove;
 
-            // エディタ上でのラベル表示
-            EditorGUILayout.LabelField("〇移動の命令");
+//            // エディタ上でのラベル表示
+//            EditorGUILayout.LabelField("〇移動の命令");
 
-            // float
-            MoveSpeed.floatValue = EditorGUILayout.FloatField("移動速度(m/s)", order.m_MoveSpeed);
-            TurnSpeed.floatValue = EditorGUILayout.FloatField("回転速度(m/s)", order.m_TurnSpeed);
+//            // float
+//            MoveSpeed.floatValue = EditorGUILayout.FloatField("移動速度(m/s)", order.m_MoveSpeed);
+//            TurnSpeed.floatValue = EditorGUILayout.FloatField("回転速度(m/s)", order.m_TurnSpeed);
 
-            // Unity画面での変更を更新する(これがないとUnity画面で変更が表示されない)
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
-#endif
+//            // Unity画面での変更を更新する(これがないとUnity画面で変更が表示されない)
+//            serializedObject.ApplyModifiedProperties();
+//        }
+//    }
+//#endif
 
-    #endregion
+//    #endregion
 }

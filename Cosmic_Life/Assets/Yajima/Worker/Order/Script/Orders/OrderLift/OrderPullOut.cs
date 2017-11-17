@@ -9,34 +9,9 @@ public class OrderPullOut : OrderLift {
     // 後ずさりする時間
     private float m_BackTime;
 
-    //// Use this for initialization
-    //void Start () {
-
-    //}
-
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
-
-    //public override void StartAction(GameObject obj)
-    //{
-    //    //base.StartAction(obj);
-    //    // 持ち上げたオブジェクトを取得する
-    //    var liftObj = obj.transform.Find("LiftObject");
-    //    // もし何か持っていれば返す
-    //    if (liftObj.childCount != 0)
-    //    {
-    //        print("すでに物を持っています");
-    //        return;
-    //    }
-
-    //    // 
-    //}
-
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("PullOut");
+        base.UpdateAction(deltaTime, obj);
 
         if (m_IsBackMove) return;
 

@@ -8,17 +8,5 @@ public class OrderLowAttack : OrderAttack {
     public override void Start()
     {
         base.Start();
-
-        m_OrderText = "LowAttack";
     }
-
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
-
-    //public override void Action(float deltaTime, GameObject obj)
-    //{
-    //    print("LowAttack");
-    //}
 }

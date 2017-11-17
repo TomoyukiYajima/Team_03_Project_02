@@ -17,6 +17,6 @@ public class OrderDestruct : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Destruct");
+        base.UpdateAction(deltaTime, obj);
     }
 }

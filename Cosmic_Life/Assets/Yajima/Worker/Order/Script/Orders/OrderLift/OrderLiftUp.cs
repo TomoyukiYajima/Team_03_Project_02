@@ -36,18 +36,20 @@ public class OrderLiftUp : OrderLift {
             return;
         }
 
-        EndOrder(obj);
+        SetStartOrderText();
+
+        //EndOrder(obj);
         // 持ち上げるオブジェクトの捜索
         //FindLiftObject(obj, actionObj);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        UpdateAction(deltaTime, obj, null);
+        //base.UpdateAction(deltaTime, obj);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
-        print("LiftUp");
+        UpdateAction(deltaTime, obj);
     }
 }

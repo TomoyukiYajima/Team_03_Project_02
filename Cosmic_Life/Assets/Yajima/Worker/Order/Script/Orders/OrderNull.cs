@@ -7,6 +7,6 @@ public class OrderNull : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Null");
+        //base.UpdateAction(deltaTime, obj);
     }
 }

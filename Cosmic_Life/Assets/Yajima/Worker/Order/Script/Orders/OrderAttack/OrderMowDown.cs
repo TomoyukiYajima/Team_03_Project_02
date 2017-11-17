@@ -17,15 +17,8 @@ public class OrderMowDown : OrderAttack {
         base.Start();
     }
 
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
-
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
-        //base.StartAction(obj);
-
         m_Timer = 0.0f;
         m_IsEndOrder = false;
 
@@ -51,6 +44,8 @@ public class OrderMowDown : OrderAttack {
             GameObject collider = m_LiftObject.transform.Find("Collider").gameObject;
             if (collider != null) m_Collider = collider;
         }
+
+        SetStartOrderText();
         // Tweenの移動
         m_LiftObject.transform.DOMove(m_StopPoint.position, m_AttackTime);
         // 持ち上げているオブジェクトの衝突判定をオンにする
@@ -60,7 +55,6 @@ public class OrderMowDown : OrderAttack {
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
         // 持ち上げているオブジェクトの角度を調整する
-        //Vector2 forward = new Vector2(obj.transform.forward.x, obj.transform.forward.z);
         Vector3 vec = m_LiftObject.transform.position - obj.transform.position;
         float angleX = Vector2.Angle(
             new Vector2(obj.transform.forward.x, obj.transform.forward.y),
@@ -78,14 +72,11 @@ public class OrderMowDown : OrderAttack {
 
         m_LiftObject.transform.eulerAngles = new Vector3(m_LiftObject.transform.eulerAngles.x, m_InitAngle.y - angleY + (90+ obj.transform.eulerAngles.y), m_LiftObject.transform.eulerAngles.z);
 
-
-
         base.UpdateAction(deltaTime, obj);
     }
 
     public override void EndAction(GameObject obj)
     {
-        //base.EndAction(obj);
         if (m_LiftObject != null) m_LiftObject.transform.position = m_StartPoint.position;
     }
 

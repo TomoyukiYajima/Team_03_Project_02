@@ -12,6 +12,12 @@ public class Order : MonoBehaviour {
         OBJECT_ACTION   = 1 << 1
     }
 
+    // 表示する命令テキスト(初回時)
+    [SerializeField]
+    private string m_StartOrderText = "実行";
+    // 表示する命令テキスト(更新時)
+    //[SerializeField]
+    //private string m_UpdateOrderText = "実行中";
     // 命令が終了したか
     protected bool m_IsEndOrder = false;
     // 命令終了時に新しい命令を実行するか
@@ -32,6 +38,9 @@ public class Order : MonoBehaviour {
     // アンドロイド
     protected Worker m_Undroid;
 
+    // テキストコントローラ
+    private TextController m_TextController;
+
     // Action実行配列
     private Dictionary<ActionNumber, Action<float, GameObject, GameObject>> m_Actions =
         new Dictionary<ActionNumber, Action<float, GameObject, GameObject>>();
@@ -41,6 +50,9 @@ public class Order : MonoBehaviour {
     {
         m_Actions[ActionNumber.DEFAULT] = (deltaTime, obj, actionObj) => { UpdateAction(deltaTime, obj); };
         m_Actions[ActionNumber.OBJECT_ACTION] = (deltaTime, obj, actionObj) => { UpdateAction(deltaTime, obj, actionObj); };
+
+        // テキストコントローラの取得
+        m_TextController = GameObject.Find("OrderText").GetComponent<TextController>();
     }
 
     // Update is called once per frame
@@ -51,6 +63,8 @@ public class Order : MonoBehaviour {
     {
         m_ActionObject = actionObj;
         m_Dir = obj.GetComponent<Worker>().GetOrderDir();
+        // UIに命令テキストの設定
+        SetStartOrderText();
 
         if (m_ActionObject != null) m_ActionNumber = ActionNumber.OBJECT_ACTION;
     }
@@ -154,4 +168,15 @@ public class Order : MonoBehaviour {
 
         liftObj.ClearObject();
     }
+
+    // UIに命令テキストの表示(更新時)
+    protected void SetStartOrderText()
+    {
+        m_TextController.SetText(m_StartOrderText + "・・・");
+    }
+    // UIに命令テキストの表示(更新時)
+    //protected void SetUpdateOrderText()
+    //{
+    //    m_TextController.SetText(m_UpdateOrderText);
+    //}
 }

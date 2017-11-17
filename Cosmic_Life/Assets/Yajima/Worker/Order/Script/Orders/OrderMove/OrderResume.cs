@@ -16,6 +16,7 @@ public class OrderResume : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Resume");
+        base.UpdateAction(deltaTime, obj);
+        //print("Resume");
     }
 }

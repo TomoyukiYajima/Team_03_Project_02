@@ -48,8 +48,6 @@ public class OrderThrow : Order {
             return;
         }
 
-        print("投げ命令");
-
         // 親子関係を解除する
         var colliders = m_LiftManager.GetLiftObject().transform.parent.Find("Colliders").gameObject;
         m_LiftManager.ReleaseObject(colliders);

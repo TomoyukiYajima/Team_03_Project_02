@@ -26,7 +26,8 @@ public class OrderTurn : DirectionOrder {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Turn");
+        base.UpdateAction(deltaTime, obj);
+        //print("Turn");
 
         // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
         if (IsLiftHit(obj)) return;

@@ -17,6 +17,7 @@ public class OrderStop : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print("Stop");
+        base.UpdateAction(deltaTime, obj);
+        //print("Stop");
     }
 }

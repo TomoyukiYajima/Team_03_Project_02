@@ -31,8 +31,6 @@ public class OrderAttack : Order {
     private bool m_IsAttack = true;
     // 動かすオブジェクト
     protected GameObject m_MoveObject;
-    // 
-    protected string m_OrderText = "Attack";
 
     // Use this for initialization
     public override void Start()
@@ -45,11 +43,6 @@ public class OrderAttack : Order {
             m_MoveObject = m_Collider;
         }
     }
-
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
 
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
@@ -64,10 +57,9 @@ public class OrderAttack : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        print(m_OrderText);
-
-        //if (m_Timer >= m_AttackTime) return;
-        m_Timer += deltaTime;
+        base.UpdateAction(deltaTime, obj);
+ 
+                   m_Timer += deltaTime;
         if (m_Timer < m_AttackTime + m_DelayTime) return;
 
         // 攻撃戻り処理
@@ -79,7 +71,6 @@ public class OrderAttack : Order {
             if (m_Collider != null) m_Collider.SetActive(false);
             m_IsAttack = false;
         }
-        //m_IsEndOrder = true;
 
         if (m_Timer < m_AttackTime + m_DelayTime + m_BackTime) return;
 
@@ -89,11 +80,7 @@ public class OrderAttack : Order {
         m_IsAttack = true;
         var order = m_OrderState;
         // 攻撃を終了する場合は、停止命令に変更する
-        if (m_IsEndOrder)
-        {
-            order = OrderStatus.STOP;
-            //m_IsEndOrder = false;
-        }
+        if (m_IsEndOrder) order = OrderStatus.STOP;
         // 状態の変更
         ChangeOrder(obj, order);
     }

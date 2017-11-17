@@ -24,6 +24,6 @@ public class OrderJump : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        //base.Action(deltaTime, obj);
+        base.UpdateAction(deltaTime, obj);
     }
 }

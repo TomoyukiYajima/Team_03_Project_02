@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4673541809103244}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DownPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4770925339065838}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4913722499611476}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4736895809333476}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 33521507834541018}
   - component: {fileID: 65706626808457692}
   - component: {fileID: 23848971075797802}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ForwardCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4943597396370194}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeftPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 33763755389500772}
   - component: {fileID: 65493442847398196}
   - component: {fileID: 23749725079703740}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RightCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 33945202612836260}
   - component: {fileID: 65702915697585716}
   - component: {fileID: 23708177572316952}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DownCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4971247584013400}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4014938539792396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RightPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4663957209095522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BackwardPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 33405169641534480}
   - component: {fileID: 65350878797340760}
   - component: {fileID: 23743847518177152}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BackwardCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4159815701781818}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4478385296389068}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LiftPoint
   m_TagString: Untagged
   m_Icon: {fileID: -6488666005112524639, guid: 0000000000000000d000000000000000, type: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 33309231481223074}
   - component: {fileID: 65175594647608952}
   - component: {fileID: 23760841857634800}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 65221271445194034}
   - component: {fileID: 23445179545874778}
   - component: {fileID: 114333992901845298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4803042372221080}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ForwardPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -314,7 +314,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4902828809371972}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: UpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6926474624037801865, guid: 0000000000000000d000000000000000, type: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 33431901080047838}
   - component: {fileID: 65721529691211536}
   - component: {fileID: 23753555474256060}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: UpCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4045086392494294}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4804842368515448}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Backward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4529935299493818}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
