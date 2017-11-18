@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CameraRay : MonoBehaviour
 {
     [SerializeField, Range(0f, 10f), Tooltip("レイ距離")] private float m_rayDist;
     [SerializeField, Range(0f, 360f), Tooltip("プレイヤー視野角度")] private float m_rayAngle;
     //[SerializeField] private CameraManager m_cameraManager;
+    [SerializeField] private Sprite m_aimBlack;
+    [SerializeField] private Sprite m_aimEffect;
 
     private GameObject m_colliderObj;   // 当たったオブジェクトを格納する関数
     private Transform m_rayPos;         // レイ開始位置
     private Transform m_player;         // プレイヤー
+    private Transform m_rayCenter;
     private Vector3 m_rayDir;           // レイ方向
+
+    private Image m_aim;
 
     // Use this for initialization
     void Start()
@@ -20,6 +26,9 @@ public class CameraRay : MonoBehaviour
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
         // プレイヤーのレイ開始座標
         m_rayPos = m_player.FindChild("LookPoint").transform;
+        m_rayCenter = m_player.FindChild("HeadLook").transform;
+
+        m_aim = m_player.FindChild("PlayerCanvas").transform.FindChild("AimBase").GetComponent<Image>();
 
         m_rayDir = Vector3.zero;
     }
@@ -27,18 +36,19 @@ public class CameraRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = (transform.position - m_player.position).normalized;
+        var dir = (m_rayCenter.position - m_rayPos.position).normalized;
         float angle = Vector3.Angle(m_player.forward, dir);
 
         // プレイヤー視野角度内かつプレイヤーの後ろにいるときしか更新しない
-        if (angle > m_rayAngle)
-        {
-            m_rayDir = transform.forward;
-        }
+        //if (angle > m_rayAngle)
+        //{
+        //    m_rayDir = transform.forward;
+        //}
         //else
         //{
         //    m_rayDir = m_player.forward;
         //}
+        m_rayDir = dir;
 
         // y軸更新
         m_rayDir.y = transform.forward.y;
@@ -85,10 +95,12 @@ public class CameraRay : MonoBehaviour
         if ((material = m_colliderObj.GetComponent<StageObject>()) == null) return;
         // 点滅開始
         material.FlashEmission(color, duration);
+        m_aim.sprite = m_aimEffect;
     }
 
     private void EndFlash(GameObject obj)
     {
+        m_aim.sprite = m_aimBlack;
         // 格納されたオブジェクトが空ではないとき
         if (m_colliderObj != null)
         {

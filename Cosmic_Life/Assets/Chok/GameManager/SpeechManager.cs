@@ -110,6 +110,9 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
     // キーワードを読み取ったら実行するメソッド
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
+        var sprite = GameObject.Find("StageCanvas").transform.FindChild("");
+
+
         //ログ出力
         StringBuilder builder = new StringBuilder();
         builder.AppendFormat("{0} ({1}){2}", args.text, args.confidence, Environment.NewLine);

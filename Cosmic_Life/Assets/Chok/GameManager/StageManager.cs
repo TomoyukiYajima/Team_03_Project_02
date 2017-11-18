@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject[] m_doors;
     [SerializeField] private GameObject[] m_spawnObj;
     [SerializeField] private System.Action[] m_action;
+    [SerializeField] private Pausable m_pause;
 
     private bool m_isActivated;
 
@@ -24,6 +25,10 @@ public class StageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            m_pause.pausing = m_pause.pausing == true ? false : true;
+        }
         if (m_isActivated) return;
         if (Input.GetButtonDown("Triggrt_Right"))
         {
