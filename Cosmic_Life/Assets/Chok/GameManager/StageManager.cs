@@ -19,7 +19,6 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         m_isActivated = false;
-
     }
 
     // Update is called once per frame

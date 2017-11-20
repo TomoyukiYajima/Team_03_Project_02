@@ -45,6 +45,8 @@ public class Pausable : MonoBehaviour
     /// </summary>
     Rigidbody[] pausingRigidbodies;
 
+    Animator[] pausingAnimatores;
+
     /// <summary>
     /// ポーズ中のMonoBehaviourの配列
     /// </summary>
@@ -83,6 +85,12 @@ public class Pausable : MonoBehaviour
             pausingRigidbodies[i].Sleep();
         }
 
+        Predicate<Animator> animatorPredicate = obj => obj.enabled;
+        pausingAnimatores = Array.FindAll(transform.GetComponentsInChildren<Animator>(), animatorPredicate);
+        for (int i = 0; i < pausingAnimatores.Length; i++)
+        {
+            pausingAnimatores[i].speed = 0;
+        }
         // MonoBehaviourの停止
         // 子要素から、有効かつこのインスタンスでないもの、IgnoreGameObjectsに含まれていないMonoBehaviourを抽出
         Predicate<MonoBehaviour> monoBehaviourPredicate =
@@ -108,6 +116,11 @@ public class Pausable : MonoBehaviour
             pausingRigidbodies[i].WakeUp();
             pausingRigidbodies[i].velocity = rigidbodyVelocities[i].velocity;
             pausingRigidbodies[i].angularVelocity = rigidbodyVelocities[i].angularVeloccity;
+        }
+
+        foreach(var animator in pausingAnimatores)
+        {
+            animator.speed = 1;
         }
 
         // MonoBehaviourの再開

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4959239332982554}
   - component: {fileID: 114284672393419296}
+  - component: {fileID: 114381290341869114}
   m_Layer: 0
   m_Name: Stage2Manager
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837045706948018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.085236, y: 3.7265196, z: 0.5453671}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,6 +52,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e6536c07a8bf44784fd53a2df92023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerPos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_doors:
   - {fileID: 0}
+  m_spawnObj:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114381290341869114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1837045706948018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0172abe4b1b0b45834bbb027999a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerPos:
+  - {fileID: 0}
+  m_robotPos:
+  - {fileID: 0}
+  m_doors: []
   m_spawnObj: []
+  m_pause: {fileID: 0}

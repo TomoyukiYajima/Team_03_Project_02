@@ -83,7 +83,7 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (h < 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90, 0);
         else if (h > 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 90, 0);
-        else if (h == 0.0f && v > 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        else if (h == 0.0f && v != 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         Vector3 velocity = Vector3.zero;
 
@@ -106,8 +106,11 @@ public class Player : MonoBehaviour, IGeneralEvent
         float turnSpeed = Mathf.Lerp(180.0f, 360.0f, velocity.z);
         transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
 
+        float factor = 1.0f;
+        if (v < 0.5f) factor = 0.3f;
+
         //Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
-        Vector3 ve = (transform.forward * v + transform.right * h) * 2.5f;
+        Vector3 ve = (transform.forward * v * factor + transform.right * h) * 2.5f;
 
         // we preserve the existing y part of the current velocity.
         ve.y = m_rigidbody.velocity.y;
@@ -115,9 +118,10 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (m_isGrounded)
         {
-            velocity = transform.forward * v + transform.right * h;
+            velocity = transform.forward * v * factor + transform.right * h;
 
             m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
+
             m_groundCheckDistance = 0.1f;
             m_isGrounded = false;
 
@@ -139,7 +143,8 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         }
 
-        m_animator.SetFloat("Speed", m_rigidbody.velocity.magnitude, 0.1f, Time.fixedDeltaTime);
+        m_animator.SetFloat("Speed", v, 0.1f, Time.fixedDeltaTime);
+        m_animator.SetFloat("SideSpeed", h, 0.1f, Time.fixedDeltaTime);
     }
 
     private void UpdateState()
