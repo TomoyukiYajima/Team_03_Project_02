@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class WalkEnemy : Enemy {
 
+    [System.NonSerialized]
     public NavMeshAgent m_Agent;
 
     //現在の巡回ポイントのインデックス
@@ -21,6 +22,9 @@ public class WalkEnemy : Enemy {
     //プレイヤーへの注視点
     Transform m_PlayerLookPoint;
 
+    //Robotへの注視点
+    Transform m_RobotLookPoint;
+
     //自身の目の位置
     Transform m_EyePoint;
 
@@ -34,7 +38,7 @@ public class WalkEnemy : Enemy {
 
 
     // Use this for initialization
-    public override void Start () {
+    public override void Start() {
         base.Start();
 
         m_Agent = GetComponent<NavMeshAgent>();
@@ -49,6 +53,7 @@ public class WalkEnemy : Enemy {
             ChangeState(EnemyStatus.NonRoundState);
 
         m_PlayerLookPoint = m_Player.transform.Find("LookPoint");
+        m_RobotLookPoint = m_Robot.transform.Find("LookPoint");
         m_EyePoint = transform.Find("EyePoint");
 
         //初期位置と向いている方向の保存する
@@ -60,6 +65,39 @@ public class WalkEnemy : Enemy {
     //   void Update () {
     //}
 
+    //優先する方を調べて、優先するべき方を返す
+    public GameObject CheckPlayerAndRobot()
+    {
+        //どっちも見えている場合、プレイヤー優先
+        if (CanSeePlayer() && CanSeeRobot())
+        {
+            return m_Player;
+        }
+        else if (CanSeePlayer())
+        {
+            return m_Player;
+        }
+        else if (CanSeeRobot())
+        {
+            return m_Robot;
+        }
+
+        return null;
+    }
+    
+    public bool CanSeeRobot()
+    {
+        if (!IsRobotInViewingDistance())
+            return false;
+
+        if (!IsRobotInViewingAngle())
+            return false;
+
+        if (!CanHitRayToRobot())
+            return false;
+
+        return true;
+    }
 
     public bool CanSeePlayer()
     {
@@ -73,6 +111,48 @@ public class WalkEnemy : Enemy {
             return false;
 
         return true;
+    }
+
+    bool IsRobotInViewingDistance()
+    {
+        if (m_Robot == null) return false;
+        //自身からロボットまでの距離
+        float distanceToRobot = Vector3.Distance(m_RobotLookPoint.position, m_EyePoint.position);
+
+        return (distanceToRobot <= m_ViewingDistance);
+    }
+
+    bool IsRobotInViewingAngle()
+    {
+        //自身からロボットへの方向ベクトル
+        Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
+
+        //自分の正面向きベクトルとロボットへの方向ベクトルの差分角度
+        float angleToRobot = Vector3.Angle(m_EyePoint.forward, directionToRobot);
+
+        //見える角度の範囲内にロボットがいるかどうかを返却する
+        return (Mathf.Abs(angleToRobot) <= m_ViewingAngle);
+    }
+
+    bool CanHitRayToRobot()
+    {
+        //自身からロボットへの方向ベクトル
+        Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
+
+        RaycastHit hitInfo;
+        bool hit = Physics.Raycast(m_EyePoint.position, directionToRobot, out hitInfo);
+
+        //ロボットにRayが当たったかどうか返却する
+        return (hit && hitInfo.collider.tag == "Robot");
+    }
+
+
+    public bool CanSeePlayerAndRobot()
+    {
+        if (CanSeePlayer() || CanSeeRobot())
+            return true;
+
+        return false;
     }
 
     bool IsPlayerInViewingDistance()
@@ -122,15 +202,7 @@ public class WalkEnemy : Enemy {
         m_Agent.destination = m_RoundPoints[m_CurrentPatrolPointIndex].position;
     }
 
-    public void SetViewAngle(float angle)
-    {
-        m_ViewingAngle = angle;
-    }
 
-    public override void onDamage(int amount)
-    {
-        Destroy(gameObject);
-    }
 
     //ピタッと止める
     public void AgentStop()
@@ -139,19 +211,17 @@ public class WalkEnemy : Enemy {
         m_Agent.isStopped = true;
     }
 
-    //y軸を無視したポジション取得
-    public Vector3 GetEnemyPosition()
-    {
-        Vector3 l_FootPosition = transform.position;
-        l_FootPosition.y = 0;
-
-        return l_FootPosition;
-    }
 
     //巡回するかを返す
     public bool GetIsPatrol()
     {
         return m_IsPatrol;
+    }
+
+    //どれくらい視野角度の変更
+    public void SetAngle(float angle)
+    {
+        m_ViewingAngle = angle;
     }
 
     public void OnDrawGizmos()

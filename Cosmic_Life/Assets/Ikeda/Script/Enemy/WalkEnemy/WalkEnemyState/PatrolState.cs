@@ -19,13 +19,12 @@ public class PatrolState : EnemyState
     {
         print("巡回中");
 
-        //プレイヤーが見えた場合
-        if (enemy.GetComponent<WalkEnemy>().CanSeePlayer())
+        //見えた場合
+        if (enemy.GetComponent<WalkEnemy>().CanSeePlayerAndRobot())
         {
             enemy.ChangeState(EnemyStatus.Chasing); 
-            //obj.GetComponent<WalkEnemy>().m_Agent.destination = obj.GetPlayer().transform.position;
         }
-        //プレイヤーが見えなくて、目的地に到着した場合
+        //見えなくて、目的地に到着した場合
         else if (enemy.GetComponent<WalkEnemy>().HasArrived())
         {
             //目的地を次の巡回ポイントに切り替える

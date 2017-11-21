@@ -20,9 +20,11 @@ public class ReturnPosition : EnemyState {
 
         WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
 
-        //プレイヤーが見えている場合
-        if (l_WalkEnemy.CanSeePlayer())
+        //見えている場合
+        if (l_WalkEnemy.CanSeePlayerAndRobot())
         {
+            l_WalkEnemy.m_Agent.isStopped = false;
+            l_WalkEnemy.SetAngle(90.0f);
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //見失った場合

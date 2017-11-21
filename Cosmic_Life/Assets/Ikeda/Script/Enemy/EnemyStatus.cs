@@ -16,6 +16,12 @@ public enum EnemyStatus
     Attack,
     //元の位置に戻る状態
     ReturnPosition,
+    //Targetの方向を向く状態
+    TurnState,
+    //援護状態
+    SupportState,
+    //暴走状態
+    RunawayState,
 
     None
 }

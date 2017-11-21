@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ChasingButLose : EnemyState {
 
-	// Use this for initialization
-	void Start () {
+    private WalkEnemy m_WalkEnemy;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,24 +20,30 @@ public class ChasingButLose : EnemyState {
     {
         print("追跡中(見失い中)");
 
+
+        if (m_WalkEnemy == null)
+            m_WalkEnemy = enemy.GetComponent<WalkEnemy>();
+
         //プレイヤーが見えた場合
-        if (enemy.GetComponent<WalkEnemy>().CanSeePlayer())
+        if (m_WalkEnemy.CanSeePlayerAndRobot())
         {
-            enemy.GetComponent<WalkEnemy>().m_Agent.destination = enemy.GetPlayer().transform.position;
+            m_WalkEnemy.m_Agent.destination = m_WalkEnemy.CheckPlayerAndRobot().transform.position;
             //追跡中に状態変更
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //プレイヤーを見つけられないまま目的地に到着
-        else if (enemy.GetComponent<WalkEnemy>().HasArrived())
+        else if (m_WalkEnemy.HasArrived())
         {
-            if (enemy.GetComponent<WalkEnemy>().GetIsPatrol())
+            if (m_WalkEnemy.GetIsPatrol())
             {
                 //巡回中に状態遷移
+                m_WalkEnemy.SetAngle(45.0f);
                 enemy.ChangeState(EnemyStatus.RoundState);
 
             }
             else {
                 //元の位置に戻る状態
+                m_WalkEnemy.SetAngle(45.0f);
                 enemy.ChangeState(EnemyStatus.ReturnPosition);
 
             }

@@ -19,8 +19,8 @@ public class NonRoundState : EnemyState {
 
         WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
         l_WalkEnemy.m_Agent.isStopped = true;
-        //プレイヤーが見えている場合
-        if (l_WalkEnemy.CanSeePlayer())
+        //見えている場合
+        if (l_WalkEnemy.CanSeePlayerAndRobot())
         {
             l_WalkEnemy.m_Agent.isStopped = false;
             enemy.ChangeState(EnemyStatus.Chasing);

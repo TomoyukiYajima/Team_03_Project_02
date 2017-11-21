@@ -13,6 +13,7 @@ TagManager:
   - AttackColliderE
   - Enemy
   - LockedDoor
+  - HumanEnemy
   layers:
   - Default
   - TransparentFX

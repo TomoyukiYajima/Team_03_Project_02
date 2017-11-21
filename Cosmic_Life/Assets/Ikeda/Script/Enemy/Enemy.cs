@@ -28,17 +28,23 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     //プレイヤーの参照
     protected GameObject m_Player;
 
+    //ロボットの参照
+    protected GameObject m_Robot;
+
     // Use this for initialization
     public virtual void Start()
     {
         SetState();
-        //タグでプレイヤーオブジェクトを検索して保持
+        //タグでプレイヤーとロボットを検索して保持
         m_Player = GameObject.FindGameObjectWithTag("Player");
+        m_Robot = GameObject.FindGameObjectWithTag("Robot");
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
+        Dead();
+
         float time = Time.deltaTime;
         m_Orders[m_OrderState](time, this);
 
@@ -65,6 +71,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     {
         // 命令がない場合は返す
         if (!CheckrState(order)) return;
+        if (m_OrderState == order) return;
 
         print("命令を変更しました");
 
@@ -92,6 +99,11 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
         return m_Player;
     }
 
+    public GameObject GetRobot()
+    {
+        return m_Robot;
+    }
+
     public virtual void onHear()
     {
 
@@ -99,7 +111,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
 
     public virtual void onDamage(int amount)
     {
-
+        m_Hp -= amount;
     }
 
     public virtual void onShock()
@@ -123,11 +135,32 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     }
 
 
-    public virtual void IsDead()
+    public virtual void Dead()
     {
-        if (m_Hp <= 0)
+        if (IsDead())
         {
             Destroy(gameObject);
         }
+    }
+
+    public bool IsDead()
+    {
+        if (m_Hp <= 0) return true;
+
+        return false;
+    }
+
+    //y軸を無視したポジション取得
+    public Vector3 GetEnemyPosition()
+    {
+        Vector3 l_FootPosition = transform.position;
+        l_FootPosition.y = 0;
+
+        return l_FootPosition;
+    }
+
+    public EnemyStatus GetEnemyStatus()
+    {
+        return m_OrderState;
     }
 }
