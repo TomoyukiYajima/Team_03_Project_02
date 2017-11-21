@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135580432861684368}
   - component: {fileID: 23894025440781040}
   - component: {fileID: 54016080990084936}
+  - component: {fileID: 114647786370784242}
   m_Layer: 2
   m_Name: HumanAttackBullet
   m_TagString: Untagged
@@ -97,6 +98,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114647786370784242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071232832518404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bde7ac5c4771274c9eb7cd3d5a03c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damage: 0
 --- !u!135 &135580432861684368
 SphereCollider:
   m_ObjectHideFlags: 1
