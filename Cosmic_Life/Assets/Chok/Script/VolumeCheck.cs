@@ -11,17 +11,18 @@ public class VolumeCheck : MonoBehaviour {
     {
         m_audio = GetComponent<AudioSource>();
         m_audio.clip = Microphone.Start(null, true, 999, 44100);  // マイクからのAudio-InをAudioSourceに流す
-        m_audio.loop = true;                                      // ループ再生にしておく
-        m_audio.mute = true;                                      // マイクからの入力音なので音を流す必要がない
+        //m_audio.loop = true;                                      // ループ再生にしておく
+        //m_audio.mute = true;                                      // マイクからの入力音なので音を流す必要がない
+        m_audio.Play();
     }
 
     void Update()
     {
-        float vol = GetAveragedVolume();
-        print(vol);
+        //float vol = GetAveragedVolume();
+        //print(vol);
     }
 
-    float GetAveragedVolume()
+    public float GetAveragedVolume()
     {
         float[] data = new float[256];
         float a = 0;
@@ -30,6 +31,6 @@ public class VolumeCheck : MonoBehaviour {
         {
             a += Mathf.Abs(s);
         }
-        return a / 256.0f;
+        return a * 4.0f;
     }
 }

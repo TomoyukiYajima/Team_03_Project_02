@@ -35,27 +35,28 @@ public class SpriteAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_isStart) return;
-        m_dTime += Time.deltaTime;
-        if (m_changeFrameSecond < m_dTime)
-        {
-            m_dTime = 0.0f;
-            m_frameNum = m_isReverse ? --m_frameNum : ++m_frameNum;
+        int volume = Mathf.Min((int)GetComponent<VolumeCheck>().GetAveragedVolume(),4);
+        //if (!m_isStart) return;
+        //m_dTime += Time.deltaTime;
+        //if (m_changeFrameSecond < m_dTime)
+        //{
+        //    m_dTime = 0.0f;
+        //    m_frameNum = m_isReverse ? --m_frameNum : ++m_frameNum;
 
-            if (m_frameNum >= m_sprites.Length || m_frameNum < 0)
-            {
-                if (m_isLoop)
-                {
-                    m_frameNum = m_isReverse ? m_sprites.Length - 1 : 0;
-                }
-                else
-                {
-                    m_frameNum = m_isReverse ? 0 : m_sprites.Length - 1;
-                    m_isStart = false;
-                }
-            }
-        }
-        m_image.sprite = m_sprites[m_frameNum];
+        //    if (m_frameNum >= m_sprites.Length || m_frameNum < 0)
+        //    {
+        //        if (m_isLoop)
+        //        {
+        //            m_frameNum = m_isReverse ? m_sprites.Length - 1 : 0;
+        //        }
+        //        else
+        //        {
+        //            m_frameNum = m_isReverse ? 0 : m_sprites.Length - 1;
+        //            m_isStart = false;
+        //        }
+        //    }
+        //}
+        m_image.sprite = m_sprites[volume];
     }
 
     public int GetFrameNum()

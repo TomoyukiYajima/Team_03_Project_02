@@ -111,8 +111,8 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
     // キーワードを読み取ったら実行するメソッド
     private void OnPhraseRecognized(PhraseRecognizedEventArgs args)
     {
-        var sprite = GameObject.Find("StageCanvas").transform.FindChild("Speaker").GetComponent<SpriteAnimation>();
-        sprite.StartAnimation();
+        //var sprite = GameObject.Find("StageCanvas").transform.FindChild("Speaker").GetComponent<SpriteAnimation>();
+        //sprite.StartAnimation();
 
 
         //ログ出力
@@ -150,9 +150,9 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
 
         SendOrder(orderType, orderDir);
 
-        this.transform.DOMoveX(0, 1.0f).OnComplete(() => {
-            sprite.StartAnimation(sprite.GetFrameLength() - 1, true);
-        });
+        //this.transform.DOMoveX(0, 1.0f).OnComplete(() => {
+        //    sprite.StartAnimation(sprite.GetFrameLength() - 1, true);
+        //});
     }
 
     private void OnUnlockPhrase(PhraseRecognizedEventArgs args)
