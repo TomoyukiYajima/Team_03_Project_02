@@ -105,7 +105,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         m_unlockRecognizer.Start();
         Debug.Log("キーワード読み取り完了");
 
-        m_robot = GameObject.FindGameObjectWithTag("Robot");
+        //m_robot = GameObject.FindGameObjectWithTag("Robot");
     }
 
     // キーワードを読み取ったら実行するメソッド
@@ -183,11 +183,13 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         //// シーンにいる全部のロボットを入れる
         //var robotList = GameObject.FindGameObjectsWithTag("Robot");
 
+        m_robot = GameObject.FindGameObjectWithTag("Robot");\
+
         //// 全部のロボットにオーダーを出す
         //foreach (var robot in robotList)
         //{
-            // IRobotEventが実装されていなければreturn
-            if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(m_robot))
+        // IRobotEventが実装されていなければreturn
+        if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(m_robot))
             {
                 Debug.Log("IOrderEvent未実装");
                 return;

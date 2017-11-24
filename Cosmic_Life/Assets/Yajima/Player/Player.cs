@@ -11,7 +11,6 @@ public class Player : MonoBehaviour, IGeneralEvent
     [SerializeField, Tooltip("移動速度")] private float m_Speed;
     [SerializeField, Tooltip("攻撃判定")] private GameObject m_attackCollision;
     [SerializeField, Tooltip("攻撃生成位置")] private GameObject m_attackPos;
-    [SerializeField] private RectTransform m_hpBar;
 
     [SerializeField] private PlayerStatus m_status = new PlayerStatus(3, 100);
 
@@ -29,6 +28,9 @@ public class Player : MonoBehaviour, IGeneralEvent
     private bool m_isGrounded;
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
+
+    public delegate void OnCollide();
+    public event OnCollide onCollide;
 
     // Use this for initialization
     void Start()
@@ -61,7 +63,6 @@ public class Player : MonoBehaviour, IGeneralEvent
     // Update is called once per frame
     void Update()
     {
-        m_hpBar.sizeDelta = new Vector2(m_status.hp * 256, 256);
         if (Input.GetButtonDown("X")) { onDamage(1); }
 
         //m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
@@ -299,6 +300,8 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     public void onDamage(int amount)
     {
+        if (onCollide != null) onCollide();
+
         m_status.hp -= amount;
         m_velocity = Vector3.zero;
 
