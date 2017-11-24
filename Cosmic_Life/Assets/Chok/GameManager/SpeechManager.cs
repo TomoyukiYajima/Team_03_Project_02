@@ -183,7 +183,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         //// シーンにいる全部のロボットを入れる
         //var robotList = GameObject.FindGameObjectsWithTag("Robot");
 
-        m_robot = GameObject.FindGameObjectWithTag("Robot");\
+        m_robot = GameObject.FindGameObjectWithTag("Robot");
 
         //// 全部のロボットにオーダーを出す
         //foreach (var robot in robotList)
