@@ -29,7 +29,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
 
-    public delegate void OnCollide();
+    public delegate void OnCollide(int hp);
     public event OnCollide onCollide;
 
     // Use this for initialization
@@ -119,12 +119,18 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (m_isGrounded)
         {
-            velocity = transform.forward * v * factor + transform.right * h;
+
+            if (Input.GetButtonDown("Cancel"))
+            {
+                m_isGrounded = false;
+                ve.y = 12f;
+            }
+
 
             m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
 
-            m_groundCheckDistance = 0.1f;
             m_isGrounded = false;
+            m_groundCheckDistance = 0.1f;
 
             //transform.position += transform.right * h * m_Speed * 2.5f * Time.fixedDeltaTime;
 
@@ -300,9 +306,9 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     public void onDamage(int amount)
     {
-        if (onCollide != null) onCollide();
+        m_status.hp = Mathf.Max(0, --m_status.hp);
+        if (onCollide != null) onCollide(m_status.hp);
 
-        m_status.hp -= amount;
         m_velocity = Vector3.zero;
 
         StopAllCoroutines();

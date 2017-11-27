@@ -28,7 +28,7 @@ public class CameraRay : MonoBehaviour
         m_rayPos = m_player.FindChild("LookPoint").transform;
         m_rayCenter = m_player.FindChild("HeadLook").transform;
 
-        m_aim = m_player.FindChild("PlayerCanvas").transform.FindChild("AimBase").GetComponent<Image>();
+        m_aim = GameObject.Find("PlayerCanvas").transform.FindChild("AimBase").GetComponent<Image>();
 
         m_rayDir = Vector3.zero;
     }
@@ -36,7 +36,11 @@ public class CameraRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = (m_rayCenter.position - m_rayPos.position).normalized;
+        var dir = m_rayCenter.position - transform.position;
+        float dirY = dir.y;
+        dir.Normalize();
+        dir.y = dirY;
+
         float angle = Vector3.Angle(m_player.forward, dir);
 
         // プレイヤー視野角度内かつプレイヤーの後ろにいるときしか更新しない
@@ -50,8 +54,8 @@ public class CameraRay : MonoBehaviour
         //}
         m_rayDir = dir;
 
-        // y軸更新
-        m_rayDir.y = transform.forward.y;
+        //// y軸更新
+        //m_rayDir.y = transform.forward.y;
 
         // レイを飛ばす
         Ray ray = new Ray(m_rayPos.position, m_rayDir * m_rayDist);

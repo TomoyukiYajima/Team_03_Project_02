@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -47,6 +48,8 @@ public class Pausable : MonoBehaviour
 
     Animator[] pausingAnimatores;
 
+    NavMeshAgent[] pausingNavMeshs;
+
     /// <summary>
     /// ポーズ中のMonoBehaviourの配列
     /// </summary>
@@ -87,10 +90,18 @@ public class Pausable : MonoBehaviour
 
         Predicate<Animator> animatorPredicate = obj => obj.enabled;
         pausingAnimatores = Array.FindAll(transform.GetComponentsInChildren<Animator>(), animatorPredicate);
-        for (int i = 0; i < pausingAnimatores.Length; i++)
+        foreach(var animator in pausingAnimatores)
         {
-            pausingAnimatores[i].speed = 0;
+            animator.speed = 0;
         }
+
+        Predicate<NavMeshAgent> navmeshPredicate = obj => obj.enabled;
+        pausingNavMeshs = Array.FindAll(transform.GetComponentsInChildren<NavMeshAgent>(), navmeshPredicate);
+        foreach(var navmesh in pausingNavMeshs)
+        {
+            navmesh.isStopped = true;
+        }
+
         // MonoBehaviourの停止
         // 子要素から、有効かつこのインスタンスでないもの、IgnoreGameObjectsに含まれていないMonoBehaviourを抽出
         Predicate<MonoBehaviour> monoBehaviourPredicate =
@@ -121,6 +132,11 @@ public class Pausable : MonoBehaviour
         foreach(var animator in pausingAnimatores)
         {
             animator.speed = 1;
+        }
+
+        foreach (var navmesh in pausingNavMeshs)
+        {
+            navmesh.isStopped = false;
         }
 
         // MonoBehaviourの再開

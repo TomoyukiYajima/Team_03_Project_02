@@ -99,7 +99,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
             //ストリームも終了させる
             sr.Close();
         }
-
+        
         m_unlockRecognizer = new KeywordRecognizer(m_unlockKeyword.ToArray());
         m_unlockRecognizer.OnPhraseRecognized += OnUnlockPhrase;
         m_unlockRecognizer.Start();
