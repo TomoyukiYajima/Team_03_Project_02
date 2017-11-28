@@ -1247,6 +1247,7 @@ GameObject:
   - component: {fileID: 54536979548590416}
   - component: {fileID: 95982947663959468}
   - component: {fileID: 114138765122947500}
+  - component: {fileID: 143452432948200670}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2050,7 +2051,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304607218614064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.863, z: 1}
+  m_LocalPosition: {x: 0, y: 0.863, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4075411141311896}
@@ -2274,8 +2275,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675000714398254}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -25.84, y: 0, z: 18.78}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22, y: 0.099, z: -1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4745046747052726}
@@ -4001,7 +4002,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -4118,7 +4119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79361d2e725b1347bee285904844732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 1
+  m_Speed: 5
   m_attackCollision: {fileID: 1182278682401318, guid: ea9803f85624aec44b9b123128ddbc97,
     type: 2}
   m_attackPos: {fileID: 1304607218614064}
@@ -4226,7 +4227,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1675000714398254}
   m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.3
   m_Height: 1.6
   m_Direction: 1
@@ -4480,3 +4481,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0017562807, y: -0.14633957, z: -0.00022289157}
     m_Extent: {x: 0.859097, y: 0.8986907, z: 0.2746598}
   m_DirtyAABB: 0
+--- !u!143 &143452432948200670
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675000714398254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
