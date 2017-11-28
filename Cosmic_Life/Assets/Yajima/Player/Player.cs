@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEditor;
 
 public class Player : MonoBehaviour, IGeneralEvent
 {
@@ -17,6 +16,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private Transform m_camera;
     private Animator m_animator;
     private Rigidbody m_rigidbody;
+    private CharacterController m_charaCon;
     private PlayerState m_state;
     private Vector3 m_velocity;
     private Vector3 m_groundNormal;
@@ -49,12 +49,13 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         m_animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody>();
+        m_charaCon = GetComponent<CharacterController>();
         m_state = PlayerState.IDLE;
         m_velocity = Vector3.zero;
         m_isDamaged = false;
         m_isCanWalk = true;
         //ChangeState(Move());
-        m_groundCheckDistance = 0.1f;
+        m_groundCheckDistance = 0.3f;
         m_origGroundCheckDistance = m_groundCheckDistance;
 
         m_maxHp = m_status.hp;
@@ -78,59 +79,50 @@ public class Player : MonoBehaviour, IGeneralEvent
             return;
         }
 
-        float v = Input.GetAxis("Vertical");
-        float h = Input.GetAxis("Horizontal");
-        float hR = Input.GetAxis("HorizontalR");
-
-        if (h < 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y - 90, 0);
-        else if (h > 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 90, 0);
-        else if (h == 0.0f && v != 0.0f) transform.FindChild("Model").transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        // 入力を取得
+        Vector3 input;
+        GetInput(out input);
 
         Vector3 velocity = Vector3.zero;
+        velocity = transform.forward * input.y + transform.right * input.z;
 
-        //velocity = new Vector3(x, 0, z);
-        //if (m_camera != null)
-        //{
-        //var forward = Vector3.Scale(m_camera.forward, new Vector3(1, 0, 1)).normalized;
-        velocity = transform.forward * v + transform.right * hR;
-        //}
+        RotateAll(velocity);
+        RotateModel(input.x, input.y);
 
-        if (velocity.magnitude > 1f) velocity.Normalize();
-        velocity = transform.InverseTransformDirection(velocity);
-        CheckGroundStatus();
-        velocity = Vector3.ProjectOnPlane(velocity, m_groundNormal);
+        //float factor = 1.0f;
+        //if (input.y < 0.5f) factor = 0.3f;
 
-        float turnZ = Mathf.Clamp(velocity.z, 0.1f, 1.0f);
+        ////Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
+        //Vector3 ve = (transform.forward * input.y * factor + transform.right * input.x) * 2.5f;
 
-        float m_TurnAmount = Mathf.Atan2(velocity.x, turnZ);
+        //// we preserve the existing y part of the current velocity.
+        //ve.y = m_rigidbody.velocity.y;
+        //m_rigidbody.velocity = ve;
 
-        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, velocity.z);
-        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+        Vector3 vvv = Vector3.zero;
 
-        float factor = 1.0f;
-        if (v < 0.5f) factor = 0.3f;
-
-        //Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
-        Vector3 ve = (transform.forward * v * factor + transform.right * h) * 2.5f;
-
-        // we preserve the existing y part of the current velocity.
-        ve.y = m_rigidbody.velocity.y;
-        m_rigidbody.velocity = ve;
-
-        if (m_isGrounded)
+        if (m_charaCon.isGrounded)
         {
-
+            m_velocity = new Vector3(input.x, 0, input.y);
+            m_velocity = transform.TransformDirection(m_velocity);
+            m_velocity *= m_Speed;
             if (Input.GetButtonDown("Cancel"))
             {
-                m_isGrounded = false;
-                ve.y = 12f;
+                m_velocity.y = 8.0f;
             }
 
+            //if (Input.GetButtonDown("Cancel"))
+            //{
+            //    m_isGrounded = false;
+            //    ve.y = 6f;
+            //}
 
-            m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
+            //m_rigidbody.velocity = m_isGrounded ?
+            //    new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z) :
+            //    new Vector3(m_rigidbody.velocity.x, ve.y, m_rigidbody.velocity.z);
 
-            m_isGrounded = false;
-            m_groundCheckDistance = 0.1f;
+            //m_isGrounded = false;
+            //m_groundCheckDistance = 0.3f;
 
             //transform.position += transform.right * h * m_Speed * 2.5f * Time.fixedDeltaTime;
 
@@ -140,33 +132,36 @@ public class Player : MonoBehaviour, IGeneralEvent
             //   m_rigidbody.velocity = new Vector3(0,0,vec.z);
             //}
         }
-        else
-        {
-            // apply extra gravity from multiplier:
-            Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
-            m_rigidbody.AddForce(extraGravityForce);
-
-            m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
-
-        }
-
-        m_animator.SetFloat("Speed", v, 0.1f, Time.fixedDeltaTime);
-        m_animator.SetFloat("SideSpeed", h, 0.1f, Time.fixedDeltaTime);
-    }
-
-    private void UpdateState()
-    {
-        //switch (m_state)
+        //else
         //{
-        //    case PlayerState.IDLE:
-        //        break;
-        //    case PlayerState.ATTACK:
-        //        Attack();
-        //        break;
-        //    default:
-        //        break;
+        //    // apply extra gravity from multiplier:
+        //    Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
+        //    m_rigidbody.AddForce(extraGravityForce);
+
+        //    m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
+
         //}
+
+        m_velocity.y -= 20.0f * Time.fixedDeltaTime;
+        m_charaCon.Move(m_velocity * Time.fixedDeltaTime);
+
+        m_animator.SetFloat("Speed", input.y, 0.1f, Time.fixedDeltaTime);
+        m_animator.SetFloat("SideSpeed", input.x, 0.1f, Time.fixedDeltaTime);
     }
+
+    //private void UpdateState()
+    //{
+    //    //switch (m_state)
+    //    //{
+    //    //    case PlayerState.IDLE:
+    //    //        break;
+    //    //    case PlayerState.ATTACK:
+    //    //        Attack();
+    //    //        break;
+    //    //    default:
+    //    //        break;
+    //    //}
+    //}
 
     private void ChangeState(IEnumerator coroutine)
     {
@@ -177,71 +172,76 @@ public class Player : MonoBehaviour, IGeneralEvent
         StartCoroutine(coroutine);
     }
 
-    private IEnumerator Move()
-    {
-        while (true)
-        {
-            // デルタタイムの取得
-            float time = Time.deltaTime;
+    //private IEnumerator Move()
+    //{
+    //    while (true)
+    //    {
+    //        // デルタタイムの取得
+    //        float time = Time.deltaTime;
 
-            m_velocity = Vector3.zero;
+    //        m_velocity = Vector3.zero;
 
-            if (Input.GetButtonDown("OK"))
-            {
-                yield return null;
-            }
+    //        if (Input.GetButtonDown("OK"))
+    //        {
+    //            yield return null;
+    //        }
 
-            //float angle = Input.GetAxis("HorizontalR");
+    //        //float angle = Input.GetAxis("HorizontalR");
 
-            //transform.Rotate(Vector3.up, angle);
+    //        //transform.Rotate(Vector3.up, angle);
 
-            float v = Input.GetAxis("Vertical");
-            float h = Input.GetAxis("Horizontal");
+    //        float v = Input.GetAxis("Vertical");
+    //        float h = Input.GetAxis("Horizontal");
 
-            Vector2 velocity = new Vector2(h, v);
+    //        Vector2 velocity = new Vector2(h, v);
 
-            //velocity = new Vector3(x, 0, z);
-            if (m_camera != null)
-            {
-                var forward = Vector3.Scale(m_camera.forward, new Vector3(1, 0, 1)).normalized;
-                m_velocity = forward * velocity.y + m_camera.transform.right * velocity.x;
-            }
+    //        //velocity = new Vector3(x, 0, z);
+    //        if (m_camera != null)
+    //        {
+    //            var forward = Vector3.Scale(m_camera.forward, new Vector3(1, 0, 1)).normalized;
+    //            m_velocity = forward * velocity.y + m_camera.transform.right * velocity.x;
+    //        }
 
-            if (m_velocity.magnitude > 1f) m_velocity.Normalize();
-            m_velocity = transform.InverseTransformDirection(m_velocity);
+    //        if (m_velocity.magnitude > 1f) m_velocity.Normalize();
+    //        m_velocity = transform.InverseTransformDirection(m_velocity);
 
-            float m_TurnAmount = Mathf.Atan2(m_velocity.x, m_velocity.z);
+    //        float m_TurnAmount = Mathf.Atan2(m_velocity.x, m_velocity.z);
 
-            float turnSpeed = Mathf.Lerp(180.0f, 360.0f, m_velocity.z);
-            transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+    //        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, m_velocity.z);
+    //        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 
-            Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.deltaTime;
+    //        Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.deltaTime;
 
-            // we preserve the existing y part of the current velocity.
-            ve.y = m_rigidbody.velocity.y;
-            m_rigidbody.velocity = ve;
+    //        // we preserve the existing y part of the current velocity.
+    //        ve.y = m_rigidbody.velocity.y;
+    //        m_rigidbody.velocity = ve;
 
-            m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
+    //        m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
 
-            //this.transform.position += m_velocity * m_Speed * time;
+    //        //this.transform.position += m_velocity * m_Speed * time;
 
-            m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
+    //        m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 
     private IEnumerator Attack()
     {
         m_animator.SetBool("Attack", true);
 
         yield return new WaitForEndOfFrame();
+
+        m_animator.SetBool("Attack", false);
+
+        yield return new WaitForSeconds(0.4f);
+
         // 攻撃コリジョン生成
         GameObject attack = Instantiate(m_attackCollision, m_attackPos.transform.position, m_attackPos.transform.rotation) as GameObject;
         DestroyObject(attack, 0.5f);
         // モーション変更
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         EndState();
         yield return null;
@@ -304,6 +304,102 @@ public class Player : MonoBehaviour, IGeneralEvent
         yield return null;
     }
 
+    public void EndState()
+    {
+        StopAllCoroutines();
+        m_animator.SetTrigger("MotionEnd");
+        m_animator.SetBool("Attack", false);
+
+        m_isCanWalk = true;
+    }
+
+    // 入力を取得
+    private void GetInput(out Vector3 input)
+    {
+        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float hR = Input.GetAxis("HorizontalR");
+
+        input = new Vector3(h, v, hR);
+    }
+
+    // 全体を回転させる
+    private void RotateAll(Vector3 velocity)
+    {
+        if (velocity.magnitude > 1f) velocity.Normalize();
+        velocity = transform.InverseTransformDirection(velocity);
+        CheckGroundStatus();
+        velocity = Vector3.ProjectOnPlane(velocity, m_groundNormal);
+
+        float turnZ = Mathf.Clamp(velocity.z, 0.1f, 1.0f);
+
+        float m_TurnAmount = Mathf.Atan2(velocity.x, turnZ);
+
+        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, velocity.z);
+        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+    }
+
+    // プレイヤーモデルを回転させる
+    private void RotateModel(float h ,float v)
+    {
+        var model = transform.FindChild("Model").transform;
+        float modelAngle = model.eulerAngles.y;
+        float selfAngle = model.eulerAngles.y;
+        if (h < 0.0f)
+        {
+            selfAngle = transform.eulerAngles.y - 90;
+        }
+        else if (h > 0.0f)
+        {
+            selfAngle = transform.eulerAngles.y + 90;
+        }
+        else if (h == 0.0f && v != 0.0f)
+        {
+            selfAngle = transform.eulerAngles.y;
+        }
+
+        Debug.Log("Model" + modelAngle);
+        Debug.Log("Self" + selfAngle);
+
+        if (modelAngle > selfAngle) modelAngle -= 10.0f;
+        else if (modelAngle < selfAngle)
+        {
+            modelAngle = Mathf.Abs(selfAngle - modelAngle) > 270.0f ? modelAngle - 10.0f : modelAngle += 10.0f;
+        }
+
+        float offset = 0.0f;
+        if (selfAngle < 0) offset = 360.0f;
+        else if (selfAngle > 360.0f) offset = -360.0f;
+
+        if (Mathf.Abs((modelAngle - offset) - selfAngle) <= 20.0f) modelAngle = selfAngle;
+        model.eulerAngles = new Vector3(0, modelAngle, 0);
+
+    }
+
+    void CheckGroundStatus()
+    {
+        RaycastHit hitInfo;
+#if UNITY_EDITOR
+        // helper to visualise the ground check ray in the scene view
+        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_groundCheckDistance));
+#endif
+        // 0.1f is a small offset to start the ray from inside the character
+        // it is also good to note that the transform position in the sample assets is at the base of the character
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_groundCheckDistance))
+        {
+            m_groundNormal = hitInfo.normal;
+            m_isGrounded = true;
+            //m_animator.applyRootMotion = true;
+        }
+        else
+        {
+            m_isGrounded = false;
+            m_groundNormal = Vector3.up;
+            //m_animator.applyRootMotion = false;
+        }
+    }
+
+    #region Event
     public void onDamage(int amount)
     {
         m_status.hp = Mathf.Max(0, --m_status.hp);
@@ -330,51 +426,6 @@ public class Player : MonoBehaviour, IGeneralEvent
         EndState();
     }
 
-
-    public void EndState()
-    {
-        StopAllCoroutines();
-        m_animator.SetTrigger("MotionEnd");
-        m_animator.SetBool("Attack", false);
-
-        m_isCanWalk = true;
-    }
-
-    //public void OnAnimatorMove()
-    //{
-    //    Vector3 v = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
-
-    //    // we preserve the existing y part of the current velocity.
-    //    v.y = m_rigidbody.velocity.y;
-    //    m_rigidbody.velocity = v;
-
-    //    m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z);
-
-    //}
-
-    void CheckGroundStatus()
-    {
-        RaycastHit hitInfo;
-#if UNITY_EDITOR
-        // helper to visualise the ground check ray in the scene view
-        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_groundCheckDistance));
-#endif
-        // 0.1f is a small offset to start the ray from inside the character
-        // it is also good to note that the transform position in the sample assets is at the base of the character
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_groundCheckDistance))
-        {
-            m_groundNormal = hitInfo.normal;
-            m_isGrounded = true;
-            //m_animator.applyRootMotion = true;
-        }
-        else
-        {
-            m_isGrounded = false;
-            m_groundNormal = Vector3.up;
-            //m_animator.applyRootMotion = false;
-        }
-    }
-
     public void onShock()
     {
         throw new NotImplementedException();
@@ -384,4 +435,5 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         throw new NotImplementedException();
     }
+    #endregion
 }
