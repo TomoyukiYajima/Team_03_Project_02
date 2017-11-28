@@ -15,7 +15,7 @@ public class NamingSpeech : MonoBehaviour
     void Start()
     {
 
-        string[] names = { PlayerPrefs.GetString("RobotName") };
+        string[] names = { /*PlayerPrefs.GetString("RobotName")*/ "ロボット" };
 
         m_namingRecognizer = new KeywordRecognizer(names);
         m_namingRecognizer.OnPhraseRecognized += OnPhraseRecognized;
