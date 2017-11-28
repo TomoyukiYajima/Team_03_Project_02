@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 496726175}
   - component: {fileID: 496726178}
   - component: {fileID: 496726177}
-  - component: {fileID: 496726176}
   m_Layer: 5
   m_Name: Gear (5)
   m_TagString: Untagged
@@ -216,18 +215,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3.1, y: -96}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
---- !u!114 &496726176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 496726174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: -10
 --- !u!114 &496726177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +391,6 @@ GameObject:
   - component: {fileID: 786893034}
   - component: {fileID: 786893037}
   - component: {fileID: 786893036}
-  - component: {fileID: 786893035}
   m_Layer: 5
   m_Name: Gear (1)
   m_TagString: Untagged
@@ -430,18 +416,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.2, y: 2.3}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &786893035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 786893033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: 10
 --- !u!114 &786893036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +589,6 @@ GameObject:
   - component: {fileID: 1129138818}
   - component: {fileID: 1129138821}
   - component: {fileID: 1129138820}
-  - component: {fileID: 1129138819}
   m_Layer: 5
   m_Name: Gear (4)
   m_TagString: Untagged
@@ -641,18 +614,6 @@ RectTransform:
   m_AnchoredPosition: {x: 114.9, y: 4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
---- !u!114 &1129138819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1129138817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: -10
 --- !u!114 &1129138820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +657,6 @@ GameObject:
   - component: {fileID: 1198975300}
   - component: {fileID: 1198975303}
   - component: {fileID: 1198975302}
-  - component: {fileID: 1198975301}
   m_Layer: 5
   m_Name: Gear (3)
   m_TagString: Untagged
@@ -722,18 +682,6 @@ RectTransform:
   m_AnchoredPosition: {x: -97.00009, y: -0.9999695}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
---- !u!114 &1198975301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1198975299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: 10
 --- !u!114 &1198975302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,7 +726,6 @@ GameObject:
   - component: {fileID: 1482792531}
   - component: {fileID: 1482792530}
   - component: {fileID: 1482792529}
-  - component: {fileID: 1482792528}
   m_Layer: 5
   m_Name: ChangeSceneCanvas
   m_TagString: Untagged
@@ -786,93 +733,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1482792528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1482792527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4da78b5c62a9694eb160cb5791c6eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RightDoor: {fileID: 1069667143}
-  m_LeftDoor: {fileID: 582489358}
-  m_Curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: -0.00623703
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.5198079
-      value: 0.1943325
-      inSlope: 1.3477886
-      outSlope: 1.3477886
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.55312324
-      value: 0.50057364
-      inSlope: 11.332988
-      outSlope: 11.332988
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.59571064
-      value: 0.99417114
-      inSlope: 4.890272
-      outSlope: -2.4901817
-      tangentMode: 1
-    - serializedVersion: 2
-      time: 0.7587411
-      value: 0.8840391
-      inSlope: 0.42149767
-      outSlope: 0.42149767
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.79478925
-      value: 0.9980564
-      inSlope: 2.8124173
-      outSlope: -1.0425254
-      tangentMode: 1
-    - serializedVersion: 2
-      time: 0.8957289
-      value: 0.955142
-      inSlope: 0.031842824
-      outSlope: 0.031842824
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.944605
-      value: 0.99861735
-      inSlope: 1.4097674
-      outSlope: -0.59241486
-      tangentMode: 1
-    - serializedVersion: 2
-      time: 0.97369766
-      value: 0.98003006
-      inSlope: 0.16212463
-      outSlope: 0.16212463
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 1
-      inSlope: 0.35209778
-      outSlope: 0.7119775
-      tangentMode: 1
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  m_SetIntervalTime: 1
-  m_Gears:
-  - {fileID: 1904918050}
-  - {fileID: 1710754070}
-  - {fileID: 1198975301}
-  - {fileID: 786893035}
-  - {fileID: 1129138819}
-  - {fileID: 496726176}
 --- !u!114 &1482792529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +822,6 @@ GameObject:
   - component: {fileID: 1710754069}
   - component: {fileID: 1710754072}
   - component: {fileID: 1710754071}
-  - component: {fileID: 1710754070}
   m_Layer: 5
   m_Name: Gear (2)
   m_TagString: Untagged
@@ -988,18 +847,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.0001221, y: -105.99997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
---- !u!114 &1710754070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710754068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: 10
 --- !u!114 &1710754071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,7 +890,6 @@ GameObject:
   - component: {fileID: 1904918049}
   - component: {fileID: 1904918052}
   - component: {fileID: 1904918051}
-  - component: {fileID: 1904918050}
   m_Layer: 5
   m_Name: Gear
   m_TagString: Untagged
@@ -1069,18 +915,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.0001221, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1904918050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1904918048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: -10
 --- !u!114 &1904918051
 MonoBehaviour:
   m_ObjectHideFlags: 0
