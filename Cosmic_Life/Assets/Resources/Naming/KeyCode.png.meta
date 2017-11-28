@@ -1,0 +1,798 @@
+fileFormatVersion: 2
+guid: 7d6a15b7ae445cc4bb8cf51ff366e6c2
+timeCreated: 1511241101
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: KeyCode_0
+    21300002: KeyCode_1
+    21300004: KeyCode_2
+    21300006: KeyCode_3
+    21300008: KeyCode_4
+    21300010: KeyCode_5
+    21300012: KeyCode_6
+    21300014: KeyCode_7
+    21300016: KeyCode_8
+    21300018: KeyCode_9
+    21300020: KeyCode_10
+    21300022: KeyCode_11
+    21300024: KeyCode_12
+    21300026: KeyCode_13
+    21300028: KeyCode_14
+    21300030: KeyCode_15
+    21300032: KeyCode_16
+    21300034: KeyCode_17
+    21300036: KeyCode_18
+    21300038: KeyCode_19
+    21300040: KeyCode_20
+    21300042: KeyCode_21
+    21300044: KeyCode_22
+    21300046: KeyCode_23
+    21300048: KeyCode_24
+    21300050: KeyCode_25
+    21300052: KeyCode_26
+    21300054: KeyCode_27
+    21300056: KeyCode_28
+    21300058: KeyCode_29
+    21300060: KeyCode_30
+    21300062: KeyCode_31
+    21300064: KeyCode_32
+    21300066: KeyCode_33
+    21300068: KeyCode_34
+    21300070: KeyCode_35
+    21300072: KeyCode_36
+    21300074: KeyCode_37
+    21300076: KeyCode_38
+    21300078: KeyCode_39
+    21300080: KeyCode_40
+    21300082: KeyCode_41
+    21300084: KeyCode_42
+    21300086: KeyCode_43
+    21300088: KeyCode_44
+    21300090: KeyCode_45
+    21300092: KeyCode_46
+    21300094: KeyCode_47
+    21300096: KeyCode_48
+    21300098: KeyCode_49
+    21300100: KeyCode_50
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KeyCode_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_6
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_7
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_8
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_9
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_10
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_11
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_13
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_14
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_15
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_16
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_17
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_18
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_19
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_20
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_21
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_22
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_23
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_24
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_25
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_26
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_27
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_28
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_29
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_30
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_31
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_32
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_33
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_34
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_35
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_36
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_37
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_38
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_39
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_40
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_41
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_42
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_43
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_44
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_45
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_46
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_47
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_48
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_49
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCode_50
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

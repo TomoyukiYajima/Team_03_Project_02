@@ -33,10 +33,11 @@ public class OrderLiftUp : OrderLift {
             var colliders = liftObj.GetChild(1);
             colliders.transform.position += Vector3.up * length;
 
+            // UIに命令テキストの設定
+            SetStartOrderText();
+
             return;
         }
-
-        SetStartOrderText();
 
         //EndOrder(obj);
         // 持ち上げるオブジェクトの捜索

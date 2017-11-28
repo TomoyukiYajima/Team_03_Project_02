@@ -274,6 +274,64 @@ Transform:
   m_PrefabParentObject: {fileID: 4869759728826534, guid: 30abbe62cc021f94799eadf11a204002,
     type: 2}
   m_PrefabInternal: {fileID: 705581015}
+--- !u!1 &31159255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 31159257}
+  - component: {fileID: 31159256}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!328 &31159256
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31159255}
+  m_Enabled: 0
+  m_VideoClip: {fileID: 32900000, guid: b40bd8bc8ea4cfb46bf39f19d7d089bc, type: 3}
+  m_TargetCameraAlpha: 0.597
+  m_TargetCamera: {fileID: 777164870}
+  m_TargetTexture: {fileID: 0}
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+--- !u!4 &31159257
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31159255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 30.534798, y: 25.013561, z: -3.0995312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &31308196
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +892,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 104678501}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -1817,7 +1874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!4 &185116855 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4356877959681738, guid: aa94ad167d0dee2409bb1499b2774688,
@@ -2700,7 +2758,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 245213792}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -2915,7 +2972,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1001 &276544712
 Prefab:
   m_ObjectHideFlags: 0
@@ -3286,7 +3344,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 285300795}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -3410,7 +3467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &296141865
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,7 +4298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &389116252
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,7 +4499,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 408617505}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -4797,7 +4855,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!4 &457382228 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4869759728826534, guid: 30abbe62cc021f94799eadf11a204002,
@@ -4861,7 +4920,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 465688271}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -5925,7 +5983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &567268418
 GameObject:
   m_ObjectHideFlags: 0
@@ -5984,7 +6043,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 567268421}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -6851,7 +6909,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 640731595}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -8935,7 +8992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &836970435
 GameObject:
   m_ObjectHideFlags: 0
@@ -12080,7 +12138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &1162607308
 GameObject:
   m_ObjectHideFlags: 0
@@ -13654,7 +13713,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 1345918530}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -15925,7 +15983,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 1539289968}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -17774,7 +17831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &1685007045
 GameObject:
   m_ObjectHideFlags: 0
@@ -18290,7 +18348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1 &1729580794
 GameObject:
   m_ObjectHideFlags: 0
@@ -19064,7 +19123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccbb4b96a256a94da96980fdb196df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StopDistance: 1.3
+  m_PlayerStopDistance: 0
+  m_RobotStopDistance: 0
 --- !u!1001 &1826636823
 Prefab:
   m_ObjectHideFlags: 0
@@ -20494,7 +20554,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 1992068135}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0
@@ -21766,7 +21825,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 2095883167}
   m_ViewingDistance: 10
   m_ViewingAngle: 45
   m_IsPatrol: 0

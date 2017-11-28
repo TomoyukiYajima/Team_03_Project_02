@@ -1,0 +1,798 @@
+fileFormatVersion: 2
+guid: 6ed3c795a79712c408bc765e14524553
+timeCreated: 1511239285
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: KeyCodeEffect_0
+    21300002: KeyCodeEffect_1
+    21300004: KeyCodeEffect_2
+    21300006: KeyCodeEffect_3
+    21300008: KeyCodeEffect_4
+    21300010: KeyCodeEffect_5
+    21300012: KeyCodeEffect_6
+    21300014: KeyCodeEffect_7
+    21300016: KeyCodeEffect_8
+    21300018: KeyCodeEffect_9
+    21300020: KeyCodeEffect_10
+    21300022: KeyCodeEffect_11
+    21300024: KeyCodeEffect_12
+    21300026: KeyCodeEffect_13
+    21300028: KeyCodeEffect_14
+    21300030: KeyCodeEffect_15
+    21300032: KeyCodeEffect_16
+    21300034: KeyCodeEffect_17
+    21300036: KeyCodeEffect_18
+    21300038: KeyCodeEffect_19
+    21300040: KeyCodeEffect_20
+    21300042: KeyCodeEffect_21
+    21300044: KeyCodeEffect_22
+    21300046: KeyCodeEffect_23
+    21300048: KeyCodeEffect_24
+    21300050: KeyCodeEffect_25
+    21300052: KeyCodeEffect_26
+    21300054: KeyCodeEffect_27
+    21300056: KeyCodeEffect_28
+    21300058: KeyCodeEffect_29
+    21300060: KeyCodeEffect_30
+    21300062: KeyCodeEffect_31
+    21300064: KeyCodeEffect_32
+    21300066: KeyCodeEffect_33
+    21300068: KeyCodeEffect_34
+    21300070: KeyCodeEffect_35
+    21300072: KeyCodeEffect_36
+    21300074: KeyCodeEffect_37
+    21300076: KeyCodeEffect_38
+    21300078: KeyCodeEffect_39
+    21300080: KeyCodeEffect_40
+    21300082: KeyCodeEffect_41
+    21300084: KeyCodeEffect_42
+    21300086: KeyCodeEffect_43
+    21300088: KeyCodeEffect_44
+    21300090: KeyCodeEffect_45
+    21300092: KeyCodeEffect_46
+    21300094: KeyCodeEffect_47
+    21300096: KeyCodeEffect_48
+    21300098: KeyCodeEffect_49
+    21300100: KeyCodeEffect_50
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: KeyCodeEffect_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_4
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_6
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_7
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_8
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_9
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_10
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 271
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_11
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_13
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_14
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_15
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_16
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_17
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_18
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_19
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 211
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_20
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_21
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_22
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_23
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_24
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_25
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_26
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_27
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_28
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_29
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_30
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 151
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_31
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_32
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_33
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_34
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_35
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_36
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_37
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_38
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_39
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 91
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_40
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_41
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_42
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_43
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_44
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_45
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_46
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_47
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_48
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_49
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: KeyCodeEffect_50
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 31
+        width: 60
+        height: 60
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

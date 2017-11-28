@@ -22,6 +22,9 @@ public class OrderFollow : Order {
         //base.StartAction(obj, actionObj);
         //m_ActionNumber = ActionNumber.OBJECT_ACTION;
 
+        // UIに命令テキストの設定
+        SetStartOrderText();
+
         m_Undroid = obj.GetComponent<Worker>();
         m_Undroid.GetNavMeshAgent().isStopped = false;
 

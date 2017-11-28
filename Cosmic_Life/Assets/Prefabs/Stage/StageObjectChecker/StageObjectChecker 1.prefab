@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 208130584729080644}
   - component: {fileID: 114728752001227184}
   - component: {fileID: 114946715413179124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DeleteCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 65940956419069980}
   - component: {fileID: 23155035689449038}
   - component: {fileID: 114060172593390634}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4443278419017492}
   - component: {fileID: 114214847446788054}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StageObjectChecker 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

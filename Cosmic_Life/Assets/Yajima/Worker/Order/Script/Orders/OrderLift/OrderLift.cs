@@ -81,8 +81,6 @@ public class OrderLift : Order {
         // オブジェクトの捜索
         FindLiftObject(obj, actionObj);
 
-        SetStartOrderText();
-
         // リフトクラスを継承した子クラスのオブジェクトチェック関数を呼ぶ
         // m_LiftCheck[checkNumber].CheckObject(obj);
 
@@ -394,13 +392,15 @@ public class OrderLift : Order {
         float angle2 = Vector2.Angle(otherDir, forward);
 
         print(angle.ToString());
-        if (Mathf.Abs(angle2) <= 1.0f)
+        if (Mathf.Abs(angle2) <= 3.0f)
         {
             // 回転が終了したら、持ち上げリストに追加
             AddLiftObj(obj);
             // エージェントの停止処理
             Worker robot = obj.GetComponent<Worker>();
             robot.AgentStop();
+            // UIに命令テキストの設定
+            SetStartOrderText();
             // 終了処理
             //EndOrder(obj);
             return;
