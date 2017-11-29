@@ -19,6 +19,9 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     [SerializeField]
     protected OrderList m_OrderList;
     //private OrderList m_OrderList = null;
+    // 耐久値(最大)
+    [SerializeField]
+    private int m_MaxHp = 5;
     // 移動速度
     [SerializeField]
     private float m_MoveSpeed = 5.0f;
@@ -45,6 +48,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     #endregion
 
     #region private変数
+    // 耐久値
+    private int m_Hp;
     // どこを向いているかを表示するオブジェクト
     private GameObject m_LookObject;
     // 方向
@@ -115,6 +120,9 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         //m_Agent.destination = Vector3.zero;
         m_Agent.isStopped = true;
 
+        // 耐久値の設定
+        m_Hp = m_MaxHp;
+
         // ロボットの縦の長さの取得
         m_BodyHeight = GetComponent<CapsuleCollider>().height;
     }
@@ -122,8 +130,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // Update is called once per frame
     public virtual void Update()
     {
+        // 耐久値が0なら返す
+        if (m_Hp == 0) return;
         // ジャミング状態なら返す
-        if (m_IsJamming) return;
+        //if (m_IsJamming) return;
 
         // デルタタイムの取得
         float time = Time.deltaTime;
@@ -300,6 +310,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     public void Change(OrderStatus order, OrderNumber orderNum, OrderDirection dir, int number)
     {
         // 命令がない場合は返す
+        // if (!CheckrOrder(order, orderNum) || (m_OrderStatus[orderNum] == order) || m_Hp == 0)
         if (!CheckrOrder(order, orderNum) || (m_OrderStatus[orderNum] == order)) return;
         print("命令承認！:" + orderNum.ToString() + ":" + m_OrderStatus[orderNum].ToString());
         // 最後の行動
@@ -384,7 +395,12 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
     #region ジェネラルインターフェース
     // ダメージ処理の呼び出し
-    public void onDamage(int amount) { }
+    public void onDamage(int amount) {
+        m_Hp = Mathf.Clamp(m_Hp - 1, 0, m_MaxHp);
+        //m_Hp = Mathf.Min(m_Hp - amount, 0);
+        // 体力が0になっていたら、
+        if (m_Hp == 0) print("アンドロイド停止");
+    }
 
     public void onShock() { }
 

@@ -3,34 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveCursorTexture : MonoBehaviour {
-
-    // 移動方向
-    enum MoveDirection
-    {
-        LEFT    = 1 << 0,
-        RIGHT   = 1 << 1
-    }
-
-    // 移動方向
+    // 戻す量
     [SerializeField]
-    private MoveDirection m_MoveDirection = MoveDirection.LEFT;
+    private float m_BackLength = 20.0f;
+    // 移動する座標
+    [SerializeField]
+    private Transform m_MovePoint;
     // テクスチャ配列
     [SerializeField]
     private Transform[] m_Textures;
 
     // 速度
     private float m_Speed = 10.0f;
-    // 方向
-    private float m_Direction;
+    // 前回の方向格納配列
+    private List<Vector3> m_PrevDirs = new List<Vector3>();
 
-	// Use this for initialization
-	void Start () {
-        switch (m_MoveDirection)
+    // Use this for initialization
+    void Start () {
+        // 方向を格納する
+        for (int i = 0; i != m_Textures.Length; ++i)
         {
-            case MoveDirection.LEFT: m_Direction = -1.0f; break;
-            case MoveDirection.RIGHT: m_Direction = 1.0f; break;
+            var dir = (m_MovePoint.localPosition - m_Textures[i].localPosition).normalized;
+            m_PrevDirs.Add(dir);
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,21 +34,15 @@ public class MoveCursorTexture : MonoBehaviour {
 
         for (int i = 0; i != m_Textures.Length; ++i)
         {
-            m_Textures[i].position += -Vector3.left * (m_Direction * m_Speed * Time.deltaTime);
-
-            if(m_MoveDirection == MoveDirection.LEFT)
-            {
-                if (m_Textures[i].localPosition.x < m_Direction * 21.25f) m_Textures[i].localPosition += -Vector3.left * -m_Direction * (37.5f + 12.5f);
-            }
-            else
-            {
-                // if (m_Textures[i].localPosition.x > m_Direction * 12.5f)
-                // 37.5f + 12.5f
-                if (m_Textures[i].localPosition.x > m_Direction * 21.25f) m_Textures[i].localPosition += -Vector3.left * -m_Direction * (37.5f + 12.5f);
-            }
-            //if (m_Textures[i].localPosition.x < m_Direction * 13f) m_Textures[i].localPosition += -Vector3.left * -m_Direction * (38 + 13);
+            var dir = (m_MovePoint.localPosition - m_Textures[i].localPosition).normalized;
+            m_Textures[i].localPosition += dir * (m_Speed * Time.deltaTime);
+            // 移動後の方向に変更
+            dir = (m_MovePoint.localPosition - m_Textures[i].localPosition).normalized;
+            // 前回の方向と変わっていたら、移動量分戻す
+            if (Vector3.Angle(dir, m_PrevDirs[i]) > 0.01f) m_Textures[i].localPosition += dir * m_BackLength;
+            else m_PrevDirs[i] = dir;
         }
-	}
+    }
 
     // 移動速度の設定
     public void SetSpeed(float speed) { m_Speed = speed; }
