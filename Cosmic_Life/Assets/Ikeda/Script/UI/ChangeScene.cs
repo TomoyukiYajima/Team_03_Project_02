@@ -37,6 +37,7 @@ public class ChangeScene : MonoBehaviour
     {
         //m_DoorState = DoorState.CloseDoor;
         //m_Timer = 0;
+        CloseDoor();
     }
 
     // Update is called once per frame
