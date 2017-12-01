@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 114476954868068422}
   m_Layer: 0
   m_Name: WalkEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -620,7 +620,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_Hp: 1
-  m_Agent: {fileID: 195112552439138686}
   m_ViewingDistance: 20
   m_ViewingAngle: 45
   m_IsPatrol: 0
