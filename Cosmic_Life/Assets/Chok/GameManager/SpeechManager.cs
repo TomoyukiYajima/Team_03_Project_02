@@ -252,12 +252,12 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         if (m_orderRecognizer != null && m_orderRecognizer.IsRunning)
         {
             m_orderRecognizer.OnPhraseRecognized -= OnPhraseRecognized;
-            m_orderRecognizer.Start();
+            m_orderRecognizer.Dispose();
         }
         if (m_unlockRecognizer != null && m_unlockRecognizer.IsRunning)
         {
             m_unlockRecognizer.OnPhraseRecognized -= OnUnlockPhrase;
-            m_unlockRecognizer.Start();
+            m_unlockRecognizer.Dispose();
         }
     }
 //#endif

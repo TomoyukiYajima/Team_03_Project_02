@@ -14,7 +14,6 @@ public class MoveCursorTexture : MonoBehaviour {
     private Transform[] m_Textures;
 
     // 速度
-    [SerializeField]
     private float m_Speed = 10.0f;
     // 前回の方向格納配列
     private List<Vector3> m_PrevDirs = new List<Vector3>();
