@@ -15,6 +15,23 @@ public class PlayerUI : MonoBehaviour {
     private Player m_player;
 
     private void Awake()    {
+        if (m_background == null) m_background = GameObject.Find("LifeGroup").transform.FindChild("Life0").GetComponent<Image>();
+        for (int i = 0; i < m_utilities.Length; ++i)
+        {
+            if (m_utilities[i] == null)
+            {
+                if (i < 4) m_utilities[i] = GameObject.Find("LifeGroup").transform.FindChild("Life" + i).GetComponent<RectTransform>();
+                else m_utilities[i] = GameObject.Find("LifeCanvas").transform.FindChild("Life" + i).GetComponent<RectTransform>();
+            }
+        }
+        for (int i = 0; i < m_particles.Length; ++i)
+        {
+            if (m_particles[i] == null)
+            {
+                m_particles[i] = GameObject.Find("ParticleCanvas").transform.FindChild("LifeParticle" + i).gameObject;
+            }
+        }
+
         m_player = GetComponent<Player>();
 
         if (m_player != null) m_player.onCollide += UpdateHPUI;

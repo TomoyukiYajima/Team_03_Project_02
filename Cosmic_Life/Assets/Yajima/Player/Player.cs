@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 
 public class Player : MonoBehaviour, IGeneralEvent
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private CharacterController m_charaCon;
     private PlayerState m_state;
     private Vector3 m_velocity;
+    public Vector3 Velocity { get { return m_velocity; } private set { } }
     private Vector3 m_groundNormal;
 
     private int m_maxHp;
@@ -28,6 +30,9 @@ public class Player : MonoBehaviour, IGeneralEvent
     private bool m_isGrounded;
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
+
+    private GameObject m_liftObj;
+    public GameObject LiftObject { get { return m_liftObj; } set { m_liftObj = value; } }
 
     public delegate void OnCollide(int hp);
     public event OnCollide onCollide;
@@ -58,6 +63,8 @@ public class Player : MonoBehaviour, IGeneralEvent
         m_groundCheckDistance = 0.3f;
         m_origGroundCheckDistance = m_groundCheckDistance;
 
+        m_liftObj = null;
+
         m_maxHp = m_status.hp;
     }
 
@@ -75,7 +82,8 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (Input.GetButtonDown("OK"))
         {
-            ChangeState(Attack());
+            if (m_liftObj == null) ChangeState(Attack());
+            else LiftObj();
             return;
         }
 
@@ -247,6 +255,70 @@ public class Player : MonoBehaviour, IGeneralEvent
         yield return null;
     }
 
+
+    private void LiftObj()
+    {
+        this.transform.LookAt(new Vector3(m_liftObj.transform.position.x, transform.position.y, m_liftObj.transform.position.z));
+        var model = transform.FindChild("Model").transform;
+        model.eulerAngles = transform.eulerAngles;
+
+        if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(m_liftObj))
+        {
+            Debug.Log("IGeneralEvent未実装 : " + m_liftObj);
+            return;
+        }
+
+        ExecuteEvents.Execute<IGeneralEvent>(
+            m_liftObj,
+            null,
+            (receive, y) => receive.onLift(this.gameObject)
+            );
+
+        ChangeState(Lifting());
+    }
+    private IEnumerator Lifting()
+    {
+        while (true)
+        {
+            if (Input.GetButtonDown("OK"))
+            {
+                if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(m_liftObj))
+                {
+                    Debug.Log("IGeneralEvent未実装 : " + m_liftObj);
+                    yield return null;
+                }
+
+                ExecuteEvents.Execute<IGeneralEvent>(
+                    m_liftObj,
+                    null,
+                    (receive, y) => receive.onTakeDown()
+                    );
+
+                EndState();
+                yield return null;
+            }
+
+            // 入力を取得
+            Vector3 input;
+            GetInput(out input);
+
+            if (m_charaCon.isGrounded)
+            {
+                m_velocity = new Vector3(input.x, 0, input.y);
+                m_velocity = transform.TransformDirection(m_velocity);
+                m_velocity *= m_Speed / 3.0f;
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    m_velocity.y = 8.0f;
+                }
+            }
+            m_velocity.y -= 20.0f * Time.fixedDeltaTime;
+            m_charaCon.Move(m_velocity * Time.fixedDeltaTime);
+
+            yield return null;
+        }
+    }
+
     private IEnumerator Lifted(GameObject crane)
     {
         while (true)
@@ -259,7 +331,6 @@ public class Player : MonoBehaviour, IGeneralEvent
             yield return null;
         }
     }
-
 
     private IEnumerator Damaged()
     {
@@ -328,8 +399,8 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         if (velocity.magnitude > 1f) velocity.Normalize();
         velocity = transform.InverseTransformDirection(velocity);
-        CheckGroundStatus();
-        velocity = Vector3.ProjectOnPlane(velocity, m_groundNormal);
+        //CheckGroundStatus();
+        //velocity = Vector3.ProjectOnPlane(velocity, m_groundNormal);
 
         float turnZ = Mathf.Clamp(velocity.z, 0.1f, 1.0f);
 
@@ -340,7 +411,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     }
 
     // プレイヤーモデルを回転させる
-    private void RotateModel(float h ,float v)
+    private void RotateModel(float h, float v)
     {
         var model = transform.FindChild("Model").transform;
         float modelAngle = model.eulerAngles.y;
@@ -376,28 +447,28 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     }
 
-    void CheckGroundStatus()
-    {
-        RaycastHit hitInfo;
-#if UNITY_EDITOR
-        // helper to visualise the ground check ray in the scene view
-        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_groundCheckDistance));
-#endif
-        // 0.1f is a small offset to start the ray from inside the character
-        // it is also good to note that the transform position in the sample assets is at the base of the character
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_groundCheckDistance))
-        {
-            m_groundNormal = hitInfo.normal;
-            m_isGrounded = true;
-            //m_animator.applyRootMotion = true;
-        }
-        else
-        {
-            m_isGrounded = false;
-            m_groundNormal = Vector3.up;
-            //m_animator.applyRootMotion = false;
-        }
-    }
+    //    void CheckGroundStatus()
+    //    {
+    //        RaycastHit hitInfo;
+    //#if UNITY_EDITOR
+    //        // helper to visualise the ground check ray in the scene view
+    //        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_groundCheckDistance));
+    //#endif
+    //        // 0.1f is a small offset to start the ray from inside the character
+    //        // it is also good to note that the transform position in the sample assets is at the base of the character
+    //        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_groundCheckDistance))
+    //        {
+    //            m_groundNormal = hitInfo.normal;
+    //            m_isGrounded = true;
+    //            //m_animator.applyRootMotion = true;
+    //        }
+    //        else
+    //        {
+    //            m_isGrounded = false;
+    //            m_groundNormal = Vector3.up;
+    //            //m_animator.applyRootMotion = false;
+    //        }
+    //    }
 
     #region Event
     public void onDamage(int amount)

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum LiftMode
+{
+    Player,
+    Robot,
+    Crane
+}
+
 public interface IGeneralEvent : IEventSystemHandler {
     /// <summary>
     /// 攻撃を受けたときのイベント
