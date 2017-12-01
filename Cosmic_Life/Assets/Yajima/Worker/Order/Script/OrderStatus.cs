@@ -21,7 +21,8 @@ public enum OrderStatus {
     THROW           = 1 << 16,  // 投げる
     ALLSTOP         = 1 << 17,  // 全停止
     LOOK            = 1 << 18,  // 向く
-    FOLLOW          = 1 << 19   // ついてくる
+    FOLLOW          = 1 << 19,  // ついてくる
+    ATTACK_ENEMY    = 1 << 20   // 敵を攻撃する
 }
 
 // 移動命令状態

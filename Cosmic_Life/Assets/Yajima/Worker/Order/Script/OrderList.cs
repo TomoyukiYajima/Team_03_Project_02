@@ -17,6 +17,7 @@ public class OrderList : MonoBehaviour {
     // 命令状態リスト3
     [SerializeField]
     private OrderStatus[] m_OrderThreeStatus;
+    // 命令状態リストマルチ
     // 命令状態リスト
     private Dictionary<OrderNumber, OrderStatus[]> m_OrderStatus =
         new Dictionary<OrderNumber, OrderStatus[]>();
@@ -58,10 +59,12 @@ public class OrderList : MonoBehaviour {
         m_OrderStatus.Add(OrderNumber.ONE, m_OrderOneStatus);
         m_OrderStatus.Add(OrderNumber.TWO, m_OrderTwoStatus);
         m_OrderStatus.Add(OrderNumber.THREE, m_OrderThreeStatus);
+        //m_OrderStatus.Add(OrderNumber.MULT, m_OrderThreeStatus);
         // 命令リストの追加
         m_Orders.Add(OrderNumber.ONE, m_OrdersOne);
         m_Orders.Add(OrderNumber.TWO, m_OrdersTwo);
         m_Orders.Add(OrderNumber.THREE, m_OrdersThree);
+        //m_Orders.Add(OrderNumber.MULT, m_OrdersThree);
     }
 
     // 命令状態リストの取得

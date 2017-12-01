@@ -29,15 +29,10 @@ public class ButtonCursor : MonoBehaviour {
     private int m_PrevCursorRow = 0;
     // 過去のYの位置
     private int m_PrevCursorColumn = 0;
-    //// 入力箇所
-    //private int m_TextCount = 0;
-
-    //// Xの現在位置
-    //private int m_CursorCurrentRow = 0;
-    //// Yの現在位置
-    //private int m_CursorCurrentColumn = 0;
-
-    private bool m_IsMove = true;
+    // 移動中か
+    private bool m_IsMoving = false;
+    // 停止させているじゃ
+    private bool m_IsStop = false;
 
 	// Use this for initialization
 	void Start () {
@@ -62,11 +57,11 @@ public class ButtonCursor : MonoBehaviour {
         if (Vector3.Distance(m_TextButtons.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).position, this.transform.position) > 0.1f) return;
         else
         {
-            m_IsMove = true;
+            m_IsMoving = false;
             //if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.75f) m_Buttones[m_ButtonCount].Flash();
         }
 
-        if (!m_IsMove) return;
+        if (m_IsMoving || m_IsStop) return;
 
         // if (Input.GetButtonDown("OK") && m_TextCount < m_NameBox.transform.childCount)
         if (Input.GetButtonDown("OK"))
@@ -122,7 +117,7 @@ public class ButtonCursor : MonoBehaviour {
         // カーソルが指定座標に辿り着いる場合は返す。
         if (m_CursorColumn == column && m_CursorRow == row) return;
         // 移動中
-        m_IsMove = false;
+        m_IsMoving = true;
         //audio.PlayOneShot(m_SelectSE);
         this.transform.DOMove(m_TextButtons.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).position, m_MoveTime);
 
@@ -151,5 +146,25 @@ public class ButtonCursor : MonoBehaviour {
         // m_Buttones[m_ButtonCount].Flash();
         // 発光処理処理の停止
         //m_Buttones[prevCount].StopFlash();
+    }
+
+    // 移動制限の設定
+    public bool IsCursorStop
+    {
+        get { return m_IsStop; }
+        set { m_IsStop = value; }
+    }
+
+    // 移動中か？
+    public bool IsMoving() { return m_IsMoving; }
+
+    // カーソルの初期化
+    public void InitCursor()
+    {
+        gameObject.SetActive(false);
+        // 座標の初期化
+        m_CursorRow = m_CursorColumn = 0;
+        m_PrevCursorRow = m_PrevCursorColumn = 0;
+        this.transform.position = m_TextButtons.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).position;
     }
 }

@@ -47,13 +47,13 @@ public class FlashImage : MonoBehaviour {
         m_IsStop = true;
     }
 
-    public IEnumerator Flash()
+    private IEnumerator Flash()
     {
-        // 透明化
+        // 非透明化
         m_Image.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), m_FadeTime / 2);
         // ディレイ
         yield return new WaitForSeconds(m_FadeTime / 2);
-        // 非透明化
+        // 透明化
         m_Image.DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), m_FadeTime / 2);
         // 再帰呼び出し
         yield return new WaitForSeconds(m_FadeTime / 2 + m_FlashDelay);

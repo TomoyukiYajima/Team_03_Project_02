@@ -4,13 +4,17 @@ using UnityEngine;
 using DG.Tweening;
 
 public class NamingButtonsBox : MonoBehaviour {
-
-    private bool m_IsDraw = true;// = false;
-
+    // カーソル
+    [SerializeField]
+    private ButtonCursor m_Cursor;
+    // 移動時間
+    [SerializeField]
     private float m_MoveTime = 1.0f;
 
+    // 表示するか？
+    //private bool m_IsDraw = true;// = false;
+    // 初期座標
     private Vector3 m_InitPosition;
-
 
 	// Use this for initialization
 	void Start () {
@@ -22,13 +26,17 @@ public class NamingButtonsBox : MonoBehaviour {
 
         //if (!m_IsDraw) return;
 
+        // カーソルが移動中なら返す
+        if (m_Cursor.IsMoving()) return;
+
         if (Input.GetButtonDown("X"))
         {
             print(Vector3.left * m_InitPosition.x);
-            this.transform.GetChild(0).DOLocalMove(Vector3.left * 1280 + Vector3.up * m_InitPosition.y, m_MoveTime);
+            this.transform.GetChild(0).DOLocalMove(Vector3.left * -728 + Vector3.up * m_InitPosition.y, m_MoveTime);
+            m_Cursor.IsCursorStop = false;
             //this.transform.GetChild(0).DOLocalMove(-Vector3.left * m_InitPosition.x + Vector3.up * m_InitPosition.y, m_MoveTime);
-            m_IsDraw = !m_IsDraw;
+            //m_IsDraw = !m_IsDraw;
             //m_IsDraw = false;
         }
-	}
+    }
 }

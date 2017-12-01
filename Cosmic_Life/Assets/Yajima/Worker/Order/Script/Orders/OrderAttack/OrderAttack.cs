@@ -103,4 +103,7 @@ public class OrderAttack : Order {
     {
         m_MoveObject.transform.DOLocalMove(m_StartPoint.localPosition, m_BackTime / 2);
     }
+
+    // 攻撃を終了したかを返します
+    public bool IsAttackEnd() { return m_IsAttack; }
 }

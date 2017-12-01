@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 606c366038397bb4094cd2944850ee0b
-timeCreated: 1511863113
+timeCreated: 1511947151
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,12 @@ TextureImporter:
     21300002: StageClearSample_1
     21300004: StageClearSample_2
     21300006: StageClearSample_3
+    21300008: StageClearSample_4
+    21300010: StageClearSample_5
+    21300012: StageClearSample_6
+    21300014: StageClearSample_7
+    21300016: StageClearSample_8
+    21300018: StageClearSample_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,7 +93,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
+        width: 60
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -98,9 +104,9 @@ TextureImporter:
       name: StageClearSample_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 60
         y: 0
-        width: 150
+        width: 60
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,9 +117,9 @@ TextureImporter:
       name: StageClearSample_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 120
         y: 0
-        width: 150
+        width: 60
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,9 +130,87 @@ TextureImporter:
       name: StageClearSample_3
       rect:
         serializedVersion: 2
-        x: 450
+        x: 180
         y: 0
-        width: 150
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_7
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_8
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 60
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StageClearSample_9
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 60
         height: 250
       alignment: 0
       pivot: {x: 0, y: 0}

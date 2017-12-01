@@ -20,10 +20,10 @@ public class LanguageTextButton : TextButton
 
     // Use this for initialization
     public override void Start () {
-        if (m_SonantMarkText == "") m_SonantMarkText = m_InputText;
-        if (m_PSoundMarkText == "") m_PSoundMarkText = m_InputText;
-        if (m_SonantMarkSprite == null) m_SonantMarkSprite = this.GetComponent<Image>().sprite;
-        if (m_PSoundMarkSprite == null) m_SonantMarkSprite = this.GetComponent<Image>().sprite;
+        //if (m_SonantMarkText == "") m_SonantMarkText = m_InputText;
+        //if (m_PSoundMarkText == "") m_PSoundMarkText = m_InputText;
+        //if (m_SonantMarkSprite == null) m_SonantMarkSprite = this.GetComponent<Image>().sprite;
+        //if (m_PSoundMarkSprite == null) m_SonantMarkSprite = this.GetComponent<Image>().sprite;
     }
 
     // Update is called once per frame

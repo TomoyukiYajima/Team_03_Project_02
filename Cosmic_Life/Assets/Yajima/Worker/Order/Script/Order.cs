@@ -131,7 +131,7 @@ public class Order : MonoBehaviour {
     }
 
     // 命令の終了
-    protected void EndOrder(GameObject obj)
+    public void EndOrder(GameObject obj)
     {
         // 相手側にイベントがなければ返す
         if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(obj)) return;

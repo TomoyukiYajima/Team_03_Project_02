@@ -181,6 +181,8 @@ MonoBehaviour:
       Value: 262144
     - Key: follow
       Value: 524288
+    - Key: enemyattack
+      Value: 1048576
   m_directionrDictionary:
     list:
     - Key: "\u307E\u3048"

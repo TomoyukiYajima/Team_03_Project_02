@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7d6a15b7ae445cc4bb8cf51ff366e6c2
-timeCreated: 1511241101
+timeCreated: 1512026326
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -132,12 +132,12 @@ TextureImporter:
       name: KeyCode_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 271
+        x: 30
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -145,12 +145,12 @@ TextureImporter:
       name: KeyCode_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 271
+        x: 90
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -158,12 +158,12 @@ TextureImporter:
       name: KeyCode_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 271
+        x: 150
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -171,12 +171,12 @@ TextureImporter:
       name: KeyCode_3
       rect:
         serializedVersion: 2
-        x: 205
-        y: 271
+        x: 210
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -184,12 +184,12 @@ TextureImporter:
       name: KeyCode_4
       rect:
         serializedVersion: 2
-        x: 265
-        y: 271
+        x: 270
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -197,12 +197,12 @@ TextureImporter:
       name: KeyCode_5
       rect:
         serializedVersion: 2
-        x: 325
-        y: 271
+        x: 330
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -210,12 +210,12 @@ TextureImporter:
       name: KeyCode_6
       rect:
         serializedVersion: 2
-        x: 385
-        y: 271
+        x: 390
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -223,12 +223,12 @@ TextureImporter:
       name: KeyCode_7
       rect:
         serializedVersion: 2
-        x: 445
-        y: 271
+        x: 450
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -236,12 +236,12 @@ TextureImporter:
       name: KeyCode_8
       rect:
         serializedVersion: 2
-        x: 505
-        y: 271
+        x: 510
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -249,12 +249,12 @@ TextureImporter:
       name: KeyCode_9
       rect:
         serializedVersion: 2
-        x: 565
-        y: 271
+        x: 570
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -262,12 +262,12 @@ TextureImporter:
       name: KeyCode_10
       rect:
         serializedVersion: 2
-        x: 625
-        y: 271
+        x: 630
+        y: 255
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -275,12 +275,12 @@ TextureImporter:
       name: KeyCode_11
       rect:
         serializedVersion: 2
-        x: 25
-        y: 211
+        x: 30
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -288,12 +288,12 @@ TextureImporter:
       name: KeyCode_12
       rect:
         serializedVersion: 2
-        x: 145
-        y: 211
+        x: 150
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -301,12 +301,12 @@ TextureImporter:
       name: KeyCode_13
       rect:
         serializedVersion: 2
-        x: 265
-        y: 211
+        x: 270
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -314,12 +314,12 @@ TextureImporter:
       name: KeyCode_14
       rect:
         serializedVersion: 2
-        x: 325
-        y: 211
+        x: 330
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -327,12 +327,12 @@ TextureImporter:
       name: KeyCode_15
       rect:
         serializedVersion: 2
-        x: 385
-        y: 211
+        x: 390
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -340,12 +340,12 @@ TextureImporter:
       name: KeyCode_16
       rect:
         serializedVersion: 2
-        x: 445
-        y: 211
+        x: 450
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -353,12 +353,12 @@ TextureImporter:
       name: KeyCode_17
       rect:
         serializedVersion: 2
-        x: 505
-        y: 211
+        x: 510
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -366,12 +366,12 @@ TextureImporter:
       name: KeyCode_18
       rect:
         serializedVersion: 2
-        x: 565
-        y: 211
+        x: 570
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -379,12 +379,12 @@ TextureImporter:
       name: KeyCode_19
       rect:
         serializedVersion: 2
-        x: 625
-        y: 211
+        x: 630
+        y: 195
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -392,12 +392,12 @@ TextureImporter:
       name: KeyCode_20
       rect:
         serializedVersion: 2
-        x: 25
-        y: 151
+        x: 30
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -405,12 +405,12 @@ TextureImporter:
       name: KeyCode_21
       rect:
         serializedVersion: 2
-        x: 85
-        y: 151
+        x: 90
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -418,12 +418,12 @@ TextureImporter:
       name: KeyCode_22
       rect:
         serializedVersion: 2
-        x: 145
-        y: 151
+        x: 150
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -431,12 +431,12 @@ TextureImporter:
       name: KeyCode_23
       rect:
         serializedVersion: 2
-        x: 205
-        y: 151
+        x: 210
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -444,12 +444,12 @@ TextureImporter:
       name: KeyCode_24
       rect:
         serializedVersion: 2
-        x: 265
-        y: 151
+        x: 270
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -457,12 +457,12 @@ TextureImporter:
       name: KeyCode_25
       rect:
         serializedVersion: 2
-        x: 325
-        y: 151
+        x: 330
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -470,12 +470,12 @@ TextureImporter:
       name: KeyCode_26
       rect:
         serializedVersion: 2
-        x: 385
-        y: 151
+        x: 390
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -483,12 +483,12 @@ TextureImporter:
       name: KeyCode_27
       rect:
         serializedVersion: 2
-        x: 445
-        y: 151
+        x: 450
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -496,12 +496,12 @@ TextureImporter:
       name: KeyCode_28
       rect:
         serializedVersion: 2
-        x: 505
-        y: 151
+        x: 510
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -509,12 +509,12 @@ TextureImporter:
       name: KeyCode_29
       rect:
         serializedVersion: 2
-        x: 565
-        y: 151
+        x: 570
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -522,12 +522,12 @@ TextureImporter:
       name: KeyCode_30
       rect:
         serializedVersion: 2
-        x: 625
-        y: 151
+        x: 630
+        y: 135
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -535,12 +535,12 @@ TextureImporter:
       name: KeyCode_31
       rect:
         serializedVersion: 2
-        x: 25
-        y: 91
+        x: 30
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -548,12 +548,12 @@ TextureImporter:
       name: KeyCode_32
       rect:
         serializedVersion: 2
-        x: 145
-        y: 91
+        x: 150
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -561,12 +561,12 @@ TextureImporter:
       name: KeyCode_33
       rect:
         serializedVersion: 2
-        x: 265
-        y: 91
+        x: 270
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -574,12 +574,12 @@ TextureImporter:
       name: KeyCode_34
       rect:
         serializedVersion: 2
-        x: 325
-        y: 91
+        x: 330
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -587,12 +587,12 @@ TextureImporter:
       name: KeyCode_35
       rect:
         serializedVersion: 2
-        x: 385
-        y: 91
+        x: 390
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -600,12 +600,12 @@ TextureImporter:
       name: KeyCode_36
       rect:
         serializedVersion: 2
-        x: 445
-        y: 91
+        x: 450
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -613,12 +613,12 @@ TextureImporter:
       name: KeyCode_37
       rect:
         serializedVersion: 2
-        x: 505
-        y: 91
+        x: 510
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -626,12 +626,12 @@ TextureImporter:
       name: KeyCode_38
       rect:
         serializedVersion: 2
-        x: 565
-        y: 91
+        x: 570
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -639,12 +639,12 @@ TextureImporter:
       name: KeyCode_39
       rect:
         serializedVersion: 2
-        x: 625
-        y: 91
+        x: 630
+        y: 75
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -652,12 +652,12 @@ TextureImporter:
       name: KeyCode_40
       rect:
         serializedVersion: 2
-        x: 25
-        y: 31
+        x: 30
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -665,12 +665,12 @@ TextureImporter:
       name: KeyCode_41
       rect:
         serializedVersion: 2
-        x: 85
-        y: 31
+        x: 90
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -678,12 +678,12 @@ TextureImporter:
       name: KeyCode_42
       rect:
         serializedVersion: 2
-        x: 145
-        y: 31
+        x: 150
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -691,12 +691,12 @@ TextureImporter:
       name: KeyCode_43
       rect:
         serializedVersion: 2
-        x: 205
-        y: 31
+        x: 210
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -704,12 +704,12 @@ TextureImporter:
       name: KeyCode_44
       rect:
         serializedVersion: 2
-        x: 265
-        y: 31
+        x: 270
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -717,12 +717,12 @@ TextureImporter:
       name: KeyCode_45
       rect:
         serializedVersion: 2
-        x: 325
-        y: 31
+        x: 330
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -730,12 +730,12 @@ TextureImporter:
       name: KeyCode_46
       rect:
         serializedVersion: 2
-        x: 385
-        y: 31
+        x: 390
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -743,12 +743,12 @@ TextureImporter:
       name: KeyCode_47
       rect:
         serializedVersion: 2
-        x: 445
-        y: 31
+        x: 450
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -756,12 +756,12 @@ TextureImporter:
       name: KeyCode_48
       rect:
         serializedVersion: 2
-        x: 505
-        y: 31
+        x: 510
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -769,12 +769,12 @@ TextureImporter:
       name: KeyCode_49
       rect:
         serializedVersion: 2
-        x: 565
-        y: 31
+        x: 570
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -782,12 +782,12 @@ TextureImporter:
       name: KeyCode_50
       rect:
         serializedVersion: 2
-        x: 625
-        y: 31
+        x: 630
+        y: 15
         width: 60
         height: 60
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

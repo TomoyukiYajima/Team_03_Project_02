@@ -290,7 +290,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
         var orderDir = m_Orders[number][order].GetComponent<DirectionOrder>().GetDirection();
         // 命令がない場合は返す
-        if (!CheckrOrder(order, number) || (m_OrderStatus[number] == order && orderDir == dir)) return;
+        if (!CheckOrder(order, number) || (m_OrderStatus[number] == order && orderDir == dir)) return;
 
         if(dir == OrderDirection.NULL) return;
 
@@ -311,7 +311,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     {
         // 命令がない場合は返す
         // if (!CheckrOrder(order, orderNum) || (m_OrderStatus[orderNum] == order) || m_Hp == 0)
-        if (!CheckrOrder(order, orderNum) || (m_OrderStatus[orderNum] == order)) return;
+        if (!CheckOrder(order, orderNum) || (m_OrderStatus[orderNum] == order)) return;
         print("命令承認！:" + orderNum.ToString() + ":" + m_OrderStatus[orderNum].ToString());
         // 最後の行動
         m_Orders[orderNum][m_OrderStatus[orderNum]].EndAction(gameObject);
@@ -323,7 +323,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     }
 
     // 指定した命令があるかの確認を行います
-    protected bool CheckrOrder(OrderStatus order, OrderNumber number)
+    protected bool CheckOrder(OrderStatus order, OrderNumber number)
     {
         // 命令
         for (int i = 0; i != m_OrderList.GetOrderStatus(number).Length; ++i)
@@ -416,6 +416,16 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     #region ステータス関数
     // 回転速度を取得します
     public float GetRotateSpeed() { return m_RotateSpeed; }
+    // 命令クラスを取得します
+    public Order GetOrder(OrderStatus order)
+    {
+        //命令があれば、命令を返す
+        for (int i = 0; i != m_OrderNumbers.Count; ++i)
+        {
+            if (CheckOrder(order, m_OrderNumbers[i])) return m_Orders[m_OrderNumbers[i]][m_OrderStatus[m_OrderNumbers[i]]];
+        }
+        return null;
+    }
     #endregion
 
     #region エージェント

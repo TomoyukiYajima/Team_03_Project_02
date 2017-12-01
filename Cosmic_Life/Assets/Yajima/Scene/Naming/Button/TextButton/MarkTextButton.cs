@@ -38,7 +38,11 @@ public class MarkTextButton : TextButton {
     {
         //text.SonantMarkText;
         nameText.ChangeSonantMarkText();
+        print(text);
+        if (nameText.SonantMarkSprite == null) return text;
         text = text.Remove(text.Length - 1, 1);
-        return text += nameText.SonantMarkText;
+        text += nameText.SonantMarkText;
+        print(text);
+        return text;
     }
 }

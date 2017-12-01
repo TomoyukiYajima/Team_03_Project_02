@@ -17,9 +17,9 @@ public class NamingText : MonoBehaviour {
     // 半濁点
     private string m_PSoundMarkText = "";
     // 濁点用画像
-    private Sprite m_SonantMarkSprite;
+    private Sprite m_SonantMarkSprite = null;
     // 半濁点用画像
-    private Sprite m_PSoundMarkSprite;
+    private Sprite m_PSoundMarkSprite = null;
 
     // Use this for initialization
     void Start() {
