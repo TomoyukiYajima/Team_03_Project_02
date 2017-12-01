@@ -47,13 +47,6 @@ public class ChangeScene : MonoBehaviour
     //ドアを開ける
     public void OpenDoor()
     {
-        m_RightDoor.transform.DOLocalMoveX(200, 2.0f).SetEase(m_Curve);
-        m_LeftDoor.transform.DOLocalMoveX(-200, 2.0f).SetEase(m_Curve);
-    }
-
-    //ドアを閉める
-    public void CloseDoor()
-    {
         //ギアの状態を変更する
         foreach (Gear gear in m_Gears)
         {
@@ -61,6 +54,13 @@ public class ChangeScene : MonoBehaviour
         }
         m_RightDoor.transform.DOLocalMoveX(600, 2.5f).SetEase(Ease.InQuart);
         m_LeftDoor.transform.DOLocalMoveX(-600, 2.5f).SetEase(Ease.InQuart);
+    }
+
+    //ドアを閉める
+    public void CloseDoor()
+    {
+        m_RightDoor.transform.DOLocalMoveX(200, 2.0f).SetEase(m_Curve);
+        m_LeftDoor.transform.DOLocalMoveX(-200, 2.0f).SetEase(m_Curve);
     }
 
 }
