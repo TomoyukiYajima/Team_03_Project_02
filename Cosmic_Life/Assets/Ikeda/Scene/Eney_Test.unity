@@ -284,7 +284,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1034833964}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &277624095
 GameObject:
@@ -1248,10 +1248,6 @@ Prefab:
       propertyPath: m_RoundPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1313531818}
-    - target: {fileID: 4468870258026798, guid: 16cd6efd959081147a4c65ee3ac0daf6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16cd6efd959081147a4c65ee3ac0daf6, type: 2}
   m_IsPrefabParent: 0
@@ -2484,6 +2480,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 114083054864343816, guid: 126c8e39776d20a479c870ff4abdd8ee,
+        type: 2}
+      propertyPath: m_HumanEnemy
+      value: 
+      objectReference: {fileID: 1045091022}
     - target: {fileID: 114919946197129920, guid: 126c8e39776d20a479c870ff4abdd8ee,
         type: 2}
       propertyPath: m_HumanEnemy
@@ -2499,11 +2500,6 @@ Prefab:
       propertyPath: m_GuardPoint
       value: 
       objectReference: {fileID: 1595242986}
-    - target: {fileID: 114083054864343816, guid: 126c8e39776d20a479c870ff4abdd8ee,
-        type: 2}
-      propertyPath: m_HumanEnemy
-      value: 
-      objectReference: {fileID: 1045091022}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 126c8e39776d20a479c870ff4abdd8ee, type: 2}
   m_IsPrefabParent: 0
