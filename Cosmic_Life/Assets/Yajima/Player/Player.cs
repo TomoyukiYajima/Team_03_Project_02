@@ -306,7 +306,7 @@ public class Player : MonoBehaviour, IGeneralEvent
             {
                 m_velocity = new Vector3(input.x, 0, input.y);
                 m_velocity = transform.TransformDirection(m_velocity);
-                m_velocity *= m_Speed / 2.0f;
+                m_velocity *= m_Speed / 3.0f;
                 if (Input.GetButtonDown("Cancel"))
                 {
                     m_velocity.y = 8.0f;
