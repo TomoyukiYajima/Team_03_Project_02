@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 496726175}
   - component: {fileID: 496726178}
   - component: {fileID: 496726177}
+  - component: {fileID: 496726176}
   m_Layer: 5
   m_Name: Gear (5)
   m_TagString: Untagged
@@ -215,6 +216,18 @@ RectTransform:
   m_AnchoredPosition: {x: -2, y: -96}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
+--- !u!114 &496726176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 496726174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: -10
 --- !u!114 &496726177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +359,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -600, y: 0}
-  m_SizeDelta: {x: 400, y: 450}
+  m_SizeDelta: {x: 400, y: 423.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582489358
 MonoBehaviour:
@@ -528,6 +541,7 @@ GameObject:
   - component: {fileID: 786893034}
   - component: {fileID: 786893037}
   - component: {fileID: 786893036}
+  - component: {fileID: 786893035}
   m_Layer: 5
   m_Name: Gear (1)
   m_TagString: Untagged
@@ -553,6 +567,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4.2, y: -12.4}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &786893035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 786893033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: 10
 --- !u!114 &786893036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,8 +706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: 0}
-  m_SizeDelta: {x: 400, y: 450}
+  m_AnchoredPosition: {x: 600, y: -0.00069761}
+  m_SizeDelta: {x: 400, y: 423.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069667143
 MonoBehaviour:
@@ -726,6 +752,7 @@ GameObject:
   - component: {fileID: 1129138818}
   - component: {fileID: 1129138821}
   - component: {fileID: 1129138820}
+  - component: {fileID: 1129138819}
   m_Layer: 5
   m_Name: Gear (4)
   m_TagString: Untagged
@@ -751,6 +778,18 @@ RectTransform:
   m_AnchoredPosition: {x: 118.6, y: -9.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
+--- !u!114 &1129138819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129138817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: -10
 --- !u!114 &1129138820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +833,7 @@ GameObject:
   - component: {fileID: 1198975300}
   - component: {fileID: 1198975303}
   - component: {fileID: 1198975302}
+  - component: {fileID: 1198975301}
   m_Layer: 5
   m_Name: Gear (3)
   m_TagString: Untagged
@@ -819,6 +859,18 @@ RectTransform:
   m_AnchoredPosition: {x: -103.6, y: -15.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
+--- !u!114 &1198975301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1198975299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: 10
 --- !u!114 &1198975302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,6 +915,7 @@ GameObject:
   - component: {fileID: 1482792531}
   - component: {fileID: 1482792530}
   - component: {fileID: 1482792529}
+  - component: {fileID: 1482792528}
   m_Layer: 5
   m_Name: ChangeSceneCanvas
   m_TagString: Untagged
@@ -870,6 +923,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1482792528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1482792527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4da78b5c62a9694eb160cb5791c6eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RightDoor: {fileID: 1069667143}
+  m_LeftDoor: {fileID: 582489358}
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_Gears:
+  - {fileID: 1904918050}
+  - {fileID: 1710754070}
+  - {fileID: 1198975301}
+  - {fileID: 786893035}
+  - {fileID: 1129138819}
+  - {fileID: 496726176}
 --- !u!114 &1482792529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,6 +1039,7 @@ GameObject:
   - component: {fileID: 1710754069}
   - component: {fileID: 1710754072}
   - component: {fileID: 1710754071}
+  - component: {fileID: 1710754070}
   m_Layer: 5
   m_Name: Gear (2)
   m_TagString: Untagged
@@ -985,6 +1065,18 @@ RectTransform:
   m_AnchoredPosition: {x: 1.7, y: -95.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.50000006, y: 0.49999997}
+--- !u!114 &1710754070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710754068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: 10
 --- !u!114 &1710754071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,6 +1188,7 @@ GameObject:
   - component: {fileID: 1904918049}
   - component: {fileID: 1904918052}
   - component: {fileID: 1904918051}
+  - component: {fileID: 1904918050}
   m_Layer: 5
   m_Name: Gear
   m_TagString: Untagged
@@ -1121,6 +1214,18 @@ RectTransform:
   m_AnchoredPosition: {x: 2.4, y: -11.1}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1904918050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1904918048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca6d688c03dcf94ea14da7a8fd2be1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Angle: -10
 --- !u!114 &1904918051
 MonoBehaviour:
   m_ObjectHideFlags: 0
