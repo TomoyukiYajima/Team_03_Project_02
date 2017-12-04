@@ -94,12 +94,14 @@ public class CameraRay : MonoBehaviour
     private void StartFlash(Color color, float duration)
     {
         // オブジェクトがStageObjectコンポーネントを実装しているかをチェック
-        StageObject material = null;
+        cakeslice.Outline material = null;
         //StageObject material = m_colliderObj.GetComponent<StageObject>();
-        if ((material = m_colliderObj.GetComponent<StageObject>()) == null) return;
+        if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) == null) return;
         // 点滅開始
-        material.FlashEmission(color, duration);
+        material.eraseRenderer = false;
         m_aim.sprite = m_aimEffect;
+
+        //m_colliderObj.transform.FindChild("Infomation").gameObject.SetActive(true);
     }
 
     private void EndFlash(GameObject obj)
@@ -109,11 +111,11 @@ public class CameraRay : MonoBehaviour
         if (m_colliderObj != null)
         {
             // オブジェクトがStageObjectコンポーネントを実装しているかをチェック
-            StageObject material = null;
-            if ((material = m_colliderObj.GetComponent<StageObject>()) != null)
+            cakeslice.Outline material = null;
+            if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) != null)
             {
                 // 点滅終了
-                material.EndFlashEmission();
+                material.eraseRenderer = true;
             }
         }
         // 格納オブジェクトを更新

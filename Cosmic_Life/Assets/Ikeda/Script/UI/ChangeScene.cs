@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class ChangeScene : MonoBehaviour
+public class ChangeScene : SingletonBehaviour<ChangeScene>
 {
     //enum DoorState
     //{
@@ -37,12 +37,12 @@ public class ChangeScene : MonoBehaviour
     {
         //m_DoorState = DoorState.CloseDoor;
         //m_Timer = 0;
-        CloseDoor();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A)) OpenDoor();
     }
 
     //ドアを開ける
@@ -53,15 +53,15 @@ public class ChangeScene : MonoBehaviour
         {
             gear.SetGearState(Gear.GearState.SpeedUpState);
         }
-        m_RightDoor.transform.DOLocalMoveX(600, 2.5f).SetEase(Ease.InQuart);
-        m_LeftDoor.transform.DOLocalMoveX(-600, 2.5f).SetEase(Ease.InQuart);
+        m_RightDoor.transform.DOLocalMoveX(960, 2.5f).SetEase(Ease.InQuart);
+        m_LeftDoor.transform.DOLocalMoveX(-960, 2.5f).SetEase(Ease.InQuart);
     }
 
     //ドアを閉める
     public void CloseDoor()
     {
-        m_RightDoor.transform.DOLocalMoveX(200, 2.0f).SetEase(m_Curve);
-        m_LeftDoor.transform.DOLocalMoveX(-200, 2.0f).SetEase(m_Curve);
+        m_RightDoor.transform.DOLocalMoveX(320, 2.0f).SetEase(m_Curve);
+        m_LeftDoor.transform.DOLocalMoveX(-320, 2.0f).SetEase(m_Curve);
     }
 
 }

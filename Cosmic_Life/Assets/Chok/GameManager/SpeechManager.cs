@@ -46,8 +46,6 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
     private Dictionary<string,List<string>> m_orderKeyword = new Dictionary<string, List<string>>();
     private List<string> m_unlockKeyword = new List<string>();
 
-    private GameObject m_robot;
-
     //#if !UNITY_EDITOR
     void Start()
     {
@@ -167,21 +165,14 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
 
     private void SendOrder(OrderStatus order, OrderDirection dir)
     {
-        // ワーカーリスト取得
-        //List<GameObject> workerList = new List<GameObject>();
-        //workerList.AddRange(GameObject.FindGameObjectsWithTag("Robot"));
-        //workerList.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        // シーンにいる全部のロボットを入れる
+        var robotList = GameObject.FindGameObjectsWithTag("Robot");
 
-        //// シーンにいる全部のロボットを入れる
-        //var robotList = GameObject.FindGameObjectsWithTag("Robot");
-
-        m_robot = GameObject.FindGameObjectWithTag("Robot");
-
-        //// 全部のロボットにオーダーを出す
-        //foreach (var robot in robotList)
-        //{
-        // IRobotEventが実装されていなければreturn
-        if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(m_robot))
+        // 全部のロボットにオーダーを出す
+        foreach (var robot in robotList)
+        {
+            // IRobotEventが実装されていなければreturn
+            if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(robot))
             {
                 Debug.Log("IOrderEvent未実装");
                 return;
@@ -190,18 +181,18 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
             if (dir == OrderDirection.NULL)
             {
                 ExecuteEvents.Execute<IOrderEvent>(
-                    m_robot,
+                    robot,
                     null,
                     (receive, y) => receive.onOrder(order));
             }
             else
             {
                 ExecuteEvents.Execute<IOrderEvent>(
-                    m_robot,
+                    robot,
                     null,
                     (receive, y) => receive.onOrder(order, dir));
             }
-        //}
+        }
 
         var enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 

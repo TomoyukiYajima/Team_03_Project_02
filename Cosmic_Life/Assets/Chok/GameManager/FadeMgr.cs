@@ -30,6 +30,17 @@ public class FadeMgr : SingletonBehaviour<FadeMgr>
         });
     }
 
+    public void FadeOutSimple(float duration, Action action = null)
+    {
+        m_fadeGroup.transform.FindChild("FadeImage").GetComponent<Image>().DOFade(1, duration).OnComplete(() => {
+            m_fadeGroup.blocksRaycasts = false;
+            if (action != null)
+            {
+                action();
+            }
+        });
+    }
+
     public void FillBar(float amount)
     {
         m_loadingBar.fillAmount = amount;

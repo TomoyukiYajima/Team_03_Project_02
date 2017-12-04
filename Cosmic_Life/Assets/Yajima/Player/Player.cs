@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (m_charaCon.isGrounded)
         {
-            m_velocity = new Vector3(input.x, 0, input.y);
+                        m_velocity = new Vector3(input.x, 0, input.y);
             m_velocity = transform.TransformDirection(m_velocity);
             m_velocity *= m_Speed;
             if (Input.GetButtonDown("Cancel"))
@@ -280,7 +280,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         while (true)
         {
-            if (Input.GetButtonDown("OK"))
+            if (Input.GetButtonDown("Cancel"))
             {
                 if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(m_liftObj))
                 {

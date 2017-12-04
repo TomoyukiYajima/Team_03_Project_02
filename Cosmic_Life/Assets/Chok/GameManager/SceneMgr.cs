@@ -36,6 +36,15 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         StartCoroutine(transitionAsync(name, m_duration));
     }
 
+    public void SceneTransitionSimple(SceneType name)
+    {
+        if (!m_isEnd) return;
+        m_isFade = true;
+        m_isEnd = false;
+        FadeMgr.Instance.FadeOutSimple(m_duration, () => { m_isFade = false; });
+        StartCoroutine(transition(name, m_duration));
+    }
+
     IEnumerator transition(SceneType name,float duration)
     {
         yield return new WaitWhile(() => m_isFade);
@@ -66,6 +75,9 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         
         yield return new WaitWhile(() => m_isFade);
 
+        ChangeScene.Instance.CloseDoor();
+        yield return new WaitForSeconds(2.0f);
+
         m_async = SceneManager.LoadSceneAsync(name.ToString(), LoadSceneMode.Additive);
         // 読み込みが終わっても表示しない
         m_async.allowSceneActivation = true;
@@ -82,6 +94,9 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
 
         UnLoadScene(m_currentScene);
         m_currentScene = name;
+
+        ChangeScene.Instance.OpenDoor();
+        yield return new WaitForSeconds(2.0f);
 
         if (duration != 0)
         {
