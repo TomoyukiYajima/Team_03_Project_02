@@ -7,6 +7,7 @@ public class FadeMgr : SingletonBehaviour<FadeMgr>
 {
     [SerializeField] private CanvasGroup m_fadeGroup;
     [SerializeField] private Image m_loadingBar;
+    [SerializeField] private GameObject m_loadingAnim;
 
     public void FadeIn(float duration, Action action = null)
     {
@@ -44,5 +45,10 @@ public class FadeMgr : SingletonBehaviour<FadeMgr>
     public void FillBar(float amount)
     {
         m_loadingBar.fillAmount = amount;
+    }
+
+    public void EnableAnimation(bool enable)
+    {
+        m_loadingAnim.SetActive(enable);
     }
 }

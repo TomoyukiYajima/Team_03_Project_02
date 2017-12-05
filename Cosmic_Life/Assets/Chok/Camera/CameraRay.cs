@@ -36,10 +36,10 @@ public class CameraRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = m_rayCenter.position - transform.position;
+        var dir = new Vector3(m_rayCenter.position.x,m_rayPos.position.y,m_rayPos.position.z) - transform.position;
         float dirY = dir.y;
         dir.Normalize();
-        dir.y = dirY;
+        //dir.y = dirY;
 
         float angle = Vector3.Angle(m_player.forward, dir);
 

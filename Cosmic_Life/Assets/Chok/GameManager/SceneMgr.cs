@@ -41,7 +41,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         if (!m_isEnd) return;
         m_isFade = true;
         m_isEnd = false;
-        FadeMgr.Instance.FadeOutSimple(m_duration, () => { m_isFade = false; });
+        FadeMgr.Instance.FadeOut(m_duration, () => { m_isFade = false; });
         StartCoroutine(transition(name, m_duration));
     }
 
@@ -66,12 +66,12 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
             Debug.Log(name.ToString() + "_Scene : LoadComplete!!");
         }
 
+        m_isEnd = true;
     }
 
     IEnumerator transitionAsync(SceneType name, float duration)
     {
-        //FadeMgr.Instance.countText.enabled = true;
-        //FadeMgr.Instance.animeObj.SetActive(true);
+        FadeMgr.Instance.EnableAnimation(true);
         
         yield return new WaitWhile(() => m_isFade);
 
@@ -102,6 +102,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         {
             FadeMgr.Instance.FadeIn(duration, () =>
             {
+                FadeMgr.Instance.EnableAnimation(false);
                 //FadeMgr.Instance.countText.enabled = false;
                 //FadeMgr.Instance.animeObj.SetActive(false);
                 //FadeMgr.Instance.SetCounter(0);
