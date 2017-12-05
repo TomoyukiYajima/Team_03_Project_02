@@ -27,8 +27,13 @@ public class WalkEnemyAttack : EnemyState {
 
     private float m_Timer = 0.0f;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField, Tooltip("クールタイムの設定(秒)")]
+    private float m_SetCoolTime;
+
+    private float m_CoolTime;
+
+    // Use this for initialization
+    void Start () {
         m_AttackState = AttackState.Attack;
 	}
 
@@ -48,6 +53,7 @@ public class WalkEnemyAttack : EnemyState {
                 else
                 {
                     m_Timer = 0;
+                    m_CoolTime = m_SetCoolTime;
                     m_AttackState = AttackState.AttackAfter;
                 }
                 break;
@@ -56,7 +62,11 @@ public class WalkEnemyAttack : EnemyState {
                 m_AttackCollider.SetActive(false);
                 WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
                 Vector3 l_TargetPosition = l_WalkEnemy.CheckPlayerAndRobot().transform.position;
+                //NULLだったら状態を変更
+                if (l_TargetPosition == null) enemy.ChangeState(EnemyStatus.ChasingButLosed);
 
+                //クールタイムを調べる
+                if (m_CoolTime >= 0) m_CoolTime -= deltaTime;
 
                 //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
                 float distance = (Vector3.Distance(l_WalkEnemy.GetEnemyPosition(), l_TargetPosition));
@@ -69,7 +79,7 @@ public class WalkEnemyAttack : EnemyState {
                     l_WalkEnemy.transform.rotation = Quaternion.Slerp(l_WalkEnemy.transform.rotation, rotation, Time.deltaTime * 2.0f);
 
                     //自身の前方向とプレイヤーとの角度を調べる
-                    if (Vector3.Angle(l_WalkEnemy.transform.forward, relativePos) <= 1.5f)
+                    if (Vector3.Angle(l_WalkEnemy.transform.forward, relativePos) <= 1.5f && m_CoolTime <= 0)
                     {
                         m_AttackState = AttackState.Attack;
                     }

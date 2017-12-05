@@ -71,6 +71,7 @@ public class HumanRobotEnemyAttack : EnemyState
                     return;
                 }
                 Vector3 l_TargetPosition = l_HumanRobotEnemy.CheckPlayerAndRobot().transform.position;
+
                 //クールタイムを調べる
                 if (m_CoolTime >= 0) m_CoolTime -= deltaTime;
 
