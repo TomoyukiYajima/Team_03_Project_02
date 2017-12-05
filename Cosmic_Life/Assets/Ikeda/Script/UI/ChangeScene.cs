@@ -6,15 +6,6 @@ using DG.Tweening;
 
 public class ChangeScene : SingletonBehaviour<ChangeScene>
 {
-    //enum DoorState
-    //{
-    //    CloseDoor,
-    //    IntervalDoor,
-    //    OpenDoor,
-
-    //    None
-    //}
-
     [SerializeField]
     private Image m_RightDoor;
     [SerializeField]
@@ -23,20 +14,17 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
     [SerializeField, Tooltip("アニメーションの設定")]
     private AnimationCurve m_Curve;
 
-    //[SerializeField, Tooltip("閉めている間隔の時間の設定(秒)")]
-    //private float m_SetIntervalTime;
-    //private float m_Timer;
-
     [SerializeField]
     private Gear [] m_Gears;
 
-    //private DoorState m_DoorState;
+    //開くのが終わったか？
+    private bool m_IsOpenDoor;
+
 
     // Use this for initialization
     void Start()
     {
-        //m_DoorState = DoorState.CloseDoor;
-        //m_Timer = 0;
+        m_IsOpenDoor = false;
     }
 
     // Update is called once per frame
@@ -54,7 +42,10 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
             gear.SetGearState(Gear.GearState.SpeedUpState);
         }
         m_RightDoor.transform.DOLocalMoveX(960, 2.5f).SetEase(Ease.InQuart);
-        m_LeftDoor.transform.DOLocalMoveX(-960, 2.5f).SetEase(Ease.InQuart);
+        m_LeftDoor.transform.DOLocalMoveX(-960, 2.5f).SetEase(Ease.InQuart).OnComplete(() =>
+        {
+            m_IsOpenDoor = true;
+        });
     }
 
     //ドアを閉める
@@ -64,4 +55,9 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         m_LeftDoor.transform.DOLocalMoveX(-320, 2.0f).SetEase(m_Curve);
     }
 
+    //ドアが開いたか返す
+    public bool IsOpenDoor()
+    {
+        return m_IsOpenDoor;
+    }
 }
