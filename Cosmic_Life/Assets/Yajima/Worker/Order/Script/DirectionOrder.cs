@@ -40,6 +40,11 @@ public class DirectionOrder : Order {
         base.UpdateAction(deltaTime, obj);
     }
 
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        base.UpdateAction(deltaTime, obj, actionObj);
+    }
+
     public override void EndAction(GameObject obj)
     {
         base.EndAction(obj);

@@ -18,12 +18,13 @@ public class TeamLogoManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // 動画が終了したら、シーン遷移する
         if ((ulong)m_VideoPlayer.frame != m_VideoPlayer.frameCount) return;
         // シーン遷移処理
         print("シーン遷移");
         if (end) return;
-        // SceneMgr.Instance.SceneTransition 第二引数にSimpleを入れると、フェード無し遷移になる
-        SceneMgr.Instance.SceneTransition(SceneType.Title);
+        // SceneMgr.Instance.SceneTransitionSimpleを入れると、フェード無し遷移になる
+        SceneMgr.Instance.SceneTransitionSimple(SceneType.Title);
         // 動画の停止
         //m_VideoPlayer.Stop();
         end = true;

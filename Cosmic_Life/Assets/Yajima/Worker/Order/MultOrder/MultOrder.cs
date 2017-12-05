@@ -12,7 +12,7 @@ public class MultOrder : Order {
         base.Start();
 
         // 配列にデータを格納させる
-        AddOrder();
+        //AddOrder();
 	}
 	
 	// Update is called once per frame

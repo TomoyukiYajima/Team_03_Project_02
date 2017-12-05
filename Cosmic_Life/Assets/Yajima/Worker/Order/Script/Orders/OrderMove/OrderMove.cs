@@ -34,7 +34,7 @@ public class OrderMove : DirectionOrder {
 
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
-        base.StartAction(obj);
+        base.StartAction(obj, actionObj);
 
         //SetEndPlayOrder(OrderStatus.PROTECT);
     }
@@ -47,7 +47,8 @@ public class OrderMove : DirectionOrder {
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
         //print("Move");
-        base.UpdateAction(deltaTime, obj);
+        //m_ActionObject
+        //base.UpdateAction(deltaTime, obj);
 
         // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
         if (IsLiftHit(obj)) return;
@@ -69,6 +70,20 @@ public class OrderMove : DirectionOrder {
             robot.GetNavMeshAgent().isStopped = false;
         }
         //obj.transform.position += m_Direction * m_MoveSpeed * deltaTime;
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        //base.UpdateAction(deltaTime, obj, actionObj);
+        var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        if (length < 2.0f)
+        {
+            EndOrder(obj);
+            return;
+        }
+        var worker = obj.GetComponent<Worker>();
+        worker.ChangeAgentMovePoint(actionObj.transform.position);
+        worker.GetNavMeshAgent().isStopped = false;
     }
 
     public override void EndAction(GameObject obj)

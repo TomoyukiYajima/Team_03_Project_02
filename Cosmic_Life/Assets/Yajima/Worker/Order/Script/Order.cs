@@ -53,6 +53,7 @@ public class Order : MonoBehaviour {
 
         // テキストコントローラの取得
         m_TextController = GameObject.Find("OrderText").GetComponent<TextController>();
+        //m_Undroid = 
     }
 
     // Update is called once per frame
@@ -75,9 +76,9 @@ public class Order : MonoBehaviour {
     }
 
     // 更新行動
-    protected virtual void UpdateAction(float deltaTime, GameObject obj) { }
+    protected virtual void UpdateAction(float deltaTime, GameObject obj) { UpdateAction(deltaTime, obj, m_ActionObject); }
     // 更新行動(オブジェクト指定)
-    protected virtual void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj) { UpdateAction(deltaTime, obj); }
+    protected virtual void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj) { }
 
     // 行動終了
     public virtual void EndAction(GameObject obj)

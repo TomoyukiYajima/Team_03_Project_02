@@ -46,7 +46,7 @@ public class OrderAttack : Order {
 
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
-        base.StartAction(obj);
+        base.StartAction(obj, actionObj);
         // アクティブ状態に変更
         m_Collider.SetActive(true);
         // Tweenの移動
@@ -59,7 +59,7 @@ public class OrderAttack : Order {
     {
         base.UpdateAction(deltaTime, obj);
  
-                   m_Timer += deltaTime;
+        m_Timer += deltaTime;
         if (m_Timer < m_AttackTime + m_DelayTime) return;
 
         // 攻撃戻り処理
@@ -81,6 +81,46 @@ public class OrderAttack : Order {
         var order = m_OrderState;
         // 攻撃を終了する場合は、停止命令に変更する
         if (m_IsEndOrder) order = OrderStatus.STOP;
+        // 状態の変更
+        ChangeOrder(obj, order);
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        //base.UpdateAction(deltaTime, obj, actionObj);
+        //if (m_ActionObject == null || m_ActionObject.tag != "Enemy")
+        //{
+        //    EndOrder(obj);
+        //    return;
+        //}
+
+        m_Timer += deltaTime;
+        if (m_Timer < m_AttackTime + m_DelayTime) return;
+
+        // 攻撃戻り処理
+        if (m_IsAttack)
+        {
+            // 戻る場合
+            MoveObject();
+            // 攻撃判定を非アクティブ状態に変更する
+            if (m_Collider != null) m_Collider.SetActive(false);
+            m_IsAttack = false;
+        }
+
+        if (m_Timer < m_AttackTime + m_DelayTime + m_BackTime) return;
+
+        // 攻撃終了処理
+        // イベントでの終了処理
+        EndOrder(obj);
+        m_IsAttack = true;
+        var order = m_OrderState;
+        // 攻撃を終了する場合は、停止命令に変更する
+        if (m_ActionObject == null || m_ActionObject.tag != "Enemy")
+        {
+            order = OrderStatus.STOP;
+            //EndOrder(obj);
+            //return;
+        }
         // 状態の変更
         ChangeOrder(obj, order);
     }
