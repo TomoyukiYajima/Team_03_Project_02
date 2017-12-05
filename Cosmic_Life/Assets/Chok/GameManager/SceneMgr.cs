@@ -92,11 +92,11 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         // 読み込みが完了しているSceneを表示
         m_async.allowSceneActivation = true;
 
-        UnLoadScene(m_currentScene);
-        m_currentScene = name;
-
         ChangeScene.Instance.OpenDoor();
         yield return new WaitForSeconds(2.0f);
+
+        UnLoadScene(m_currentScene);
+        m_currentScene = name;
 
         if (duration != 0)
         {

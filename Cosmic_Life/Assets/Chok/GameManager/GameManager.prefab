@@ -388,7 +388,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1099897013208310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20000, y: 20000, z: 20000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4572564667849740}
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b33585ccd270924dbf2bb4fbe31005b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_currentScene: 2
+  m_currentScene: 1
 --- !u!114 &114390658498441606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1463,7 +1463,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507583719102912}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
