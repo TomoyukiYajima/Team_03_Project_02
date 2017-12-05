@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 23193730064059168}
   - component: {fileID: 114989854328090058}
   - component: {fileID: 195123311231990142}
+  - component: {fileID: 114583678347863814}
   m_Layer: 0
   m_Name: HumanEnemy
   m_TagString: Enemy
@@ -427,6 +428,21 @@ MonoBehaviour:
   m_EnemyState:
   - {fileID: 114381969926483196}
   - {fileID: 114791382358371516}
+--- !u!114 &114583678347863814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981834412394912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
 --- !u!114 &114791382358371516
 MonoBehaviour:
   m_ObjectHideFlags: 1

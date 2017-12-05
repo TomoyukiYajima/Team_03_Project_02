@@ -13,7 +13,7 @@ public class DroneEnemy : Enemy
 
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
         base.Start();
 
@@ -24,10 +24,6 @@ public class DroneEnemy : Enemy
     // Update is called once per frame
     //void Update()
     //{
-    //    float time = Time.deltaTime;
-    //    m_States[m_DroneState](time, this);
-
-    //    m_StateTimer += time;
     //}
 
 
@@ -59,8 +55,6 @@ public class DroneEnemy : Enemy
         float l_AngleToPlayer = Vector3.Angle(m_SearchLight.transform.forward, l_RelativeVec);
         //見える視野角の範囲内にオブジェクトがいるかどうかを返す
         return (Mathf.Abs(l_AngleToPlayer) <= l_SpotAngle);
-
-        //Physics.Raycast(m_SearchLight.transform.position, l_RelativeVec);
     }
 
     /// <summary>

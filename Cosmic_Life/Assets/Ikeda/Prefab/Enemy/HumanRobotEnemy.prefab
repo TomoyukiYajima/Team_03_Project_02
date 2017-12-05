@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23784434129586000}
   - component: {fileID: 195745961176858006}
   - component: {fileID: 114238566864455560}
+  - component: {fileID: 114938405525861398}
   m_Layer: 0
   m_Name: HumanRobotEnemy
   m_TagString: Enemy
@@ -89,7 +90,8 @@ GameObject:
   - component: {fileID: 33261872368244270}
   - component: {fileID: 135858587140165422}
   - component: {fileID: 23235556344250952}
-  m_Layer: 0
+  - component: {fileID: 114470704125990460}
+  m_Layer: 2
   m_Name: Collide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,6 +612,18 @@ MonoBehaviour:
   - {fileID: 114524546368809212}
   - {fileID: 114919946197129920}
   - {fileID: 114343040694198014}
+--- !u!114 &114470704125990460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175188311113410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2405e77ccb7c8469c226eb4baa3aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damage: 1
 --- !u!114 &114524546368809212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,6 +673,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HumanEnemy: {fileID: 0}
+--- !u!114 &114938405525861398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043105348926220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
 --- !u!135 &135858587140165422
 SphereCollider:
   m_ObjectHideFlags: 1
