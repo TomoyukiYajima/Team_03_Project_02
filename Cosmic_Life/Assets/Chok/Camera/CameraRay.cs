@@ -26,7 +26,7 @@ public class CameraRay : MonoBehaviour
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
         // プレイヤーのレイ開始座標
         m_rayPos = m_player.FindChild("LookPoint").transform;
-        m_rayCenter = m_player.FindChild("HeadLook").transform;
+        m_rayCenter = m_player.FindChild("RayCenter").transform;
 
         m_aim = GameObject.Find("PlayerCanvas").transform.FindChild("AimBase").GetComponent<Image>();
 
@@ -36,7 +36,7 @@ public class CameraRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var dir = new Vector3(m_rayCenter.position.x,m_rayPos.position.y,m_rayPos.position.z) - transform.position;
+        var dir = m_rayCenter.position - transform.position;
         float dirY = dir.y;
         dir.Normalize();
         //dir.y = dirY;
