@@ -4355,9 +4355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736013352b0f5754d812f1c6d575713c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rayDist: 10
+  m_rayDist: 20
   m_rayAngle: 90
-  m_aimBlack: {fileID: 21300000, guid: 407ca59921115c24c83e773fcfb1d086, type: 3}
+  m_aimBlack: {fileID: 21300000, guid: 97010a989bb3fbe48810aad59da096b8, type: 3}
   m_aimEffect: {fileID: 21300000, guid: b70a6f393d526ec40822f6d06a12c840, type: 3}
 --- !u!114 &114617141746621554
 MonoBehaviour:
@@ -4439,7 +4439,7 @@ MonoBehaviour:
   lineIntensity: 0.5
   fillAmount: 0.2
   lineColor0: {r: 1, g: 0, b: 0, a: 1}
-  lineColor1: {r: 0, g: 1, b: 0, a: 1}
+  lineColor1: {r: 0.90344834, g: 1, b: 0, a: 1}
   lineColor2: {r: 0, g: 0, b: 1, a: 1}
   additiveRendering: 0
   backfaceCulling: 1

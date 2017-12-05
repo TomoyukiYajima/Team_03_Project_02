@@ -93,7 +93,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         m_async.allowSceneActivation = true;
 
         ChangeScene.Instance.OpenDoor();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
 
         UnLoadScene(m_currentScene);
         m_currentScene = name;

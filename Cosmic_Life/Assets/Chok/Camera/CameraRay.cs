@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CameraRay : MonoBehaviour
 {
-    [SerializeField, Range(0f, 10f), Tooltip("レイ距離")] private float m_rayDist;
+    [SerializeField, Range(0f, 20f), Tooltip("レイ距離")] private float m_rayDist;
     [SerializeField, Range(0f, 360f), Tooltip("プレイヤー視野角度")] private float m_rayAngle;
     //[SerializeField] private CameraManager m_cameraManager;
     [SerializeField] private Sprite m_aimBlack;
@@ -28,7 +28,7 @@ public class CameraRay : MonoBehaviour
         m_rayPos = m_player.FindChild("LookPoint").transform;
         m_rayCenter = m_player.FindChild("RayCenter").transform;
 
-        m_aim = GameObject.Find("PlayerCanvas").transform.FindChild("AimBase").GetComponent<Image>();
+        m_aim = GameObject.Find("PlayerCanvas").transform.FindChild("AimBack").GetComponent<Image>();
 
         m_rayDir = Vector3.zero;
     }

@@ -155,10 +155,10 @@ public class GimmickCrane : GimmickBase
         }
 
         Debug.Log("イベント開始IGeneralEvent/onLift, Object = " + m_holdObj.gameObject);
-        //ExecuteEvents.Execute<IGimmickEvent>(
-        //    m_holdObj,
-        //    null,
-        //    (receive, y) => receive.onLift());
+        ExecuteEvents.Execute<IGeneralEvent>(
+            m_holdObj,
+            null,
+            (receive, y) => receive.onLift(this.gameObject));
 
 
         StartCoroutine(HoldObject());
@@ -174,9 +174,9 @@ public class GimmickCrane : GimmickBase
         }
 
         Debug.Log("イベント開始IGeneralEvent/onTakeDown, Object = " + m_holdObj.gameObject);
-        //ExecuteEvents.Execute<IGimmickEvent>(
-        //    m_holdObj,
-        //    null,
-        //    (receive, y) => receive.onTakeDown());
+        ExecuteEvents.Execute<IGeneralEvent>(
+            m_holdObj,
+            null,
+            (receive, y) => receive.onTakeDown());
     }
 }

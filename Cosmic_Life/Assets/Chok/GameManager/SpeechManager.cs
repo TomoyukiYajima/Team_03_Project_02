@@ -44,7 +44,6 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
     private KeywordRecognizer m_unlockRecognizer;
 
     private Dictionary<string,List<string>> m_orderKeyword = new Dictionary<string, List<string>>();
-    private List<string> m_unlockKeyword = new List<string>();
 
     //#if !UNITY_EDITOR
     void Start()
@@ -52,20 +51,16 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         List<string> keywords = new List<string>();
         foreach (var list in m_orderDictionary.GetTable())
         {
+            var textAsset = Resources.Load(m_path + list.Key) as TextAsset;
+            string[] split = textAsset.text.Split(char.Parse("\n"));
+
             List<string> keywordList = new List<string>();
-            //ストリームの生成、Open読み込み専門
-            FileStream fs = new FileStream(m_path + list.Key + ".txt", FileMode.Open);
-            //ストリームから読み込み準備
-            StreamReader sr = new StreamReader(fs);
-            //読み込んで表示
-            while (!sr.EndOfStream)
-            {//最後の行に（なる以外）
-                string line = sr.ReadLine();
-                keywordList.Add(line);
-                Debug.Log(line);
+
+            for (int i = 0; i < split.Length; ++i)
+            {
+                keywordList.Add(split[i]);
+                Debug.Log(split[i]);
             }
-            //ストリームも終了させる
-            sr.Close();
             m_orderKeyword.Add(list.Key, keywordList);
             keywords.AddRange(keywordList);
         }
@@ -82,22 +77,19 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         //    m_orderRecognizer.Start();
         //}
 
+        List<string> m_unlockKeyword = new List<string>();
+
         {
-            //ストリームの生成、Open読み込み専門
-            FileStream fs = new FileStream(m_path + m_unlockFile + ".txt", FileMode.Open);
-            //ストリームから読み込み準備
-            StreamReader sr = new StreamReader(fs);
-            //読み込んで表示
-            while (!sr.EndOfStream)
-            {//最後の行に（なる以外）
-                string line = sr.ReadLine();
-                m_unlockKeyword.Add(line);
-                Debug.Log(line);
+            var textAsset = Resources.Load(m_path + m_unlockFile) as TextAsset;
+            string[] split = textAsset.text.Split(char.Parse("\n"));
+
+            for (int i = 0; i < split.Length; ++i)
+            {
+                m_unlockKeyword.Add(split[i]);
+                Debug.Log(split[i]);
             }
-            //ストリームも終了させる
-            sr.Close();
         }
-        
+
         m_unlockRecognizer = new KeywordRecognizer(m_unlockKeyword.ToArray());
         m_unlockRecognizer.OnPhraseRecognized += OnUnlockPhrase;
         m_unlockRecognizer.Start();
@@ -153,12 +145,6 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         builder.AppendFormat("\tTimestamp: {0}{1}", args.phraseStartTime, Environment.NewLine);
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         Debug.Log(builder.ToString());
-
-        foreach (var phrase in m_unlockKeyword)
-        {
-            if (args.text != phrase) continue;
-            break;
-        }
 
         UnlockDoor(args.text);
     }

@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fadeGroup: {fileID: 225956981224223562}
   m_loadingBar: {fileID: 114939898693288612}
-  m_loadingAnim: {fileID: 0}
+  m_loadingAnim: {fileID: 1420553917272262}
 --- !u!114 &114240260553071630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cd2609c28b78d47a502404fe9e6603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_path: Assets/Resources/OrderText/
+  m_path: OrderText/
   m_unlockFile: unlock
   m_orderDictionary:
     list:

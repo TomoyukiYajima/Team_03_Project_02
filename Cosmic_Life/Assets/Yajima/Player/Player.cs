@@ -323,7 +323,8 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         while (true)
         {
-            transform.position = crane.transform.position + (transform.FindChild("LiftPoint").transform.position - transform.position) * 2;
+            transform.position = crane.transform.position - new Vector3(0,2,0);
+            //transform.position = crane.transform.position + (transform.FindChild("LiftPoint").transform.position - transform.position) * 2;
             if (Input.GetButtonDown("Cancel"))
             {
                 EndState();
@@ -473,6 +474,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     #region Event
     public void onDamage(int amount)
     {
+        if (m_isDamaged) return;
         m_status.hp = Mathf.Max(0, --m_status.hp);
         if (onCollide != null) onCollide(m_status.hp);
 

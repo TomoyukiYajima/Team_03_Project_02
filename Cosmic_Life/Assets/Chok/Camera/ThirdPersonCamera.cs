@@ -21,12 +21,7 @@ public class ThirdPersonCamera : MonoBehaviour{
     void LateUpdate()
     {
         // コントローラー右スティックで回転
-        //var x = Input.GetAxis("HorizontalR") * Time.deltaTime * m_sensitivity;
         var y = Input.GetAxis("VerticalR")   * Time.deltaTime * m_sensitivity;
-        //x = Input.GetAxis("HorizontalD");
-        //y = Input.GetAxis("VerticalD");
-        //x = Input.GetAxis("Trigger");
-        //y = Input.GetAxis("Trigger");
 
         // 中心点を設定します
         var lookAt = m_target.transform.position + Vector3.up * m_height;
@@ -48,9 +43,15 @@ public class ThirdPersonCamera : MonoBehaviour{
         RaycastHit wallHit = new RaycastHit();
         if(Physics.Linecast(lookAt, target, out wallHit,1 << 8))
         {
-            target = new Vector3(wallHit.point.x, target.y, wallHit.point.z);
-        }
+            //Vector3 euler = transform.eulerAngles;
+            //transform.eulerAngles = new Vector3(0, euler.y, euler.z);
+            //if (Physics.Linecast(lookAt, target, out wallHit, 1 << 8))
+            //{
+            //    target = new Vector3(wallHit.point.x, target.y, wallHit.point.z);
+            //}
 
+            target = new Vector3(wallHit.point.x, transform.position.y, wallHit.point.z);
+        }
         transform.position = target;
 
         transform.LookAt(lookAt);
