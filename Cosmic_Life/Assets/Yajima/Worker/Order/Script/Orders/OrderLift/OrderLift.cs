@@ -89,7 +89,7 @@ public class OrderLift : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        base.UpdateAction(deltaTime, obj);
+        //base.UpdateAction(deltaTime, obj);
 
         if (m_IsLift) return;
         // 持てるかのチェック
@@ -101,6 +101,7 @@ public class OrderLift : Order {
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
         UpdateAction(deltaTime, obj);
+        //UpdateAction(deltaTime, obj, actionObj);
     }
 
     public override void EndAction(GameObject obj)
@@ -162,7 +163,7 @@ public class OrderLift : Order {
 
         m_LiftMoves[m_LiftNumber](obj);
 
-        if (length < 3.0f && m_LiftNumber == LiftObjectNumber.OBJECT_LIFT_NUMBER)
+        if (length < 5.0f && m_LiftNumber == LiftObjectNumber.OBJECT_LIFT_NUMBER)
         {
             //if (!m_IsSetPoint)
             //{
@@ -238,10 +239,11 @@ public class OrderLift : Order {
         // 参照するオブジェクトがある場合
         if (actionObj != null)
         {
-            if(actionObj != null && actionObj.tag == "StageObject")
+            if(actionObj.tag == "StageObject")
             {
                 // 見ているものを持つオブジェクトに変更する
                 m_LiftObject = actionObj;
+                m_LiftMoves[LiftObjectNumber.PLAYER_LIFT_NUMBER](obj);
                 m_LiftNumber = LiftObjectNumber.OBJECT_LIFT_NUMBER;
                 return;
             } 

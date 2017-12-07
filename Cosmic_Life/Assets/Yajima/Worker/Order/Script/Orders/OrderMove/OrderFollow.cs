@@ -33,10 +33,10 @@ public class OrderFollow : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        base.UpdateAction(deltaTime, obj);
+        //base.UpdateAction(deltaTime, obj);
         //print("ついてくる");
 
-        base.UpdateAction(deltaTime, obj);
+        //base.UpdateAction(deltaTime, obj);
         // プレイヤーの後ろの位置に移動
         if (m_Player == null) return;
         //m_Player

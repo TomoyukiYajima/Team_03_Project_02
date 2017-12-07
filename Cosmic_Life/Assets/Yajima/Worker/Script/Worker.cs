@@ -156,8 +156,11 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
             //// 持ち上げサンプル
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LIFT);
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
+
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
+            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_MOW_DOWN);
@@ -173,7 +176,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         }
 
 
-        switch(m_OrderDir){
+        switch (m_OrderDir){
             case OrderDirection.UP: m_LookObject.transform.localPosition = Vector3.up; break;
             case OrderDirection.DOWN: m_LookObject.transform.localPosition = Vector3.down; break;
             case OrderDirection.FORWARD: m_LookObject.transform.localPosition = Vector3.zero; break;

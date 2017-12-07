@@ -53,27 +53,37 @@ public class OrderMove : DirectionOrder {
         // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
         if (IsLiftHit(obj)) return;
 
+        // 移動
+        obj.transform.position += obj.transform.forward * m_MoveSpeed * deltaTime;
+
         // 回転
         //Rotation(deltaTime, obj);
         //if (!m_IsRotation) return;
-        if(m_ActionObject == null)
-        {
-            // 移動
-            obj.transform.position += obj.transform.forward * m_MoveSpeed * deltaTime;
-        }
-        else
-        {
-            var robot = obj.GetComponent<Worker>();
-            // 移動ポイントの変更
-            //robot.GetNavMeshAgent().destination = m_ActionObject.transform.position;
-            robot.ChangeAgentMovePoint(m_ActionObject.transform.position);
-            robot.GetNavMeshAgent().isStopped = false;
-        }
+        //if(m_ActionObject == null || m_ActionObject.tag != "Enemy")
+        //{
+        //    // 移動
+        //    obj.transform.position += obj.transform.forward * m_MoveSpeed * deltaTime;
+        //}
+        //else
+        //{
+        //    var robot = obj.GetComponent<Worker>();
+        //    // 移動ポイントの変更
+        //    //robot.GetNavMeshAgent().destination = m_ActionObject.transform.position;
+        //    robot.ChangeAgentMovePoint(m_ActionObject.transform.position);
+        //    robot.GetNavMeshAgent().isStopped = false;
+        //}
         //obj.transform.position += m_Direction * m_MoveSpeed * deltaTime;
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
+        if(actionObj.tag != "Enemy")
+        {
+            //EndOrder(obj);
+            UpdateAction(deltaTime, obj);
+            return;
+        }
+
         //base.UpdateAction(deltaTime, obj, actionObj);
         var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
         if (length < 2.0f)
