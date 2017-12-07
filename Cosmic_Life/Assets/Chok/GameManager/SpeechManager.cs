@@ -52,7 +52,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         foreach (var list in m_orderDictionary.GetTable())
         {
             var textAsset = Resources.Load(m_path + list.Key) as TextAsset;
-            string[] split = textAsset.text.Split(char.Parse("\n"));
+            string[] split = textAsset.text.Split(char.Parse(","));
 
             List<string> keywordList = new List<string>();
 
@@ -70,18 +70,11 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         m_orderRecognizer.OnPhraseRecognized += OnPhraseRecognized;
         m_orderRecognizer.Start();
 
-        //{
-        //    string[] key = { "すすめ", "いどうしろ" };
-        //    m_orderRecognizer = new KeywordRecognizer(key);
-        //    m_orderRecognizer.OnPhraseRecognized += OnPhraseRecognized;
-        //    m_orderRecognizer.Start();
-        //}
-
         List<string> m_unlockKeyword = new List<string>();
 
         {
             var textAsset = Resources.Load(m_path + m_unlockFile) as TextAsset;
-            string[] split = textAsset.text.Split(char.Parse("\n"));
+            string[] split = textAsset.text.Split(char.Parse(","));
 
             for (int i = 0; i < split.Length; ++i)
             {
