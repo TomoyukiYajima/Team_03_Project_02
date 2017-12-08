@@ -52,7 +52,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         foreach (var list in m_orderDictionary.GetTable())
         {
             var textAsset = Resources.Load(m_path + list.Key) as TextAsset;
-            string[] split = textAsset.text.Split(char.Parse(","));
+            string[] split = textAsset.text.Split(',');
 
             List<string> keywordList = new List<string>();
 
