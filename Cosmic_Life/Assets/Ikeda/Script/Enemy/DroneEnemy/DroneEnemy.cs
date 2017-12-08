@@ -64,7 +64,7 @@ public class DroneEnemy : Enemy
     private bool CanHitRayToPlayer()
     {
         //自分からPlayerへの方向ベクトル(ワールド座標)
-        Vector3 l_RelativeVec = m_Player.transform.position - m_SearchLight.transform.position;
+        Vector3 l_RelativeVec = (m_Player.transform.position + m_Player.transform.up * 1.0f) - m_SearchLight.transform.position;
         //壁の向こう側にいる場合には見えない
         RaycastHit hitInfo;
         bool hit = Physics.Raycast(m_SearchLight.transform.position, l_RelativeVec, out hitInfo);

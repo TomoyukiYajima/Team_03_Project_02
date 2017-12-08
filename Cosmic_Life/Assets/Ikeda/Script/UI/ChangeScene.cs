@@ -51,6 +51,7 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
     //ドアを閉める
     public void CloseDoor()
     {
+        m_IsOpenDoor = false;
         m_RightDoor.transform.DOLocalMoveX(320, 2.0f).SetEase(m_Curve);
         m_LeftDoor.transform.DOLocalMoveX(-320, 2.0f).SetEase(m_Curve);
     }

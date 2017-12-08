@@ -6,7 +6,7 @@ public class DroneRoundState : EnemyState
 {
 
     private int m_RoutePosCount = 0;
-
+    private DroneEnemy m_DroneEnemy;
 
     // Use this for initialization
     void Start()
@@ -21,26 +21,28 @@ public class DroneRoundState : EnemyState
 
     public override void Action(float deltaTime, Enemy enemy)
     {
-        Vector3 relativePos = enemy.GetComponent<DroneEnemy>().GetRoundPoints()[m_RoutePosCount].transform.position - enemy.GetComponent<DroneEnemy>().transform.position;
-        enemy.GetComponent<DroneEnemy>().transform.Translate(relativePos.normalized * enemy.GetComponent<DroneEnemy>().m_Speed * Time.deltaTime, Space.World);
+        if (m_DroneEnemy == null) m_DroneEnemy = enemy.GetComponent<DroneEnemy>();
+
+        Vector3 relativePos = m_DroneEnemy.GetRoundPoints()[m_RoutePosCount].transform.position - m_DroneEnemy.transform.position;
+        m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
         relativePos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
-        enemy.GetComponent<DroneEnemy>().transform.rotation = Quaternion.Slerp(enemy.GetComponent<DroneEnemy>().transform.rotation, rotation, Time.deltaTime * 1.0f);
-        if (Vector3.Distance(enemy.GetComponent<DroneEnemy>().transform.position, enemy.GetComponent<DroneEnemy>().GetRoundPoints()[m_RoutePosCount].transform.position) <= 0.15f)
+        m_DroneEnemy.transform.rotation = Quaternion.Slerp(m_DroneEnemy.transform.rotation, rotation, Time.deltaTime * 1.0f);
+        if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetRoundPoints()[m_RoutePosCount].transform.position) <= 0.15f)
         {
             ArrivedProcessing(enemy);
         }
 
-        enemy.GetComponent<DroneEnemy>().ChangeColor();
+        m_DroneEnemy.ChangeColor();
     }
 
     private void ArrivedProcessing(Enemy enemy)
     {
-        if (m_RoutePosCount + 1 < enemy.GetComponent<DroneEnemy>().GetRoundPoints().Length)
+        if (m_RoutePosCount + 1 < m_DroneEnemy.GetRoundPoints().Length)
         {
             m_RoutePosCount++;
             /* 何も入ってなかったときに0に戻す */
-            if (enemy.GetComponent<DroneEnemy>().GetRoundPoints()[m_RoutePosCount] == null) m_RoutePosCount = 0;
+            if (m_DroneEnemy.GetRoundPoints()[m_RoutePosCount] == null) m_RoutePosCount = 0;
         }
         else
         {
