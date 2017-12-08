@@ -42,13 +42,13 @@ public class NamingBox : MonoBehaviour {
             // 画像を入れる
             m_NamingTexts[m_CurrentCount].SonantMarkSprite = lanText.SonantMarkSprite;
             m_NamingTexts[m_CurrentCount].PSoundMarkSprite = lanText.PSoundMarkSprite;
-            print(m_CurrentCount);
+            //print(m_CurrentCount);
             // カウントを増やす
             m_CurrentCount = Mathf.Min(m_CurrentCount + 1, this.transform.childCount);
             return;
         }
 
-        // 変更する
+        // 文字列を変更する
         var markText = button.GetComponent<MarkTextButton>();
         if(markText != null)
         {

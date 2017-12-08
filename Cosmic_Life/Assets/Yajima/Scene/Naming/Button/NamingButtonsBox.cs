@@ -15,6 +15,8 @@ public class NamingButtonsBox : MonoBehaviour {
     //private bool m_IsDraw = true;// = false;
     // 初期座標
     private Vector3 m_InitPosition;
+    // 表示中か？
+    private bool m_IsDraw = true;
 
 	// Use this for initialization
 	void Start () {
@@ -31,12 +33,28 @@ public class NamingButtonsBox : MonoBehaviour {
 
         if (Input.GetButtonDown("X"))
         {
-            print(Vector3.left * m_InitPosition.x);
-            this.transform.GetChild(0).DOLocalMove(Vector3.left * -728 + Vector3.up * m_InitPosition.y, m_MoveTime);
-            m_Cursor.IsCursorStop = false;
+            if (m_IsDraw)
+            {
+                //print(Vector3.left * m_InitPosition.x);
+                // 引き戻す
+                this.transform.GetChild(0).DOLocalMove(Vector3.left * -728 + Vector3.up * m_InitPosition.y, m_MoveTime);
+                m_Cursor.IsCursorStop = false;
+            }
+            else
+            {
+                // 表示する
+
+            }
+
+            // 切り替え
+            m_IsDraw = !m_IsDraw;
             //this.transform.GetChild(0).DOLocalMove(-Vector3.left * m_InitPosition.x + Vector3.up * m_InitPosition.y, m_MoveTime);
-            //m_IsDraw = !m_IsDraw;
-            //m_IsDraw = false;
         }
     }
+
+    //// 表示の切り替え
+    //private IEnumerator ChangeDraw()
+    //{
+
+    //}
 }

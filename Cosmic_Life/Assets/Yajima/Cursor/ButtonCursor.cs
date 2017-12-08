@@ -71,20 +71,7 @@ public class ButtonCursor : MonoBehaviour {
             //m_Buttones[m_ButtonCount].ChangeScene();
             //m_IsMove = false;
             var child = m_TextButtons.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn);
-            //var text = child.GetComponent<Text>();
-            //if (text.text == "" || text.text == "　") return;
-            //var nameText = m_NameTexts.transform.GetChild(m_TextCount).GetComponent<Text>();
-
-            //var nameText = m_NameBox.transform.GetChild(m_TextCount).GetComponent<LanguageTextButton>();
-
             m_NameBox.AddText(child.GetComponent<TextButton>());
-
-
-            //var inputText = child.GetComponent<TextButton>();
-            //if (inputText.GetText() == "") return;
-            //nameText.SetText(inputText, 0);
-            //nameText.text = text.text;
-            //m_TextCount++;
 
             return;
         }
@@ -92,16 +79,7 @@ public class ButtonCursor : MonoBehaviour {
         // if (Input.GetButtonDown("Cancel") && m_TextCount > 0)
         if (Input.GetButtonDown("Cancel"))
         {
-            // テキストの削除
-            //var nameText = m_NameTexts.transform.GetChild(m_TextCount - 1).GetComponent<Text>();
-            //var nameText = m_NameBox.transform.GetChild(m_TextCount - 1).GetComponent<LanguageTextButton>();
-
-            //nameText.text = "*";
-            //nameText.DeleteText();
-
             m_NameBox.DeleteText();
-
-            //m_TextCount--;
             return;
         }
 
