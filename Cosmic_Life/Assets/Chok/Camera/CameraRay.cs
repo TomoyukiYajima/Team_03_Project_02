@@ -9,8 +9,7 @@ public class CameraRay : MonoBehaviour
     [SerializeField, Range(0f, 20f), Tooltip("レイ距離")] private float m_rayDist;
     [SerializeField, Range(0f, 360f), Tooltip("プレイヤー視野角度")] private float m_rayAngle;
     //[SerializeField] private CameraManager m_cameraManager;
-    [SerializeField] private Sprite m_aimBlack;
-    [SerializeField] private Sprite m_aimEffect;
+    [SerializeField] private cakeslice.Outline m_playerOutline;
 
     private GameObject m_colliderObj;   // 当たったオブジェクトを格納する関数
     private Transform m_rayPos;         // レイ開始位置
@@ -18,7 +17,8 @@ public class CameraRay : MonoBehaviour
     private Transform m_rayCenter;
     private Vector3 m_rayDir;           // レイ方向
 
-    private Image m_aim;
+    public delegate void OnRayHit(bool hit);
+    public event OnRayHit onRayHit;
 
     // Use this for initialization
     void Start()
@@ -28,9 +28,13 @@ public class CameraRay : MonoBehaviour
         m_rayPos = transform.FindChild("RayStart").transform;
         m_rayCenter = m_player.FindChild("HeadLook").transform;
 
-        m_aim = GameObject.Find("PlayerCanvas").transform.FindChild("AimBack").GetComponent<Image>();
-
         m_rayDir = Vector3.zero;
+
+        foreach(var outline in GameObject.FindObjectsOfType<cakeslice.Outline>())
+        {
+            outline.enabled = false;
+        }
+        //m_playerOutline.enabled = false;
     }
 
     // Update is called once per frame
@@ -42,27 +46,17 @@ public class CameraRay : MonoBehaviour
         //dir.y = dirY;
 
         float angle = Vector3.Angle(m_player.forward, dir);
-
-        // プレイヤー視野角度内かつプレイヤーの後ろにいるときしか更新しない
-        //if (angle > m_rayAngle)
-        //{
-        //    m_rayDir = transform.forward;
-        //}
-        //else
-        //{
-        //    m_rayDir = m_player.forward;
-        //}
         m_rayDir = dir;
 
         //// y軸更新
         //m_rayDir.y = transform.forward.y;
 
         // レイを飛ばす
-        Ray ray = new Ray(m_rayPos.position, m_rayDir * m_rayDist);
+        Ray ray = new Ray(m_rayPos.position, dir * m_rayDist);
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, m_rayDist);
         // デバッグ描画
-        Debug.DrawRay(m_rayPos.position, m_rayDir * m_rayDist, new Color(1f, 0, 0));
+        Debug.DrawRay(m_rayPos.position, dir * m_rayDist, new Color(1f, 0, 0));
 
         // なにも当たってないとき
         if (hitInfo.collider == null)
@@ -77,19 +71,7 @@ public class CameraRay : MonoBehaviour
             //StartFlash(new Color(0.5f, 0.5f, 0.5f), 1.0f);
         }
 
-        /*
-        if (hitInfo.collider == null) return;
-
-        if (hitInfo.collider.tag == "Camera" || hitInfo.collider.tag == "Robot")
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-
-                //m_cameraManager.SwitchCamera(hitInfo.collider.gameObject.transform, 0.5f);
-            }
-        }
-        */
-    }
+}
 
     private void StartFlash(Color color, float duration)
     {
@@ -98,15 +80,17 @@ public class CameraRay : MonoBehaviour
         //StageObject material = m_colliderObj.GetComponent<StageObject>();
         if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) == null) return;
         // 点滅開始
-        material.eraseRenderer = false;
-        m_aim.sprite = m_aimEffect;
+        material.enabled = true;
+        m_playerOutline.enabled = true;
+
+        if (onRayHit != null) onRayHit(true);
 
         //m_colliderObj.transform.FindChild("Infomation").gameObject.SetActive(true);
     }
 
     private void EndFlash(GameObject obj)
     {
-        m_aim.sprite = m_aimBlack;
+        if (onRayHit != null) onRayHit(false);
         // 格納されたオブジェクトが空ではないとき
         if (m_colliderObj != null)
         {
@@ -115,7 +99,8 @@ public class CameraRay : MonoBehaviour
             if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) != null)
             {
                 // 点滅終了
-                material.eraseRenderer = true;
+                m_playerOutline.enabled = false;
+                material.enabled = false;
             }
         }
         // 格納オブジェクトを更新

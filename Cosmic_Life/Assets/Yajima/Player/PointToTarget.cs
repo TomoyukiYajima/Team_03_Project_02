@@ -8,7 +8,7 @@ public class PointToTarget : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        if (m_target == null) m_target = GameObject.FindGameObjectWithTag("Robot").transform;
 	}
 	
 	// Update is called once per frame
