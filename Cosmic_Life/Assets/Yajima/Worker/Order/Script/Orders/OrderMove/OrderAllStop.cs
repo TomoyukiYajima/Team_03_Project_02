@@ -28,6 +28,8 @@ public class OrderAllStop : Order {
             null,
             (e, d) => { e.stopOrder(); });
 
+        ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+
         // 空の状態に変更する
         //ChangeOrder(obj, OrderStatus.NULL);
         EndOrder(obj);

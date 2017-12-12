@@ -38,7 +38,7 @@ public class OrderEnemyMove : Order {
         if(m_Enemy == null)
         {
             //EndOrder(obj);
-            print("ない");
+            //print("ない");
             return;
         }
 

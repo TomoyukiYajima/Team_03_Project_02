@@ -207,7 +207,6 @@ public class Order : MonoBehaviour {
     // 失敗時に表示する命令テキスト
     protected void SetFaildText()
     {
-        //m_TextController.SetText(m_FaildText + "・・・");
         if (setText != null) setText(m_FaildText);
     }
 

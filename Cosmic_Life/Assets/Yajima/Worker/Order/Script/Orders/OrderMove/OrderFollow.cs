@@ -35,17 +35,34 @@ public class OrderFollow : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        //base.UpdateAction(deltaTime, obj);
-        //print("ついてくる");
-
-        //base.UpdateAction(deltaTime, obj);
         // プレイヤーの後ろの位置に移動
-        if (m_Player == null) return;
+        if (m_Player == null)
+        {
+            // プレイヤーがいなければ失敗
+            SetFaildText();
+            EndOrder(obj);
+            return;
+        }
+
         //m_Player
         Vector3 backPos = m_Player.position;// - m_Player.forward;
         m_Undroid.ChangeAgentMovePoint(backPos);
-        if (m_Undroid.GetAgentPointLength() < 1.5f) m_Undroid.AgentStop();
-        else m_Undroid.GetNavMeshAgent().isStopped = false;
+        if (m_Undroid.GetAgentPointLength() < 1.5f)
+        {
+            // エージェントが停止していたら返す
+            if (m_Undroid.GetNavMeshAgent().isStopped) return;
+            m_Undroid.AgentStop();
+            // アニメーションの変更
+            ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+        }
+        else
+        {
+            if (!m_Undroid.GetNavMeshAgent().isStopped) return;
+            // 移動の再開
+            m_Undroid.GetNavMeshAgent().isStopped = false;
+            // アニメーションの変更
+            ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+        }
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)

@@ -43,6 +43,8 @@ public class OrderMove : DirectionOrder {
     public override void StartAction(GameObject obj, OrderDirection dir)
     {
         base.StartAction(obj, dir);
+
+        ChangeAnimation(obj, UndroidAnimationStatus.WALK);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

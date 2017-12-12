@@ -22,6 +22,8 @@ public class OrderTurn : DirectionOrder {
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
         base.StartAction(obj, actionObj);
+
+        ChangeAnimation(obj, UndroidAnimationStatus.TURN);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

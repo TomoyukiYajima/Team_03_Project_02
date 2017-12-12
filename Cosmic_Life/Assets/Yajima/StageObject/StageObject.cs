@@ -51,16 +51,16 @@ public class StageObject : MonoBehaviour, IGeneralEvent
 
         // モデルを使用する場合は、こっちを適用する
         var mesh = m_Child.GetComponent<MeshRenderer>();
-        m_Materials = mesh.materials;
+        if (mesh != null) m_Materials = mesh.materials;
 
         // モデルなしバージョン
         //m_Materials = this.GetComponent<MeshRenderer>().materials;
         // モデルありバージョン
-        for (int i = 0; i != m_Materials.Length; ++i)
-        {
-            //m_Colors[i] = m_Materials[i].color;
-            print(i);
-        }
+        //for (int i = 0; i != m_Materials.Length; ++i)
+        //{
+        //    //m_Colors[i] = m_Materials[i].color;
+        //    //print(i);
+        //}
 
         m_Rigidbody = this.GetComponent<Rigidbody>();
 

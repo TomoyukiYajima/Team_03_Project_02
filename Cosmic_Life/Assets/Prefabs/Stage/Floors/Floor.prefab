@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4440316568734940}
   - component: {fileID: 212426946182677364}
+  - component: {fileID: 114881220645943438}
   m_Layer: 10
   m_Name: MiniMapIcon
   m_TagString: Untagged
@@ -67,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1726225919468016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 1, z: 0.8}
+  m_LocalScale: {x: 3.4, y: 1, z: 2.8}
   m_Children:
   - {fileID: 4440316568734940}
   m_Father: {fileID: 0}
@@ -137,7 +138,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28affc56bb8285247a8e70f7591d8df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TilingSize: {x: 7, y: 7}
+  m_TilingSize: {x: 30, y: 24}
+  m_OffSet: {x: 0, y: 0}
+--- !u!114 &114881220645943438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740102623614250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28affc56bb8285247a8e70f7591d8df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TilingSize: {x: 30, y: 24}
   m_OffSet: {x: 0, y: 0}
 --- !u!212 &212426946182677364
 SpriteRenderer:
@@ -152,7 +166,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fc2aded1329d90c4aab9ad0fe3bcb03a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -179,3 +193,4 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
