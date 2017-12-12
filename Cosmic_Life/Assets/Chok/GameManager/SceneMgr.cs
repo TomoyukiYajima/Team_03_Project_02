@@ -27,22 +27,22 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
     /// Fadeしてから遷移
     /// </summary>
     /// <param name="name">シーンの名前</param>
-    public void SceneTransition(SceneType name)
+    public void SceneTransition(SceneType name, float duration = 0.5f)
     {
         if (!m_isEnd) return;
         m_isFade = true;
         m_isEnd = false;
-        FadeMgr.Instance.FadeOut(m_duration, () => { m_isFade = false; });
-        StartCoroutine(transitionAsync(name, m_duration));
+        FadeMgr.Instance.FadeOut(duration, () => { m_isFade = false; });
+        StartCoroutine(transitionAsync(name, duration));
     }
 
-    public void SceneTransitionSimple(SceneType name)
+    public void SceneTransitionSimple(SceneType name,float duration = 0.5f)
     {
         if (!m_isEnd) return;
         m_isFade = true;
         m_isEnd = false;
-        FadeMgr.Instance.FadeOut(m_duration, () => { m_isFade = false; });
-        StartCoroutine(transition(name, m_duration));
+        FadeMgr.Instance.FadeOut(duration, () => { m_isFade = false; });
+        StartCoroutine(transition(name, duration));
     }
 
     IEnumerator transition(SceneType name,float duration)
