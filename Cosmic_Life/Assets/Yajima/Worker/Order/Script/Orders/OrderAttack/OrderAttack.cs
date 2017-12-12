@@ -53,6 +53,8 @@ public class OrderAttack : Order {
         m_MoveObject.transform.DOLocalMove(m_StopPoint.localPosition, m_AttackTime);
         m_Timer = 0.0f;
         m_IsEndOrder = false;
+
+        ChangeAnimation(obj, UndroidAnimationStatus.ATTACK);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

@@ -36,6 +36,7 @@ public class OrderMove : DirectionOrder {
     {
         base.StartAction(obj, actionObj);
 
+        ChangeAnimation(obj, UndroidAnimationStatus.WALK);
         //SetEndPlayOrder(OrderStatus.PROTECT);
     }
 

@@ -44,7 +44,7 @@ public class OrderThrow : Order {
         // 何も持っていなければ、空の命令に変更
         if (!m_LiftManager.CheckLiftObject(obj))
         {
-            ChangeOrder(obj, OrderStatus.NULL);
+            ChangeOrder(obj, OrderStatus.STOP);
             return;
         }
 
@@ -62,6 +62,6 @@ public class OrderThrow : Order {
         if (collider != null) collider.SetActive(true);
 
         // 空の状態に遷移
-        ChangeOrder(obj, OrderStatus.NULL);
+        ChangeOrder(obj, OrderStatus.STOP);
     }
 }

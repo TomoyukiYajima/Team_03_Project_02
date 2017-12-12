@@ -21,12 +21,18 @@ public class OrderTurn : DirectionOrder {
 
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
-        base.StartAction(obj);
+        base.StartAction(obj, actionObj);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        base.UpdateAction(deltaTime, obj);
+        if (m_ActionObject != null)
+        {
+            UpdateAction(deltaTime, obj, m_ActionObject);
+            return;
+        }
+
+        //base.UpdateAction(deltaTime, obj);
         //print("Turn");
 
         // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
@@ -40,6 +46,23 @@ public class OrderTurn : DirectionOrder {
         //    EndOrder(obj);
         //    return;
         //}
+    }
+
+    protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        //if()
+        //base.UpdateAction(deltaTime, obj, actionObj);
+
+        // 相手との距離を求める
+        Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
+        Vector2 dir = (new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos).normalized;
+        Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z).normalized;
+        float rad = dir.x * dir2.y + dir2.x * dir.y;
+        if (rad < 0.0f) m_Direction = 1;
+        else m_Direction = -1;
+        // 回転
+        obj.transform.Rotate(obj.transform.up, m_Undroid.GetRotateSpeed() * m_Direction * deltaTime);
+        print(rad);
     }
 
     public override void EndAction(GameObject obj)

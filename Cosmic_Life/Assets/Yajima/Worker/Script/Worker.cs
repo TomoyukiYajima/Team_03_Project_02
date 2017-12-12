@@ -19,6 +19,9 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     [SerializeField]
     protected OrderList m_OrderList;
     //private OrderList m_OrderList = null;
+    // アニメーター
+    [SerializeField]
+    private Animator m_Animator;
     // 耐久値(最大)
     [SerializeField]
     private int m_MaxHp = 5;
@@ -63,6 +66,11 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // エージェントが参照しているポイント
     //private Transform m_AgentMovePoint;
     private Vector3 m_AgentMovePoint;
+    // アニメーションの状態
+    private UndroidAnimationStatus m_AnimState = UndroidAnimationStatus.IDEL;
+    // アニメーション配列
+    private Dictionary<UndroidAnimationStatus, string> m_Animations =
+        new Dictionary<UndroidAnimationStatus, string>();
     #endregion
 
     #region 配列
@@ -125,6 +133,9 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
         // ロボットの縦の長さの取得
         m_BodyHeight = GetComponent<CapsuleCollider>().height;
+
+        // アニメーションの追加
+        addAnimations();
     }
 
     // Update is called once per frame
@@ -134,6 +145,18 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         if (m_Hp == 0) return;
         // ジャミング状態なら返す
         //if (m_IsJamming) return;
+
+        //// 相手との距離を求める
+        //var player = GameObject.Find("Player");
+        ////Vector3 pos = player.transform.position - this.transform.position;
+        //Vector2 pos = new Vector2(this.transform.position.x, this.transform.position.z);
+        //Vector2 dir = new Vector2(player.transform.position.x, player.transform.position.z) - pos;
+        ////float rad = Mathf.Atan2(pos.z, pos.x);
+        ////float rad = Vector3.Angle(player.transform.position - this.transform.position, this.transform.forward);
+        ////float angle = Vector2.Dot(dir, pos + new Vector2(this.transform.forward.x, this.transform.forward.z));
+        //Vector2 dir2 = new Vector2(this.transform.forward.x, this.transform.forward.z);
+        //float rad = dir.x * dir2.y + dir2.x * dir.y;
+        //print(rad);
 
         // デルタタイムの取得
         float time = Time.deltaTime;
@@ -156,7 +179,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
             //// 持ち上げサンプル
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LIFT);
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
             if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
 
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
@@ -346,6 +369,27 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     public OrderDirection GetOrderDir() { return m_OrderDir; }
     #endregion
 
+    #region アニメーション関数
+    // アニメーションの追加
+    private void addAnimations()
+    {
+        m_Animations.Add(UndroidAnimationStatus.IDEL, "Idel");
+        m_Animations.Add(UndroidAnimationStatus.WALK, "Walk");
+        m_Animations.Add(UndroidAnimationStatus.ATTACK, "Attack");
+        m_Animations.Add(UndroidAnimationStatus.ATTACK_OBJECT, "ObjectAttack");
+    }
+
+    // アニメーションの変更
+    private void changeAnim(UndroidAnimationStatus state)
+    {
+        // if (motion == AnimalAnimatorNumber.ANIMATOR_NULL || (int)motion == m_MotionNumber) return;
+        if (m_AnimState == state) return;
+        // アニメーションの変更
+        m_Animator.CrossFade(m_Animations[state], 0.1f, 0);
+        m_AnimState = state;
+    }
+    #endregion
+
     #region イベント関数
     #region オーダーインターフェース
     // イベントでの呼び出し
@@ -383,7 +427,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // イベントでの終了処理呼び出し
     public void endOrder(OrderNumber number)
     {
-        ChangeOrder(OrderStatus.NULL, number);
+        ChangeOrder(OrderStatus.STOP, number);
     }
     // イベントでの参照オブジェクトの設定処理の呼び出し
     public void setObject(GameObject obj)
@@ -394,6 +438,11 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     public OrderStatus getOrderState(OrderNumber number)
     {
         return m_PrevOrders[number];
+    }
+    // アニメーションの変更
+    public void changeAnimation(UndroidAnimationStatus state)
+    {
+        changeAnim(state);
     }
     #endregion
 
@@ -421,14 +470,18 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // 回転速度を取得します
     public float GetRotateSpeed() { return m_RotateSpeed; }
     // 命令クラスを取得します
-    public Order GetOrder(OrderStatus order)
+    public Order GetOrder(OrderStatus status)
     {
+        Order order = null;
         //命令があれば、命令を返す
         for (int i = 0; i != m_OrderNumbers.Count; ++i)
         {
-            if (CheckOrder(order, m_OrderNumbers[i])) return m_Orders[m_OrderNumbers[i]][m_OrderStatus[m_OrderNumbers[i]]];
+            if (!CheckOrder(status, m_OrderNumbers[i])) continue;
+            // 命令を入れたら、for文から抜ける
+            order = m_Orders[m_OrderNumbers[i]][status];
+            break;
         }
-        return null;
+        return order;
     }
     #endregion
 

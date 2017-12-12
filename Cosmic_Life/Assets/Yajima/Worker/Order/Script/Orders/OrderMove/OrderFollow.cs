@@ -29,6 +29,8 @@ public class OrderFollow : Order {
         m_Undroid.GetNavMeshAgent().isStopped = false;
 
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        ChangeAnimation(obj, UndroidAnimationStatus.WALK);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

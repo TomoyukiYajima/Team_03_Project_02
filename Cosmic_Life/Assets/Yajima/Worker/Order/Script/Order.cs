@@ -15,6 +15,8 @@ public class Order : MonoBehaviour {
     // 表示する命令テキスト(初回時)
     [SerializeField]
     private string m_StartOrderText = "実行";
+    [SerializeField]
+    private string m_FaildText = "実行デキマセン";
     // 表示する命令テキスト(更新時)
     //[SerializeField]
     //private string m_UpdateOrderText = "実行中";
@@ -39,7 +41,10 @@ public class Order : MonoBehaviour {
     protected Worker m_Undroid;
 
     // テキストコントローラ
-    private TextController m_TextController;
+    //private TextController m_TextController;
+    // テキストの追加
+    public delegate void setString(string text);
+    public event setString setText;
 
     // Action実行配列
     private Dictionary<ActionNumber, Action<float, GameObject, GameObject>> m_Actions =
@@ -52,7 +57,7 @@ public class Order : MonoBehaviour {
         m_Actions[ActionNumber.OBJECT_ACTION] = (deltaTime, obj, actionObj) => { UpdateAction(deltaTime, obj, actionObj); };
 
         // テキストコントローラの取得
-        m_TextController = GameObject.Find("OrderText").GetComponent<TextController>();
+        //m_TextController = GameObject.Find("OrderText").GetComponent<TextController>();
         //m_Undroid = 
     }
 
@@ -131,6 +136,17 @@ public class Order : MonoBehaviour {
             (e, d) => { e.onOrder(status); });
     }
 
+    protected void ChangeOrder(GameObject obj, OrderStatus status, OrderDirection dir)
+    {
+        // 相手側にイベントがなければ返す
+        if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(obj)) return;
+        // 実行(命令の変更)
+        ExecuteEvents.Execute<IOrderEvent>(
+            obj,
+            null,
+            (e, d) => { e.onOrder(status, dir); });
+    }
+
     // 命令の終了
     public void EndOrder(GameObject obj)
     {
@@ -141,6 +157,17 @@ public class Order : MonoBehaviour {
             obj,
             null,
             (e, d) => { e.endOrder(m_OrderNumber); });
+    }
+
+    protected void SetActionObj(GameObject obj, GameObject actionObj)
+    {
+        // 相手側にイベントがなければ返す
+        if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(obj)) return;
+        // 実行(命令の変更)
+        ExecuteEvents.Execute<IOrderEvent>(
+            obj,
+            null,
+            (e, d) => { e.setObject(actionObj); });
     }
 
     // 持っているオブジェクトが他のオブジェクトを衝突しているか
@@ -173,7 +200,27 @@ public class Order : MonoBehaviour {
     // UIに命令テキストの表示(更新時)
     protected void SetStartOrderText()
     {
-        m_TextController.SetText(m_StartOrderText + "・・・");
+        //m_TextController.SetText(m_StartOrderText + "・・・");
+        if (setText != null) setText(m_StartOrderText);
+    }
+
+    // 失敗時に表示する命令テキスト
+    protected void SetFaildText()
+    {
+        //m_TextController.SetText(m_FaildText + "・・・");
+        if (setText != null) setText(m_FaildText);
+    }
+
+    // アニメーションの変更
+    protected void ChangeAnimation(GameObject obj, UndroidAnimationStatus state)
+    {
+        // 相手側にイベントがなければ返す
+        if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(obj)) return;
+        // 実行(命令の終了)
+        ExecuteEvents.Execute<IOrderEvent>(
+            obj,
+            null,
+            (e, d) => { e.changeAnimation(state); });
     }
     // UIに命令テキストの表示(更新時)
     //protected void SetUpdateOrderText()

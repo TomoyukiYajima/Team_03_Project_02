@@ -15,4 +15,6 @@ public interface IOrderEvent : IEventSystemHandler {
     void endOrder(OrderNumber number);
     // 参照するオブジェクトの設定
     void setObject(GameObject obj);
+    // アニメーションの変更
+    void changeAnimation(UndroidAnimationStatus state);
 }
