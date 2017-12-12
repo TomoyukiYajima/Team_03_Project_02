@@ -6,11 +6,18 @@ public class OrderFollow : Order {
 
     // プレイヤー
     private Transform m_Player;
+    // 初期SE再生間隔
+    private float m_InitSeDelay = 0.5f;
+    // SE再生間隔
+    private float m_SeDelay;
 
-    //// Use this for initialization
-    //void Start () {
+    // Use this for initialization
+    public override void Start()
+    {
+        base.Start();
 
-    //}
+        m_SeDelay = m_InitSeDelay;
+    }
 
     //// Update is called once per frame
     //void Update () {
@@ -31,6 +38,8 @@ public class OrderFollow : Order {
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
         ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+        // 命令承認SEの再生
+        SoundManager.Instance.PlaySe("SE_Undroid_Order");
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
@@ -54,14 +63,30 @@ public class OrderFollow : Order {
             m_Undroid.AgentStop();
             // アニメーションの変更
             ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+            m_SeDelay = m_InitSeDelay;
         }
         else
         {
-            if (!m_Undroid.GetNavMeshAgent().isStopped) return;
+            if (!m_Undroid.GetNavMeshAgent().isStopped)
+            {
+                // SEのループ再生
+                //if (!SoundManager.Instance.IsPlaySe("SE_Undroid_Move"))
+                //    SoundManager.Instance.PlaySe("SE_Undroid_Move");
+                m_SeDelay = Mathf.Max(m_SeDelay - deltaTime, 0.0f);
+                if(m_SeDelay == 0.0f)
+                {
+                    SoundManager.Instance.PlaySe("SE_Undroid_Move");
+                    m_SeDelay = m_InitSeDelay;
+                }
+
+                return;
+            }
             // 移動の再開
             m_Undroid.GetNavMeshAgent().isStopped = false;
             // アニメーションの変更
             ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+            // 初期SE再生
+            SoundManager.Instance.PlaySe("SE_Undroid_Move");
         }
     }
 
@@ -76,5 +101,6 @@ public class OrderFollow : Order {
 
         m_Undroid.AgentStop();
         m_Player = null;
+        m_SeDelay = m_InitSeDelay;
     }
 }

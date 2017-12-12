@@ -192,11 +192,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public void FlashEmission(Color color, float time)
     {
         //m_IsFlash = true;
-        m_EmissionColor += Color.gray;
-        if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, time));
-        //m_FlashValue = m_FlashValue | 1 << 0;
-        if ((m_FlashValue & 1 << 0) == 0) m_FlashValue = m_FlashValue | 1 << 0;
-        else if ((m_FlashValue & 1 << 1) == 0) m_FlashValue = m_FlashValue | 1 << 1;
+        //m_EmissionColor += Color.gray;
+        //if (m_FlashValue == 0) StartCoroutine(Flash(m_EmissionColor, time));
+        ////m_FlashValue = m_FlashValue | 1 << 0;
+        //if ((m_FlashValue & 1 << 0) == 0) m_FlashValue = m_FlashValue | 1 << 0;
+        //else if ((m_FlashValue & 1 << 1) == 0) m_FlashValue = m_FlashValue | 1 << 1;
     }
 
     public IEnumerator Flash(Color color, float time)

@@ -71,6 +71,8 @@ public class Order : MonoBehaviour {
         m_Dir = obj.GetComponent<Worker>().GetOrderDir();
         // UIに命令テキストの設定
         SetStartOrderText();
+        // 命令承認SEの再生
+        SoundManager.Instance.PlaySe("SE_Undroid_Order");
 
         if (m_ActionObject != null) m_ActionNumber = ActionNumber.OBJECT_ACTION;
     }

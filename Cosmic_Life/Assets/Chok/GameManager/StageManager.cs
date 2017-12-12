@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject[] m_spawnObj;
     [SerializeField] private System.Action[] m_action;
     [SerializeField] private Pausable m_pause;
+    [SerializeField] private string m_bgmName;
 
     private bool m_isActivated;
 
@@ -19,6 +20,8 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         m_isActivated = false;
+
+        SoundManager.Instance.PlayBgm(m_bgmName);
     }
 
     // Update is called once per frame

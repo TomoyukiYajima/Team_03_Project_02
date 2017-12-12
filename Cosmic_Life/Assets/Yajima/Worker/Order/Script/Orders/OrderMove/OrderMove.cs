@@ -17,6 +17,11 @@ public class OrderMove : DirectionOrder {
 
     private Vector3 m_Direction = Vector3.zero; // 移動方向
 
+    // 初期SE再生間隔
+    private float m_InitSeDelay = 0.5f;
+    // SE再生間隔
+    private float m_SeDelay;
+
     //private bool m_IsRotation = false;          // 回転したか
 
     // Use this for initialization
@@ -25,6 +30,7 @@ public class OrderMove : DirectionOrder {
         base.Start();
 
         m_Dir = OrderDirection.FORWARD;
+        m_SeDelay = m_InitSeDelay;
     }
 
     //// Update is called once per frame
@@ -37,6 +43,8 @@ public class OrderMove : DirectionOrder {
         base.StartAction(obj, actionObj);
 
         ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+        //// ループSEの再生
+        //SoundManager.Instance.PlaySe("SE_Undroid_Move");
         //SetEndPlayOrder(OrderStatus.PROTECT);
     }
 
@@ -58,6 +66,13 @@ public class OrderMove : DirectionOrder {
 
         // 移動
         obj.transform.position += obj.transform.forward * m_MoveSpeed * deltaTime;
+
+        m_SeDelay = Mathf.Max(m_SeDelay - deltaTime, 0.0f);
+        if (m_SeDelay == 0.0f)
+        {
+            SoundManager.Instance.PlaySe("SE_Undroid_Move");
+            m_SeDelay = m_InitSeDelay;
+        }
 
         // 回転
         //Rotation(deltaTime, obj);
@@ -97,6 +112,14 @@ public class OrderMove : DirectionOrder {
         var worker = obj.GetComponent<Worker>();
         worker.ChangeAgentMovePoint(actionObj.transform.position);
         worker.GetNavMeshAgent().isStopped = false;
+
+        // SEの再生
+        m_SeDelay = Mathf.Max(m_SeDelay - deltaTime, 0.0f);
+        if (m_SeDelay == 0.0f)
+        {
+            SoundManager.Instance.PlaySe("SE_Undroid_Move");
+            m_SeDelay = m_InitSeDelay;
+        }
     }
 
     public override void EndAction(GameObject obj)
@@ -111,6 +134,7 @@ public class OrderMove : DirectionOrder {
             // 移動ポイントの変更
             robot.GetNavMeshAgent().isStopped = true;
         }
+        m_SeDelay = m_InitSeDelay;
         //m_IsRotation = false;
     }
 

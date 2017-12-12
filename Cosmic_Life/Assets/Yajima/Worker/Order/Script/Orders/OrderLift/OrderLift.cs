@@ -81,6 +81,9 @@ public class OrderLift : Order {
         // オブジェクトの捜索
         FindLiftObject(obj, actionObj);
 
+        // 命令承認SEの再生
+        SoundManager.Instance.PlaySe("SE_Undroid_Order");
+
         // リフトクラスを継承した子クラスのオブジェクトチェック関数を呼ぶ
         // m_LiftCheck[checkNumber].CheckObject(obj);
 
