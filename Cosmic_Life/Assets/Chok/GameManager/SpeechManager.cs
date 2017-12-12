@@ -101,6 +101,14 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         Debug.Log(builder.ToString());
 
+        GameObject robot = GameObject.FindGameObjectWithTag("Robot");
+        if (robot == null) return;
+
+        if (SignalUI.Signal <= 0)
+        {
+            Debug.Log("信号不良");
+        }
+
         // オーダー初期化
         OrderStatus orderType = OrderStatus.NULL;
         OrderDirection orderDir = OrderDirection.NULL;
