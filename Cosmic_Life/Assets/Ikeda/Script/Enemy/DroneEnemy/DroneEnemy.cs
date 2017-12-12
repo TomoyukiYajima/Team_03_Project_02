@@ -11,6 +11,9 @@ public class DroneEnemy : Enemy
     [SerializeField, Tooltip("SearchLightを入れる")]
     private GameObject m_SearchLight;
 
+    //見つけたPlayerかロボットを入れる変数
+    private GameObject m_Target;
+
 
     // Use this for initialization
     public override void Start()
@@ -26,7 +29,19 @@ public class DroneEnemy : Enemy
     //{
     //}
 
+    /// <summary>
+    /// ロボットが見えたかどうか返す
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSeeRobot()
+    {
+        if (!SearchLightAngleRobot()) return false;
 
+        if (!CanHitRayToRobot()) return false;
+
+        m_Target = m_Robot;
+        return true;
+    }
 
 
     /// <summary>
@@ -39,7 +54,38 @@ public class DroneEnemy : Enemy
 
         if (!CanHitRayToPlayer()) return false;
 
+        m_Target = m_Player;
         return true;
+    }
+
+    /// <summary>
+    /// ロボットが視野角内にいるか？
+    /// </summary>
+    private bool SearchLightAngleRobot()
+    {
+        //スポットライトのSpotAngle
+        float l_SpotAngle = m_SearchLight.GetComponent<Light>().spotAngle / 2;
+        //自分からオブジェクトへの方向ベクトル(ワールド座標)
+        Vector3 l_RelativeVec = m_Robot.transform.position - m_SearchLight.transform.position;
+        //自分の正面向きベクトルとオブジェクトへの方向ベクトルの差分角度
+        float l_AngleToRobot = Vector3.Angle(m_SearchLight.transform.forward, l_RelativeVec);
+        //見える視野角の範囲内にオブジェクトがいるかどうかを返す
+        return (Mathf.Abs(l_AngleToRobot) <= l_SpotAngle);
+    }
+
+    /// <summary>
+    /// SpotLightからRayを飛ばしてRobotに当たるか？
+    /// </summary>
+    /// <returns></returns>
+    private bool CanHitRayToRobot()
+    {
+        //自分からPlayerへの方向ベクトル(ワールド座標)
+        Vector3 l_RelativeVec = (m_Robot.transform.position + m_Robot.transform.up * 1.0f) - m_SearchLight.transform.position;
+        //壁の向こう側にいる場合には見えない
+        RaycastHit hitInfo;
+        bool hit = Physics.Raycast(m_SearchLight.transform.position, l_RelativeVec, out hitInfo);
+        //オブジェクトにRayが当たったかどうかを返す
+        return (hit && hitInfo.collider.tag == "Robot");
     }
 
 
@@ -108,5 +154,15 @@ public class DroneEnemy : Enemy
 
         else
             m_SearchLight.GetComponent<Light>().color = new Color(1, 1, 1, 1);
+    }
+
+    public void ChangeRedColor()
+    {
+        m_SearchLight.GetComponent<Light>().color = new Color(1, 0, 0, 1);
+    }
+
+    public GameObject GetTarget()
+    {
+        return m_Target;
     }
 }

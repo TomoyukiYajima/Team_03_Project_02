@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class DroneAttack : EnemyState
 {
-    DroneEnemy m_DroneEnemy;
-    GameObject m_Collide;
+    private DroneEnemy m_DroneEnemy;
+
+    [SerializeField]
+    private GameObject m_Collide;
+
+    [SerializeField, Tooltip("止まる距離の設定")]
+    private float m_StopDistance = 3.5f;
     
+    [SerializeField, Tooltip("爆発するまでの時間")]
+    private float m_SetExplosionTime;
+    private float m_Timer;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -23,8 +31,25 @@ public class DroneAttack : EnemyState
     {
         if (m_DroneEnemy == null) m_DroneEnemy = enemy.GetComponent<DroneEnemy>();
 
-        Vector3 relativePos = m_DroneEnemy.transform.position - m_DroneEnemy.transform.position;
-        m_DroneEnemy.transform.Translate(relativePos * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
+        if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetTarget().transform.position) > m_StopDistance)
+        {
+            Vector3 relativePos = m_DroneEnemy.GetTarget().transform.position - m_DroneEnemy.transform.position;
+            m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            m_DroneEnemy.m_Speed = 0.0f;
 
+            if (m_SetExplosionTime > m_Timer)
+            {
+                m_Timer += Time.deltaTime;
+
+            }
+            else
+            {
+                m_Collide.SetActive(true);
+                Destroy(m_DroneEnemy.gameObject);
+            }
+        }
     }
 }

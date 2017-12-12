@@ -138,6 +138,30 @@ Transform:
   m_Father: {fileID: 819836424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &134163749
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1280
+  m_Height: 720
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &195966172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,7 +1085,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1794256772}
+      objectReference: {fileID: 1369807194}
     - target: {fileID: 4075411141311896, guid: cfcf6b047ff9aec459e444d3e0f29620, type: 2}
       propertyPath: m_RootOrder
       value: 7
@@ -1457,10 +1481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b91e6805a43ad41b2e82569ff7c922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EnemyStatus: 0000000001000000
+  m_EnemyStatus: 0000000004000000
   m_EnemyState:
   - {fileID: 1247419274}
-  - {fileID: 0}
+  - {fileID: 1512274454}
 --- !u!1 &972228096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,6 +2120,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HumanEnemy: {fileID: 1045091022}
+--- !u!84 &1369807194
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1280
+  m_Height: 720
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1397929590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2373,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1512274453}
+  - component: {fileID: 1512274454}
   m_Layer: 0
   m_Name: DroneAttack
   m_TagString: Untagged
@@ -2346,6 +2395,20 @@ Transform:
   m_Father: {fileID: 962817966}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512274454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512274452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aafa667b7b108e429f3e05adbb01cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Collide: {fileID: 664982624}
+  m_StopDistance: 2.5
+  m_SetExplosionTime: 2
 --- !u!114 &1514724493 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114238566864455560, guid: 126c8e39776d20a479c870ff4abdd8ee,
@@ -2507,30 +2570,6 @@ Transform:
   m_Father: {fileID: 195966173}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1794256772
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1280
-  m_Height: 720
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1899308623
 Prefab:
   m_ObjectHideFlags: 0
@@ -2705,30 +2744,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1972992840
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1280
-  m_Height: 720
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &2007082735
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkEnemyAttack : EnemyState {
+public class WalkEnemyAttack : EnemyState
+{
 
     private enum AttackState
     {
@@ -21,7 +22,7 @@ public class WalkEnemyAttack : EnemyState {
     private GameObject m_AttackCollider;
 
     [SerializeField]
-    private float m_AttackTime = 15.0f; 
+    private float m_AttackTime = 15.0f;
 
     private AttackState m_AttackState;
 
@@ -32,10 +33,13 @@ public class WalkEnemyAttack : EnemyState {
 
     private float m_CoolTime;
 
+    private Vector3 m_TargetPosition;
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         m_AttackState = AttackState.Attack;
-	}
+    }
 
     //void Update()
     //{
@@ -44,7 +48,7 @@ public class WalkEnemyAttack : EnemyState {
 
     public override void Action(float deltaTime, Enemy enemy)
     {
-        switch(m_AttackState)
+        switch (m_AttackState)
         {
             case AttackState.Attack:
                 m_AttackCollider.SetActive(true);
@@ -61,15 +65,17 @@ public class WalkEnemyAttack : EnemyState {
             case AttackState.AttackAfter:
                 m_AttackCollider.SetActive(false);
                 WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
-                Vector3 l_TargetPosition = l_WalkEnemy.CheckPlayerAndRobot().transform.position;
                 //NULLだったら状態を変更
-                if (l_TargetPosition == null) enemy.ChangeState(EnemyStatus.ChasingButLosed);
+                if (m_TargetPosition == null)
+                    m_TargetPosition = l_WalkEnemy.CheckPlayerAndRobot().transform.position;
+                else enemy.ChangeState(EnemyStatus.ChasingButLosed);
+
 
                 //クールタイムを調べる
                 if (m_CoolTime >= 0) m_CoolTime -= deltaTime;
 
                 //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
-                float distance = (Vector3.Distance(l_WalkEnemy.GetEnemyPosition(), l_TargetPosition));
+                float distance = (Vector3.Distance(l_WalkEnemy.GetEnemyPosition(), m_TargetPosition));
                 if (distance < m_DistanceCompare)
                 {
                     //近ければプレイヤーの方向を向いて攻撃
@@ -86,9 +92,9 @@ public class WalkEnemyAttack : EnemyState {
                 }
                 else
                 {
-                    enemy.ChangeState(EnemyStatus.Chasing);
-                    l_WalkEnemy.m_Agent.isStopped = false;
                     m_AttackState = AttackState.Attack;
+                    l_WalkEnemy.m_Agent.isStopped = false;
+                    enemy.ChangeState(EnemyStatus.Chasing);
                 }
                 break;
         }
