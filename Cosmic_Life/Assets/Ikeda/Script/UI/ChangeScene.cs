@@ -25,6 +25,7 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
     void Start()
     {
         m_IsOpenDoor = false;
+        CloseDoor();
     }
 
     // Update is called once per frame

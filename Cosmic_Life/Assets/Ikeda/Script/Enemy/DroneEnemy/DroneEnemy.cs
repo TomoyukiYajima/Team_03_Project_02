@@ -28,13 +28,14 @@ public class DroneEnemy : Enemy
 
 
 
+
     /// <summary>
     /// プレイヤーが見えたかどうか返す
     /// </summary>
     /// <returns></returns>
     public bool IsSeePlayer()
     {
-        if (!SearchLightAngle()) return false;
+        if (!SearchLightAnglePlayer()) return false;
 
         if (!CanHitRayToPlayer()) return false;
 
@@ -45,7 +46,7 @@ public class DroneEnemy : Enemy
     /// <summary>
     /// プレイヤーが視野角内にいるか？
     /// </summary>
-    private bool SearchLightAngle()
+    private bool SearchLightAnglePlayer()
     {
         //スポットライトのSpotAngle
         float l_SpotAngle = m_SearchLight.GetComponent<Light>().spotAngle / 2;
