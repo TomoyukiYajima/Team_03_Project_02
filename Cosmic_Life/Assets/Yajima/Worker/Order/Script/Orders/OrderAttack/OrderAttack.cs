@@ -28,7 +28,7 @@ public class OrderAttack : Order {
     // 時間
     protected float m_Timer;
     // 攻撃が終了したか
-    private bool m_IsAttack = true;
+    private bool m_IsAttack = false;
     // 動かすオブジェクト
     protected GameObject m_MoveObject;
 
@@ -80,6 +80,8 @@ public class OrderAttack : Order {
         // イベントでの終了処理
         EndOrder(obj);
         m_IsAttack = true;
+        // ディレイをかける
+
         var order = m_OrderState;
         // 攻撃を終了する場合は、停止命令に変更する
         if (m_IsEndOrder) order = OrderStatus.STOP;
