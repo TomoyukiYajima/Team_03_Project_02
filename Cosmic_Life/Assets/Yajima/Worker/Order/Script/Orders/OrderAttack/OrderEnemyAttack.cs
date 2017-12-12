@@ -67,29 +67,29 @@ public class OrderEnemyAttack : MultOrder {
         var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
         if (length < 2.0f)
         {
-            // 角度の計算
-            // 相手との距離を求める
-            //Vector3 pos = player.transform.position - this.transform.position;
-            Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
-            Vector2 dir = new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos;
-            Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z);
-            float rad = dir.x * dir2.y + dir2.x * dir.y;
-            if (Mathf.Abs(rad) > 0.1f)
-            {
-                if (!m_IsRotate)
-                {
-                    OrderDirection orderDir = OrderDirection.LEFT;
-                    // 方向の指定
-                    if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
-                    // 
-                    SetActionObj(obj, actionObj);
-                    // 回転命令
-                    ChangeOrder(obj, OrderStatus.TURN, orderDir);
-                    m_IsRotate = true;
-                }
+            //// 角度の計算
+            //// 相手との距離を求める
+            ////Vector3 pos = player.transform.position - this.transform.position;
+            //Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
+            //Vector2 dir = new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos;
+            //Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z);
+            //float rad = dir.x * dir2.y + dir2.x * dir.y;
+            //if (Mathf.Abs(rad) > 0.1f)
+            //{
+            //    if (!m_IsRotate)
+            //    {
+            //        OrderDirection orderDir = OrderDirection.LEFT;
+            //        // 方向の指定
+            //        if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
+            //        // 
+            //        SetActionObj(obj, actionObj);
+            //        // 回転命令
+            //        ChangeOrder(obj, OrderStatus.TURN, orderDir);
+            //        m_IsRotate = true;
+            //    }
 
-                return;
-            }
+            //    return;
+            //}
 
             //Attack(deltaTime, obj, actionObj);
             ChangeOrder(obj, OrderStatus.ATTACK);
@@ -140,16 +140,26 @@ public class OrderEnemyAttack : MultOrder {
         {
             if (!m_IsRotate)
             {
-                OrderDirection orderDir = OrderDirection.LEFT;
-                // 方向の指定
-                if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
-                // 
-                SetActionObj(obj, actionObj);
-                // 回転命令
-                ChangeOrder(obj, OrderStatus.TURN, orderDir);
+                //OrderDirection orderDir = OrderDirection.LEFT;
+                //// 方向の指定
+                //if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
+                //// 
+                //SetActionObj(obj, actionObj);
+                //// 回転命令
+                //ChangeOrder(obj, OrderStatus.TURN, orderDir);
                 m_IsRotate = true;
             }
         }
+
+        // 目標との距離が遠ければ、相手に対して移動する
+        float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        if (length > 1.0f)
+        {
+            Worker worker = obj.GetComponent<Worker>();
+            worker.ChangeAgentMovePoint(actionObj.transform.position);
+            return;
+        }
+
         //else
         //{
         //    // 目標との角度差が大きければ、方向転換する
