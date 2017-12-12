@@ -46,7 +46,7 @@ public class PlayerUI : MonoBehaviour {
     }
 
     public void UpdateHPUI(int hp)    {
-        m_animator.SetFloat("", hp);
+        m_animator.SetFloat("Health", hp);
         //m_hpBar.sizeDelta = new Vector2(hp * width, height);
         //foreach(var ui in m_utilities)
         //{

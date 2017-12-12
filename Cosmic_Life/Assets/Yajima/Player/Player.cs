@@ -369,7 +369,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         // DeadMotion
 
         // Wait 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(3.0f);
 
         // GameOverUI
         SceneMgr.Instance.SceneTransition(SceneType.Title);

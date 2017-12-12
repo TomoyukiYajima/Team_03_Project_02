@@ -24,6 +24,7 @@ public class LogUI : MonoBehaviour
         m_orderList = GameObject.FindObjectsOfType<Order>();
         foreach (var order in m_orderList)
         {
+            order.setText += UpdateLogUI;
             Debug.Log(order);
         }
 
@@ -32,17 +33,17 @@ public class LogUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            UpdateLogUI(Random.Range(0, 100).ToString());
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    UpdateLogUI(Random.Range(0, 100).ToString());
+        //}
     }
 
     private void OnDestroy()
     {
         foreach (var order in m_orderList)
         {
-            Debug.Log(order);
+            order.setText -= UpdateLogUI;
         }
     }
 
