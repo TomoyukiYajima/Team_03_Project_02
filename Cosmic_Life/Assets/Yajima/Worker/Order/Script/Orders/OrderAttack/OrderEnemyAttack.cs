@@ -180,6 +180,17 @@ public class OrderEnemyAttack : MultOrder {
         //}
     }
 
+    public override void EndAction(GameObject obj)
+    {
+        base.EndAction(obj);
+
+        // 持っている命令を全て停止させる
+        foreach(var orders in m_MultOrders)
+        {
+            m_MultOrders[orders.Key].EndOrder(obj);
+        }
+    }
+
     // 命令の追加
     protected override void AddOrder()
     {
