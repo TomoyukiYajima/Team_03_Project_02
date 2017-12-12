@@ -35,7 +35,7 @@ public class SpriteAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int volume = Mathf.Min((int)GetComponent<VolumeCheck>().GetAveragedVolume(),4);
+        //int volume = Mathf.Min((int)GetComponent<VolumeCheck>().GetAveragedVolume(),4);
         //if (!m_isStart) return;
         //m_dTime += Time.deltaTime;
         //if (m_changeFrameSecond < m_dTime)
@@ -56,7 +56,12 @@ public class SpriteAnimation : MonoBehaviour
         //        }
         //    }
         //}
-        m_image.sprite = m_sprites[volume];
+        //m_image.sprite = m_sprites[volume];
+    }
+
+    public void SetSprite(int num)
+    {
+        m_image.sprite = m_sprites[num];
     }
 
     public int GetFrameNum()

@@ -25,8 +25,8 @@ public class CameraRay : MonoBehaviour
     {
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
         // プレイヤーのレイ開始座標
-        m_rayPos = transform.FindChild("RayStart").transform;
-        m_rayCenter = m_player.FindChild("HeadLook").transform;
+        m_rayPos = transform.Find("RayStart").transform;
+        m_rayCenter = m_player.Find("HeadLook").transform;
 
         m_rayDir = Vector3.zero;
 
