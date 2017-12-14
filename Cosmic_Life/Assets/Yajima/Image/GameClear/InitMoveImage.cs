@@ -20,6 +20,9 @@ public class InitMoveImage : MonoBehaviour {
     // 合計移動時間
     [SerializeField]
     private float m_MoveTime = 1.0f;
+    // 移動終了後のシーン遷移時間
+    [SerializeField]
+    private float m_ChangeSceneTime = 1.0f;
 
     // 経過時間
     private float m_TotalTime;
@@ -48,5 +51,18 @@ public class InitMoveImage : MonoBehaviour {
         FlashImage flash = m_FlashImage.GetComponent<FlashImage>();
         flash.StartFlash();
         //print("発光");
-	}
+        // シーン遷移
+        StartCoroutine(ChangeScene());
+    }
+
+    // シーン遷移
+    private IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(m_ChangeSceneTime);
+
+        // 時間経過したらシーン遷移
+        SceneMgr.Instance.SceneTransition(SceneType.Title);
+
+        yield return null;
+    }
 }

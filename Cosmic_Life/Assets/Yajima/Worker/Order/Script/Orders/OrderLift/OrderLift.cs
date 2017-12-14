@@ -44,13 +44,16 @@ public class OrderLift : Order {
     // プレイヤー
     protected GameObject m_Player;
 
+    private float m_InitSeDelay = 0.5f;
+    private float m_SeDelay;
+
     //// 計算リスト
     //private Dictionary<LiftObjectNumber, Action<int>> m_LiftMoves =
     //    new Dictionary<LiftObjectNumber, Action<int>>();
 
     // 移動関数の実行リスト
-    private Dictionary<LiftObjectNumber, Action<GameObject>> m_LiftMoves =
-        new Dictionary<LiftObjectNumber, Action<GameObject>>();
+    private Dictionary<LiftObjectNumber, Action<GameObject, float>> m_LiftMoves =
+        new Dictionary<LiftObjectNumber, Action<GameObject, float>>();
     #endregion
 
     // Use this for initialization
@@ -62,8 +65,10 @@ public class OrderLift : Order {
         m_Player = GameObject.FindGameObjectWithTag("Player");
 
         // 移動関数を配列に追加
-        m_LiftMoves.Add(LiftObjectNumber.PLAYER_LIFT_NUMBER, (obj) => { PlayerMove(obj); });
-        m_LiftMoves.Add(LiftObjectNumber.OBJECT_LIFT_NUMBER, (obj) => { StageObjectMove(obj); });
+        m_LiftMoves.Add(LiftObjectNumber.PLAYER_LIFT_NUMBER, (obj, time) => { PlayerMove(obj, time); });
+        m_LiftMoves.Add(LiftObjectNumber.OBJECT_LIFT_NUMBER, (obj, time) => { StageObjectMove(obj, time); });
+
+        m_SeDelay = m_InitSeDelay;
     }
 
     public override void StartAction(GameObject obj, GameObject actionObj)
@@ -74,15 +79,19 @@ public class OrderLift : Order {
         // もし何か持っていれば、返す
         if (liftObj.childCount != 0)
         {
-            print("すでに物を持っています");
+            // 命令失敗
+            FaildOrder(obj);
+            return;
+        }
+        else if(actionObj != null && actionObj.tag != "StageObject")
+        {
+            // 命令失敗
+            FaildOrder(obj);
             return;
         }
 
         // オブジェクトの捜索
         FindLiftObject(obj, actionObj);
-
-        // 命令承認SEの再生
-        SoundManager.Instance.PlaySe("SE_Undroid_Order");
 
         // リフトクラスを継承した子クラスのオブジェクトチェック関数を呼ぶ
         // m_LiftCheck[checkNumber].CheckObject(obj);
@@ -164,7 +173,7 @@ public class OrderLift : Order {
         pos.y = obj.transform.position.y;
         var length = Vector3.Distance(pos, obj.transform.position);
 
-        m_LiftMoves[m_LiftNumber](obj);
+        m_LiftMoves[m_LiftNumber](obj, deltaTime);
 
         if (length < 5.0f && m_LiftNumber == LiftObjectNumber.OBJECT_LIFT_NUMBER)
         {
@@ -181,6 +190,7 @@ public class OrderLift : Order {
             {
                 // オブジェクトの方向に回転
                 Rotation(deltaTime, obj);
+                ChangeAnimation(obj, UndroidAnimationStatus.TURN);
                 return;
             }
             else if (robot.IsGoalPoint())
@@ -246,8 +256,11 @@ public class OrderLift : Order {
             {
                 // 見ているものを持つオブジェクトに変更する
                 m_LiftObject = actionObj;
-                m_LiftMoves[LiftObjectNumber.PLAYER_LIFT_NUMBER](obj);
+                m_LiftMoves[LiftObjectNumber.PLAYER_LIFT_NUMBER](obj, 1.0f);
                 m_LiftNumber = LiftObjectNumber.OBJECT_LIFT_NUMBER;
+                // 命令承認SEの再生
+                SoundManager.Instance.PlaySe("SE_Undroid_Order");
+                ChangeAnimation(obj, UndroidAnimationStatus.WALK);
                 return;
             } 
         }
@@ -275,10 +288,12 @@ public class OrderLift : Order {
         //m_LiftNumber = LiftObjectNumber.PLAYER_LIFT_NUMBER;
         if(m_ObjectChecker.GetStageObjects().Count == 0)
         {
-            print("持ち上げるものがありません");
+            //print("持ち上げるものがありません");
             // 空の状態に遷移
             //ChangeOrder(obj, OrderStatus.NULL);
-            EndOrder(obj);
+            // 命令失敗
+            FaildOrder(obj);
+            //EndOrder(obj);
             return;
         }
 
@@ -313,13 +328,17 @@ public class OrderLift : Order {
 
         // 持ち上げ処理の前準備
         //m_LiftMoves[m_LiftNumber](obj);
-        m_LiftMoves[LiftObjectNumber.PLAYER_LIFT_NUMBER](obj);
+        m_LiftMoves[LiftObjectNumber.PLAYER_LIFT_NUMBER](obj, 1.0f);
+
+        // 命令承認SEの再生
+        SoundManager.Instance.PlaySe("SE_Undroid_Order");
+        ChangeAnimation(obj, UndroidAnimationStatus.WALK);
     }
     #endregion
 
     #region 移動関数
     // プレイヤーや敵の位置に移動
-    private void PlayerMove(GameObject obj)
+    private void PlayerMove(GameObject obj, float deltaTime)
     {
         Worker robot = obj.GetComponent<Worker>();
         // 移動ポイントの更新
@@ -328,13 +347,21 @@ public class OrderLift : Order {
     }
 
     // ステージオブジェクトの持っているポイントに移動
-    private void StageObjectMove(GameObject obj)
+    private void StageObjectMove(GameObject obj, float deltaTime)
     {
         Worker robot = obj.GetComponent<Worker>();
 
         var pos = m_LiftObject.transform.position;
         pos.y = obj.transform.position.y;
         var robotLength = Vector3.Distance(pos, obj.transform.position);
+
+        // SEの再生
+        m_SeDelay = Mathf.Max(m_SeDelay - deltaTime, 0.0f);
+        if (m_SeDelay == 0.0f)
+        {
+            SoundManager.Instance.PlaySe("SE_Undroid_Move");
+            m_SeDelay = m_InitSeDelay;
+        }
 
         if (robotLength < 3.0f)
         {
@@ -406,6 +433,7 @@ public class OrderLift : Order {
             robot.AgentStop();
             // UIに命令テキストの設定
             SetStartOrderText();
+            ChangeAnimation(obj, UndroidAnimationStatus.LIFT);
             // 終了処理
             //EndOrder(obj);
             return;

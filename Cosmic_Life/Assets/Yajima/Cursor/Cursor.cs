@@ -45,7 +45,7 @@ public class Cursor : MonoBehaviour {
         {
             //audio.Play();
             //audio.PlayOneShot(m_DicisionSE);
-            SoundManager.Instance.PlaySe("DicisionSE");
+            SoundManager.Instance.PlaySe("SE_Dicision");
             m_Buttones[m_ButtonCount].ChangeScene();
             m_IsMove = false;
             return;

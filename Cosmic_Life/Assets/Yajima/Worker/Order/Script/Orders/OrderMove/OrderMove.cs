@@ -95,7 +95,13 @@ public class OrderMove : DirectionOrder {
 
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
-        if(actionObj.tag != "Enemy")
+        if (actionObj == null)
+        {
+            EndOrder(obj);
+            return;
+        }
+
+        if (actionObj.tag != "Enemy")
         {
             //EndOrder(obj);
             UpdateAction(deltaTime, obj);

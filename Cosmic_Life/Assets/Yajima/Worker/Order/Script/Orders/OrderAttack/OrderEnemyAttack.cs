@@ -30,10 +30,8 @@ public class OrderEnemyAttack : MultOrder {
         // 対象が敵でなければ、停止させる
         if (actionObj == null || actionObj.tag != "Enemy")
         {
-            EndOrder(obj);
-            //失敗時の命令テキストの設定
-            SetFaildText();
-            //SetStartOrderText();
+            // 命令失敗
+            FaildOrder(obj);
             return;
         }
 
@@ -67,29 +65,34 @@ public class OrderEnemyAttack : MultOrder {
         var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
         if (length < 2.0f)
         {
-            //// 角度の計算
-            //// 相手との距離を求める
-            ////Vector3 pos = player.transform.position - this.transform.position;
-            //Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
-            //Vector2 dir = new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos;
-            //Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z);
-            //float rad = dir.x * dir2.y + dir2.x * dir.y;
-            //if (Mathf.Abs(rad) > 0.1f)
-            //{
-            //    if (!m_IsRotate)
-            //    {
-            //        OrderDirection orderDir = OrderDirection.LEFT;
-            //        // 方向の指定
-            //        if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
-            //        // 
-            //        SetActionObj(obj, actionObj);
-            //        // 回転命令
-            //        ChangeOrder(obj, OrderStatus.TURN, orderDir);
-            //        m_IsRotate = true;
-            //    }
+            // 角度の計算
+            var pos = actionObj.transform.position;
+            pos.y = obj.transform.position.y;
+            var dir = actionObj.transform.position - obj.transform.position;
+            var cross = Vector3.Cross(obj.transform.forward, dir);
+            cross = cross.normalized;
+            var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
+            degree += obj.transform.forward.z * 270;
+            if (degree < 0.0f) degree += 360;
+            if (degree > 360) degree -= 360;
 
-            //    return;
-            //}
+            // cross.y < 0.0f 左
+            if (Mathf.Abs(cross.y) > 0.05f && (degree > 10.0f || degree < -10.0f))
+            {
+                if (!m_IsRotate)
+                {
+                    //OrderDirection orderDir = OrderDirection.LEFT;
+                    //// 方向の指定
+                    //if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
+                    // 
+                    SetActionObj(obj, actionObj);
+                    // 回転命令
+                    ChangeOrder(obj, OrderStatus.TURN, OrderDirection.LEFT);
+                    m_IsRotate = true;
+                }
+
+                return;
+            }
 
             //Attack(deltaTime, obj, actionObj);
             ChangeOrder(obj, OrderStatus.ATTACK);
@@ -126,39 +129,53 @@ public class OrderEnemyAttack : MultOrder {
             EndOrder(obj);
             return;
         }
-
-        // 角度の計算
-        // 相手との距離を求める
-        //Vector3 pos = player.transform.position - this.transform.position;
-        Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
-        Vector2 dir = new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos;
-        Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z);
-        float rad = dir.x * dir2.y + dir2.x * dir.y;
-        m_IsRotate = false;
-
-        if (Mathf.Abs(rad) > 0.1f)
+        else
         {
-            if (!m_IsRotate)
+            // 目標との距離が遠ければ、相手に対して移動する
+            float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+            if (length > 2.0f)
             {
-                //OrderDirection orderDir = OrderDirection.LEFT;
-                //// 方向の指定
-                //if (rad > 0.0f) orderDir = OrderDirection.RIGHT;
-                //// 
-                //SetActionObj(obj, actionObj);
-                //// 回転命令
-                //ChangeOrder(obj, OrderStatus.TURN, orderDir);
-                m_IsRotate = true;
+                Worker worker = obj.GetComponent<Worker>();
+                worker.ChangeAgentMovePoint(actionObj.transform.position);
             }
-        }
 
-        // 目標との距離が遠ければ、相手に対して移動する
-        float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
-        if (length > 1.0f)
-        {
-            Worker worker = obj.GetComponent<Worker>();
-            worker.ChangeAgentMovePoint(actionObj.transform.position);
+            m_IsAttack = false;
+            m_IsRotate = false;
             return;
         }
+
+        //// 角度の計算
+        //// 相手との距離を求める
+        //var pos = actionObj.transform.position;
+        //pos.y = obj.transform.position.y;
+        //var dir = actionObj.transform.position - obj.transform.position;
+        //var cross = Vector3.Cross(obj.transform.forward, dir);
+        //cross = cross.normalized;
+        //var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
+        //degree += obj.transform.forward.z * 270;
+        //if (degree < 0.0f) degree += 360;
+        //if (degree > 360) degree -= 360;
+
+        //// cross.y < 0.0f 左
+        //if (Mathf.Abs(cross.y) > 0.05f && (degree > 10.0f || degree < -10.0f))
+        //{
+        //    SetActionObj(obj, actionObj);
+        //    // 回転命令
+        //    ChangeOrder(obj, OrderStatus.TURN, OrderDirection.LEFT);
+        //    //m_IsRotate = true;
+        //    m_IsRotate = true;
+        //    return;
+        //}
+
+        //// 目標との距離が遠ければ、相手に対して移動する
+        //float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        //if (length > 1.0f)
+        //{
+        //    Worker worker = obj.GetComponent<Worker>();
+        //    worker.ChangeAgentMovePoint(actionObj.transform.position);
+        //    m_IsRotate = false;
+        //    return;
+        //}
 
         //else
         //{

@@ -25,6 +25,11 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // 耐久値(最大)
     [SerializeField]
     private int m_MaxHp = 5;
+    // 回復待機時間
+    [SerializeField]
+    private float m_HealIdelTime = 5.0f;
+    //[SerializeField]
+    //private LifeManager m_LifeManager; 
     // 移動速度
     [SerializeField]
     private float m_MoveSpeed = 5.0f;
@@ -146,17 +151,19 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         // ジャミング状態なら返す
         //if (m_IsJamming) return;
 
-        //// 相手との距離を求める
         //var player = GameObject.Find("Player");
-        ////Vector3 pos = player.transform.position - this.transform.position;
-        //Vector2 pos = new Vector2(this.transform.position.x, this.transform.position.z);
-        //Vector2 dir = new Vector2(player.transform.position.x, player.transform.position.z) - pos;
-        ////float rad = Mathf.Atan2(pos.z, pos.x);
-        ////float rad = Vector3.Angle(player.transform.position - this.transform.position, this.transform.forward);
-        ////float angle = Vector2.Dot(dir, pos + new Vector2(this.transform.forward.x, this.transform.forward.z));
-        //Vector2 dir2 = new Vector2(this.transform.forward.x, this.transform.forward.z);
-        //float rad = dir.x * dir2.y + dir2.x * dir.y;
-        //print(rad);
+        //var pos = player.transform.position;
+        //pos.y = this.transform.position.y;
+        //var dir = player.transform.position - this.transform.position;
+        //var cross = Vector3.Cross(this.transform.forward, dir);
+        //// cross.y < 0.0f 左
+        ////print(cross.y);
+        //dir = dir.normalized;
+        //var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Math.PI;
+        //degree += this.transform.forward.z * 270;
+        //if (degree < 0.0f) degree += 360;
+        //if (degree > 360) degree -= 360;
+        ////print(degree);
 
         // デルタタイムの取得
         float time = Time.deltaTime;
@@ -174,13 +181,13 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             if (PlayerInputManager.GetInputDown(InputState.INPUT_CANCEL)) ChangeOrder(OrderStatus.ALLSTOP);
 
             if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.THROW);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
             //// 持ち上げサンプル
             if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
+            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT);
 
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
@@ -339,14 +346,51 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         // 命令がない場合は返す
         // if (!CheckrOrder(order, orderNum) || (m_OrderStatus[orderNum] == order) || m_Hp == 0)
         if (!CheckOrder(order, orderNum) || (m_OrderStatus[orderNum] == order)) return;
-        print("命令承認！:" + orderNum.ToString() + ":" + m_OrderStatus[orderNum].ToString());
-        // 最後の行動
-        m_Orders[orderNum][m_OrderStatus[orderNum]].EndAction(gameObject);
+        //print("命令承認！:" + orderNum.ToString() + ":" + m_OrderStatus[orderNum].ToString());
+
+        // マルチオーダーの場合
+        if (orderNum == OrderNumber.TWO)
+        {
+            // 全命令の最後の行動を呼び出し
+            m_Orders[OrderNumber.ONE][m_OrderStatus[OrderNumber.ONE]].EndAction(gameObject);
+            m_Orders[OrderNumber.TWO][m_OrderStatus[OrderNumber.TWO]].EndAction(gameObject);
+            m_Orders[OrderNumber.THREE][m_OrderStatus[OrderNumber.THREE]].EndAction(gameObject);
+            m_OrderStatus[OrderNumber.ONE] = OrderStatus.STOP;
+            m_OrderStatus[OrderNumber.TWO] = OrderStatus.STOP;
+            m_OrderStatus[OrderNumber.THREE] = OrderStatus.STOP;
+        }
+        else
+        {
+            // 最後の行動
+            m_Orders[orderNum][m_OrderStatus[orderNum]].EndAction(gameObject);
+            //// 命令状態の変更
+            //m_OrderStatus[orderNum] = order;
+            //m_StateTimer = 0.0f;
+            //// 最初の行動
+            //m_ChangeOrders[number](orderNum, dir, m_ActionObject);
+        }
+
+        //m_Orders[orderNum][m_OrderStatus[orderNum]].EndAction(gameObject);
+        //StartCoroutine(DelayChange(order, orderNum, dir, number));
+
         // 命令状態の変更
         m_OrderStatus[orderNum] = order;
         m_StateTimer = 0.0f;
         // 最初の行動
         m_ChangeOrders[number](orderNum, dir, m_ActionObject);
+    }
+
+    private IEnumerator DelayChange(OrderStatus order, OrderNumber orderNum, OrderDirection dir, int number)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        // 命令状態の変更
+        m_OrderStatus[orderNum] = order;
+        m_StateTimer = 0.0f;
+        // 最初の行動
+        m_ChangeOrders[number](orderNum, dir, m_ActionObject);
+
+        yield return null;
     }
 
     // 指定した命令があるかの確認を行います
@@ -375,6 +419,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     {
         m_Animations.Add(UndroidAnimationStatus.IDEL, "Idel");
         m_Animations.Add(UndroidAnimationStatus.WALK, "Walk");
+        m_Animations.Add(UndroidAnimationStatus.TURN, "Turn");
+        m_Animations.Add(UndroidAnimationStatus.LIFT, "Lift");
+        m_Animations.Add(UndroidAnimationStatus.PUT, "Put");
+        m_Animations.Add(UndroidAnimationStatus.THROW, "Throw");
         m_Animations.Add(UndroidAnimationStatus.ATTACK, "Attack");
         m_Animations.Add(UndroidAnimationStatus.ATTACK_OBJECT, "ObjectAttack");
     }
@@ -449,10 +497,15 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     #region ジェネラルインターフェース
     // ダメージ処理の呼び出し
     public void onDamage(int amount) {
-        m_Hp = Mathf.Clamp(m_Hp - 1, 0, m_MaxHp);
-        //m_Hp = Mathf.Min(m_Hp - amount, 0);
-        // 体力が0になっていたら、
-        if (m_Hp == 0) print("アンドロイド停止");
+        if (m_Hp == 0) return;
+
+        m_Hp = Mathf.Clamp(m_Hp - amount, 0, m_MaxHp);
+        // 体力が0になっていたら、回復待機
+        if (m_Hp == 0)
+        {
+            print("アンドロイド停止");
+            HealIdel();
+        }
     }
 
     public void onShock() { }
@@ -567,6 +620,16 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         m_IsJamming = false;
     }
     #endregion
+    #endregion
+
+    #region 体力関数
+    // 回復待機
+    public IEnumerator HealIdel()
+    {
+        yield return new WaitForSeconds(m_HealIdelTime);
+        // 回復
+        m_Hp = m_MaxHp;
+    }
     #endregion
 
     #region 衝突判定関数

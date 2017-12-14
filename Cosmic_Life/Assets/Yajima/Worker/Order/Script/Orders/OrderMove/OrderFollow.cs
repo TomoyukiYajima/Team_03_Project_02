@@ -47,9 +47,8 @@ public class OrderFollow : Order {
         // プレイヤーの後ろの位置に移動
         if (m_Player == null)
         {
-            // プレイヤーがいなければ失敗
-            SetFaildText();
-            EndOrder(obj);
+            // プレイヤーがいなければ命令失敗
+            FaildOrder(obj);
             return;
         }
 

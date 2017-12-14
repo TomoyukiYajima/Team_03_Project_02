@@ -38,6 +38,12 @@ public class OrderLiftUp : OrderLift {
 
             return;
         }
+        else
+        {
+            // 命令失敗
+            FaildOrder(obj);
+            return;
+        }
 
         //EndOrder(obj);
         // 持ち上げるオブジェクトの捜索

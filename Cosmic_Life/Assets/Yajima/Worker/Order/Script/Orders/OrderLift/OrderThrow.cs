@@ -44,7 +44,8 @@ public class OrderThrow : Order {
         // 何も持っていなければ、空の命令に変更
         if (!m_LiftManager.CheckLiftObject(obj))
         {
-            ChangeOrder(obj, OrderStatus.STOP);
+            // 命令失敗
+            FaildOrder(obj);
             return;
         }
 
@@ -60,6 +61,7 @@ public class OrderThrow : Order {
         // 持ち上げているオブジェクトの衝突判定を設定する
         GameObject collider = m_LiftManager.GetLiftObject().transform.Find("Collider").gameObject;
         if (collider != null) collider.SetActive(true);
+        ChangeAnimation(obj, UndroidAnimationStatus.THROW);
 
         // 空の状態に遷移
         ChangeOrder(obj, OrderStatus.STOP);

@@ -54,17 +54,49 @@ public class OrderTurn : DirectionOrder {
     {
         //if()
         //base.UpdateAction(deltaTime, obj, actionObj);
+        if(actionObj == null)
+        {
+            EndOrder(obj);
+            return;
+        }
 
-        // 相手との距離を求める
-        Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
-        Vector2 dir = (new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos).normalized;
-        Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z).normalized;
-        float rad = dir.x * dir2.y + dir2.x * dir.y;
-        if (rad < 0.0f) m_Direction = 1;
-        else m_Direction = -1;
+        // 対象との角度計算
+        //var player = GameObject.Find("Player");
+        var pos = actionObj.transform.position;
+        pos.y = obj.transform.position.y;
+        var dir = actionObj.transform.position - obj.transform.position;
+        dir = dir.normalized;
+        var cross = Vector3.Cross(obj.transform.forward, dir);
+        // cross.y < 0.0f 左
+        //print(cross);
+        var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
+        degree += obj.transform.forward.z * 270;
+        if (degree < 0.0f) degree += 360;
+        if (degree > 360) degree -= 360;
+        if (cross.y < 0.0f) m_Direction = -1;
+        else m_Direction = 1;
+
+        if (Mathf.Abs(cross.y) < 0.05f && (degree < m_Undroid.GetRotateSpeed() && degree > -m_Undroid.GetRotateSpeed()))
+        {
+            obj.transform.Rotate(obj.transform.up, Mathf.Abs(degree) * m_Direction * deltaTime);
+            EndOrder(obj);
+            return;
+        }
+
+        //if(degree)
         // 回転
         obj.transform.Rotate(obj.transform.up, m_Undroid.GetRotateSpeed() * m_Direction * deltaTime);
-        print(rad);
+
+        //// 相手との距離を求める
+        //Vector2 pos = new Vector2(obj.transform.position.x, obj.transform.position.z);
+        //Vector2 dir = (new Vector2(actionObj.transform.position.x, actionObj.transform.position.z) - pos).normalized;
+        //Vector2 dir2 = new Vector2(obj.transform.forward.x, obj.transform.forward.z).normalized;
+        //float rad = dir.x * dir2.y + dir2.x * dir.y;
+        //if (rad < 0.0f) m_Direction = 1;
+        //else m_Direction = -1;
+        //// 回転
+        //obj.transform.Rotate(obj.transform.up, m_Undroid.GetRotateSpeed() * m_Direction * deltaTime);
+        //print(rad);
     }
 
     public override void EndAction(GameObject obj)

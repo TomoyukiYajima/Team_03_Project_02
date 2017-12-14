@@ -25,7 +25,9 @@ public class OrderTakeDown : Order {
         // 何も持っていなければ、空の命令に変更
         if (!m_LiftManager.CheckLiftObject(obj))
         {
-            ChangeOrder(obj, OrderStatus.NULL);
+            //ChangeOrder(obj, OrderStatus.NULL);
+            // 命令失敗
+            FaildOrder(obj);
             return;
         }
 

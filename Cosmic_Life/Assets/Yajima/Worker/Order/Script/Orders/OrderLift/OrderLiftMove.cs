@@ -28,7 +28,9 @@ public class OrderLiftMove : MonoBehaviour {
         // もし何も持っていなければ、返す
         if (liftObj.childCount == 0)
         {
-            print("何も持っていません");
+            //print("何も持っていません");
+            // 命令失敗
+            //FaildOrder(obj);
             return;
         }
 

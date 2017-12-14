@@ -207,9 +207,18 @@ public class Order : MonoBehaviour {
     }
 
     // 失敗時に表示する命令テキスト
-    protected void SetFaildText()
+    private void SetFaildText()
     {
         if (setText != null) setText(m_FaildText);
+    }
+
+    // 命令の失敗
+    protected void FaildOrder(GameObject obj)
+    {
+        // 命令承認失敗SEの再生
+        SoundManager.Instance.PlaySe("SE_Undroid_Error");
+        SetFaildText();
+        EndOrder(obj);
     }
 
     // アニメーションの変更
