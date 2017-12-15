@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class DroneAttack : EnemyState
 {
+    enum DroneAttackState
+    {
+        ChaseState,
+        Explosion
+    }
+
+    private DroneAttackState m_AttackState;
     private DroneEnemy m_DroneEnemy;
 
     [SerializeField]
@@ -19,7 +26,7 @@ public class DroneAttack : EnemyState
 
     // Use this for initialization
     void Start () {
-		
+        m_AttackState = DroneAttackState.ChaseState;
 	}
 	
 	// Update is called once per frame
@@ -27,27 +34,39 @@ public class DroneAttack : EnemyState
 		
 	}
 
+    //IEnumerator Explosion()
+    //{
+    //    m_Collide.SetActive(true);
+
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    Destroy(m_DroneEnemy.gameObject);
+    //}
+
     public override void Action(float deltaTime, Enemy enemy)
     {
         if (m_DroneEnemy == null) m_DroneEnemy = enemy.GetComponent<DroneEnemy>();
 
-        if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetTarget().transform.position) > m_StopDistance)
+        if (m_AttackState == DroneAttackState.ChaseState)
         {
-            Vector3 relativePos = m_DroneEnemy.GetTarget().transform.position - m_DroneEnemy.transform.position;
-            m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
-        }
-        else
-        {
-            m_DroneEnemy.m_Speed = 0.0f;
-
-            if (m_SetExplosionTime > m_Timer)
+            if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetTarget().transform.position) > m_StopDistance)
             {
-                m_Timer += Time.deltaTime;
-
+                Vector3 relativePos = m_DroneEnemy.GetTarget().transform.position - m_DroneEnemy.transform.position;
+                m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
             }
             else
             {
-                m_Collide.SetActive(true);
+                m_DroneEnemy.m_Speed = 0.0f;
+                m_AttackState = DroneAttackState.Explosion;
+            }
+        }
+        else if (m_AttackState == DroneAttackState.Explosion)
+        {
+            if (m_SetExplosionTime > m_Timer) m_Timer += Time.deltaTime;
+            
+            else
+            {
+                Instantiate(m_Collide, m_DroneEnemy.transform.position, m_DroneEnemy.transform.rotation);
                 Destroy(m_DroneEnemy.gameObject);
             }
         }

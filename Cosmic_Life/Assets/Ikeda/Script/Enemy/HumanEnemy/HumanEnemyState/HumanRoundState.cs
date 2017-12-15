@@ -47,7 +47,6 @@ public class HumanRoundState : EnemyState
             {
                 l_HumanEnemy.ChangeState(EnemyStatus.Attack);
             }
-
         }
     }
 

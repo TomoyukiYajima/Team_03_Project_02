@@ -139,6 +139,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     {
         if (IsDead())
         {
+            //SoundManager.Instance.PlaySe("");
             Destroy(gameObject);
         }
     }
