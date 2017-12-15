@@ -465,15 +465,57 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0.12821753
+      outSlope: 0.12821753
+      tangentMode: 0
     - serializedVersion: 2
-      time: 1
+      time: 0.4501097
+      value: 0.30981514
+      inSlope: 1.183847
+      outSlope: 1.6758869
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.6
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 8.445832
+      outSlope: -2.1996932
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.84596044
+      value: 0.70004183
+      inSlope: -0.3523734
+      outSlope: 0.52050126
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 0.9
+      value: 1
+      inSlope: 9.812559
+      outSlope: -1.5897384
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.0235276
+      value: 0.9010696
+      inSlope: 0.041073322
+      outSlope: 2.7195656
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.05
+      value: 1
+      inSlope: 6.2805057
+      outSlope: -1.1210407
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.12
+      value: 0.95
+      inSlope: -0.50810695
+      outSlope: 0.64696264
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.15
+      value: 1
+      inSlope: 3.7115674
+      outSlope: 3.7115674
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
@@ -626,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b33585ccd270924dbf2bb4fbe31005b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_currentScene: 0
+  m_currentScene: 1
 --- !u!114 &114390658498441606
 MonoBehaviour:
   m_ObjectHideFlags: 1

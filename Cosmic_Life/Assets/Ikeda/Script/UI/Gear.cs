@@ -17,6 +17,8 @@ public class Gear : MonoBehaviour
 
     [SerializeField]
     private float m_Angle;
+    [SerializeField]
+    private float m_AngleResistance = 4.0f;
 
     private float m_StorageAngle;
 
@@ -37,12 +39,12 @@ public class Gear : MonoBehaviour
             case GearState.SpeedDownState:
                 if (m_Angle > 0)
                 {
-                    m_Angle -= Time.deltaTime * 4.0f;
+                    m_Angle -= Time.deltaTime * m_AngleResistance;
                     if (m_Angle <= 0) AngleZero();
                 }
                 else if (m_Angle < 0)
                 {
-                    m_Angle += Time.deltaTime * 4.0f;
+                    m_Angle += Time.deltaTime * m_AngleResistance;
                     if (m_Angle >= 0) AngleZero();
                 }
                 break;
@@ -50,17 +52,19 @@ public class Gear : MonoBehaviour
             case GearState.SpeedUpState:
                 if (m_StorageAngle > 0)
                 {
-                    m_Angle -= Time.deltaTime * 4.0f;
-                    if (m_Angle <= -10) m_Angle = -10.0f;
+                    m_Angle = Mathf.Max(m_Angle - Time.deltaTime * m_AngleResistance, -10.0f);
+
+                    //m_Angle -= Time.deltaTime * m_AngleResistance;
+                    //if (m_Angle <= -10) m_Angle = -10.0f;
                 }
                 else if (m_StorageAngle < 0)
                 {
-                    m_Angle += Time.deltaTime * 4.0f;
+                    m_Angle += Time.deltaTime * m_AngleResistance;
                     if (m_Angle >= 10) m_Angle = 10.0f;
                 }
                 break;
         }
-        transform.Rotate(new Vector3(0, 0, m_Angle));
+        transform.Rotate(Vector3.forward * m_Angle);
     }
 
     public void AngleZero()

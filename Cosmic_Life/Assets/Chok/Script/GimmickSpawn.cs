@@ -8,6 +8,7 @@ public class GimmickSpawn : GimmickBase {
     [SerializeField] private Transform[] m_playerPos;
     [SerializeField] private GameObject[] m_doors;
     [SerializeField] private GameObject[] m_spawnObj;
+    [SerializeField] private GameObject m_ClearUI;
 
     public override void onActivate()
     {
@@ -23,7 +24,8 @@ public class GimmickSpawn : GimmickBase {
             if (enemy != null) return;
             else continue;
         }
-        SceneMgr.Instance.SceneTransition(SceneType.Title);
+        m_ClearUI.SetActive(true);
+        //SceneMgr.Instance.SceneTransition(SceneType.Title);
     }
 
     private IEnumerator Activate()

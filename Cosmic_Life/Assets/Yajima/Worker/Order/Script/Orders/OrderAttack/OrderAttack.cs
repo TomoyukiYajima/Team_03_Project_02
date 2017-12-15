@@ -32,6 +32,8 @@ public class OrderAttack : Order {
     // 動かすオブジェクト
     protected GameObject m_MoveObject;
 
+    private bool m_IsAttackEnd = false;
+
     // Use this for initialization
     public override void Start()
     {
@@ -53,6 +55,7 @@ public class OrderAttack : Order {
         m_MoveObject.transform.DOLocalMove(m_StopPoint.localPosition, m_AttackTime);
         m_Timer = 0.0f;
         m_IsEndOrder = false;
+        m_IsAttackEnd = false;
 
         ChangeAnimation(obj, UndroidAnimationStatus.ATTACK);
     }
@@ -113,20 +116,26 @@ public class OrderAttack : Order {
 
         if (m_Timer < m_AttackTime + m_DelayTime + m_BackTime) return;
 
-        // 攻撃終了処理
-        // イベントでの終了処理
-        EndOrder(obj);
-        m_IsAttack = true;
-        var order = m_OrderState;
-        // 攻撃を終了する場合は、停止命令に変更する
-        if (m_ActionObject == null || m_ActionObject.tag != "Enemy")
-        {
-            order = OrderStatus.STOP;
-            //EndOrder(obj);
-            //return;
+        //// 攻撃終了処理
+        //// イベントでの終了処理
+        ////EndOrder(obj);
+        //m_IsAttack = true;
+
+        if (!m_IsAttackEnd) {
+            m_IsAttackEnd = true;
+            StartCoroutine(Attack(obj, deltaTime));
         }
-        // 状態の変更
-        ChangeOrder(obj, order);
+
+        //var order = m_OrderState;
+        //// 攻撃を終了する場合は、停止命令に変更する
+        //if (m_ActionObject == null || m_ActionObject.tag != "Enemy")
+        //{
+        //    //order = OrderStatus.STOP;
+        //    EndOrder(obj);
+        //    return;
+        //}
+        //// 状態の変更
+        //ChangeOrder(obj, order);
     }
 
     public override void StopAction(GameObject obj)
@@ -140,6 +149,7 @@ public class OrderAttack : Order {
         //m_IsEndOrder = false;
         if (m_Collider.activeSelf) m_Collider.SetActive(false);
         m_MoveObject.transform.position = m_StartPoint.position;
+        m_IsAttackEnd = false;
     }
 
     // 持っているオブジェクトの移動
@@ -150,4 +160,45 @@ public class OrderAttack : Order {
 
     // 攻撃を終了したかを返します
     public bool IsAttackEnd() { return m_IsAttack; }
+
+    private IEnumerator Attack(GameObject obj, float deltaTime)
+    {
+        //m_Timer += deltaTime;
+        //if (m_Timer < m_AttackTime + m_DelayTime) yield return null;
+
+        //// 攻撃戻り処理
+        //if (m_IsAttack)
+        //{
+        //    // 戻る場合
+        //    MoveObject();
+        //    // 攻撃判定を非アクティブ状態に変更する
+        //    if (m_Collider != null) m_Collider.SetActive(false);
+        //    m_IsAttack = false;
+        //}
+
+        //if (m_Timer < m_AttackTime + m_DelayTime + m_BackTime) yield return null;
+
+        yield return new WaitForSeconds(0.5f);
+
+        m_IsAttack = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        var order = m_OrderState;
+        // 攻撃を終了する場合は、停止命令に変更する
+        if (m_ActionObject == null || m_ActionObject.tag != "Enemy")
+        {
+            //order = OrderStatus.STOP;
+            EndOrder(obj);
+            //return;
+            //yield return null;
+        }
+        else
+        {
+            // 状態の変更
+            ChangeOrder(obj, order);
+        }
+
+        yield return null;
+    }
 }

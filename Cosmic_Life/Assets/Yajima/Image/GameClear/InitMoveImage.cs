@@ -37,6 +37,7 @@ public class InitMoveImage : MonoBehaviour {
             m_MoveImages[i].transform.DOMove(m_MovePoints[i].position, m_MoveTime);
         }
 
+        SoundManager.Instance.PlaySe("SE_Stage_Clear");
         // StartCoroutine(Flash(color, time));
     }
 

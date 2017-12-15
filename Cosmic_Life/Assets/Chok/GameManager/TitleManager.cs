@@ -7,7 +7,7 @@ public class TitleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SoundManager.Instance.PlayBgm("TitleBGM2");
+        SoundManager.Instance.PlayBgm("BGM_Title");
 	}
 	
 	// Update is called once per frame

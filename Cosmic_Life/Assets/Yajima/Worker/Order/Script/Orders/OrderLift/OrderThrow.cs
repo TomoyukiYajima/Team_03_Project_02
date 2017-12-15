@@ -62,6 +62,8 @@ public class OrderThrow : Order {
         GameObject collider = m_LiftManager.GetLiftObject().transform.Find("Collider").gameObject;
         if (collider != null) collider.SetActive(true);
         ChangeAnimation(obj, UndroidAnimationStatus.THROW);
+        // SEの再生
+        SoundManager.Instance.PlaySe("SE_Container_Bound");
 
         // 空の状態に遷移
         ChangeOrder(obj, OrderStatus.STOP);

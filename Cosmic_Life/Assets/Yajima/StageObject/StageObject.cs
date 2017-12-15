@@ -9,6 +9,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 子オブジェクト
     [SerializeField]
     private GameObject m_Child;
+    // 持ち上げポイント
+    [SerializeField]
+    private Transform m_LiftPoint;
 
     // 元の親オブジェクト
     private Transform m_RootParent;

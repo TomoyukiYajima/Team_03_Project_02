@@ -61,7 +61,7 @@ public class Cursor : MonoBehaviour {
         // カーソルが指定座標に辿り着いる場合は返す。
         //if (m_Buttones[m_ButtonCount].transform.position == this.transform.position) return;
         if (m_ButtonCount == prevCount) return;
-        SoundManager.Instance.PlaySe("SelectSE");
+        SoundManager.Instance.PlaySe("SE_Select");
         this.transform.DOMove(m_Buttones[m_ButtonCount].transform.position, m_MoveTime);
         // m_Buttones[m_ButtonCount].Flash();
         // 発光処理処理の停止

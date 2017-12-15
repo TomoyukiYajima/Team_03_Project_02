@@ -7,6 +7,9 @@ public class OrderEnemyAttack : MultOrder {
     private bool m_IsAttack = false;
 
     private bool m_IsRotate = false;
+    // 到着したか
+    private bool m_IsGoal = false; 
+
     // Use this for initialization
     public override void Start()
     {
@@ -26,6 +29,7 @@ public class OrderEnemyAttack : MultOrder {
     public override void StartAction(GameObject obj, GameObject actionObj)
     {
         m_IsAttack = false;
+        m_IsGoal = false;
 
         // 対象が敵でなければ、停止させる
         if (actionObj == null || actionObj.tag != "Enemy")
@@ -56,10 +60,22 @@ public class OrderEnemyAttack : MultOrder {
 
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
+        if (actionObj == null)
+        {
+            // 攻撃命令の取得
+            var orderAttack = m_MultOrders[OrderStatus.ATTACK].GetComponent<OrderAttack>();
+            if (!orderAttack.IsAttackEnd()) return;
+            m_MultOrders[OrderStatus.MOVE].EndOrder(obj);
+            m_MultOrders[OrderStatus.TURN].EndOrder(obj);
+            m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
+            EndOrder(obj);
+            return;
+        }
+
         if (m_IsAttack)
         {
             Attack(deltaTime, obj, actionObj);
-            return;
+            //return;
         }
 
         var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
@@ -76,6 +92,8 @@ public class OrderEnemyAttack : MultOrder {
             if (degree < 0.0f) degree += 360;
             if (degree > 360) degree -= 360;
 
+            m_IsGoal = true;
+
             // cross.y < 0.0f 左
             if (Mathf.Abs(cross.y) > 0.05f && (degree > 10.0f || degree < -10.0f))
             {
@@ -91,14 +109,42 @@ public class OrderEnemyAttack : MultOrder {
                     m_IsRotate = true;
                 }
 
+                //Attack(deltaTime, obj, actionObj);
+                if (!m_IsAttack)
+                {
+                    ChangeOrder(obj, OrderStatus.ATTACK);
+                    // 攻撃
+                    m_IsAttack = true;
+                    //return;
+                }
+                //// 攻撃
+                //m_IsAttack = true;
+
                 return;
             }
 
-            //Attack(deltaTime, obj, actionObj);
-            ChangeOrder(obj, OrderStatus.ATTACK);
+            ////Attack(deltaTime, obj, actionObj);
+            if (!m_IsAttack)
+            {
+                ChangeOrder(obj, OrderStatus.ATTACK);
+                m_IsRotate = false;
+                m_IsAttack = true;
+                return;
+            }
             // 攻撃
-            m_IsAttack = true;
-            return;
+            //m_IsAttack = true;
+            //return;
+        }
+        else
+        {
+            if (m_IsGoal)
+            {
+                m_MultOrders[OrderStatus.TURN].EndOrder(obj);
+                m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
+                // 移動再開
+                ChangeOrder(obj, OrderStatus.MOVE);
+                m_IsGoal = false;
+            }
         }
         //base.UpdateAction(deltaTime, obj, actionObj);
 
@@ -126,6 +172,7 @@ public class OrderEnemyAttack : MultOrder {
         // 相手を倒していたら、停止状態に遷移する
         if (actionObj == null)
         {
+            m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
             EndOrder(obj);
             return;
         }
@@ -138,6 +185,7 @@ public class OrderEnemyAttack : MultOrder {
                 Worker worker = obj.GetComponent<Worker>();
                 worker.ChangeAgentMovePoint(actionObj.transform.position);
             }
+            //m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
 
             m_IsAttack = false;
             m_IsRotate = false;
