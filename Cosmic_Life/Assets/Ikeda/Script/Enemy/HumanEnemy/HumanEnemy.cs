@@ -57,7 +57,8 @@ public class HumanEnemy : Enemy
         m_EyePoint = transform.Find("EyePoint");
 
         //目的地を設定する
-        SetNewPatrolPointToDestination();
+        if (transform.FindChild("StateList").FindChild("RoundState").GetComponent<HumanRoundState>().GetIsRound())
+            SetNewPatrolPointToDestination();
 
     }
 
@@ -73,6 +74,7 @@ public class HumanEnemy : Enemy
 
         //Enemyが見つけたか調べる
         if (!CheckFindTarget()) return;
+
         //見つけていないEnemyの状態を変更
         ChangeNonFindEnemy();
     }

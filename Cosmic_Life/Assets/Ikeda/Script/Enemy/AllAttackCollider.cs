@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class AttackCollider : MonoBehaviour {
+public class AllAttackCollider : MonoBehaviour {
 
     [SerializeField]
     private int m_Damage;
