@@ -9,6 +9,12 @@ public class HumanEnemyAttackCollide : MonoBehaviour
     [SerializeField]
     private int m_Damage;
 
+    [SerializeField, Tooltip("ノックバックの強さの設定")]
+    private float m_KnockBack;
+
+    //[SerializeField]
+    //private float m_KnockBackUp;
+
     // Use this for initialization
     void Start()
     {
@@ -29,5 +35,8 @@ public class HumanEnemyAttackCollide : MonoBehaviour
         if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(collision.gameObject)) return;
         //実行
         ExecuteEvents.Execute<IGeneralEvent>(collision.gameObject, null, (e, d) => { e.onDamage(m_Damage); });
+        Vector3 relativePos = collision.transform.position - transform.position;
+        Rigidbody rb = collision.transform.GetComponent<Rigidbody>();
+        rb.AddForce(/*(Vector3.up * m_KnockBackUp) + */((-relativePos) * m_KnockBack));
     }
 }

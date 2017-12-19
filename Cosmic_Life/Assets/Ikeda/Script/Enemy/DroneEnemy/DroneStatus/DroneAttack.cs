@@ -51,7 +51,7 @@ public class DroneAttack : EnemyState
         {
             if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetTarget().transform.position) > m_StopDistance)
             {
-                Vector3 relativePos = m_DroneEnemy.GetTarget().transform.position - m_DroneEnemy.transform.position;
+                Vector3 relativePos = (m_DroneEnemy.GetTarget().transform.position + m_DroneEnemy.transform.up * 1.0f) - m_DroneEnemy.transform.position;
                 m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
             }
             else
