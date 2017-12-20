@@ -115,6 +115,8 @@ public class StageObject : MonoBehaviour, IGeneralEvent
                 // 衝突判定も消す
                 GameObject collider = this.transform.Find("Collider").gameObject;
                 if (collider != null) collider.SetActive(false);
+                GameObject colliderStop = this.transform.Find("Collider_Stop").gameObject;
+                if (colliderStop != null) colliderStop.SetActive(false);
             }
         }
     }

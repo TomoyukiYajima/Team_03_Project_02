@@ -92,6 +92,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1183981480666058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4806926435232750}
+  - component: {fileID: 33059676297207490}
+  - component: {fileID: 65021461174656634}
+  - component: {fileID: 23143189564920972}
+  m_Layer: 2
+  m_Name: Collider_Stop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1193752295105590
 GameObject:
   m_ObjectHideFlags: 1
@@ -241,7 +259,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727727996551586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CenterPoint
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
@@ -256,7 +274,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4116491115136574}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,9 +293,9 @@ GameObject:
   - component: {fileID: 65648830181043606}
   - component: {fileID: 23721419052627370}
   - component: {fileID: 114131520050983378}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +308,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4583696991590466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +347,7 @@ GameObject:
   - component: {fileID: 114684021819631010}
   m_Layer: 0
   m_Name: IronPlane
-  m_TagString: Untagged
+  m_TagString: StageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4101549328700248}
   - component: {fileID: 111960001204818180}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Girder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +456,7 @@ GameObject:
   - component: {fileID: 4579365427876536}
   - component: {fileID: 33376487747050434}
   - component: {fileID: 23367839840162328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Girder_01_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +512,7 @@ Transform:
   - {fileID: 4245157071934928}
   - {fileID: 4747727161453298}
   m_Father: {fileID: 4142269572147096}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4101549328700248
 Transform:
@@ -510,7 +528,7 @@ Transform:
   - {fileID: 4579365427876536}
   - {fileID: 4116491115136574}
   m_Father: {fileID: 4142269572147096}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4116491115136574
 Transform:
@@ -552,9 +570,10 @@ Transform:
   - {fileID: 4727727996551586}
   - {fileID: 4191405068968870}
   - {fileID: 4842835796188170}
+  - {fileID: 4545842571764936}
+  - {fileID: 4806926435232750}
   - {fileID: 4048476027832984}
   - {fileID: 4101549328700248}
-  - {fileID: 4545842571764936}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -741,7 +760,7 @@ Transform:
   m_LocalScale: {x: 10, y: 2, z: 0.8}
   m_Children: []
   m_Father: {fileID: 4142269572147096}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4579365427876536
 Transform:
@@ -821,6 +840,19 @@ Transform:
   m_Father: {fileID: 4048476027832984}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4806926435232750
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183981480666058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10.1, y: 1.5, z: 0.79}
+  m_Children: []
+  m_Father: {fileID: 4142269572147096}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4842835796188170
 Transform:
   m_ObjectHideFlags: 1
@@ -854,6 +886,38 @@ Transform:
   m_Father: {fileID: 4842835796188170}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23143189564920972
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183981480666058}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: d9979bf84f3618b45810745d2488b28f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23155245800862770
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1149,6 +1213,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092467706512516}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33059676297207490
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183981480666058}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33081482609555620
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1220,6 +1291,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!65 &65021461174656634
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1183981480666058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65080291198949392
 BoxCollider:
   m_ObjectHideFlags: 1

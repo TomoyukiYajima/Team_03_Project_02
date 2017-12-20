@@ -61,6 +61,8 @@ public class OrderThrow : Order {
         // 持ち上げているオブジェクトの衝突判定を設定する
         GameObject collider = m_LiftManager.GetLiftObject().transform.Find("Collider").gameObject;
         if (collider != null) collider.SetActive(true);
+        GameObject colliderStop = m_LiftManager.GetLiftObject().transform.Find("Collider_Stop").gameObject;
+        if (colliderStop != null) collider.SetActive(true);
         ChangeAnimation(obj, UndroidAnimationStatus.THROW);
         // SEの再生
         SoundManager.Instance.PlaySe("SE_Container_Bound");

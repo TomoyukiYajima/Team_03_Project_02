@@ -182,6 +182,8 @@ public class OrderLift : Order {
             //m_LiftMoves[m_LiftNumber](obj);
 
             Worker robot = obj.GetComponent<Worker>();
+            robot.GetNavMeshAgent().autoBraking = true;
+            //print("ブレーキ");
 
             if (m_IsGoalPoint)
             {
@@ -202,6 +204,9 @@ public class OrderLift : Order {
     // オブジェクトの登録
     protected void AddLiftObj(GameObject obj)
     {
+        Worker robot = obj.GetComponent<Worker>();
+        robot.GetNavMeshAgent().autoBraking = false;
+
         var liftObj = obj.transform.Find("LiftObject");
         //m_LiftObject.transform.parent = liftObj;
         // 親を子に変更
