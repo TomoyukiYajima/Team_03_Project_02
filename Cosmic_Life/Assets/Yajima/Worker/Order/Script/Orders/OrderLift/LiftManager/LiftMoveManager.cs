@@ -47,9 +47,10 @@ public class LiftMoveManager : MonoBehaviour {
     {
         if (m_LiftObject == null) return;
 
-        var stageObj = m_LiftObject.GetComponent<StageObject>();
+        var stageObj = m_LiftObject.transform.GetComponent<StageObject>();
+        //colliders.transform.parent = m_LiftObject.transform;
         colliders.transform.parent = m_LiftObject.transform;
-        colliders.transform.localPosition = Vector3.zero;
+        //colliders.transform.localPosition = Vector3.zero;
 
         // 剛体
         var body = stageObj.GetComponent<Rigidbody>();
@@ -58,9 +59,10 @@ public class LiftMoveManager : MonoBehaviour {
         // 重力をオンにする
         body.useGravity = true;
         // ナビメッシュオブジェクトをアクティブ状態に変更
-        var nav = m_LiftObject.GetComponent<NavMeshObstacle>();
+        var nav = m_LiftObject.transform.GetComponent<NavMeshObstacle>();
         nav.enabled = false;
         // ステージオブジェクトの親を初期化する
         stageObj.InitParent();
+        stageObj.InitCollider();
     }
 }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114647786370784242}
   m_Layer: 2
   m_Name: HumanAttackBullet
-  m_TagString: Untagged
+  m_TagString: AttackColliderE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -202,7 +202,6 @@ public class Order : MonoBehaviour {
     // UIに命令テキストの表示(更新時)
     protected void SetStartOrderText()
     {
-        //m_TextController.SetText(m_StartOrderText + "・・・");
         if (setText != null) setText(m_StartOrderText);
     }
 
@@ -211,6 +210,8 @@ public class Order : MonoBehaviour {
     {
         if (setText != null) setText(m_FaildText);
     }
+    // 表示するテキストの変更
+    protected void ChangeOrderText(string text) { m_StartOrderText = text; }
 
     // 命令の失敗
     protected void FaildOrder(GameObject obj)

@@ -9,6 +9,12 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 子オブジェクト
     [SerializeField]
     private GameObject m_Child;
+    // 衝突判定オブジェクト(複数)
+    [SerializeField]
+    private GameObject m_Colliders;
+    // 中心ポイント
+    [SerializeField]
+    private Transform m_CenterPoint;
     // 持ち上げポイント
     [SerializeField]
     private Transform m_LiftPoint;
@@ -36,6 +42,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     private List<GameObject> m_HitObjects = new List<GameObject>();
     // 衝突していたオブジェクト
     //private List<GameObject> m_PrevHitObjects = new List<GameObject>();
+
+    // 衝突判定の初期位置
+    private Vector3 m_InitPosition;
+    // 中心との距離
+    private float m_CenterLength;
 
     // 点滅するか
     //private bool m_IsFlash = false;
@@ -65,6 +76,10 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         //    //print(i);
         //}
 
+        m_InitPosition = m_Colliders.transform.localPosition;
+
+        m_CenterLength = Vector3.Distance(m_LiftPoint.position, m_CenterPoint.position);
+
         m_Rigidbody = this.GetComponent<Rigidbody>();
 
         //m_PrevPosition = this.transform.position;
@@ -83,6 +98,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         m_PravPosition = this.transform.position;
         m_PravRotate = this.transform.rotation;
         m_PravVelocity = m_Rigidbody.velocity;
+
+        // リフトポイントの座標更新
+        m_LiftPoint.position =  m_CenterPoint.position + Vector3.down * m_CenterLength;
+        //float length = Vector3.Distance(this.transform.position, m_LiftPoint.position);
+        //m_LiftPoint.position = Vector3.down * length;
 
         if (this.transform.parent == null) return;
         // アンドロイドがオブジェクトを持っていない場合
@@ -122,6 +142,12 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public void InitParent()
     {
         this.transform.parent = m_RootParent;
+    }
+
+    // コライダーの初期化
+    public void InitCollider()
+    {
+        m_Colliders.transform.localPosition = m_InitPosition;
     }
 
     // 参照しているオブジェクトの解放
@@ -294,6 +320,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public void onTakeDown() { }
     #endregion
 
+    #region 衝突判定
+    // 衝突時のアクション
+    protected virtual void CollideEnter(Collision collision) { }
+    #endregion
+
     #region Unity関数
     // 衝突判定
     public void OnCollisionEnter(Collision collision)
@@ -303,6 +334,8 @@ public class StageObject : MonoBehaviour, IGeneralEvent
             m_Rigidbody.constraints = RigidbodyConstraints.None;
             m_IsStageObjectHit = true;
         }
+
+        CollideEnter(collision);
     }
 
     public void OnCollisionExit(Collision collision)

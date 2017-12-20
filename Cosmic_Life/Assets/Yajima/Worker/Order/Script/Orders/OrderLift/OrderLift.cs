@@ -101,8 +101,6 @@ public class OrderLift : Order {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        //base.UpdateAction(deltaTime, obj);
-
         if (m_IsLift) return;
         // 持てるかのチェック
         //CheckLift(obj);
@@ -113,7 +111,6 @@ public class OrderLift : Order {
     protected override void UpdateAction(float deltaTime, GameObject obj, GameObject actionObj)
     {
         UpdateAction(deltaTime, obj);
-        //UpdateAction(deltaTime, obj, actionObj);
     }
 
     public override void EndAction(GameObject obj)
@@ -152,7 +149,7 @@ public class OrderLift : Order {
         //    return;
         //}
 
-        var dis = m_LiftObject.transform.position - this.transform.position;
+        var dis = m_LiftObject.transform.position - obj.transform.position;
         dis.y = 0.0f;
         var direction = Vector3.Normalize(dis);
         // オブジェクトの方向を向く
@@ -206,11 +203,13 @@ public class OrderLift : Order {
     protected void AddLiftObj(GameObject obj)
     {
         var liftObj = obj.transform.Find("LiftObject");
+        //m_LiftObject.transform.parent = liftObj;
+        // 親を子に変更
         m_LiftObject.transform.parent = liftObj;
         var colliders = m_LiftObject.transform.Find("Colliders");
         colliders.transform.parent = liftObj;
         // 剛体のキネマティックをオンにする
-        var body = m_LiftObject.GetComponent<Rigidbody>();
+        var body = m_LiftObject.transform.GetComponent<Rigidbody>();
         body.isKinematic = true;
         // 重力をオフにする
         body.useGravity = false;
@@ -218,16 +217,36 @@ public class OrderLift : Order {
         body.constraints = RigidbodyConstraints.None;
         m_IsLift = true;
         // ナビメッシュオブジェクトを非アクティブ状態に変更
-        var nav = m_LiftObject.GetComponent<NavMeshObstacle>();
+        var nav = m_LiftObject.transform.GetComponent<NavMeshObstacle>();
         nav.enabled = false;
 
         //var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
-        // 相手の持ち上げポイントを取得する
-        var point = m_LiftObject.transform.Find("LiftPoint");
-        float length = m_LiftPoint.transform.position.y - point.position.y;
-        m_LiftObject.transform.position += Vector3.up * length;
-        //var colliders = liftObj.GetChild(1);
-        colliders.transform.position += Vector3.up * length;
+        var plane = m_LiftObject.transform.GetComponent<IronPlane>();
+
+        if(plane != null)
+        {
+            m_LiftObject.transform.position = new Vector3(0.0f, 0.5f, 0.65f);
+            m_LiftObject.transform.Rotate(Vector3.right * 90.0f);
+
+            // UIに命令テキストの設定
+            ChangeOrderText("軽イデス");
+            SetStartOrderText();
+            ChangeAnimation(obj, UndroidAnimationStatus.LIFT);
+        }
+        else
+        {
+            // 相手の持ち上げポイントを取得する
+            var point = m_LiftObject.transform.Find("LiftPoint");
+            float length = m_LiftPoint.transform.position.y - point.position.y;
+            m_LiftObject.transform.position += Vector3.up * length;
+            //var colliders = liftObj.GetChild(1);
+            colliders.transform.position += Vector3.up * length;
+
+            // UIに命令テキストの設定
+            SetStartOrderText();
+            ChangeAnimation(obj, UndroidAnimationStatus.LIFT);
+        }
+
 
         // 持ち上げるオブジェクトがプレイヤーの場合
         // プレイヤーを持ち上げるメッセージを送る
@@ -431,9 +450,6 @@ public class OrderLift : Order {
             // エージェントの停止処理
             Worker robot = obj.GetComponent<Worker>();
             robot.AgentStop();
-            // UIに命令テキストの設定
-            SetStartOrderText();
-            ChangeAnimation(obj, UndroidAnimationStatus.LIFT);
             // 終了処理
             //EndOrder(obj);
             return;

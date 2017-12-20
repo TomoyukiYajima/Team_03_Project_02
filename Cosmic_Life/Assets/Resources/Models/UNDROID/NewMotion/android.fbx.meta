@@ -72,6 +72,18 @@ ModelImporter:
     100128: mixamorig:Spine
     100130: mixamorig:Spine1
     100132: mixamorig:Spine2
+    100134: pCube29
+    100136: pCube3
+    100138: pCube30
+    100140: pCube31
+    100142: pCube32
+    100144: pCube33
+    100146: pSphere3
+    100148: pSphere4
+    100150: pSphere5
+    100152: pSphere7
+    100154: pSphere8
+    100156: pSphere9
     400000: ' 1'
     400002: //RootNode
     400004: mixamorig:Head
@@ -139,6 +151,21 @@ ModelImporter:
     400128: mixamorig:Spine
     400130: mixamorig:Spine1
     400132: mixamorig:Spine2
+    400134: pCube29
+    400136: pCube3
+    400138: pCube30
+    400140: pCube31
+    400142: pCube32
+    400144: pCube33
+    400146: pSphere3
+    400148: pSphere4
+    400150: pSphere5
+    400152: pSphere7
+    400154: pSphere8
+    400156: pSphere9
+    2300000: pSphere9
+    3300000: pSphere9
+    4300000: pSphere9
     7400000: mixamo.com
     9500000: //RootNode
     13700000: ' 1'

@@ -56,7 +56,7 @@ public class OrderThrow : Order {
         // 方向によってベクトルの加算を行う
         m_Velocity = (obj.transform.forward + m_Velocities[m_Dir]).normalized;
         GameObject obj2 = m_LiftManager.GetLiftObject();
-        Rigidbody body = m_LiftManager.GetLiftObject().GetComponent<Rigidbody>();
+        Rigidbody body = m_LiftManager.GetLiftObject().transform.GetComponent<Rigidbody>();
         body.AddForce(m_Velocity * m_Power, ForceMode.Impulse);
         // 持ち上げているオブジェクトの衝突判定を設定する
         GameObject collider = m_LiftManager.GetLiftObject().transform.Find("Collider").gameObject;

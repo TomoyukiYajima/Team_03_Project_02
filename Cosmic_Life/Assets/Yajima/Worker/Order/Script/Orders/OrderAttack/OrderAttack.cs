@@ -148,6 +148,10 @@ public class OrderAttack : Order {
         //base.EndAction();
         //m_IsEndOrder = false;
         if (m_Collider.activeSelf) m_Collider.SetActive(false);
+        // iTweeの停止
+        //Tween
+        //this.transform.DOComplete();
+        m_MoveObject.transform.DOLocalMove(m_StopPoint.localPosition, m_AttackTime).Complete();
         m_MoveObject.transform.position = m_StartPoint.position;
         m_IsAttackEnd = false;
     }

@@ -57,6 +57,7 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         if (m_Keys[m_CurrentKeyCount].time < m_CurveTime)
         {
             SoundManager.Instance.PlaySe("SE_Loading_02");
+            SoundManager.Instance.StopSe("SE_Loading_01");
             // 機能しない
             //SoundManager.Instance.ChangeSeVolume("SE_Loading_02", 0.5f - m_CurrentKeyCount * 0.1f);
             m_CurrentKeyCount++;
@@ -80,8 +81,8 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         // SEの再生
         name = "SE_Loading_01";
         SoundManager.Instance.PlaySe(name);
-        SoundManager.Instance.StopSe(name);
-        //StopSe(name, m_OpenTime);
+        //SoundManager.Instance.StopSe(name);
+        StartCoroutine(StopSe(name, m_OpenTime));
     }
 
     //ドアを閉める
@@ -93,6 +94,7 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         // 
         m_CurrentKeyCount = 0;
         m_CurveTime = 0.0f;
+        SoundManager.Instance.PlaySe("SE_Loading_01");
     }
 
     //ドアが開いたか返す
