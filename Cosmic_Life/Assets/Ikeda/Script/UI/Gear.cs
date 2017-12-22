@@ -52,7 +52,7 @@ public class Gear : MonoBehaviour
             case GearState.SpeedUpState:
                 if (m_StorageAngle > 0)
                 {
-                    m_Angle = Mathf.Max(m_Angle - Time.deltaTime * m_AngleResistance, m_StorageAngle);
+                    m_Angle = Mathf.Max(m_Angle - Time.deltaTime * m_AngleResistance, -m_StorageAngle);
 
                     //m_Angle -= Time.deltaTime * m_AngleResistance;
                     //if (m_Angle <= -10) m_Angle = -10.0f;

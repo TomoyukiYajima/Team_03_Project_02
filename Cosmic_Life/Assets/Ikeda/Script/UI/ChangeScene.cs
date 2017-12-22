@@ -76,6 +76,11 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         m_LeftDoor.transform.DOLocalMoveX(-960,m_OpenTime).SetEase(Ease.InQuart).OnComplete(() =>
         {
             m_IsOpenDoor = true;
+            //ギアの状態を初期化する
+            foreach (Gear gear in m_Gears)
+            {
+                gear.SetGearState(Gear.GearState.SpeedDownState);
+            }
         });
 
         // SEの再生

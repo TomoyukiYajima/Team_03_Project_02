@@ -22,6 +22,7 @@ public class PatrolState : EnemyState
         //見えた場合
         if (enemy.GetComponent<WalkEnemy>().CanSeePlayerAndRobot())
         {
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //見えなくて、目的地に到着した場合

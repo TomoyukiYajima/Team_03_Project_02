@@ -29,8 +29,8 @@ public class SoundDogEnemy : Enemy
     //自身の目の位置
     Transform m_EyePoint;
 
-
-    private bool m_IsHear;
+    [System.NonSerialized]
+     public bool m_IsHear;
 
 
     // Use this for initialization
@@ -49,7 +49,6 @@ public class SoundDogEnemy : Enemy
         m_PlayerLookPoint = m_Player.transform.Find("LookPoint");
         m_RobotLookPoint = m_Robot.transform.Find("LookPoint");
         m_EyePoint = transform.Find("EyePoint");
-
 
         m_IsHear = false;
     }
@@ -141,7 +140,6 @@ public class SoundDogEnemy : Enemy
         return (hit && hitInfo.collider.tag == "Robot");
     }
 
-
     public bool CanSeePlayerAndRobot()
     {
         if (CanSeePlayer() || CanSeeRobot())
@@ -198,7 +196,7 @@ public class SoundDogEnemy : Enemy
     }
 
 
-
+    //目標をPlayerにする。
     public override void onHear()
     {
         print("聞こえた!!!");
@@ -208,5 +206,17 @@ public class SoundDogEnemy : Enemy
     public bool GetIsHear()
     {
         return m_IsHear;
+    }
+
+    //ピタッと止める
+    public void AgentStop()
+    {
+        m_Agent.velocity = Vector3.zero;
+        m_Agent.isStopped = true;
+    }
+
+    public void SetAgentSpeed(float speed)
+    {
+        m_Agent.speed = speed;
     }
 }

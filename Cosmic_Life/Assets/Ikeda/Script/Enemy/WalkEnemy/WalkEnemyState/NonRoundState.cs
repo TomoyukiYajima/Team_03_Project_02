@@ -23,6 +23,7 @@ public class NonRoundState : EnemyState {
         if (l_WalkEnemy.CanSeePlayerAndRobot())
         {
             l_WalkEnemy.m_Agent.isStopped = false;
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //見失った場合

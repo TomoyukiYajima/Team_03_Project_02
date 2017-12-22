@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkEnemyAttack : EnemyState
-{
+public class DogEnemyAttackState : EnemyState {
 
     private enum AttackState
     {
@@ -40,7 +39,7 @@ public class WalkEnemyAttack : EnemyState
 
     private GameObject m_TargetObject;
 
-    WalkEnemy m_WalkEnemy;
+    SoundDogEnemy m_SoundDogEnemy;
 
     // Use this for initialization
     void Start()
@@ -61,7 +60,7 @@ public class WalkEnemyAttack : EnemyState
         {
             case AttackState.Attack:
                 m_AttackCollider.SetActive(true);
-                SoundManager.Instance.PlaySe("SE_Droid_Attack_01");
+                //SoundManager.Instance.PlaySe("SE_Droid_Attack_01");
 
                 if (m_AttackTime > m_Timer) m_Timer += Time.deltaTime;
                 else
@@ -74,15 +73,16 @@ public class WalkEnemyAttack : EnemyState
 
             case AttackState.AttackAfter:
                 m_AttackCollider.SetActive(false);
-                if (m_WalkEnemy == null)
-                    m_WalkEnemy = enemy.GetComponent<WalkEnemy>();
+                if (m_SoundDogEnemy == null)
+                    m_SoundDogEnemy = enemy.GetComponent<SoundDogEnemy>();
                 //WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
                 //NULLだったら状態を変更
-                m_TargetObject = m_WalkEnemy.CheckPlayerAndRobot();
+                m_TargetObject = m_SoundDogEnemy.CheckPlayerAndRobot();
                 if (m_TargetObject == null)
                 {
-                    m_WalkEnemy.m_Agent.isStopped = false;
-                    m_WalkEnemy.ChangeState(EnemyStatus.ReturnPosition);
+                    m_SoundDogEnemy.m_Agent.isStopped = false;
+                    m_SoundDogEnemy.SetNewPatrolPointToDestination();
+                    m_SoundDogEnemy.ChangeState(EnemyStatus.RoundState);
                     return;
                 }
 
@@ -92,17 +92,17 @@ public class WalkEnemyAttack : EnemyState
                 CheckStopDistance(enemy);
 
                 //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
-                float distance = (Vector3.Distance(m_WalkEnemy.GetEnemyPosition(), m_TargetObject.transform.position));
+                float distance = (Vector3.Distance(m_SoundDogEnemy.GetEnemyPosition(), m_TargetObject.transform.position));
                 if (distance < m_DistanceCompare)
                 {
                     //近ければプレイヤーの方向を向いて攻撃
-                    Vector3 relativePos = m_WalkEnemy.CheckPlayerAndRobot().transform.position - m_WalkEnemy.transform.position;
+                    Vector3 relativePos = m_SoundDogEnemy.CheckPlayerAndRobot().transform.position - m_SoundDogEnemy.transform.position;
                     relativePos.y = 0;
                     Quaternion rotation = Quaternion.LookRotation(relativePos);
-                    m_WalkEnemy.transform.rotation = Quaternion.Slerp(m_WalkEnemy.transform.rotation, rotation, Time.deltaTime * 2.0f);
+                    m_SoundDogEnemy.transform.rotation = Quaternion.Slerp(m_SoundDogEnemy.transform.rotation, rotation, Time.deltaTime * 2.0f);
 
                     //自身の前方向とプレイヤーとの角度を調べる
-                    if (Vector3.Angle(m_WalkEnemy.transform.forward, relativePos) <= 1.5f && m_CoolTime <= 0)
+                    if (Vector3.Angle(m_SoundDogEnemy.transform.forward, relativePos) <= 1.5f && m_CoolTime <= 0)
                     {
                         m_AttackState = AttackState.Attack;
                     }
@@ -110,7 +110,7 @@ public class WalkEnemyAttack : EnemyState
                 else
                 {
                     m_AttackState = AttackState.Attack;
-                    m_WalkEnemy.m_Agent.isStopped = false;
+                    m_SoundDogEnemy.m_Agent.isStopped = false;
                     enemy.ChangeState(EnemyStatus.Chasing);
                 }
                 break;

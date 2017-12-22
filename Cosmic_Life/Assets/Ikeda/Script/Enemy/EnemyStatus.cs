@@ -22,6 +22,8 @@ public enum EnemyStatus
     SupportState,
     //暴走状態
     RunawayState,
+    //聞こえた状態
+    AudibleState,
 
     None
 }

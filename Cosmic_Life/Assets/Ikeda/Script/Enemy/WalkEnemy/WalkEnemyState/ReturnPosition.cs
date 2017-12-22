@@ -25,6 +25,7 @@ public class ReturnPosition : EnemyState {
         {
             l_WalkEnemy.m_Agent.isStopped = false;
             l_WalkEnemy.SetAngle(90.0f);
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //見失った場合

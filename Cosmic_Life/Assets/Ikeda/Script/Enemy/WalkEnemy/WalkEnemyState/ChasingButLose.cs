@@ -28,6 +28,7 @@ public class ChasingButLose : EnemyState {
         if (m_WalkEnemy.CanSeePlayerAndRobot())
         {
             m_WalkEnemy.m_Agent.destination = m_WalkEnemy.CheckPlayerAndRobot().transform.position;
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             //追跡中に状態変更
             enemy.ChangeState(EnemyStatus.Chasing);
         }
