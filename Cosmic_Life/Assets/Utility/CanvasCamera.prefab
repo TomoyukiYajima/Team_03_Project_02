@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1098570129930414
 GameObject:
   m_ObjectHideFlags: 1
@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1311754274138424
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +671,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224893879363460586}
-  - component: {fileID: 114608095059824844}
   m_Layer: 5
   m_Name: LifeGroup
   m_TagString: Untagged
@@ -779,7 +778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1890580190479938
 GameObject:
   m_ObjectHideFlags: 1
@@ -1497,6 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8553447a4a32b4db5ff4e0fc93a981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_profile: {fileID: 0}
 --- !u!114 &114150745118917796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2270,17 +2270,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f2ae61bf6a08c14b975f996d6976211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114608095059824844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1787881927943418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8553447a4a32b4db5ff4e0fc93a981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114653718549933770
@@ -21746,8 +21735,8 @@ RectTransform:
   m_Children:
   - {fileID: 224671592414018796}
   - {fileID: 224870118393668062}
-  m_Father: {fileID: 224517409085107930}
-  m_RootOrder: 1
+  m_Father: {fileID: 224888005796216294}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -21857,7 +21846,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224340250888379120}
-  - {fileID: 224406112093539490}
   m_Father: {fileID: 4529666549038248}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22128,6 +22116,7 @@ RectTransform:
   - {fileID: 224001851758987570}
   - {fileID: 224642249768416082}
   - {fileID: 224067126350007508}
+  - {fileID: 224406112093539490}
   m_Father: {fileID: 4529666549038248}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

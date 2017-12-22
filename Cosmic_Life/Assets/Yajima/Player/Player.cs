@@ -23,7 +23,8 @@ public class Player : MonoBehaviour, IGeneralEvent
     public Vector3 Velocity { get { return m_velocity; } private set { } }
     private Vector3 m_groundNormal;
 
-    private int m_maxHp;
+    private float m_maxHp;
+    public float MaxHP { get { return m_maxHp; } private set { } }
 
     private bool m_isDamaged;
     private bool m_isCanWalk;
@@ -34,7 +35,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private GameObject m_liftObj;
     public GameObject LiftObject { get { return m_liftObj; } set { m_liftObj = value; } }
 
-    public delegate void OnCollide(int hp);
+    public delegate void OnCollide(float hp);
     public event OnCollide onCollide;
 
     // Use this for initialization
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         if (m_charaCon.isGrounded)
         {
-                        m_velocity = new Vector3(input.x, 0, input.y);
+            m_velocity = new Vector3(input.x, 0, input.y);
             m_velocity = transform.TransformDirection(m_velocity);
             m_velocity *= m_Speed;
             if (Input.GetButtonDown("Cancel"))
@@ -243,6 +244,8 @@ public class Player : MonoBehaviour, IGeneralEvent
         m_animator.SetBool("Attack", false);
 
         yield return new WaitForSeconds(0.4f);
+
+        SoundManager.Instance.PlaySe("SE_Player_Attack");
 
         // 攻撃コリジョン生成
         GameObject attack = Instantiate(m_attackCollision, m_attackPos.transform.position, m_attackPos.transform.rotation) as GameObject;
