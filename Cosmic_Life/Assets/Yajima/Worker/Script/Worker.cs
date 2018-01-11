@@ -22,6 +22,9 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // アニメーター
     [SerializeField]
     private Animator m_Animator;
+    // IK
+    [SerializeField]
+    private UndroidIK m_UndroidIK;
     // 耐久値(最大)
     [SerializeField]
     private int m_MaxHp = 5;
@@ -71,6 +74,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // エージェントが参照しているポイント
     //private Transform m_AgentMovePoint;
     private Vector3 m_AgentMovePoint;
+    // IK
+    private Transform m_LeftHandPoint;
+    private Transform m_RightHandPoint;
+    private bool m_IsIK = false;
     // アニメーションの状態
     private UndroidAnimationStatus m_AnimState = UndroidAnimationStatus.IDEL;
     // アニメーション配列
@@ -141,6 +148,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
         // アニメーションの追加
         addAnimations();
+
+        ChangeOrder(OrderStatus.FOLLOW);
     }
 
     // Update is called once per frame
@@ -168,7 +177,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         // デルタタイムの取得
         float time = Time.deltaTime;
         // 命令の実行
-        for(int i = 0; i != m_OrderNumbers.Count; ++i)
+        for (int i = 0; i != m_OrderNumbers.Count; ++i)
         {
             m_Orders[m_OrderNumbers[i]][m_OrderStatus[m_OrderNumbers[i]]].Action(time, gameObject);
         }
@@ -206,7 +215,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         }
 
 
-        switch (m_OrderDir){
+        switch (m_OrderDir)
+        {
             case OrderDirection.UP: m_LookObject.transform.localPosition = Vector3.up; break;
             case OrderDirection.DOWN: m_LookObject.transform.localPosition = Vector3.down; break;
             case OrderDirection.FORWARD: m_LookObject.transform.localPosition = Vector3.zero; break;
@@ -251,7 +261,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         m_OrderNumbers.Add(OrderNumber.THREE);
 
         for (int i = 0; i != m_OrderNumbers.Count; ++i)
-        {;
+        {
+            ;
             // 命令の追加
             //m_Orders.Add(m_OrderNumbers[i], m_OrdersOne);
             // 命令状態の追加
@@ -325,7 +336,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         // 命令がない場合は返す
         if (!CheckOrder(order, number) || (m_OrderStatus[number] == order && orderDir == dir)) return;
 
-        if(dir == OrderDirection.NULL) return;
+        if (dir == OrderDirection.NULL) return;
 
         print("方向指定命令承認！");
 
@@ -337,7 +348,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         m_StateTimer = 0.0f;
 
         // 方向指定の最初の行動
-        if(m_ActionObject) m_Orders[number][m_OrderStatus[number]].GetComponent<DirectionOrder>().StartAction(gameObject, m_ActionObject);
+        if (m_ActionObject) m_Orders[number][m_OrderStatus[number]].GetComponent<DirectionOrder>().StartAction(gameObject, m_ActionObject);
         else m_Orders[number][m_OrderStatus[number]].GetComponent<DirectionOrder>().StartAction(gameObject, dir);
     }
 
@@ -476,6 +487,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     public void endOrder(OrderNumber number)
     {
         ChangeOrder(OrderStatus.STOP, number);
+        ChangeOrder(OrderStatus.FOLLOW);
+        //ChangeOrder(OrderStatus.STOP, number);
     }
     // イベントでの参照オブジェクトの設定処理の呼び出し
     public void setObject(GameObject obj)
@@ -496,7 +509,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
     #region ジェネラルインターフェース
     // ダメージ処理の呼び出し
-    public void onDamage(int amount) {
+    public void onDamage(int amount)
+    {
         if (m_Hp == 0) return;
 
         m_Hp = Mathf.Clamp(m_Hp - amount, 0, m_MaxHp);
@@ -579,7 +593,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         float up = this.transform.position.y - m_AgentMovePoint.y; //.position.y;
         if (up > 0.2f) agentPos.y = this.transform.position.y;
         float length = Vector3.Distance(agentPos, this.transform.position);
-        return length < 0.1f;
+        return length < 0.22f;
     }
 
     // エージェントの停止処理を行います
@@ -587,6 +601,19 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     {
         m_Agent.isStopped = true;
         m_Agent.velocity = Vector3.zero;
+    }
+    #endregion
+
+    #region IK
+    // IKの設定
+    public void SetHandIK(Transform left, Transform right)
+    {
+        m_UndroidIK.SetHandIK(left, right);
+    }
+    // IKの初期化
+    public void InitIK()
+    {
+        m_UndroidIK.InitIK();
     }
     #endregion
 

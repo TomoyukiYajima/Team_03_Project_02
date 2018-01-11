@@ -6710,6 +6710,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 446471231}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &448791291 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114004190281384320, guid: 5a9dfac83bac29d4ab4b21247c93e682,
+    type: 2}
+  m_PrefabInternal: {fileID: 1715127358}
+  m_Script: {fileID: 11500000, guid: e4da78b5c62a9694eb160cb5791c6eb6, type: 3}
 --- !u!1 &452689637
 GameObject:
   m_ObjectHideFlags: 0
@@ -19437,6 +19443,7 @@ MonoBehaviour:
   - {fileID: 1583462267}
   - {fileID: 1499145623}
   - {fileID: 1904521976}
+  m_ChangeScene: {fileID: 448791291}
   m_MoveTime: 0.25
 --- !u!1 &1225443537
 GameObject:

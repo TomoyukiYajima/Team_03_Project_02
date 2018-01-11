@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4033532803491098}
   - component: {fileID: 212337632390268496}
+  - component: {fileID: 114312593313737454}
   m_Layer: 10
   m_Name: MiniMapIcon
   m_TagString: Untagged
@@ -139,6 +140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TilingSize: {x: 20, y: 20}
   m_OffSet: {x: 0, y: 0}
+--- !u!114 &114312593313737454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351312090084218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28affc56bb8285247a8e70f7591d8df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TilingSize: {x: 20, y: 20}
+  m_OffSet: {x: 0, y: 0}
 --- !u!212 &212337632390268496
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,7 +166,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7f676c1fc561bb04cbaaee2b520ceb72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

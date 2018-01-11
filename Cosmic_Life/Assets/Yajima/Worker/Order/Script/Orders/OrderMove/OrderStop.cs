@@ -22,9 +22,11 @@ public class OrderStop : Order {
         //m_Dir = obj.GetComponent<Worker>().GetOrderDir();
         // UIに命令テキストの設定
         SetStartOrderText();
-        ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+        //ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
         // 命令停止SEの再生
         SoundManager.Instance.PlaySe("SE_Undroid_Stop");
+
+        ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

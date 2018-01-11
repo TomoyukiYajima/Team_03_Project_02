@@ -225,6 +225,9 @@ public class OrderLift : Order {
         var nav = m_LiftObject.transform.GetComponent<NavMeshObstacle>();
         nav.enabled = false;
 
+        // IKの設定
+        SetIKTransform(robot);
+
         //var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
         var plane = m_LiftObject.transform.GetComponent<IronPlane>();
 
@@ -456,7 +459,7 @@ public class OrderLift : Order {
             Worker robot = obj.GetComponent<Worker>();
             robot.AgentStop();
             // 終了処理
-            //EndOrder(obj);
+            EndOrder(obj);
             return;
         }
 
@@ -468,4 +471,32 @@ public class OrderLift : Order {
         //obj.transform.Rotate(obj.transform.up, m_TurnSpeed * dir * deltaTime);
     }
     #endregion
+
+    // IKの座標の設定
+    private void SetIKTransform(Worker robot)
+    {
+        Transform handPoints = m_LiftObject.transform.Find("HandPoints");
+
+        if (handPoints == null) return;
+
+        // ポイントとの距離
+        float length = 50.0f;
+        // 
+        Transform point = null;
+
+        for(int i = 0; i != handPoints.childCount; ++i)
+        {
+            // 長さを比較する
+            float len = Vector3.Distance(robot.transform.position, handPoints.GetChild(i).position);
+
+            if (length > len)
+            {
+                length = len;
+                point = handPoints.GetChild(i);
+                //robot.SetHandIK(point.GetChild(0), point.GetChild(1));
+            }
+        }
+
+        robot.SetHandIK(point.GetChild(0), point.GetChild(1));
+    }
 }

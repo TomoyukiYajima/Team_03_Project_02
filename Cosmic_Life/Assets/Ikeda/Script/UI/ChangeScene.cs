@@ -84,10 +84,9 @@ public class ChangeScene : SingletonBehaviour<ChangeScene>
         });
 
         // SEの再生
-        name = "SE_Loading_01";
-        SoundManager.Instance.PlaySe(name);
+        SoundManager.Instance.PlaySe("SE_Loading_01");
         //SoundManager.Instance.StopSe(name);
-        StartCoroutine(StopSe(name, m_OpenTime));
+        StartCoroutine(StopSe("SE_Loading_01", m_OpenTime));
     }
 
     //ドアを閉める

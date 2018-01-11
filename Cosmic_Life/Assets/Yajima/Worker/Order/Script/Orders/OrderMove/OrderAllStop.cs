@@ -32,6 +32,6 @@ public class OrderAllStop : Order {
 
         // 空の状態に変更する
         //ChangeOrder(obj, OrderStatus.NULL);
-        EndOrder(obj);
+        //EndOrder(obj);
     }
 }

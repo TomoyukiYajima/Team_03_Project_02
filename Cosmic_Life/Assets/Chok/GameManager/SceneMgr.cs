@@ -6,6 +6,7 @@ public enum SceneType
 {
     LogoScene,
     Title,
+    Tutorial,
     StageSample2,
 }
 

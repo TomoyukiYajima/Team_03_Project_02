@@ -24,7 +24,8 @@ public class GimmickSpawn : GimmickBase {
             if (enemy != null) return;
             else continue;
         }
-        m_ClearUI.SetActive(true);
+
+        if (m_spawnObj.Length != 0) m_ClearUI.SetActive(true);
         //SceneMgr.Instance.SceneTransition(SceneType.Title);
     }
 

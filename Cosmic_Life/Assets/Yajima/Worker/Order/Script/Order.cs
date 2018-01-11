@@ -46,6 +46,9 @@ public class Order : MonoBehaviour {
     public delegate void setString(string text);
     public event setString setText;
 
+    // 文字を表示するのか
+    private bool m_IsTextDraw = false;
+
     // Action実行配列
     private Dictionary<ActionNumber, Action<float, GameObject, GameObject>> m_Actions =
         new Dictionary<ActionNumber, Action<float, GameObject, GameObject>>();
@@ -212,6 +215,12 @@ public class Order : MonoBehaviour {
     }
     // 表示するテキストの変更
     protected void ChangeOrderText(string text) { m_StartOrderText = text; }
+    // テキストを表示するのか
+    public bool IsDrawText
+    {
+        get { return m_IsTextDraw; }
+        set { m_IsTextDraw = value; }
+    }
 
     // 命令の失敗
     protected void FaildOrder(GameObject obj)

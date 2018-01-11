@@ -43,7 +43,7 @@ public class LiftMoveManager : MonoBehaviour {
     }
 
     // 持ち上げているオブジェクトの親子関係を解除する
-    public void ReleaseObject(GameObject colliders)
+    public void ReleaseObject(GameObject obj, GameObject colliders)
     {
         if (m_LiftObject == null) return;
 
@@ -64,5 +64,8 @@ public class LiftMoveManager : MonoBehaviour {
         // ステージオブジェクトの親を初期化する
         stageObj.InitParent();
         stageObj.InitCollider();
+
+        // IKの初期化
+        obj.GetComponent<Worker>().InitIK();
     }
 }

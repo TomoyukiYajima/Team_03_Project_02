@@ -35,7 +35,7 @@ public class OrderTakeDown : Order {
 
         // 親子関係を解除する
         var colliders = m_LiftManager.GetLiftObject().transform.parent.Find("Colliders").gameObject;
-        m_LiftManager.ReleaseObject(colliders);
+        m_LiftManager.ReleaseObject(obj, colliders);
     }
 
     protected override void UpdateAction(float deltaTime, GameObject obj)

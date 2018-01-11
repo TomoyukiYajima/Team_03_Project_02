@@ -51,7 +51,7 @@ public class OrderThrow : Order {
 
         // 親子関係を解除する
         var colliders = m_LiftManager.GetLiftObject().transform.parent.Find("Colliders").gameObject;
-        m_LiftManager.ReleaseObject(colliders);
+        m_LiftManager.ReleaseObject(obj, colliders);
         
         // 方向によってベクトルの加算を行う
         m_Velocity = (obj.transform.forward + m_Velocities[m_Dir]).normalized;

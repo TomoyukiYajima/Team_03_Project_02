@@ -30,7 +30,7 @@ public class OrderFollow : Order {
         //m_ActionNumber = ActionNumber.OBJECT_ACTION;
 
         // UIに命令テキストの設定
-        SetStartOrderText();
+        //SetStartOrderText();
 
         m_Undroid = obj.GetComponent<Worker>();
         m_Undroid.GetNavMeshAgent().isStopped = false;
@@ -55,7 +55,12 @@ public class OrderFollow : Order {
         //m_Player
         Vector3 backPos = m_Player.position;// - m_Player.forward;
         m_Undroid.ChangeAgentMovePoint(backPos);
-        if (m_Undroid.GetAgentPointLength() < 1.5f)
+
+        float len = 1.5f;
+        // 物を持っている場合
+        if (obj.transform.Find("LiftObject").childCount != 0) len = 3.5f;
+
+        if (m_Undroid.GetAgentPointLength() < len)
         {
             // エージェントが停止していたら返す
             if (m_Undroid.GetNavMeshAgent().isStopped) return;

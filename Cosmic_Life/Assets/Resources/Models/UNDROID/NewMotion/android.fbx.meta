@@ -219,7 +219,72 @@ ModelImporter:
   humanDescription:
     serializedVersion: 2
     human: []
-    skeleton: []
+    skeleton:
+    - name: android(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCube3
+      parentName: android(Clone)
+      position: {x: -0, y: 0.42664862, z: 0.0077023976}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 3.869546, y: 3.8310223, z: 3.9638767}
+    - name: pCube29
+      parentName: android(Clone)
+      position: {x: -0.015151473, y: 0.52869064, z: 0.0011091735}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.5998045, y: 0.46364877, z: 0.43223742}
+    - name: pCube30
+      parentName: android(Clone)
+      position: {x: -0.014753769, y: 0.52870125, z: -0.0016834646}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.47207892, y: 0.44048995, z: 0.43223742}
+    - name: pCube31
+      parentName: android(Clone)
+      position: {x: -0.013607699, y: 0.5287741, z: -0.0052401787}
+      rotation: {x: 0.0006670611, y: -0.04955511, z: -0.013443234, w: 0.9986807}
+      scale: {x: 0.47207892, y: 0.36961186, z: 0.43223742}
+    - name: pCube32
+      parentName: android(Clone)
+      position: {x: 0.0010240892, y: 0.52824605, z: 0.007170958}
+      rotation: {x: 0.099065356, y: 0.2151378, z: -0.013482509, w: 0.97145253}
+      scale: {x: 1.075973, y: 0.86697173, z: 0.8381364}
+    - name: pCube33
+      parentName: android(Clone)
+      position: {x: -0.0020757287, y: 0.52824605, z: 0.008699844}
+      rotation: {x: 0.099065356, y: 0.2151378, z: -0.013482509, w: 0.97145253}
+      scale: {x: 0.98429775, y: 0.7931038, z: 0.7667253}
+    - name: pSphere3
+      parentName: android(Clone)
+      position: {x: -0.010371762, y: 0.257787, z: -0.001056137}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.2333597, y: 1.2333597, z: 1.2333597}
+    - name: pSphere4
+      parentName: android(Clone)
+      position: {x: -0.13924494, y: 0.28901425, z: -0.00055093964}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.38974717, y: 0.38974717, z: 0.38974717}
+    - name: pSphere5
+      parentName: android(Clone)
+      position: {x: -0.036312684, y: 0.36036387, z: -0.00055093964}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.5429492, y: 0.5429492, z: 0.5429492}
+    - name: pSphere7
+      parentName: android(Clone)
+      position: {x: -0.042037595, y: 0.13510697, z: -0.006514831}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.7888213, y: 0.7888213, z: 0.7888213}
+    - name: pSphere8
+      parentName: android(Clone)
+      position: {x: -0.05740789, y: 0.02771244, z: -0.016815646}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.5429492, y: 0.5429492, z: 0.5429492}
+    - name: pSphere9
+      parentName: android(Clone)
+      position: {x: -0.00027974878, y: 0.22122692, z: 0.004767637}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -233,7 +298,7 @@ ModelImporter:
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

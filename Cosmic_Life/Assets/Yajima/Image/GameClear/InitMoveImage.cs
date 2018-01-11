@@ -23,6 +23,8 @@ public class InitMoveImage : MonoBehaviour {
     // 移動終了後のシーン遷移時間
     [SerializeField]
     private float m_ChangeSceneTime = 1.0f;
+    [SerializeField]
+    private SceneType m_ChangeSceneType = SceneType.Title;
 
     // 経過時間
     private float m_TotalTime;
@@ -62,7 +64,7 @@ public class InitMoveImage : MonoBehaviour {
         yield return new WaitForSeconds(m_ChangeSceneTime);
 
         // 時間経過したらシーン遷移
-        SceneMgr.Instance.SceneTransition(SceneType.Title);
+        SceneMgr.Instance.SceneTransition(SceneType.Tutorial);
 
         yield return null;
     }
