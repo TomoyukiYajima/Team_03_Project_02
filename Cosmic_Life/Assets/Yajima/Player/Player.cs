@@ -93,10 +93,14 @@ public class Player : MonoBehaviour, IGeneralEvent
         GetInput(out input);
 
         Vector3 velocity = Vector3.zero;
-        velocity = transform.forward * input.y + transform.right * input.z;
+        Vector3 m_CamForward = Vector3.Scale(m_camera.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+        velocity = m_CamForward * input.y + m_camera.transform.right * input.x;
 
         RotateAll(velocity);
-        RotateModel(input.x, input.y);
+
+        #region Unused
+        //RotateModel(input.x, input.y);
 
         //float factor = 1.0f;
         //if (input.y < 0.5f) factor = 0.3f;
@@ -107,12 +111,11 @@ public class Player : MonoBehaviour, IGeneralEvent
         //// we preserve the existing y part of the current velocity.
         //ve.y = m_rigidbody.velocity.y;
         //m_rigidbody.velocity = ve;
-
-        Vector3 vvv = Vector3.zero;
+#endregion
 
         if (m_charaCon.isGrounded)
         {
-            m_velocity = new Vector3(input.x, 0, input.y);
+            m_velocity = -velocity;
             m_velocity = transform.TransformDirection(m_velocity);
             m_velocity *= m_Speed;
             if (Input.GetButtonDown("Cancel"))
@@ -120,6 +123,7 @@ public class Player : MonoBehaviour, IGeneralEvent
                 m_velocity.y = 8.0f;
             }
 
+            #region Unused
             //if (Input.GetButtonDown("Cancel"))
             //{
             //    m_isGrounded = false;
@@ -140,16 +144,19 @@ public class Player : MonoBehaviour, IGeneralEvent
             //    Vector3 vec = transform.forward * v * m_Speed * 2.5f * Time.fixedDeltaTime;
             //   m_rigidbody.velocity = new Vector3(0,0,vec.z);
             //}
+            //}
+            //else
+            //{
+            //    // apply extra gravity from multiplier:
+            //    Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
+            //    m_rigidbody.AddForce(extraGravityForce);
+
+            //    m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
+
+            //}
+
+            #endregion
         }
-        //else
-        //{
-        //    // apply extra gravity from multiplier:
-        //    Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
-        //    m_rigidbody.AddForce(extraGravityForce);
-
-        //    m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
-
-        //}
 
         m_velocity.y -= 20.0f * Time.fixedDeltaTime;
         m_charaCon.Move(m_velocity * Time.fixedDeltaTime);
@@ -326,7 +333,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         while (true)
         {
-            transform.position = crane.transform.position - new Vector3(0,2,0);
+            transform.position = crane.transform.position - new Vector3(0, 2, 0);
             //transform.position = crane.transform.position + (transform.FindChild("LiftPoint").transform.position - transform.position) * 2;
             if (Input.GetButtonDown("Cancel"))
             {
@@ -401,8 +408,14 @@ public class Player : MonoBehaviour, IGeneralEvent
     // 全体を回転させる
     private void RotateAll(Vector3 velocity)
     {
+        if (velocity != Vector3.zero)
+        {
+            var position = transform.position + m_camera.transform.forward * 10.0f;
+            transform.Find("HeadLook").position = position;
+        }
+        var model = transform.FindChild("Model").transform;
         if (velocity.magnitude > 1f) velocity.Normalize();
-        velocity = transform.InverseTransformDirection(velocity);
+        velocity = model.InverseTransformDirection(velocity);
         //CheckGroundStatus();
         //velocity = Vector3.ProjectOnPlane(velocity, m_groundNormal);
 
@@ -410,8 +423,8 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         float m_TurnAmount = Mathf.Atan2(velocity.x, turnZ);
 
-        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, velocity.z);
-        transform.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
+        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, turnZ);
+        model.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
     }
 
     // プレイヤーモデルを回転させる
@@ -433,8 +446,8 @@ public class Player : MonoBehaviour, IGeneralEvent
             selfAngle = transform.eulerAngles.y;
         }
 
-        Debug.Log("Model" + modelAngle);
-        Debug.Log("Self" + selfAngle);
+        //Debug.Log("Model" + modelAngle);
+        //Debug.Log("Self" + selfAngle);
 
         if (modelAngle > selfAngle) modelAngle -= 10.0f;
         else if (modelAngle < selfAngle)

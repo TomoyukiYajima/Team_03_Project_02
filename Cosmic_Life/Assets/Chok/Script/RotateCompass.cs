@@ -10,7 +10,7 @@ public class RotateCompass : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        m_parent = GameObject.FindGameObjectWithTag("Player").transform;
+        m_parent = GameObject.FindGameObjectWithTag("Player").transform.FindChild("Model").transform;
         m_angle = m_parent.eulerAngles.y;
 
     }

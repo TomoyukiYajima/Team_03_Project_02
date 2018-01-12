@@ -12,6 +12,8 @@ public class CameraRay : MonoBehaviour
     [SerializeField] private cakeslice.Outline m_playerOutline;
 
     private GameObject m_colliderObj;   // 当たったオブジェクトを格納する関数
+    public GameObject CollideObj { get { return m_colliderObj; } private set { }
+    }
     private Transform m_rayPos;         // レイ開始位置
     private Transform m_player;         // プレイヤー
     private Transform m_rayCenter;
@@ -26,7 +28,7 @@ public class CameraRay : MonoBehaviour
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
         // プレイヤーのレイ開始座標
         m_rayPos = transform.Find("RayStart").transform;
-        m_rayCenter = m_player.Find("HeadLook").transform;
+        m_rayCenter = transform.Find("RayCenter").transform;
 
         m_rayDir = Vector3.zero;
 
