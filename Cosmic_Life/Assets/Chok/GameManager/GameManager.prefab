@@ -316,6 +316,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1794466629945772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4573677429547314}
+  - component: {fileID: 114759323981164558}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1821844807783772
 GameObject:
   m_ObjectHideFlags: 1
@@ -381,6 +397,19 @@ Transform:
   m_Father: {fileID: 4832164032152064}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4573677429547314
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794466629945772}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4832164032152064}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4832164032152064
 Transform:
   m_ObjectHideFlags: 1
@@ -393,6 +422,7 @@ Transform:
   m_Children:
   - {fileID: 4572564667849740}
   - {fileID: 224952464377766442}
+  - {fileID: 4573677429547314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -459,6 +489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RightDoor: {fileID: 114044292018342094}
   m_LeftDoor: {fileID: 114711784010171174}
+  m_CloseTime: 2
+  m_OpenTime: 2.5
   m_Curve:
     serializedVersion: 2
     m_Curve:
@@ -565,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: 10
+  m_AngleResistance: 4
 --- !u!114 &114172061563688148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -577,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: -10
+  m_AngleResistance: 4
 --- !u!114 &114188977684401954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -657,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: 10
+  m_AngleResistance: 4
 --- !u!114 &114364752067130380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,6 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: 10
+  m_AngleResistance: 4
 --- !u!114 &114478042989005620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,6 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: -10
+  m_AngleResistance: 4
 --- !u!114 &114563123351079654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -753,6 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Angle: -10
+  m_AngleResistance: 4
 --- !u!114 &114636115768719956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -916,6 +954,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114759323981164558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794466629945772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7491df0542dcd034bb4319b890653e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume:
+    bgm: 0.2
+    se: 0.4
+    voice: 1
+    mute: 0
 --- !u!114 &114846163202189392
 MonoBehaviour:
   m_ObjectHideFlags: 1

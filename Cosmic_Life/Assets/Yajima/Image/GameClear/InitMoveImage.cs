@@ -64,7 +64,7 @@ public class InitMoveImage : MonoBehaviour {
         yield return new WaitForSeconds(m_ChangeSceneTime);
 
         // 時間経過したらシーン遷移
-        SceneMgr.Instance.SceneTransition(SceneType.Tutorial);
+        SceneMgr.Instance.SceneTransition(m_ChangeSceneType);
 
         yield return null;
     }

@@ -6,8 +6,11 @@ public enum SceneType
 {
     LogoScene,
     Title,
+    Naming,
     Tutorial,
+    Stage1,
     StageSample2,
+    Stage3
 }
 
 public class SceneMgr : SingletonBehaviour<SceneMgr>
