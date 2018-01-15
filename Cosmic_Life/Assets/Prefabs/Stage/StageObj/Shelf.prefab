@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 208847864269598440}
   - component: {fileID: 114791752954519798}
   - component: {fileID: 114279584206056138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shelf
   m_TagString: StageObject
   m_Icon: {fileID: 0}

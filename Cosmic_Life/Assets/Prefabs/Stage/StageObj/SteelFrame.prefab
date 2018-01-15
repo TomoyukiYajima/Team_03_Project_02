@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 208985575202200290}
   - component: {fileID: 114667518979648392}
   - component: {fileID: 114530965600753862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SteelFrame
   m_TagString: StageObject
   m_Icon: {fileID: 0}

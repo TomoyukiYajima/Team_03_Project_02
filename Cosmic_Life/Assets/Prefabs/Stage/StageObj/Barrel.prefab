@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 208618370425691364}
   - component: {fileID: 114984225596113898}
   - component: {fileID: 114199583958976954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: StageObject
   m_Icon: {fileID: 0}
