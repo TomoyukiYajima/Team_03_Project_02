@@ -14,11 +14,20 @@ public class AimUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_camera = GameObject.FindGameObjectWithTag("Player").transform.FindChild("PlayerCamera").GetComponent<CameraRay>();
+        m_camera = GameObject.Find("PlayerCamera").GetComponent<CameraRay>();
         if (m_camera != null) m_camera.onRayHit += UpdateAimUI;
 
         m_aim = GetComponent<Image>();
 
+    }
+
+    public void Update()
+    {
+        if (m_camera == null)
+        {
+            m_camera = GameObject.Find("PlayerCamera").GetComponent<CameraRay>();
+            if (m_camera != null) m_camera.onRayHit += UpdateAimUI;
+        }
     }
 
     private void UpdateAimUI(bool hit)

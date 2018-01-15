@@ -32,6 +32,8 @@ public class ThirdPersonCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(m_player==null) m_player = GameObject.FindGameObjectWithTag("Player");
+
         if (!m_isLockOn)
         {
             // コントローラー右スティックで回転
