@@ -30,8 +30,13 @@ public class SoundDogEnemy : Enemy
     Transform m_EyePoint;
 
     [System.NonSerialized]
-     public bool m_IsHear;
+    public bool m_IsHear;
 
+    [SerializeField, Tooltip("聞こえる範囲の設定")]
+    private float m_HearRange;
+
+    //聞こえたときのポジションを保存しておく
+    private Vector3 m_TargetPosition;
 
     // Use this for initialization
     public override void Start()
@@ -51,6 +56,7 @@ public class SoundDogEnemy : Enemy
         m_EyePoint = transform.Find("EyePoint");
 
         m_IsHear = false;
+        m_TargetPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -60,38 +66,29 @@ public class SoundDogEnemy : Enemy
 
 
     //優先する方を調べて、優先するべき方を返す
-    public GameObject CheckPlayerAndRobot()
+    public GameObject CheckPlayer()
     {
-        //どっちも見えている場合、プレイヤー優先
-        if (CanSeePlayer() && CanSeeRobot())
+        if (CanSeePlayer())
         {
             return m_Player;
-        }
-        else if (CanSeePlayer())
-        {
-            return m_Player;
-        }
-        else if (CanSeeRobot())
-        {
-            return m_Robot;
         }
 
         return null;
     }
 
-    public bool CanSeeRobot()
-    {
-        if (!IsRobotInViewingDistance())
-            return false;
+    //public bool CanSeeRobot()
+    //{
+    //    if (!IsRobotInViewingDistance())
+    //        return false;
 
-        if (!IsRobotInViewingAngle())
-            return false;
+    //    if (!IsRobotInViewingAngle())
+    //        return false;
 
-        if (!CanHitRayToRobot())
-            return false;
+    //    if (!CanHitRayToRobot())
+    //        return false;
 
-        return true;
-    }
+    //    return true;
+    //}
 
     public bool CanSeePlayer()
     {
@@ -107,42 +104,47 @@ public class SoundDogEnemy : Enemy
         return true;
     }
 
-    bool IsRobotInViewingDistance()
-    {
-        if (m_Robot == null) return false;
-        //自身からロボットまでの距離
-        float distanceToRobot = Vector3.Distance(m_RobotLookPoint.position, m_EyePoint.position);
+    //bool IsRobotInViewingDistance()
+    //{
+    //    if (m_Robot == null) return false;
+    //    //自身からロボットまでの距離
+    //    float distanceToRobot = Vector3.Distance(m_RobotLookPoint.position, m_EyePoint.position);
 
-        return (distanceToRobot <= m_ViewingDistance);
-    }
+    //    return (distanceToRobot <= m_ViewingDistance);
+    //}
 
-    bool IsRobotInViewingAngle()
-    {
-        //自身からロボットへの方向ベクトル
-        Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
+    //bool IsRobotInViewingAngle()
+    //{
+    //    //自身からロボットへの方向ベクトル
+    //    Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
 
-        //自分の正面向きベクトルとロボットへの方向ベクトルの差分角度
-        float angleToRobot = Vector3.Angle(m_EyePoint.forward, directionToRobot);
+    //    //自分と同じ高さにRobotがいるかどうか調べる
+    //    float l_RobotY = m_Robot.transform.position.y;
+    //    if (l_RobotY >= transform.position.y)
+    //        return false;
 
-        //見える角度の範囲内にロボットがいるかどうかを返却する
-        return (Mathf.Abs(angleToRobot) <= m_ViewingAngle);
-    }
+    //    //自分の正面向きベクトルとロボットへの方向ベクトルの差分角度
+    //    float angleToRobot = Vector3.Angle(m_EyePoint.forward, directionToRobot);
 
-    bool CanHitRayToRobot()
-    {
-        //自身からロボットへの方向ベクトル
-        Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
+    //    //見える角度の範囲内にロボットがいるかどうかを返却する
+    //    return (Mathf.Abs(angleToRobot) <= m_ViewingAngle);
+    //}
 
-        RaycastHit hitInfo;
-        bool hit = Physics.Raycast(m_EyePoint.position, directionToRobot, out hitInfo);
+    //bool CanHitRayToRobot()
+    //{
+    //    //自身からロボットへの方向ベクトル
+    //    Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
 
-        //ロボットにRayが当たったかどうか返却する
-        return (hit && hitInfo.collider.tag == "Robot");
-    }
+    //    RaycastHit hitInfo;
+    //    bool hit = Physics.Raycast(m_EyePoint.position, directionToRobot, out hitInfo);
+
+    //    //ロボットにRayが当たったかどうか返却する
+    //    return (hit && hitInfo.collider.tag == "Robot");
+    //}
 
     public bool CanSeePlayerAndRobot()
     {
-        if (CanSeePlayer() || CanSeeRobot())
+        if (CanSeePlayer())
             return true;
 
         return false;
@@ -161,6 +163,11 @@ public class SoundDogEnemy : Enemy
     {
         //自身からプレイヤーへの方向ベクトル
         Vector3 directionToPlayer = m_PlayerLookPoint.position - m_EyePoint.position;
+
+        //自分と同じ高さにPlayerがいるかどうか調べる
+        float l_PlayerY = m_Player.transform.position.y;
+        if (l_PlayerY >= transform.position.y)
+            return false;
 
         //自分の正面向きベクトルとプレイヤーへの方向ベクトルの差分角度
         float angleToPlayer = Vector3.Angle(m_EyePoint.forward, directionToPlayer);
@@ -200,7 +207,9 @@ public class SoundDogEnemy : Enemy
     public override void onHear()
     {
         print("聞こえた!!!");
-        m_IsHear = true;
+        //聞こえる範囲内にいるか
+        if (Vector3.Distance(transform.position, m_Player.transform.position) <= m_HearRange)
+            m_IsHear = true;
     }
 
     public bool GetIsHear()
@@ -218,5 +227,36 @@ public class SoundDogEnemy : Enemy
     public void SetAgentSpeed(float speed)
     {
         m_Agent.speed = speed;
+    }
+
+    public void SetAngle(float angle)
+    {
+        m_ViewingAngle = angle;
+    }
+
+    public void SetTargetPosition(Vector3 position)
+    {
+        m_TargetPosition = position;
+    }
+
+    public Vector3 GetTargetPosition()
+    {
+        return m_TargetPosition;
+    }
+
+    public void OnDrawGizmos()
+    {
+        //視界の表示
+        if (m_EyePoint != null)
+        {
+            //線の色
+            Gizmos.color = new Color(0f, 0f, 1f);
+            Vector3 eyePosition = m_EyePoint.position;
+            Vector3 forward = m_EyePoint.forward * m_ViewingDistance;
+
+            Gizmos.DrawRay(eyePosition, forward);
+            Gizmos.DrawRay(eyePosition, Quaternion.Euler(0, m_ViewingAngle, 0) * forward);
+            Gizmos.DrawRay(eyePosition, Quaternion.Euler(0, -m_ViewingAngle, 0) * forward);
+        }
     }
 }

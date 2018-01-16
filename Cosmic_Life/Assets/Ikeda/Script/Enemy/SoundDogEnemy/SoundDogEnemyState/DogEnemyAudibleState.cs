@@ -7,10 +7,6 @@ public class DogEnemyAudibleState : EnemyState
 
     SoundDogEnemy m_SoundDogEnemy;
 
-    [SerializeField, Tooltip("止まる距離の設定")]
-    private float m_StopDistance;
-
-
     // Use this for initialization
     void Start()
     {
@@ -27,8 +23,11 @@ public class DogEnemyAudibleState : EnemyState
     {
         if (m_SoundDogEnemy == null) m_SoundDogEnemy = enemy.GetComponent<SoundDogEnemy>();
 
+        m_SoundDogEnemy.m_Agent.destination = m_SoundDogEnemy.GetTargetPosition();
+
         if (m_SoundDogEnemy.CanSeePlayerAndRobot())
         {
+            m_SoundDogEnemy.SetAngle(180);
             m_SoundDogEnemy.ChangeState(EnemyStatus.Chasing);
         }
         else if (m_SoundDogEnemy.HasArrived())

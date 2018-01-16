@@ -15,9 +15,6 @@ public class DogEnemyAttackState : EnemyState {
     //攻撃の距離を設定
     [SerializeField]
     private float m_PlayerStopDistance;
-    [SerializeField]
-    private float m_RobotStopDistance;
-
 
     private float m_DistanceCompare;
 
@@ -45,6 +42,7 @@ public class DogEnemyAttackState : EnemyState {
     void Start()
     {
         m_AttackState = AttackState.Attack;
+        m_DistanceCompare = m_PlayerStopDistance;
     }
 
     //void Update()
@@ -53,8 +51,7 @@ public class DogEnemyAttackState : EnemyState {
 
     public override void Action(float deltaTime, Enemy enemy)
     {
-        //if (m_TargetObject == null)
-        //    m_WalkEnemy.ChangeState(EnemyStatus.ReturnPosition);
+        if (m_SoundDogEnemy == null) m_SoundDogEnemy = enemy.GetComponent<SoundDogEnemy>();
 
         switch (m_AttackState)
         {
@@ -75,9 +72,8 @@ public class DogEnemyAttackState : EnemyState {
                 m_AttackCollider.SetActive(false);
                 if (m_SoundDogEnemy == null)
                     m_SoundDogEnemy = enemy.GetComponent<SoundDogEnemy>();
-                //WalkEnemy l_WalkEnemy = enemy.GetComponent<WalkEnemy>();
                 //NULLだったら状態を変更
-                m_TargetObject = m_SoundDogEnemy.CheckPlayerAndRobot();
+                m_TargetObject = m_SoundDogEnemy.CheckPlayer();
                 if (m_TargetObject == null)
                 {
                     m_SoundDogEnemy.m_Agent.isStopped = false;
@@ -89,14 +85,14 @@ public class DogEnemyAttackState : EnemyState {
                 //クールタイムを調べる
                 if (m_CoolTime >= 0) m_CoolTime -= deltaTime;
 
-                CheckStopDistance(enemy);
+                //CheckStopDistance(enemy);
 
                 //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
                 float distance = (Vector3.Distance(m_SoundDogEnemy.GetEnemyPosition(), m_TargetObject.transform.position));
                 if (distance < m_DistanceCompare)
                 {
                     //近ければプレイヤーの方向を向いて攻撃
-                    Vector3 relativePos = m_SoundDogEnemy.CheckPlayerAndRobot().transform.position - m_SoundDogEnemy.transform.position;
+                    Vector3 relativePos = m_SoundDogEnemy.CheckPlayer().transform.position - m_SoundDogEnemy.transform.position;
                     relativePos.y = 0;
                     Quaternion rotation = Quaternion.LookRotation(relativePos);
                     m_SoundDogEnemy.transform.rotation = Quaternion.Slerp(m_SoundDogEnemy.transform.rotation, rotation, Time.deltaTime * 2.0f);
@@ -118,17 +114,17 @@ public class DogEnemyAttackState : EnemyState {
     }
 
 
-    private void CheckStopDistance(Enemy enemy)
-    {
-        if (enemy.GetComponent<WalkEnemy>().CheckPlayerAndRobot() == null) return;
+    //private void CheckStopDistance(Enemy enemy)
+    //{
+    //    if (enemy.GetComponent<WalkEnemy>().CheckPlayerAndRobot() == null) return;
 
-        if (enemy.GetComponent<WalkEnemy>().CheckPlayerAndRobot().transform.tag == "Player")
-        {
-            m_DistanceCompare = m_PlayerStopDistance;
-        }
-        else
-        {
-            m_DistanceCompare = m_RobotStopDistance;
-        }
-    }
+    //    if (enemy.GetComponent<WalkEnemy>().CheckPlayerAndRobot().transform.tag == "Player")
+    //    {
+    //        m_DistanceCompare = m_PlayerStopDistance;
+    //    }
+    //    else
+    //    {
+    //        m_DistanceCompare = m_RobotStopDistance;
+    //    }
+    //}
 }

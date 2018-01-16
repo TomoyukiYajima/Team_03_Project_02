@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkEnemy : Enemy {
+public class WalkEnemy : Enemy
+{
 
     [System.NonSerialized]
     public NavMeshAgent m_Agent;
@@ -38,7 +39,8 @@ public class WalkEnemy : Enemy {
 
 
     // Use this for initialization
-    public override void Start() {
+    public override void Start()
+    {
         base.Start();
 
         m_Agent = GetComponent<NavMeshAgent>();
@@ -84,7 +86,7 @@ public class WalkEnemy : Enemy {
 
         return null;
     }
-    
+
     public bool CanSeeRobot()
     {
         if (!IsRobotInViewingDistance())
@@ -118,7 +120,6 @@ public class WalkEnemy : Enemy {
         if (m_Robot == null) return false;
         //自身からロボットまでの距離
         float distanceToRobot = Vector3.Distance(m_RobotLookPoint.position, m_EyePoint.position);
-
         return (distanceToRobot <= m_ViewingDistance);
     }
 
@@ -127,9 +128,13 @@ public class WalkEnemy : Enemy {
         //自身からロボットへの方向ベクトル
         Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
 
+        //自分と同じ高さにRobotがいるかどうか調べる
+        float l_RobotY = m_Robot.transform.position.y;
+        if (l_RobotY >= transform.position.y)
+            return false;
+
         //自分の正面向きベクトルとロボットへの方向ベクトルの差分角度
         float angleToRobot = Vector3.Angle(m_EyePoint.forward, directionToRobot);
-
         //見える角度の範囲内にロボットがいるかどうかを返却する
         return (Mathf.Abs(angleToRobot) <= m_ViewingAngle);
     }
@@ -145,7 +150,6 @@ public class WalkEnemy : Enemy {
         //ロボットにRayが当たったかどうか返却する
         return (hit && hitInfo.collider.tag == "Robot");
     }
-
 
     public bool CanSeePlayerAndRobot()
     {
@@ -169,9 +173,13 @@ public class WalkEnemy : Enemy {
         //自身からプレイヤーへの方向ベクトル
         Vector3 directionToPlayer = m_PlayerLookPoint.position - m_EyePoint.position;
 
+        //自分と同じ高さにPlayerがいるかどうか調べる
+        float l_PlayerY = m_Player.transform.position.y;
+        if (l_PlayerY >= transform.position.y)
+            return false;
+
         //自分の正面向きベクトルとプレイヤーへの方向ベクトルの差分角度
         float angleToPlayer = Vector3.Angle(m_EyePoint.forward, directionToPlayer);
-
         //見える角度の範囲内にプレイヤーがいるかどうかを返却する
         return (Mathf.Abs(angleToPlayer) <= m_ViewingAngle);
     }
@@ -187,7 +195,6 @@ public class WalkEnemy : Enemy {
         //プレイヤーにRayが当たったかどうか返却する
         return (hit && hitInfo.collider.tag == "Player");
     }
-
 
     public bool HasArrived()
     {
