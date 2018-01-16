@@ -10,7 +10,8 @@ public enum SceneType
     Tutorial,
     Stage1,
     StageSample2,
-    Stage3
+    Stage3,
+    Null,
 }
 
 public class SceneMgr : SingletonBehaviour<SceneMgr>
@@ -82,25 +83,34 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         ChangeScene.Instance.CloseDoor();
         yield return new WaitForSeconds(2.0f);
 
-        m_async = SceneManager.LoadSceneAsync(name.ToString(), LoadSceneMode.Additive);
-        // 読み込みが終わっても表示しない
-        m_async.allowSceneActivation = true;
+        yield return SceneManager.LoadSceneAsync("Null", LoadSceneMode.Additive);
 
-        while (!m_async.isDone)
-        {
-            FadeMgr.Instance.FillBar(m_async.progress /0.9f);
-            Debug.Log(m_async.progress);
-            yield return null;
-        }
+        #region Unused
+        //m_async = SceneManager.LoadSceneAsync("Null", LoadSceneMode.Additive);
+        //// 読み込みが終わっても表示しない
+        //m_async.allowSceneActivation = true;
 
-        // 読み込みが完了しているSceneを表示
-        m_async.allowSceneActivation = true;
+        //while (!m_async.isDone)
+        //{
+        //    //FadeMgr.Instance.FillBar(m_async.progress /0.9f);
+        //    //Debug.Log(m_async.progress);
+        //    yield return null;
+        //}
+
+        //// 読み込みが完了しているSceneを表示
+        //m_async.allowSceneActivation = true;
+#endregion
+
+        UnLoadScene(m_currentScene);
+
+        yield return SceneManager.LoadSceneAsync(name.ToString(), LoadSceneMode.Additive);
+
+        UnLoadScene(SceneType.Null);
+        m_currentScene = name;
 
         ChangeScene.Instance.OpenDoor();
         yield return new WaitForSeconds(2.5f);
 
-        UnLoadScene(m_currentScene);
-        m_currentScene = name;
 
         if (duration != 0)
         {
