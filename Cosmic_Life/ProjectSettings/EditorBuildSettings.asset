@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Naming.unity
     guid: d9b203781089b8343bec565e2d10d5b4
+  - enabled: 1
+    path: Assets/Scenes/Null.unity
+    guid: 91e660238b5f7914b993c27beb56bf89

@@ -8,7 +8,7 @@ public class GimmickSpawn : GimmickBase {
     [SerializeField] private Transform[] m_playerPos;
     [SerializeField] private GameObject[] m_doors;
     [SerializeField] private GameObject[] m_spawnObj;
-    [SerializeField] private GameObject m_ClearUI;
+    //[SerializeField] private GameObject m_ClearUI;
 
     public override void onActivate()
     {
@@ -19,13 +19,19 @@ public class GimmickSpawn : GimmickBase {
 
     private void Update()
     {
-        foreach(var enemy in m_spawnObj)
+        foreach (var enemy in m_spawnObj)
         {
             if (enemy != null) return;
             else continue;
         }
-
-        if (m_spawnObj.Length != 0) m_ClearUI.SetActive(true);
+        
+        if (m_spawnObj.Length != 0)
+        {
+            StageManager.GetInstance().GameClear();
+            //StageManager.Instance.GameClear();
+            //m_ClearUI.SetActive(true);
+            m_spawnObj = new GameObject[0];
+        }
         //SceneMgr.Instance.SceneTransition(SceneType.Title);
     }
 

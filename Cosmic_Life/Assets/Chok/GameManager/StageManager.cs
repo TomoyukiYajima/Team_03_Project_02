@@ -13,6 +13,12 @@ public class StageManager : MonoBehaviour
     [SerializeField] private System.Action[] m_action;
     [SerializeField] private Pausable m_pause;
     [SerializeField] private string m_bgmName;
+    [SerializeField] private GameObject m_gameClearUI;
+    [SerializeField] private GameObject m_gameOverUI;
+    [SerializeField] private ChangeScene m_ChangeScene;
+    [SerializeField] private GameObject m_Stages;
+
+    private static StageManager instance;   // 自身のインスタンス
 
     private bool m_isActivated;
 
@@ -73,6 +79,29 @@ public class StageManager : MonoBehaviour
 
             robot.GetComponent<NavMeshAgent>().enabled = true;
         }
+    }
+
+    // インスタンスの取得を行います
+    public static StageManager GetInstance()
+    {
+        // インスタンスが無かった生成する
+        if (instance == null)
+        {
+            instance = (StageManager)FindObjectOfType(typeof(StageManager));
+            // インスタンスが無かった場合、ログの表示
+            if (instance == null) Debug.LogError("TutorialMediator Instance Error");
+        }
+        return instance;
+    }
+
+    public void GameClear()
+    {
+        m_gameClearUI.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        m_gameOverUI.SetActive(true);
     }
 
     private void DebugAction(int num)

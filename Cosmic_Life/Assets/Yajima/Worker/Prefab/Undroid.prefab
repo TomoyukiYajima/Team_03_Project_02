@@ -2802,6 +2802,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1872582980075650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4673345114918030}
+  - component: {fileID: 114080584866655254}
+  m_Layer: 0
+  m_Name: SpeakerChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1877585525256942
 GameObject:
   m_ObjectHideFlags: 1
@@ -4518,6 +4534,7 @@ Transform:
   - {fileID: 4365271396965908}
   - {fileID: 4804423100450670}
   - {fileID: 224396917516493610}
+  - {fileID: 4673345114918030}
   - {fileID: 4635606661562116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5026,7 +5043,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 4425197020838112}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4636746951355780
 Transform:
@@ -5139,6 +5156,19 @@ Transform:
   - {fileID: 4453199926557792}
   m_Father: {fileID: 4809854546230580}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4673345114918030
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872582980075650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4425197020838112}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4678565260855104
 Transform:
@@ -6877,6 +6907,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5F85\u6A5F\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
+--- !u!114 &114080584866655254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1872582980075650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16db7e95468409245bd5c1a2dbff889c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SpeakerUI: {fileID: 0}
+  m_Undroid: {fileID: 114456676732122774}
 --- !u!114 &114082191715849362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7518,6 +7561,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
+  m_Particle: {fileID: 0}
+  m_ParticleSize: 1
 --- !u!114 &114847687066946288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7557,6 +7602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
+  m_Particle: {fileID: 1000013652588856, guid: 72c0c87f82753b74884a9f21d405e84a, type: 2}
+  m_ParticleSize: 1
 --- !u!114 &114884807515322110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7620,6 +7667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
+  m_Particle: {fileID: 1000013652588856, guid: 72c0c87f82753b74884a9f21d405e84a, type: 2}
+  m_ParticleSize: 1
 --- !u!114 &114962284671674032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7632,6 +7681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
+  m_Particle: {fileID: 1000013652588856, guid: 72c0c87f82753b74884a9f21d405e84a, type: 2}
+  m_ParticleSize: 1
 --- !u!114 &114974369685251216
 MonoBehaviour:
   m_ObjectHideFlags: 1

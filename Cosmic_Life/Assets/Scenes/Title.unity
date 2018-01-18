@@ -24907,7 +24907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1499e00f640f84983204947411434e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: 5
+  m_Type: 3
   m_FlashImage: {fileID: 1578518181}
   m_ShadowImage: {fileID: 843597600}
 --- !u!1 &1599907922
