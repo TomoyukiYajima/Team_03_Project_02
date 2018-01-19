@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     // 命令実行時間
     protected float m_StateTimer = 0.0f;
 
+    //状態の保存用変数
+    private EnemyStatus m_StorageEnemyStatus;
 
     //巡回のポイント
     [SerializeField, Tooltip("巡回のポイントを設定する")]
@@ -118,6 +120,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
 
     public virtual void onShock()
     {
+        m_StorageEnemyStatus = GetEnemyStatus();
         transform.FindChild("Shocks").gameObject.SetActive(true);
         ChangeState(EnemyStatus.ShockState);
     }
@@ -167,5 +170,11 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     public EnemyStatus GetEnemyStatus()
     {
         return m_OrderState;
+    }
+
+    //Shock時の保存用の状態を返す
+    public EnemyStatus GetStorageEnemystatus()
+    {
+        return m_StorageEnemyStatus;
     }
 }
