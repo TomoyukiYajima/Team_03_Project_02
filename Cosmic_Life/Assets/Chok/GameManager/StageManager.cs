@@ -45,12 +45,12 @@ public class StageManager : MonoBehaviour
                 obj.SetActive(false);
             }
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
+#if !UNITY_EDITOR
         // マイクが切断された状態
         if (m_isDisconnect)
         {
@@ -68,7 +68,7 @@ public class StageManager : MonoBehaviour
             m_disconnectUI.SetActive(true);
             return;
         }
-
+#endif
 
         if (Input.GetButtonDown("Start"))
         {
