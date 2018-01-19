@@ -1775,6 +1775,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cc99df166801c143b008a3144fce8ff, type: 2}
   m_IsPrefabParent: 0
+--- !u!84 &216445109
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 518
+  m_Height: 291
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &219657378 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4416982091624198, guid: 3cc99df166801c143b008a3144fce8ff,
@@ -2103,6 +2127,30 @@ Transform:
   m_Father: {fileID: 798710938}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &255845423
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 518
+  m_Height: 291
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &292624965
 Prefab:
   m_ObjectHideFlags: 0
@@ -7124,6 +7172,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114080584866655254, guid: 3a6e0dc08d72ad34da0634244165e8dd,
+        type: 2}
+      propertyPath: m_SpeakerUI
+      value: 
+      objectReference: {fileID: 1935576360}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a6e0dc08d72ad34da0634244165e8dd, type: 2}
   m_IsPrefabParent: 0
@@ -7637,30 +7690,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4089340286501922, guid: b8407c54a0f3a2d4ebdbc2114ad98fe5,
     type: 2}
   m_PrefabInternal: {fileID: 1024082279}
---- !u!84 &1031298590
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 518
-  m_Height: 291
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1034344826
 Prefab:
   m_ObjectHideFlags: 0
@@ -8508,7 +8537,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1586148914}
+      objectReference: {fileID: 255845423}
     - target: {fileID: 114405673104563964, guid: 045feba5f8ff9ec4eba4f0b9287dcd64,
         type: 2}
       propertyPath: m_playerOutline
@@ -12656,30 +12685,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cc99df166801c143b008a3144fce8ff, type: 2}
   m_IsPrefabParent: 0
---- !u!84 &1586148914
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 518
-  m_Height: 291
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &1588698303
 Prefab:
   m_ObjectHideFlags: 0
@@ -15673,6 +15678,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4089340286501922, guid: b8407c54a0f3a2d4ebdbc2114ad98fe5,
     type: 2}
   m_PrefabInternal: {fileID: 1934754935}
+--- !u!114 &1935576360 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114589531042670018, guid: 34ccc0538ceda254b8eed34018d65639,
+    type: 2}
+  m_PrefabInternal: {fileID: 719204356}
+  m_Script: {fileID: 11500000, guid: 601e55f54b8453a478b667d03da5a7bd, type: 3}
 --- !u!1001 &1937211461
 Prefab:
   m_ObjectHideFlags: 0
