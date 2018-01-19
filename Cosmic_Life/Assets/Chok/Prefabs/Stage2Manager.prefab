@@ -96,11 +96,19 @@ MonoBehaviour:
   - {fileID: 0}
   m_robotPos:
   - {fileID: 0}
-  m_doors: []
-  m_spawnObj: []
+  m_cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_doors:
+  - {fileID: 0}
+  m_spawnObj:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_pause: {fileID: 0}
-  m_bgmName: BGM_Stage_02
+  m_bgmName: Stage2BGM
   m_gameClearUI: {fileID: 0}
   m_gameOverUI: {fileID: 0}
   m_ChangeScene: {fileID: 0}
   m_Stages: {fileID: 0}
+  m_playerCamera: {fileID: 0}

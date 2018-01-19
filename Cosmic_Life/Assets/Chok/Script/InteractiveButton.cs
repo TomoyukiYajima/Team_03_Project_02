@@ -9,6 +9,8 @@ public class InteractiveButton : MonoBehaviour
     [SerializeField] private int m_interactiveAngle = 90;
     [SerializeField] private GameObject m_gimmick;
 
+    private bool m_isActivate = false;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag != "Player") return;
@@ -21,20 +23,22 @@ public class InteractiveButton : MonoBehaviour
 
         if (angleFromPlayer <= m_interactiveAngle)
         {
+            if (m_isActivate) return;
             if (Input.GetButtonDown("OK"))
             {
-                Debug.Log("Activate");
-                // IRobotEventが実装されていなければreturn
-                if (!ExecuteEvents.CanHandleEvent<IGimmickEvent>(m_gimmick))
-                {
-                    Debug.Log("IGimmickEvent未実装 : " + m_gimmick);
-                    return;
-                }
+                StageManager.GetInstance().StartBoss();
+                //Debug.Log("Activate");
+                //// IRobotEventが実装されていなければreturn
+                //if (!ExecuteEvents.CanHandleEvent<IGimmickEvent>(m_gimmick))
+                //{
+                //    Debug.Log("IGimmickEvent未実装 : " + m_gimmick);
+                //    return;
+                //}
 
-                ExecuteEvents.Execute<IGimmickEvent>(
-                    m_gimmick,
-                    null,
-                    (receive, y) => receive.onActivate());
+                //ExecuteEvents.Execute<IGimmickEvent>(
+                //    m_gimmick,
+                //    null,
+                //    (receive, y) => receive.onActivate());
             }
         }
     }

@@ -24,7 +24,7 @@ public class GimmickSpawn : GimmickBase {
             if (enemy != null) return;
             else continue;
         }
-        
+
         if (m_spawnObj.Length != 0)
         {
             StageManager.GetInstance().GameClear();
