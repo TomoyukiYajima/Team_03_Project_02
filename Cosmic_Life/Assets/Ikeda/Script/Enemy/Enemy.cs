@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
     [SerializeField]
     protected int m_Hp;
 
+    [SerializeField, Tooltip("爆発エフェクトを設定")]
+    protected GameObject m_Explosion;
 
     //プレイヤーの参照
     protected GameObject m_Player;
@@ -116,7 +118,8 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
 
     public virtual void onShock()
     {
-
+        transform.FindChild("Shocks").gameObject.SetActive(true);
+        ChangeState(EnemyStatus.ShockState);
     }
 
     public virtual void onThrow()
@@ -140,6 +143,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
         if (IsDead())
         {
             //SoundManager.Instance.PlaySe("");
+            Instantiate(m_Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

@@ -16,6 +16,9 @@ public class DroneAttack : EnemyState
     [SerializeField]
     private GameObject m_Collide;
 
+    [SerializeField, Tooltip("自爆攻撃のParticle設定")]
+    private GameObject m_DroneExplosion;
+
     [SerializeField, Tooltip("止まる距離の設定")]
     private float m_StopDistance = 3.5f;
     
@@ -67,6 +70,7 @@ public class DroneAttack : EnemyState
             else
             {
                 Instantiate(m_Collide, m_DroneEnemy.transform.position, m_DroneEnemy.transform.rotation);
+                Instantiate(m_DroneExplosion, m_DroneExplosion.transform.position, m_DroneEnemy.transform.rotation);
                 Destroy(m_DroneEnemy.gameObject);
             }
         }

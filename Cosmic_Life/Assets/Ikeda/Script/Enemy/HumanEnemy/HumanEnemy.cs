@@ -200,6 +200,15 @@ public class HumanEnemy : Enemy
         }
     }
 
+    public override void Dead()
+    {
+        if (IsDead())
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
     public void OnDrawGizmos()
     {
         //視界の表示
