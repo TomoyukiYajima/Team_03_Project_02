@@ -48,7 +48,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837045706948018}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01106813bff6b344fb85f71bcd980a01, type: 3}
   m_Name: 
@@ -99,3 +99,8 @@ MonoBehaviour:
   m_doors: []
   m_spawnObj: []
   m_pause: {fileID: 0}
+  m_bgmName: BGM_Stage_02
+  m_gameClearUI: {fileID: 0}
+  m_gameOverUI: {fileID: 0}
+  m_ChangeScene: {fileID: 0}
+  m_Stages: {fileID: 0}

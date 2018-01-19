@@ -37,12 +37,12 @@ public class StageManager : MonoBehaviour
         {
             m_pause.pausing = m_pause.pausing == true ? false : true;
         }
-        if (m_isActivated) return;
-        if (Input.GetButtonDown("Triggrt_Right"))
-        {
-            m_isActivated = true;
-            StartCoroutine(Activate());
-        }
+        //if (m_isActivated) return;
+        //if (Input.GetButtonDown("Triggrt_Right"))
+        //{
+        //    m_isActivated = true;
+        //    StartCoroutine(Activate());
+        //}
     }
 
     private IEnumerator Activate()

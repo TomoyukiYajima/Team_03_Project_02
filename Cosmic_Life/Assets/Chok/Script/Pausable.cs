@@ -107,6 +107,8 @@ public class Pausable : MonoBehaviour
         Predicate<MonoBehaviour> monoBehaviourPredicate =
             obj => obj.enabled &&
                    obj != this &&
+                   obj.GetComponent<cakeslice.Outline>() == null &&
+                   obj.GetComponent<cakeslice.OutlineEffect>() == null &&
                    Array.FindIndex(ignoreGameObjects, gameObject => gameObject == obj.gameObject) < 0;
         pausingMonoBehaviours = Array.FindAll(transform.GetComponentsInChildren<MonoBehaviour>(), monoBehaviourPredicate);
         foreach (var monoBehaviour in pausingMonoBehaviours)
