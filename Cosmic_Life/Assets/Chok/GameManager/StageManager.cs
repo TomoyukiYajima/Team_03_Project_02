@@ -16,27 +16,61 @@ public class StageManager : MonoBehaviour
     [SerializeField] private string m_bgmName;
     [SerializeField] private GameObject m_gameClearUI;
     [SerializeField] private GameObject m_gameOverUI;
+    [SerializeField] private GameObject m_disconnectUI;
     [SerializeField] private ChangeScene m_ChangeScene;
     [SerializeField] private GameObject m_Stages;
     [SerializeField] private GameObject m_playerCamera;
 
-
+    private bool m_isDisconnect;
+    private bool m_prevPause;
     private static StageManager instance;   // 自身のインスタンス
 
     private bool m_isActivated;
 
+    private int m_microphoneLength;
+
     // Use this for initialization
     void Start()
     {
+
         m_isActivated = false;
 
-        SoundManager.Instance.PlayBgm(m_bgmName);
+        m_microphoneLength = Microphone.devices.Length;
+
+        //SoundManager.Instance.PlayBgm(m_bgmName);
+        if (m_spawnObj.Length > 0)
+        {
+            foreach (var obj in m_spawnObj)
+            {
+                obj.SetActive(false);
+            }
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        // マイクが切断された状態
+        if (m_isDisconnect)
+        {
+            if ((m_microphoneLength = Microphone.devices.Length) <= 0) return;
+
+            m_isDisconnect = false;
+            m_pause.pausing = m_prevPause;
+            m_disconnectUI.SetActive(false);
+        }
+        if (m_microphoneLength <= 0 && !m_isDisconnect)
+        {
+            m_isDisconnect = true;
+            m_prevPause = m_pause.pausing;
+            m_pause.pausing = true;
+            m_disconnectUI.SetActive(true);
+            return;
+        }
+
+
+        if (Input.GetButtonDown("Start"))
         {
             m_pause.pausing = m_pause.pausing == true ? false : true;
         }
@@ -103,7 +137,7 @@ public class StageManager : MonoBehaviour
 
         //m_playerCamera.SetActive(false);
 
-        foreach(var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             enemy.SetActive(false);
         }
@@ -160,12 +194,14 @@ public class StageManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         FadeMgr.Instance.FadeIn(1.0f, () => { m_isActivated = false; });
+        m_pause.pausing = false;
 
         yield return null;
     }
 
     private void Action(int num)
     {
+        m_pause.pausing = true;
         if (m_playerPos[num] != null)
         {
             var player = GameObject.FindGameObjectWithTag("Player");
@@ -187,6 +223,8 @@ public class StageManager : MonoBehaviour
 
             robot.GetComponent<NavMeshAgent>().enabled = true;
         }
+
+
     }
 
     // インスタンスの取得を行います

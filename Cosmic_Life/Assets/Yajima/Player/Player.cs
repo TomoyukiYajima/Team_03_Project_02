@@ -421,9 +421,9 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         float turnZ = Mathf.Clamp(velocity.z, 0.1f, 1.0f);
 
-        float m_TurnAmount = Mathf.Atan2(velocity.x, turnZ);
+        float m_TurnAmount = Mathf.Atan2(velocity.x, velocity.z);
 
-        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, turnZ);
+        float turnSpeed = Mathf.Lerp(180.0f, 360.0f, velocity.z);
         model.Rotate(0, m_TurnAmount * turnSpeed * Time.fixedDeltaTime, 0);
     }
 
