@@ -11,6 +11,8 @@ public enum SceneType
     Stage1,
     StageSample2,
     Stage3,
+    Credit,
+    MikeWarn,
     Null,
 }
 

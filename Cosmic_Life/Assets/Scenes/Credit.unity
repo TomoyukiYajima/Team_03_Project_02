@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 996078905}
   - component: {fileID: 996078906}
   m_Layer: 0
-  m_Name: LogoScene
+  m_Name: CreditScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_VideoPlayer: {fileID: 1665164496}
-  m_SceneType: 8
+  m_SceneType: 1
 --- !u!1001 &1064126641
 Prefab:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ Prefab:
     - target: {fileID: 114364752067130380, guid: 5a9dfac83bac29d4ab4b21247c93e682,
         type: 2}
       propertyPath: m_currentScene
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 225956981224223562, guid: 5a9dfac83bac29d4ab4b21247c93e682,
         type: 2}
@@ -676,7 +676,7 @@ VideoPlayer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665164495}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d95de55dc08c1cf438724300ea74fb30, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: e07129f8cfed7a849a4dd9606b03f294, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera: {fileID: 1168183713}
   m_TargetTexture: {fileID: 0}

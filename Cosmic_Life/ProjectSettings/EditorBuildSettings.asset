@@ -33,5 +33,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Naming.unity
     guid: d9b203781089b8343bec565e2d10d5b4
   - enabled: 1
+    path: Assets/Scenes/Credit.unity
+    guid: 36ad23f833d017d42b876bd61c1742cb
+  - enabled: 1
     path: Assets/Scenes/Null.unity
     guid: 91e660238b5f7914b993c27beb56bf89
+  - enabled: 1
+    path: Assets/Scenes/MikeWarn.unity
+    guid: e867e0b38efcb754db2bf014a5d23f79
