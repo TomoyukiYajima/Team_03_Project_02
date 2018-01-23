@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: cf389cd6ad221ca44b97bcef826651b4
+timeCreated: 1516064593
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back
+    100002: //RootNode
+    100004: left
+    100006: pCube6
+    100008: pCube7
+    100010: pPlane10
+    100012: pPlane11
+    100014: pPlane20
+    100016: pPlane26
+    100018: pPlane27
+    100020: pPlane28
+    100022: pPlane29
+    100024: pPlane30
+    100026: pPlane31
+    100028: pPlane32
+    100030: pPlane33
+    100032: pPlane34
+    100034: pPlane35
+    100036: pPlane36
+    100038: transform1
+    100040: transform2
+    400000: back
+    400002: //RootNode
+    400004: left
+    400006: pCube6
+    400008: pCube7
+    400010: pPlane10
+    400012: pPlane11
+    400014: pPlane20
+    400016: pPlane26
+    400018: pPlane27
+    400020: pPlane28
+    400022: pPlane29
+    400024: pPlane30
+    400026: pPlane31
+    400028: pPlane32
+    400030: pPlane33
+    400032: pPlane34
+    400034: pPlane35
+    400036: pPlane36
+    400038: transform1
+    400040: transform2
+    2300000: pCube7
+    3300000: pCube7
+    4300000: pCube7
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

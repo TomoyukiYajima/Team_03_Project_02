@@ -1,56 +1,59 @@
 fileFormatVersion: 2
-guid: cf389cd6ad221ca44b97bcef826651b4
-timeCreated: 1516064593
+guid: f16d5bee430c40f43a8504247f363f6d
+timeCreated: 1516690591
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: back
-    100002: //RootNode
-    100004: left
-    100006: pCube6
-    100008: pCube7
-    100010: pPlane10
-    100012: pPlane11
-    100014: pPlane20
-    100016: pPlane26
-    100018: pPlane27
-    100020: pPlane28
-    100022: pPlane29
-    100024: pPlane30
-    100026: pPlane31
-    100028: pPlane32
-    100030: pPlane33
-    100032: pPlane34
-    100034: pPlane35
-    100036: pPlane36
-    100038: transform1
-    100040: transform2
-    400000: back
-    400002: //RootNode
-    400004: left
-    400006: pCube6
-    400008: pCube7
-    400010: pPlane10
-    400012: pPlane11
-    400014: pPlane20
-    400016: pPlane26
-    400018: pPlane27
-    400020: pPlane28
-    400022: pPlane29
-    400024: pPlane30
-    400026: pPlane31
-    400028: pPlane32
-    400030: pPlane33
-    400032: pPlane34
-    400034: pPlane35
-    400036: pPlane36
-    400038: transform1
-    400040: transform2
-    2300000: pCube7
-    3300000: pCube7
-    4300000: pCube7
+    100000: ' 1'
+    100002: body_0522:All_Parent
+    100004: body_0522:Belly
+    100006: body_0522:Chest
+    100008: body_0522:Head
+    100010: body_0522:HeadDeadEnd
+    100012: body_0522:Hip_n_Center
+    100014: body_0522:L_Elbow
+    100016: body_0522:L_hand_n_wep_JOINT
+    100018: body_0522:L_Scapula
+    100020: body_0522:L_Shoulder
+    100022: body_0522:L_Wrist
+    100024: body_0522:Neck
+    100026: body_0522:R_Elbow
+    100028: body_0522:R_hand_n_wep_JOINT
+    100030: body_0522:R_Scapula
+    100032: body_0522:R_Shoulder
+    100034: body_0522:R_Wrist
+    100036: //RootNode
+    100038: pasted__joint1
+    100040: pasted__joint3
+    100042: pasted__joint4
+    100044: pasted__joint6
+    400000: ' 1'
+    400002: body_0522:All_Parent
+    400004: body_0522:Belly
+    400006: body_0522:Chest
+    400008: body_0522:Head
+    400010: body_0522:HeadDeadEnd
+    400012: body_0522:Hip_n_Center
+    400014: body_0522:L_Elbow
+    400016: body_0522:L_hand_n_wep_JOINT
+    400018: body_0522:L_Scapula
+    400020: body_0522:L_Shoulder
+    400022: body_0522:L_Wrist
+    400024: body_0522:Neck
+    400026: body_0522:R_Elbow
+    400028: body_0522:R_hand_n_wep_JOINT
+    400030: body_0522:R_Scapula
+    400032: body_0522:R_Shoulder
+    400034: body_0522:R_Wrist
+    400036: //RootNode
+    400038: pasted__joint1
+    400040: pasted__joint3
+    400042: pasted__joint4
+    400044: pasted__joint6
+    7400000: take0
     9500000: //RootNode
+    13700000: ' 1'
   materials:
     importMaterials: 1
     materialName: 0
@@ -61,13 +64,14 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -112,7 +116,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
