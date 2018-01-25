@@ -66,4 +66,16 @@ public class FlashImage : MonoBehaviour {
         }
         StartCoroutine(Flash());
     }
+
+    // 発光の初期化
+    public void InitFlash(Action action)
+    {
+        // 停止処理
+        EndFlash(action);
+        // ツインの強制終了
+        m_Image.DOKill();
+        Color color = Color.white;
+        color.a = 0.0f;
+        if (m_Image != null) m_Image.color = color;
+    }
 }

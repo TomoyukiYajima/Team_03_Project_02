@@ -72,7 +72,10 @@ public class StageManager : MonoBehaviour
 
         if (Input.GetButtonDown("Start"))
         {
-            m_pause.pausing = m_pause.pausing == true ? false : true;
+            Pause();
+            //m_pause.pausing = m_pause.pausing == true ? false : true;
+            //m_pauseUI.gameObject.SetActive(m_pause.pausing);
+            //if (m_pause.pausing) m_pauseUI.Init();
         }
         if (m_isActivated) return;
         if (Input.GetButtonDown("Triggrt_Right"))
@@ -248,6 +251,18 @@ public class StageManager : MonoBehaviour
     public void GameOver()
     {
         m_gameOverUI.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        if (m_pause.pausing)
+        {
+            if (!PauseManager.GetInstance().IsClose) return;
+            PauseManager.GetInstance().Init();
+        }
+        m_pause.pausing = m_pause.pausing == true ? false : true;
+        PauseManager.GetInstance().UIActive(m_pause.pausing);
+        //if (m_pause.pausing) PauseManager.GetInstance().Init();
     }
 
     private void DebugAction(int num)

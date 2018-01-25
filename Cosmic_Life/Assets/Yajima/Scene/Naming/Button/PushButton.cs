@@ -15,15 +15,21 @@ public class PushButton : MonoBehaviour {
     [SerializeField]
     private Image m_ShadowImage;
 
+    // ボタンが押されたか？
+    protected bool m_IsDown;
+
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    public virtual void Update () {
 		
 	}
+
+    // 初期化
+    public virtual void Init() { }
 
     // 発光
     public void Flash()
@@ -42,8 +48,21 @@ public class PushButton : MonoBehaviour {
         m_FlashImage.EndFlash(ShadowOn);
     }
 
+    // ボタンが押された時の処理
+    public virtual void DownAction()
+    {
+        m_IsDown = true;
+        ChangeScene();
+    }
+
+    // 遷移先のステージを返します
+    public SceneType GetSceneType() { return m_Type; }
+
+    // ボタンが押されたかを返します。
+    public bool GetIsDown() { return m_IsDown; }
+
     // シーン遷移処理
-    public void ChangeScene()
+    private void ChangeScene()
     {
         SceneMgr.Instance.SceneTransition(m_Type);
     }
