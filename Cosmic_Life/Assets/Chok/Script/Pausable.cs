@@ -113,6 +113,7 @@ public class Pausable : MonoBehaviour
         pausingMonoBehaviours = Array.FindAll(transform.GetComponentsInChildren<MonoBehaviour>(), monoBehaviourPredicate);
         foreach (var monoBehaviour in pausingMonoBehaviours)
         {
+            
             monoBehaviour.enabled = false;
         }
 

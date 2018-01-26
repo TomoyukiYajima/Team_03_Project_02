@@ -15,9 +15,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private CameraRay m_cameraRay;
 
+    private Transform m_parent;
+
     // Use this for initialization
     void Start()
     {
+        m_parent = transform.parent;
         m_player = GameObject.FindGameObjectWithTag("Player");
         // ターゲットをプレイヤーに設定します
         m_target = m_player;
@@ -26,7 +29,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
         m_isLockOn = false;
 
-        m_cameraRay = GetComponent<CameraRay>();
+        m_cameraRay = m_parent.GetComponent<CameraRay>();
     }
 
     // Update is called once per frame
@@ -54,18 +57,18 @@ public class ThirdPersonCamera : MonoBehaviour
             var lookAt = m_player.transform.position + Vector3.up * m_height;
 
             // ターゲットの
-            transform.RotateAround(lookAt, Vector3.up, x);
+            m_parent.RotateAround(lookAt, Vector3.up, x);
 
             if (transform.forward.y > 0.3f && y < 0.0f) y = 0.0f;
             if (transform.forward.y < -0.9f && y > 0.0f) y = 0.0f;
 
-            transform.RotateAround(lookAt, transform.right, y);
+            m_parent.RotateAround(lookAt, transform.right, y);
 
             //Vector3 dir = lookAt - transform.position;
             //dir.y = 0;
             //dir.Normalize();
 
-            Vector3 target = lookAt - transform.forward * m_distance;
+            Vector3 target = lookAt - m_parent.forward * m_distance;
 
             RaycastHit wallHit = new RaycastHit();
             if (Physics.Linecast(lookAt, target, out wallHit, 1 << 8))
@@ -80,30 +83,6 @@ public class ThirdPersonCamera : MonoBehaviour
                 #endregion
                 target = new Vector3(wallHit.point.x, transform.position.y, wallHit.point.z);
 
-                //var direction = target - m_player.transform.position;
-                ////float degree = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg;
-                ////if (degree < 0) degree += 360.0f;
-
-                ////Debug.Log("Degree :" + degree);
-
-                //var model = m_player.transform.Find("Model");
-
-                //Vector3 perp = Vector3.Cross(model.transform.forward, direction);
-                //float D = Vector3.Dot(perp, model.transform.up);
-
-                //if (D < 0f)
-                //{
-                //    if (m_slide < 0.8f) m_slide += 0.4f;
-                //}
-                //else if (D > 0f)
-                //{
-                //    if (m_slide > -0.8f) m_slide -= 0.4f;
-                //}
-                //else
-                //{
-                //    if (m_slide > 0f) m_slide -= 0.4f;
-                //    else if (m_slide < 0f) m_slide += 0.4f;
-                //}
 
                 #region Unused
                 //if (degree > 140.0f)
@@ -121,16 +100,16 @@ public class ThirdPersonCamera : MonoBehaviour
             //dir.y = 0;
             //dir.Normalize();
             //target = target + dir * 0.2f;
-            transform.position = target;
+            m_parent.position = target;
 
-            transform.LookAt(lookAt);
+            m_parent.LookAt(lookAt);
 
             var dir = m_player.transform.position - target;
             dir.y = 0;
             dir.Normalize();
             target = target + dir * 0.2f;
 
-            transform.position = target + transform.right * m_slide;
+            m_parent.position = target + m_parent.right * m_slide;
 
             #region Unused
             //transform.Rotate(y, x, 0);
@@ -181,16 +160,16 @@ public class ThirdPersonCamera : MonoBehaviour
             {
                 target = new Vector3(wallHit.point.x, transform.position.y, wallHit.point.z);
             }
-            transform.position = target;
+            m_parent.position = target;
 
-            transform.LookAt(lookAt);
+            m_parent.LookAt(lookAt);
 
             var dir = m_player.transform.position - target;
             dir.y = 0;
             dir.Normalize();
             target = target + dir * 0.2f;
 
-            transform.position = target + transform.right * m_slide;
+            m_parent.position = target + m_parent.right * m_slide;
         }
     }
 

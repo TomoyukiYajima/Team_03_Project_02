@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private ChangeScene m_ChangeScene;
     [SerializeField] private GameObject m_Stages;
     [SerializeField] private GameObject m_playerCamera;
+    [SerializeField] private StageAction[] m_actions;
 
     private bool m_isDisconnect;
     private bool m_prevPause;
@@ -73,9 +74,6 @@ public class StageManager : MonoBehaviour
         if (Input.GetButtonDown("Start"))
         {
             Pause();
-            //m_pause.pausing = m_pause.pausing == true ? false : true;
-            //m_pauseUI.gameObject.SetActive(m_pause.pausing);
-            //if (m_pause.pausing) m_pauseUI.Init();
         }
         if (m_isActivated) return;
         if (Input.GetButtonDown("Triggrt_Right"))
@@ -83,6 +81,25 @@ public class StageManager : MonoBehaviour
             m_isActivated = true;
             StartCoroutine(Activate());
         }
+    }
+
+    public void StartAction(StageAction action)
+    {
+        if (m_isActivated) return;
+        m_isActivated = true;
+        //m_pause.pausing = true;
+
+        StartCoroutine(Action(action));
+    }
+
+    private IEnumerator Action(StageAction action)
+    {
+        action.Initialize();
+        StartCoroutine(action.Action(m_pause));
+        yield return new WaitWhile(() => !action.IsEnd);
+        m_isActivated = false;
+        //m_pause.pausing = false;
+        yield return null;
     }
 
     public void StartBoss()
@@ -192,7 +209,7 @@ public class StageManager : MonoBehaviour
 
     private IEnumerator Activate()
     {
-        FadeMgr.Instance.FadeOut(1.0f, () => Action(0));
+        FadeMgr.Instance.FadeOut(1.0f, () => ActionA(0));
 
         yield return new WaitForSeconds(1.0f);
 
@@ -202,7 +219,7 @@ public class StageManager : MonoBehaviour
         yield return null;
     }
 
-    private void Action(int num)
+    private void ActionA(int num)
     {
         m_pause.pausing = true;
         if (m_playerPos[num] != null)
@@ -253,18 +270,6 @@ public class StageManager : MonoBehaviour
         m_gameOverUI.SetActive(true);
     }
 
-    public void Pause()
-    {
-        if (m_pause.pausing)
-        {
-            if (!PauseManager.GetInstance().IsClose) return;
-            PauseManager.GetInstance().Init();
-        }
-        m_pause.pausing = m_pause.pausing == true ? false : true;
-        PauseManager.GetInstance().UIActive(m_pause.pausing);
-        //if (m_pause.pausing) PauseManager.GetInstance().Init();
-    }
-
     private void DebugAction(int num)
     {
         if (m_playerPos[num] != null)
@@ -289,6 +294,18 @@ public class StageManager : MonoBehaviour
             robot.GetComponent<NavMeshAgent>().enabled = true;
         }
 
+    }
+
+    public void Pause()
+    {
+        if (m_pause.pausing)
+        {
+            if (!PauseManager.GetInstance().IsClose) return;
+            PauseManager.GetInstance().Init();
+        }
+        m_pause.pausing = m_pause.pausing == true ? false : true;
+        PauseManager.GetInstance().UIActive(m_pause.pausing);
+        //if (m_pause.pausing) PauseManager.GetInstance().Init();
     }
 
 }
