@@ -686,7 +686,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1913114074460056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.65}
+  m_LocalPosition: {x: 0, y: 0, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159984907538628}
@@ -798,7 +798,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1762170679866246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4030574006419218}
@@ -892,7 +892,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1511134208109618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7, y: 0, z: 0}
+  m_LocalPosition: {x: -0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4898514950713862}
@@ -1006,7 +1006,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1106473381968280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.65}
+  m_LocalPosition: {x: 0, y: 0, z: 1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4280542142955938}
@@ -1777,10 +1777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45be13362e5ea874bb097134d2d94a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HP: 3
   m_Child: {fileID: 1177177821358104}
   m_Colliders: {fileID: 1883568483799664}
   m_CenterPoint: {fileID: 4598211579274328}
   m_LiftPoint: {fileID: 4962298857819448}
+  m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
 --- !u!114 &114227990071510672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1808,6 +1810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Damage: 1
   m_Particle: {fileID: 1000013652588856, guid: 72c0c87f82753b74884a9f21d405e84a, type: 2}
+  m_ParticleSize: 1
 --- !u!114 &114810695975454090
 MonoBehaviour:
   m_ObjectHideFlags: 1

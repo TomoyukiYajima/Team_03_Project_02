@@ -6,6 +6,9 @@ using DG.Tweening;
 public class StageObject : MonoBehaviour, IGeneralEvent
 {
     #region 変数
+    // 耐久値
+    [SerializeField]
+    private int m_HP = 3;
     // 子オブジェクト
     [SerializeField]
     private GameObject m_Child;
@@ -18,6 +21,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 持ち上げポイント
     [SerializeField]
     private Transform m_LiftPoint;
+    // 破壊時のパーティクル
+    [SerializeField]
+    private GameObject m_Particle;
 
     // 元の親オブジェクト
     private Transform m_RootParent;
@@ -297,7 +303,16 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public bool IsHit() { return m_HitObjects.Count != 0; }
 
     #region イベント関数
-    public void onDamage(int amount) { }
+    public void onDamage(int amount)
+    {
+        m_HP = Mathf.Max(m_HP - amount, 0);
+        if (m_HP == 0)
+        {
+            // パーティクルを生成して、自身を削除する
+            Instantiate(m_Particle, this.transform.position, this.transform.rotation);
+            Destroy(gameObject);
+        }
+    }
 
     public void onShock() { }
 

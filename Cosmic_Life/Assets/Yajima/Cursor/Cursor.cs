@@ -10,6 +10,12 @@ public class Cursor : MonoBehaviour {
     //private Button[] m_Buttones;
     [SerializeField]
     private PushButton[] m_Buttones;
+    // 左カーソル
+    [SerializeField]
+    private GameObject m_LeftCursor;
+    // 右カーソル
+    [SerializeField]
+    private GameObject m_RightCursor;
     // シーン遷移オブジェクト
     [SerializeField]
     private ChangeScene m_ChangeScene;
@@ -27,9 +33,10 @@ public class Cursor : MonoBehaviour {
         // カーソルの座標をボタンの座標にする
         this.transform.position = m_Buttones[m_ButtonCount].transform.position;
         m_Buttones[m_ButtonCount].Flash();
-
-        // 扉の更新
-        //if (m_ChangeScene == null) m_ChangeScene = GameObject.Find("Door").GetComponent<ChangeScene>();
+        // カーソルの幅も合わせる
+        var points = m_Buttones[m_ButtonCount].transform.Find("Points");
+        m_LeftCursor.transform.DOMoveX(points.GetChild(0).position.x, 0.0f);
+        m_RightCursor.transform.DOMoveX(points.GetChild(1).position.x, 0.0f);
     }
 	
 	// Update is called once per frame
@@ -37,7 +44,6 @@ public class Cursor : MonoBehaviour {
         // ドアが動いている間は動かさないようにする
         if (m_ChangeScene != null)
         {
-            //print("カーソル君ドア見つけた");
             if (m_ChangeScene.gameObject.activeSelf && !m_ChangeScene.IsOpenDoor()) return;
         }
         else
@@ -48,19 +54,6 @@ public class Cursor : MonoBehaviour {
 
         if (!m_IsMove) return;
 
-        //if(m_ChangeScene.)
-        //if(m_ChangeScene != null)
-        //{
-        //    print("カーソル君ドア見つけた");
-        //    if (m_ChangeScene.gameObject.activeSelf && !m_ChangeScene.IsOpenDoor())
-        //    {
-        //        print("カーソル君動けない");
-        //        return;
-        //    }
-        //}
-        // Input.GetButtonDown("OK")
-        //if (Input.GetButtonDown("OK")) m_Buttones[m_ButtonCount].onClick;
-
         // カーソルが指定座標に辿り着いていない場合は返す
         if (Vector3.Distance(m_Buttones[m_ButtonCount].transform.position, this.transform.position) > 0.1f) return;
         else
@@ -70,8 +63,6 @@ public class Cursor : MonoBehaviour {
 
         if (Input.GetButtonDown("OK"))
         {
-            //audio.Play();
-            //audio.PlayOneShot(m_DicisionSE);
             SoundManager.Instance.PlaySe("SE_Dicision");
             m_Buttones[m_ButtonCount].DownAction();
             m_IsMove = false;
@@ -84,11 +75,15 @@ public class Cursor : MonoBehaviour {
         else if (Input.GetAxis("Vertical") < -0.75f)
             m_ButtonCount = Mathf.Min(m_ButtonCount + 1, m_Buttones.Length - 1);
 
-        // ツインを利用した移動
         // カーソルが指定座標に辿り着いる場合は返す。
         if (m_ButtonCount == prevCount) return;
         SoundManager.Instance.PlaySe("SE_Select");
+        // ツインを利用した移動
         this.transform.DOMove(m_Buttones[m_ButtonCount].transform.position, m_MoveTime);
+        // 幅も合わせるようにする
+        var points = m_Buttones[m_ButtonCount].transform.Find("Points");
+        m_LeftCursor.transform.DOMoveX(points.GetChild(0).position.x, m_MoveTime);
+        m_RightCursor.transform.DOMoveX(points.GetChild(1).position.x, m_MoveTime);
         // 発光処理処理の停止
         m_Buttones[prevCount].StopFlash();
     }

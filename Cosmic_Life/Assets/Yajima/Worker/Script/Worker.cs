@@ -591,7 +591,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         //Vector3 playerPos = this.transform.position - Vector3.up * (m_BodyHeight / 2);
         Vector3 agentPos = m_AgentMovePoint; //.position;
         float up = this.transform.position.y - m_AgentMovePoint.y; //.position.y;
-        if (up > 0.2f) agentPos.y = this.transform.position.y;
+        if (Mathf.Abs(up) > 0.2f) agentPos.y = this.transform.position.y;
         float length = Vector3.Distance(agentPos, this.transform.position);
         return length < 0.22f;
     }

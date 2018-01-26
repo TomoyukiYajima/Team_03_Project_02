@@ -12,6 +12,9 @@ public class PauseManager : MonoBehaviour {
     // ポーズボタン用UI
     [SerializeField]
     private GameObject m_PauseButtonUI;
+    // カーソル
+    [SerializeField]
+    private PauseCursor m_Cursor;
 
     // 表示を切り替えているか？
     private bool m_IsDrawUIs = false;
@@ -34,7 +37,10 @@ public class PauseManager : MonoBehaviour {
             if (Input.GetButtonDown("Cancel"))
             {
                 m_IsDrawUIs = false;
+                // ボタンUIを表示に変更
                 m_PauseButtonUI.SetActive(true);
+                // カーソルの開始処理
+                m_Cursor.Flash();
                 // ボタン処理を初期化
                 m_Button.Init();
             }
@@ -49,8 +55,10 @@ public class PauseManager : MonoBehaviour {
         {
             m_Buttons[i].Init();
         }
-        // UIを表示する
+        // ボタンUIを表示に変更
         m_PauseButtonUI.SetActive(true);
+        // カーソルの開始処理
+        m_Cursor.Init();
     }
 
 
@@ -59,6 +67,9 @@ public class PauseManager : MonoBehaviour {
     {
         m_IsDrawUIs = true;
         m_Button = button;
+        // カーソルの初期化
+        m_Cursor.Init();
+        // ボタンUIを非表示に変更
         m_PauseButtonUI.SetActive(false);
     }
 
@@ -66,6 +77,7 @@ public class PauseManager : MonoBehaviour {
     public void UIActive(bool isActive)
     {
         m_PauseUI.SetActive(isActive);
+        if (isActive) m_Cursor.Flash();
     }
 
     // ポーズを閉じることが可能かの設定

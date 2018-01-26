@@ -1778,6 +1778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Damage: 1
   m_Particle: {fileID: 1000013652588856, guid: 72c0c87f82753b74884a9f21d405e84a, type: 2}
+  m_ParticleSize: 1
 --- !u!114 &114573054597877876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1803,10 +1804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45be13362e5ea874bb097134d2d94a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HP: 3
   m_Child: {fileID: 1277053517566424}
   m_Colliders: {fileID: 1361649720668590}
   m_CenterPoint: {fileID: 4361999527912952}
   m_LiftPoint: {fileID: 4875173199487910}
+  m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
 --- !u!114 &114852662389452584
 MonoBehaviour:
   m_ObjectHideFlags: 1
