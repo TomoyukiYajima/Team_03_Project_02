@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class HumanEnemy : Enemy
@@ -203,10 +201,7 @@ public class HumanEnemy : Enemy
     public override void Dead()
     {
         if (IsDead())
-        {
-            Destroy(gameObject);
-        }
-
+            ChangeState(EnemyStatus.DeadState);
     }
 
     public void OnDrawGizmos()

@@ -26,6 +26,8 @@ public enum EnemyStatus
     AudibleState,
     //ショック状態
     ShockState,
+    //死亡時(何もしない状態)
+    DeadState,
 
     None
 }

@@ -30,13 +30,15 @@ public class HumanEnemyAttackCollide : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.tag == "Enemy") return;
         Destroy(gameObject);
-        //if (collision.gameObject.tag != "Player") return;
+        if (collision.gameObject.tag != "Player") return;
         //if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(collision.gameObject)) return;
-        ////実行
-        //ExecuteEvents.Execute<IGeneralEvent>(collision.gameObject, null, (e, d) => { e.onDamage(m_Damage); });
-        //Vector3 relativePos = collision.transform.position - transform.position;
-        //Rigidbody rb = collision.transform.GetComponent<Rigidbody>();
-        //rb.AddForce(/*(Vector3.up * m_KnockBackUp) + */((-relativePos) * m_KnockBack));
+        //実行
+        ExecuteEvents.Execute<IGeneralEvent>(collision.gameObject, null, (e, d) => { e.onDamage(m_Damage); });
+        Vector3 relativePos = collision.transform.position - transform.position;
+        relativePos.Normalize();
+        Rigidbody rb = collision.transform.GetComponent<Rigidbody>();
+        rb.AddForce(/*(Vector3.up * m_KnockBackUp) + */((-relativePos) * m_KnockBack));
     }
 }

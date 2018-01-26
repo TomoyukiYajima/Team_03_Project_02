@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 23017215033194778}
   - component: {fileID: 195112552439138686}
   - component: {fileID: 114476954868068422}
-  - component: {fileID: 114095428366602612}
   m_Layer: 0
   m_Name: WalkEnemy
   m_TagString: Enemy
@@ -1777,21 +1776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
---- !u!114 &114095428366602612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1324985262727944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 0
-  eraseRenderer: 0
-  originalLayer: 0
-  originalMaterials: []
 --- !u!114 &114129156550788256
 MonoBehaviour:
   m_ObjectHideFlags: 1

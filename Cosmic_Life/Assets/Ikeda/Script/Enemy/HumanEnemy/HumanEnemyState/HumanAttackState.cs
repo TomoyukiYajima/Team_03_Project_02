@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HumanAttackState : EnemyState
 {
-    enum AttackState
+    public enum AttackState
     {
         Attack,
         CoolTime,
@@ -41,6 +41,11 @@ public class HumanAttackState : EnemyState
 
     }
 
+    public AttackState GetAttackState()
+    {
+        return m_AttackState;
+    }
+
     public override void Action(float deltaTime, Enemy enemy)
     {
         print("人(Enemy)攻撃");
@@ -53,7 +58,7 @@ public class HumanAttackState : EnemyState
             {
                 GameObject bullets = Instantiate(m_AttackCollision) as GameObject;
 
-                Vector3 force = l_HumanEnemy.transform.forward * m_BulletSpeed * deltaTime * 60;
+                Vector3 force = l_HumanEnemy.transform.forward * m_BulletSpeed * deltaTime;
 
                 bullets.transform.position = m_Muzzle.transform.position;
 
