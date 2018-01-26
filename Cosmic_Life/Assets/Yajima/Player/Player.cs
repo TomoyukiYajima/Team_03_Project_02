@@ -79,90 +79,91 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     private void FixedUpdate()
     {
-        if (!m_isCanWalk) return;
-
-        if (Input.GetButtonDown("OK"))
+        if (m_isCanWalk)
         {
-            if (m_liftObj == null) ChangeState(Attack());
-            else LiftObj();
-            return;
-        }
-
-        // 入力を取得
-        Vector3 input;
-        GetInput(out input);
-
-        Vector3 velocity = Vector3.zero;
-        Vector3 m_CamForward = Vector3.Scale(m_camera.transform.forward, new Vector3(1, 0, 1)).normalized;
-
-        velocity = m_CamForward * input.y + m_camera.transform.right * input.x;
-
-        RotateAll(velocity);
-
-        #region Unused
-        //RotateModel(input.x, input.y);
-
-        //float factor = 1.0f;
-        //if (input.y < 0.5f) factor = 0.3f;
-
-        ////Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
-        //Vector3 ve = (transform.forward * input.y * factor + transform.right * input.x) * 2.5f;
-
-        //// we preserve the existing y part of the current velocity.
-        //ve.y = m_rigidbody.velocity.y;
-        //m_rigidbody.velocity = ve;
-#endregion
-
-        if (m_charaCon.isGrounded)
-        {
-            m_velocity = -velocity;
-            m_velocity = transform.TransformDirection(m_velocity);
-            m_velocity *= m_Speed;
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("OK"))
             {
-                m_velocity.y = 8.0f;
+                if (m_liftObj == null) ChangeState(Attack());
+                else LiftObj();
+                return;
             }
 
+            // 入力を取得
+            Vector3 input;
+            GetInput(out input);
+
+            Vector3 velocity = Vector3.zero;
+            Vector3 m_CamForward = Vector3.Scale(m_camera.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+            velocity = m_CamForward * input.y + m_camera.transform.right * input.x;
+
+            RotateAll(velocity);
+
             #region Unused
-            //if (Input.GetButtonDown("Cancel"))
-            //{
-            //    m_isGrounded = false;
-            //    ve.y = 6f;
-            //}
+            //RotateModel(input.x, input.y);
 
-            //m_rigidbody.velocity = m_isGrounded ?
-            //    new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z) :
-            //    new Vector3(m_rigidbody.velocity.x, ve.y, m_rigidbody.velocity.z);
+            //float factor = 1.0f;
+            //if (input.y < 0.5f) factor = 0.3f;
 
-            //m_isGrounded = false;
-            //m_groundCheckDistance = 0.3f;
+            ////Vector3 ve = (m_animator.deltaPosition * m_Speed) / Time.fixedDeltaTime;
+            //Vector3 ve = (transform.forward * input.y * factor + transform.right * input.x) * 2.5f;
 
-            //transform.position += transform.right * h * m_Speed * 2.5f * Time.fixedDeltaTime;
-
-            //if (v <= 0.0f)
-            //{
-            //    Vector3 vec = transform.forward * v * m_Speed * 2.5f * Time.fixedDeltaTime;
-            //   m_rigidbody.velocity = new Vector3(0,0,vec.z);
-            //}
-            //}
-            //else
-            //{
-            //    // apply extra gravity from multiplier:
-            //    Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
-            //    m_rigidbody.AddForce(extraGravityForce);
-
-            //    m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
-
-            //}
-
+            //// we preserve the existing y part of the current velocity.
+            //ve.y = m_rigidbody.velocity.y;
+            //m_rigidbody.velocity = ve;
             #endregion
+
+            if (m_charaCon.isGrounded)
+            {
+                m_velocity = -velocity;
+                m_velocity = transform.TransformDirection(m_velocity);
+                m_velocity *= m_Speed;
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    m_velocity.y = 8.0f;
+                }
+
+                #region Unused
+                //if (Input.GetButtonDown("Cancel"))
+                //{
+                //    m_isGrounded = false;
+                //    ve.y = 6f;
+                //}
+
+                //m_rigidbody.velocity = m_isGrounded ?
+                //    new Vector3(m_rigidbody.velocity.x, 0, m_rigidbody.velocity.z) :
+                //    new Vector3(m_rigidbody.velocity.x, ve.y, m_rigidbody.velocity.z);
+
+                //m_isGrounded = false;
+                //m_groundCheckDistance = 0.3f;
+
+                //transform.position += transform.right * h * m_Speed * 2.5f * Time.fixedDeltaTime;
+
+                //if (v <= 0.0f)
+                //{
+                //    Vector3 vec = transform.forward * v * m_Speed * 2.5f * Time.fixedDeltaTime;
+                //   m_rigidbody.velocity = new Vector3(0,0,vec.z);
+                //}
+                //}
+                //else
+                //{
+                //    // apply extra gravity from multiplier:
+                //    Vector3 extraGravityForce = (Physics.gravity * 2f) - Physics.gravity;
+                //    m_rigidbody.AddForce(extraGravityForce);
+
+                //    m_groundCheckDistance = m_rigidbody.velocity.y < 0 ? m_origGroundCheckDistance : 0.01f;
+
+                //}
+
+                #endregion
+            }
+            m_animator.SetFloat("Speed", input.y, 0.1f, Time.fixedDeltaTime);
+            m_animator.SetFloat("SideSpeed", input.x, 0.1f, Time.fixedDeltaTime);
         }
 
         m_velocity.y -= 20.0f * Time.fixedDeltaTime;
         m_charaCon.Move(m_velocity * Time.fixedDeltaTime);
 
-        m_animator.SetFloat("Speed", input.y, 0.1f, Time.fixedDeltaTime);
-        m_animator.SetFloat("SideSpeed", input.x, 0.1f, Time.fixedDeltaTime);
     }
 
     //private void UpdateState()

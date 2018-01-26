@@ -10,7 +10,7 @@ public enum SceneType
     Tutorial,
     Stage1,
     StageSample2,
-    Stage3,
+    FinalStage,
     Credit,
     MikeWarn,
     Null,

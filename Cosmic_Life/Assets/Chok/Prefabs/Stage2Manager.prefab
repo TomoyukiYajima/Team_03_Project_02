@@ -113,3 +113,4 @@ MonoBehaviour:
   m_ChangeScene: {fileID: 0}
   m_Stages: {fileID: 0}
   m_playerCamera: {fileID: 0}
+  m_actions: []

@@ -145,6 +145,11 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         else
         {
+            if (Input.GetButtonDown("Triggrt_Left"))
+            {
+                m_isLockOn = false;
+                return;
+            }
             // 中心点を設定します
             var lookAt = m_player.transform.position + Vector3.up * m_height;
 

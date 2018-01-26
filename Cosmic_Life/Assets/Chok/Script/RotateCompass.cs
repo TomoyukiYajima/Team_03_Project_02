@@ -17,7 +17,7 @@ public class RotateCompass : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.eulerAngles = new Vector3(0, 0, -m_parent.eulerAngles.y - m_angle);
+        transform.eulerAngles = new Vector3(0, 0, -m_parent.eulerAngles.y - m_angle +180.0f);
         //transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z);
     }
 }

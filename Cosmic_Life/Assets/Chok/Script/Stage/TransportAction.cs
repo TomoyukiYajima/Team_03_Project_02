@@ -6,17 +6,17 @@ public class TransportAction : StageAction
 {
     public override IEnumerator Action(Pausable pause)
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
 
         FadeMgr.Instance.FadeOut(
-            2.0f,
+            1.0f,
             () => {
                 MovePlayer();
                 MoveRobot();
                 pause.pausing = true;
             }
             );
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         pause.pausing = false;
         m_isEnd = true;
         yield return new WaitForSeconds(1.0f);
