@@ -129,9 +129,9 @@ public class WalkEnemy : Enemy
         Vector3 directionToRobot = m_RobotLookPoint.position - m_EyePoint.position;
 
         //自分と同じ高さにRobotがいるかどうか調べる
-        float l_RobotY = m_Robot.transform.position.y;
-        if (l_RobotY >= transform.position.y)
-            return false;
+        //float l_RobotY = m_Robot.transform.position.y;
+        //if (l_RobotY >= transform.position.y)
+        //    return false;
 
         //自分の正面向きベクトルとロボットへの方向ベクトルの差分角度
         float angleToRobot = Vector3.Angle(m_EyePoint.forward, directionToRobot);
@@ -272,5 +272,22 @@ public class WalkEnemy : Enemy
     public Quaternion GetStartAngle()
     {
         return m_StartAngle;
+    }
+
+    public override void Dead()
+    {
+        if (IsDead())
+        {
+            ChangeState(EnemyStatus.DeadState);
+            StartCoroutine(WaitDeadAnimation());
+        }
+    }
+
+    IEnumerator WaitDeadAnimation()
+    {
+        yield return new WaitForSeconds(2.3f);
+
+        Instantiate(m_Explosion, transform.position + new Vector3(0, -0.5f, -1f), transform.rotation);
+        Destroy(gameObject);
     }
 }

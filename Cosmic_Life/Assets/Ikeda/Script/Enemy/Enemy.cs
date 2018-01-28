@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
         //タグでプレイヤーとロボットを検索して保持
         m_Player = GameObject.FindGameObjectWithTag("Player");
         m_Robot = GameObject.FindGameObjectWithTag("Robot");
+
     }
 
     // Update is called once per frame

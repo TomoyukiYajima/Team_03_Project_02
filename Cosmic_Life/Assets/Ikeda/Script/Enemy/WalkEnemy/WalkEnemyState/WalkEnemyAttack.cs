@@ -5,7 +5,7 @@ using UnityEngine;
 public class WalkEnemyAttack : EnemyState
 {
 
-    private enum AttackState
+    public enum AttackState
     {
         Attack,
         AttackAfter,
@@ -42,15 +42,28 @@ public class WalkEnemyAttack : EnemyState
 
     WalkEnemy m_WalkEnemy;
 
+    private bool m_IsAttack;
+
     // Use this for initialization
     void Start()
     {
         m_AttackState = AttackState.Attack;
+        m_IsAttack = false;
     }
 
     //void Update()
     //{
     //}
+
+    public AttackState GetWalkEnemyState()
+    {
+        return m_AttackState;
+    }
+
+    public bool GetIsAttack()
+    {
+        return m_IsAttack;
+    }
 
     public override void Action(float deltaTime, Enemy enemy)
     {
@@ -60,14 +73,18 @@ public class WalkEnemyAttack : EnemyState
         switch (m_AttackState)
         {
             case AttackState.Attack:
+                m_IsAttack = true;
+
                 m_AttackCollider.SetActive(true);
                 SoundManager.Instance.PlaySe("SE_Droid_Attack_01");
 
-                if (m_AttackTime > m_Timer) m_Timer += Time.deltaTime;
+                if (m_AttackTime > m_Timer)
+                    m_Timer += Time.deltaTime;
                 else
                 {
                     m_Timer = 0;
                     m_CoolTime = m_SetCoolTime;
+                    m_IsAttack = false;
                     m_AttackState = AttackState.AttackAfter;
                 }
                 break;

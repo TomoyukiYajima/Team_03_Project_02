@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4233981751610070}
-  - component: {fileID: 114970624753722190}
+  - component: {fileID: 114972233459382208}
   m_Layer: 0
   m_Name: DeadState
   m_TagString: Untagged
@@ -2323,7 +2323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e28e460c29b3a43ad3781d02f5b572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsRound: 1
+  m_IsRound: 0
 --- !u!114 &114488865287703054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2354,7 +2354,7 @@ MonoBehaviour:
   m_EnemyState:
   - {fileID: 114381969926483196}
   - {fileID: 114791382358371516}
-  - {fileID: 114970624753722190}
+  - {fileID: 114972233459382208}
 --- !u!114 &114533373721797050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2367,6 +2367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HumanAttack: {fileID: 1093282667929820}
+  m_HandGun: {fileID: 100000, guid: 60165f89b7988fe448cc95cd57364d22, type: 3}
 --- !u!114 &114791382358371516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2383,7 +2384,7 @@ MonoBehaviour:
   m_Muzzle: {fileID: 4781101892258828}
   m_BulletSpeed: 100
   m_SetCoolTime: 3
---- !u!114 &114970624753722190
+--- !u!114 &114972233459382208
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2391,7 +2392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1755533550140822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a796fa5d0ddd4498c2002c53c3b2df, type: 3}
+  m_Script: {fileID: 11500000, guid: 9789de24d00b0f64a9ecd4cf8464584a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114989854328090058
@@ -2410,7 +2411,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  m_Hp: 1
+  m_Hp: 2
   m_Explosion: {fileID: 0}
   m_ViewingDistance: 20
   m_ViewingAngle: 30

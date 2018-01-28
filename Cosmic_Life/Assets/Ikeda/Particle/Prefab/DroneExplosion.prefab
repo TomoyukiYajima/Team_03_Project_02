@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4906236126207228}
   - component: {fileID: 198869310086753604}
   - component: {fileID: 199896304531611750}
+  - component: {fileID: 114318970177041648}
   m_Layer: 0
   m_Name: DroneExplosion
   m_TagString: Untagged
@@ -231,6 +232,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114318970177041648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262718153605012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeaeaa2aac25553468a4253cf5f3dbb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198051531846574754
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -12,11 +12,17 @@ public class HumanEnemyAnimationController : MonoBehaviour
     [SerializeField, Tooltip("AttackStateを設定")]
     private GameObject m_HumanAttack;
 
+    [SerializeField, Tooltip("銃のオブジェクトの設定")]
+    private GameObject m_HandGun;
+
     private HumanAttackState m_HumanAttackState;
 
     private bool m_Once;
 
     private bool m_IsHumanDead;
+
+    private GameObject m_Gun;
+    private Transform m_RHand;
 
     // Use this for initialization
     void Start()
@@ -26,11 +32,19 @@ public class HumanEnemyAnimationController : MonoBehaviour
         m_Once = true;
         m_IsHumanDead = false;
         m_HumanAttackState = m_HumanAttack.GetComponent<HumanAttackState>();
+
+
+        m_RHand = m_Animator.GetBoneTransform(HumanBodyBones.RightHand);
+        m_Gun = Instantiate(m_HandGun, Vector3.zero, Quaternion.identity) as GameObject;
+        //銃を手に持たせる
+        HandGunHold();
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_Gun.transform.rotation = m_RHand.rotation * Quaternion.Euler(new Vector3(-85f, 0f, 90f));
+
         if (m_HumanEnemy.GetEnemyStatus() == EnemyStatus.RoundState && m_Once)
         {
             m_Once = false;
@@ -59,5 +73,12 @@ public class HumanEnemyAnimationController : MonoBehaviour
             m_IsHumanDead = true;
             m_Animator.SetTrigger("Dead");
         }
+    }
+
+    public void HandGunHold()
+    {
+        m_Gun.transform.localScale *= 0.2f;
+        m_Gun.transform.SetParent(m_RHand);
+        m_Gun.transform.position = m_RHand.position + new Vector3(0.05f, -0.05f, 0.4f);
     }
 }

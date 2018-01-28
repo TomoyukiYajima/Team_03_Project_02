@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanDeadState : EnemyState {
+public class Explosions : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,11 +11,12 @@ public class HumanDeadState : EnemyState {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        StartCoroutine(StayDestroy());
 	}
 
-    public override void Action(float deltaTime, Enemy enemy)
+    IEnumerator StayDestroy()
     {
-        //何もしない
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 }
