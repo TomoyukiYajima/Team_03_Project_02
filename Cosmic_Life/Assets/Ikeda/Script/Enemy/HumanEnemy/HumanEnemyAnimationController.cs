@@ -12,6 +12,9 @@ public class HumanEnemyAnimationController : MonoBehaviour
     [SerializeField, Tooltip("AttackStateを設定")]
     private GameObject m_HumanAttack;
 
+    [SerializeField, Tooltip("RoundStateを設定")]
+    private GameObject m_HumanRound;
+
     [SerializeField, Tooltip("銃のオブジェクトの設定")]
     private GameObject m_HandGun;
 
@@ -38,6 +41,8 @@ public class HumanEnemyAnimationController : MonoBehaviour
         m_Gun = Instantiate(m_HandGun, Vector3.zero, Quaternion.identity) as GameObject;
         //銃を手に持たせる
         HandGunHold();
+
+        m_Animator.SetBool("IsWalkState", false);
     }
 
     // Update is called once per frame
@@ -45,7 +50,8 @@ public class HumanEnemyAnimationController : MonoBehaviour
     {
         m_Gun.transform.rotation = m_RHand.rotation * Quaternion.Euler(new Vector3(-85f, 0f, 90f));
 
-        if (m_HumanEnemy.GetEnemyStatus() == EnemyStatus.RoundState && m_Once)
+
+        if (m_HumanEnemy.GetEnemyStatus() == EnemyStatus.RoundState && m_Once && m_HumanRound.GetComponent<HumanRoundState>().GetIsRound())
         {
             m_Once = false;
             m_Animator.SetBool("IsWalkState", true);
