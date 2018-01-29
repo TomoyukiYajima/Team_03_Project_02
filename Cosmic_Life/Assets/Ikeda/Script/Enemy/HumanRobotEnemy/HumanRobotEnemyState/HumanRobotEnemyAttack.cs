@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanRobotEnemyAttack : EnemyState
 {
 
-    private enum AttackState
+    public enum AttackState
     {
         Attack,
         AttackAfter,
@@ -32,10 +32,14 @@ public class HumanRobotEnemyAttack : EnemyState
     private float m_SetCoolTime;
 
     private float m_CoolTime;
+
+    private bool m_IsAttack;
+
     // Use this for initialization
     void Start()
     {
         m_AttackState = AttackState.Attack;
+        m_IsAttack = false;
     }
 
     //void Update()
@@ -43,16 +47,30 @@ public class HumanRobotEnemyAttack : EnemyState
 
     //}
 
+    public AttackState GetHumanRobotAttackState()
+    {
+        return m_AttackState;
+    }
+
+    public bool GetIsAttack()
+    {
+        return m_IsAttack;
+    }
+
+
     public override void Action(float deltaTime, Enemy enemy)
     {
         switch (m_AttackState)
         {
             case AttackState.Attack:
                 m_AttackCollider.SetActive(true);
+                m_IsAttack = true;
+
 
                 if (m_AttackTime > m_Timer) m_Timer += Time.deltaTime;
                 else
                 {
+                    m_IsAttack = false;
                     m_Timer = 0;
                     m_CoolTime = m_SetCoolTime;
                     m_AttackState = AttackState.AttackAfter;

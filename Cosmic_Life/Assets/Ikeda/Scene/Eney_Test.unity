@@ -223,28 +223,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4582766332807742, guid: 35b6d2ccf55b9534cbbf54047b38a176,
     type: 2}
   m_PrefabInternal: {fileID: 299347533}
---- !u!1 &299347535 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1470292384869886, guid: 35b6d2ccf55b9534cbbf54047b38a176,
-    type: 2}
-  m_PrefabInternal: {fileID: 299347533}
---- !u!95 &299347536
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 299347535}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cf389cd6ad221ca44b97bcef826651b4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8a7a7e0fcda0b194c81ba9b3007b12e6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &312219712
 Prefab:
   m_ObjectHideFlags: 0
@@ -294,16 +272,12 @@ Prefab:
       propertyPath: m_RoundPoints.Array.data[1]
       value: 
       objectReference: {fileID: 796129589}
-    - target: {fileID: 108902438336293468, guid: d8794d3cab1f245478b697ea3a518113,
+    - target: {fileID: 114680155226200044, guid: d8794d3cab1f245478b697ea3a518113,
         type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 108902438336293468, guid: d8794d3cab1f245478b697ea3a518113,
+      propertyPath: m_Explosion
+      value: 
+      objectReference: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc,
         type: 2}
-      propertyPath: m_Range
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8794d3cab1f245478b697ea3a518113, type: 2}
   m_IsPrefabParent: 0
