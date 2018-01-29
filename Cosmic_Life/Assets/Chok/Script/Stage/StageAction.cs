@@ -21,6 +21,7 @@ public class StageAction : MonoBehaviour
     private int m_playerIndex;
     private int m_robotIndex;
     private int m_cameraIndex;
+    private int m_gimmickActivateIndex;
     private int m_gimmickIndex;
 
     public bool IsEnd { get { return m_isEnd; } private set { } }
@@ -43,6 +44,7 @@ public class StageAction : MonoBehaviour
         m_playerIndex = 0;
         m_robotIndex = 0;
         m_cameraIndex = 0;
+        m_gimmickActivateIndex = 0;
         m_gimmickIndex = 0;
         m_isEnd = false;
     }
@@ -101,6 +103,22 @@ public class StageAction : MonoBehaviour
         m_cameraIndex++;
     }
 
+    protected void ActiveGimmick()
+    {
+        if (m_gimmickActivateIndex < 0 && m_gimmickActivateIndex >= m_gimmicks.Length) return;
+        if (!ExecuteEvents.CanHandleEvent<IGimmickEvent>(m_gimmicks[m_gimmickActivateIndex]))
+        {
+            Debug.Log("IGimmickEvent未実装 : " + m_gimmicks[m_gimmickActivateIndex]);
+            return;
+        }
+
+        ExecuteEvents.Execute<IGimmickEvent>(
+            m_gimmicks[m_gimmickActivateIndex],
+            null,
+            (receive, y) => receive.onActivate());
+
+        m_gimmickActivateIndex++;
+    }
     protected void ResetGimmick()
     {
         if (m_gimmickIndex < 0 && m_gimmickIndex >= m_gimmicks.Length) return;

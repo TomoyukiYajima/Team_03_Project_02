@@ -184,6 +184,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     {
         m_rigidbody.velocity = Vector3.zero;
         m_isCanWalk = false;
+        m_velocity = Vector3.zero;
         m_animator.SetFloat("Speed", 0);
         StopAllCoroutines();
         StartCoroutine(coroutine);
