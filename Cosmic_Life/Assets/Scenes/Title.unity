@@ -19458,7 +19458,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4779229363832640, guid: f329028cc2c608f4bb6da9542606f235, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4779229363832640, guid: f329028cc2c608f4bb6da9542606f235, type: 2}
       propertyPath: m_LocalScale.x
@@ -19950,7 +19950,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c04aa6e9b8bf3ce4dad2f45dae2c1761, type: 3}
+  m_Sprite: {fileID: 21300000, guid: addf0cbe20c283b4b9acdb3a2e0da7f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33482,7 +33482,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -37402,7 +37402,7 @@ GameObject:
   - component: {fileID: 1499145622}
   - component: {fileID: 1499145623}
   m_Layer: 5
-  m_Name: CreditButton
+  m_Name: TutorialButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37441,7 +37441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1499e00f640f84983204947411434e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: 7
+  m_Type: 3
   m_FlashImage: {fileID: 219948484}
   m_ShadowImage: {fileID: 349557701}
 --- !u!1 &1506280212
@@ -45813,7 +45813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1904521974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1499e00f640f84983204947411434e, type: 3}
+  m_Script: {fileID: 11500000, guid: aa2d8a35c9d25a1488a7878ade42b660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Type: 9
@@ -45892,7 +45892,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4588420846272052, guid: 5fbbb4fbafa4a9a40809d55a4319d7df, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4588420846272052, guid: 5fbbb4fbafa4a9a40809d55a4319d7df, type: 2}
       propertyPath: m_LocalScale.x
@@ -46841,7 +46841,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_LocalPosition.x

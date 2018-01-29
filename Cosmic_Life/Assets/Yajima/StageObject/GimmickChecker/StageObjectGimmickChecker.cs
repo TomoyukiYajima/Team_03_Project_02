@@ -14,6 +14,9 @@ public class StageObjectGimmickChecker : GimmickChecker
     // 選ばれた列挙クラス判断する
     [SerializeField]
     private CheckNumber m_CheckNumber = CheckNumber.CHECK_LIFT;
+    // 表示するサポートUI
+    [SerializeField]
+    private HintsPoint m_SupportUI;
     // 条件達成時にアクティブ状態にするか
     [SerializeField]
     private bool m_IsActive;
@@ -27,7 +30,9 @@ public class StageObjectGimmickChecker : GimmickChecker
 	// Use this for initialization
 	public override void Start () {
         m_StageObject = m_CheckerObject.GetComponent<StageObject>();
-	}
+
+        m_SupportUI.gameObject.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	public override void Update () {
@@ -36,6 +41,7 @@ public class StageObjectGimmickChecker : GimmickChecker
         bool isActive = !m_IsActive;
 
         if (IsCheck()) isActive = m_IsActive;
+
         //switch (m_CheckNumber)
         //{
         //    case CheckNumber.CHECK_LIFT: if (IsCheck()) isActive = false; break;
@@ -50,6 +56,39 @@ public class StageObjectGimmickChecker : GimmickChecker
 
         m_InfluenceObject.SetActive(isActive);
         //gameObject.SetActive(isActive);
+
+        //// サポートUIの表示
+        //if (m_SupportUI != null)
+        //{
+        //    var undroid = GameObject.Find("Undroid");
+        //    if (undroid == null) return;
+        //    var liftobj = undroid.transform.Find("LiftObject");
+        //    // アンドロイドがステージオブジェクトを持っていたら、表示する
+        //    if (liftobj.childCount != 0)
+        //    {
+        //        m_SupportUI.SetActive(true);
+        //    }
+        //    else m_SupportUI.SetActive(false);
+        //}
+
+        // サポートUIの表示
+        if (m_SupportUI != null)
+        {
+            var undroid = GameObject.Find("Undroid");
+            if (undroid == null) return;
+            var liftobj = undroid.transform.Find("LiftObject");
+            // アンドロイドがステージオブジェクトを持っていたら、表示する
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                //m_SupportUI.gameObject.SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                m_SupportUI.EndFlash();
+                //m_SupportUI.gameObject.SetActive(false);
+
+            }
+        }
     }
 
     public override bool IsCheck() {
@@ -63,8 +102,5 @@ public class StageObjectGimmickChecker : GimmickChecker
         }
 
         return check;
-
-        //return m_StageObject.IsLift();
-
     }
 }

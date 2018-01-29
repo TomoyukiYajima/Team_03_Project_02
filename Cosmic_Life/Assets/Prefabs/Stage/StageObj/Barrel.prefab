@@ -1889,7 +1889,9 @@ MonoBehaviour:
   m_Colliders: {fileID: 1860693152383800}
   m_CenterPoint: {fileID: 4898987391690136}
   m_LiftPoint: {fileID: 4294975660614482}
+  m_MiniMapImage: {fileID: 4881777622417748}
   m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_IsBrake: 1
 --- !u!136 &136212854672230024
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1977,7 +1979,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 149b5a82ceb9a0642bec1471008e4347, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.97794116, g: 0.6795997, b: 0.30201122, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

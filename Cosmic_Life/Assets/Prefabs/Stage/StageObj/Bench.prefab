@@ -804,13 +804,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719790118849162}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.125, z: 0}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0125, y: -0.125, z: -0.1}
+  m_LocalScale: {x: 1.165, y: 1.2, z: 0}
   m_Children: []
   m_Father: {fileID: 4273400491925152}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4320083022557786
 Transform:
   m_ObjectHideFlags: 1
@@ -1752,7 +1752,9 @@ MonoBehaviour:
   m_Colliders: {fileID: 1797670031215386}
   m_CenterPoint: {fileID: 4967310932562174}
   m_LiftPoint: {fileID: 4320083022557786}
-  m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_MiniMapImage: {fileID: 4283750946768944}
+  m_Particle: {fileID: 0}
+  m_IsBrake: 0
 --- !u!114 &114412801527466360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1871,7 +1873,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9697d5ee161610d4fa727b391cc07f83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8627ac25811f7445840b7e57aa7f957, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

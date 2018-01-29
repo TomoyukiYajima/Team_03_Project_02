@@ -1969,13 +1969,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896248742894614}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.4, z: 0}
-  m_LocalScale: {x: 3.5, y: 7.5, z: 0}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.23}
+  m_LocalScale: {x: 3.125, y: 3.2, z: 0}
   m_Children: []
   m_Father: {fileID: 4451317246207248}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
 --- !u!23 &23004593917297542
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -3338,7 +3338,9 @@ MonoBehaviour:
   m_Colliders: {fileID: 1120006296051156}
   m_CenterPoint: {fileID: 4343552174262784}
   m_LiftPoint: {fileID: 4508857329662688}
-  m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_MiniMapImage: {fileID: 4994332036242120}
+  m_Particle: {fileID: 1198738970051032, guid: c25db413145d71b49b7fa0e9efd997aa, type: 2}
+  m_IsBrake: 1
 --- !u!114 &114177771009350518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3457,7 +3459,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9697d5ee161610d4fa727b391cc07f83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b23ed25669ef2f4ca09aafde93c238a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

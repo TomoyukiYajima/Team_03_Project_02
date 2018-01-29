@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
-public class FlashImage : MonoBehaviour {
-
+public class FlashSprite : MonoBehaviour {
     // フェード時間
     [SerializeField]
     private float m_FadeTime = 1.0f;
@@ -17,23 +14,25 @@ public class FlashImage : MonoBehaviour {
     [SerializeField]
     private bool m_IsStartFlash = true;
 
+    // スプライトレンダラー
+    private SpriteRenderer m_Renderer;
     // イメージ
-    private Image m_Image;
+    //private Image m_Image;
     // 発光を停止させるか
     private bool m_IsStop = false;
     // 終了時に実行する処理
-    private Action m_EndAction = () => { };
+    //private Action m_EndAction = () => { };
 
-	// Use this for initialization
-	void Start () {
-        m_Image = this.GetComponent<Image>();
+    // Use this for initialization
+    void Start () {
+        m_Renderer = this.GetComponent<SpriteRenderer>();
         if (m_IsStartFlash) StartCoroutine(Flash());
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //print(m_Image.color.ToString());
-    }
+		
+	}
 
     public void StartFlash()
     {
@@ -41,41 +40,41 @@ public class FlashImage : MonoBehaviour {
         StartCoroutine(Flash());
     }
 
-    public void EndFlash(Action action)
+    public void EndFlash()
     {
-        m_EndAction = action;
+        //m_EndAction = action;
         m_IsStop = true;
     }
 
     private IEnumerator Flash()
     {
         // 非透明化
-        m_Image.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), m_FadeTime / 2);
+        m_Renderer.DOColor(new Color(1.0f, 1.0f, 1.0f, 1.0f), m_FadeTime / 2);
         // ディレイ
         yield return new WaitForSeconds(m_FadeTime / 2);
         // 透明化
-        m_Image.DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), m_FadeTime / 2);
+        m_Renderer.DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), m_FadeTime / 2);
         // 再帰呼び出し
         yield return new WaitForSeconds(m_FadeTime / 2 + m_FlashDelay);
-        // 停止状態ならブレイクする
-        if (m_IsStop)
-        {
-            // 終了時に設定されたメソッドを実行
-            if (m_EndAction != null) m_EndAction();
-            yield break;
-        }
+        //// 停止状態ならブレイクする
+        //if (m_IsStop)
+        //{
+        //    // 終了時に設定されたメソッドを実行
+        //    m_EndAction();
+        //    yield break;
+        //}
         StartCoroutine(Flash());
     }
 
     // 発光の初期化
-    public void InitFlash(Action action)
+    public void InitFlash()
     {
         // 停止処理
-        EndFlash(action);
+        EndFlash();
         // ツインの強制終了
-        m_Image.DOKill();
+        m_Renderer.DOKill();
         Color color = Color.white;
         color.a = 0.0f;
-        if (m_Image != null) m_Image.color = color;
+        m_Renderer.color = color;
     }
 }

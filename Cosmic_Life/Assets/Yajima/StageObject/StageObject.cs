@@ -21,9 +21,15 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 持ち上げポイント
     [SerializeField]
     private Transform m_LiftPoint;
+    // ミニマップ画像
+    [SerializeField]
+    private Transform m_MiniMapImage;
     // 破壊時のパーティクル
     [SerializeField]
     private GameObject m_Particle;
+    // 破壊可能か？
+    [SerializeField]
+    private bool m_IsBrake = true;
 
     // 元の親オブジェクト
     private Transform m_RootParent;
@@ -46,13 +52,15 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     private bool m_IsStageObjectHit = false;
     // 衝突しているオブジェクト
     private List<GameObject> m_HitObjects = new List<GameObject>();
-    // 衝突していたオブジェクト
-    //private List<GameObject> m_PrevHitObjects = new List<GameObject>();
 
     // 衝突判定の初期位置
     private Vector3 m_InitPosition;
     // 中心との距離
     private float m_CenterLength;
+    // ミニマップ画像との距離
+    private float m_MapLength;
+    // ミニマップの初期回転角度
+    private Vector3 m_InitMapRotate;
 
     // 点滅するか
     //private bool m_IsFlash = false;
@@ -85,6 +93,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         m_InitPosition = m_Colliders.transform.localPosition;
 
         m_CenterLength = Vector3.Distance(m_LiftPoint.position, m_CenterPoint.position);
+        // マップ画像の初期設定を保存
+        m_MapLength = Vector3.Distance(m_MiniMapImage.position, m_CenterPoint.position);
+        m_InitMapRotate = m_MiniMapImage.eulerAngles;
 
         m_Rigidbody = this.GetComponent<Rigidbody>();
 
@@ -106,7 +117,16 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         m_PravVelocity = m_Rigidbody.velocity;
 
         // リフトポイントの座標更新
-        m_LiftPoint.position =  m_CenterPoint.position + Vector3.down * m_CenterLength;
+        m_LiftPoint.position = m_CenterPoint.position + Vector3.down * m_CenterLength;
+        // ミニマップも固定化する
+        m_MiniMapImage.position = m_CenterPoint.position + Vector3.down * m_CenterLength;
+        var angles = m_InitMapRotate;
+        angles.y += this.transform.eulerAngles.y + m_InitMapRotate.y;
+        //angles.y += m_InitMapRotate.y;
+        m_MiniMapImage.eulerAngles = angles;
+
+        //this.transform.rotation.eulerAngles
+        //localRotate = + this.transform.rotation;
         //float length = Vector3.Distance(this.transform.position, m_LiftPoint.position);
         //m_LiftPoint.position = Vector3.down * length;
 
@@ -305,6 +325,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     #region イベント関数
     public void onDamage(int amount)
     {
+        // 破壊可能でなければ返す
+        if (!m_IsBrake) return;
+
         m_HP = Mathf.Max(m_HP - amount, 0);
         if (m_HP == 0)
         {

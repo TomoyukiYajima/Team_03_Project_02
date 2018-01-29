@@ -1835,7 +1835,9 @@ MonoBehaviour:
   m_Colliders: {fileID: 1566092145725442}
   m_CenterPoint: {fileID: 4473029060543352}
   m_LiftPoint: {fileID: 4250603456017994}
-  m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_MiniMapImage: {fileID: 4731868751038354}
+  m_Particle: {fileID: 0}
+  m_IsBrake: 0
 --- !u!114 &114825457894649482
 MonoBehaviour:
   m_ObjectHideFlags: 1
