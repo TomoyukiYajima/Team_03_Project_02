@@ -2367,6 +2367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HumanAttack: {fileID: 1093282667929820}
+  m_HumanRound: {fileID: 1406847682108976}
   m_HandGun: {fileID: 100000, guid: 60165f89b7988fe448cc95cd57364d22, type: 3}
 --- !u!114 &114791382358371516
 MonoBehaviour:
