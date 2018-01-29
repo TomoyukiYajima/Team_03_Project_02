@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WarpPoint : MonoBehaviour {
     [SerializeField] private StageAction action;
+    [SerializeField] private GameObject m_image;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,8 @@ public class WarpPoint : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Player") return;
+
+        if (m_image != null) m_image.SetActive(true);
 
         StageManager.GetInstance().StartAction(action);
     }

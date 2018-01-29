@@ -101,6 +101,7 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         builder.AppendFormat("\tDuration: {0} seconds{1}", args.phraseDuration.TotalSeconds, Environment.NewLine);
         Debug.Log(builder.ToString());
 
+
         GameObject robot = GameObject.FindGameObjectWithTag("Robot");
         if (robot == null) return;
 
@@ -136,6 +137,21 @@ public class SpeechManager : SingletonBehaviour<SpeechManager>
         if (orderType == OrderStatus.NULL) return;
 
         SendOrder(orderType, orderDir);
+
+        var move = GameObject.Find("MoveCheck");
+        if (move != null)
+        {
+            if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(move))
+            {
+                Debug.Log("IOrderEvent未実装");
+                return;
+            }
+
+                ExecuteEvents.Execute<IOrderEvent>(
+                    robot,
+                    null,
+                    (receive, y) => receive.onOrder(orderType));
+        }
     }
 
     private void OnUnlockPhrase(PhraseRecognizedEventArgs args)

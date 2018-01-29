@@ -1,32 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum TutorialType {
-    Phase_Move,
-    Phase_Lift,
-    Phase_TakeDown,
-    Phase_Attack,
-    Phase_Password
-}
-
+using DG.Tweening;
 
 public class TutorialAction : StageAction {
-
-    [SerializeField] private TutorialType m_phase;
+    [SerializeField] private CanvasGroup m_canvas;
+    [SerializeField] private TextController m_textController;
 
     public override IEnumerator Action(Pausable pause)
     {
-        switch (m_phase)
-        {
-            case TutorialType.Phase_Move:break;
-            case TutorialType.Phase_Lift:break;
-            case TutorialType.Phase_TakeDown:break;
-            case TutorialType.Phase_Attack:break;
-            case TutorialType.Phase_Password:break;
-        }
+        m_canvas.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        pause.pausing = true;
+        m_canvas.DOFade(1.0f, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        m_textController.Init();
+        yield return new WaitWhile(() => !m_textController.IsEnd);
+        m_canvas.DOFade(0.0f, 0.2f);
+
+        pause.pausing = false;
+
+        m_isEnd = true;
+        m_canvas.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
+        Destroy(this.gameObject);
+
         yield return null;
     }
-
-    
 }
