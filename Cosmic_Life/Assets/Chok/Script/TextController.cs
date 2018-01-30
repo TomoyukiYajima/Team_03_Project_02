@@ -9,7 +9,7 @@ public class TextController : MonoBehaviour
     [SerializeField] private Text m_header;
     [SerializeField] private string[] m_scenerios;
     [SerializeField] private string[] m_headerText;
-    [SerializeField] private Image[] m_sprite;
+    [SerializeField] private CanvasGroup[] m_sprite;
 
     private Text m_text;
 
