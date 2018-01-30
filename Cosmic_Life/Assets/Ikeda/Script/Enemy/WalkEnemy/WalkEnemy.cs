@@ -279,6 +279,7 @@ public class WalkEnemy : Enemy
     {
         if (IsDead())
         {
+            AgentStop();
             ChangeState(EnemyStatus.DeadState);
             StartCoroutine(WaitDeadAnimation());
         }
