@@ -72,9 +72,6 @@ public class Player : MonoBehaviour, IGeneralEvent
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("X")) { onDamage(1); }
-
-        //m_animator.SetFloat("Forward", m_velocity.z, 0.1f, Time.deltaTime);
     }
 
     private void FixedUpdate()
