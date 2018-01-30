@@ -8,6 +8,8 @@ public class MoveCheck : MonoBehaviour,IOrderEvent {
     [SerializeField] private GameObject m_image;
     [SerializeField] private GameObject m_takeDown;
 
+    private bool m_isEnd;
+
     public void changeAnimation(UndroidAnimationStatus state)
     {
         throw new NotImplementedException();
@@ -20,8 +22,10 @@ public class MoveCheck : MonoBehaviour,IOrderEvent {
 
     public void onOrder(OrderStatus order)
     {
+        if (m_isEnd) return;
         if (order == OrderStatus.MOVE)
         {
+            m_isEnd = true;
             m_takeDown.SetActive(true);
             if (m_image != null) m_image.SetActive(true);
             StageManager.GetInstance().StartAction(m_action);
