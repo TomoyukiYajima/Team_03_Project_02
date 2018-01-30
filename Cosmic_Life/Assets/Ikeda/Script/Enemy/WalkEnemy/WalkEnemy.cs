@@ -289,7 +289,7 @@ public class WalkEnemy : Enemy
     {
         yield return new WaitForSeconds(2.3f);
 
-        Instantiate(m_Explosion, transform.position + new Vector3(0, -0.5f, -1f), transform.rotation);
+        Instantiate(m_Explosion, transform.position + new Vector3(0, -0.5f, 0f), transform.rotation);
         Destroy(gameObject);
     }
 }
