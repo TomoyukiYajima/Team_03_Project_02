@@ -131,10 +131,11 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         //m_LiftPoint.position = Vector3.down * length;
 
         if (this.transform.parent == null) return;
+
         // アンドロイドがオブジェクトを持っていない場合
         if(this.transform.parent.name != "LiftObject")
         {
-            if (m_Rigidbody.velocity.x == 0.0f && m_Rigidbody.velocity.z == 0.0f && m_IsStageObjectHit == false)
+            if (Mathf.Abs(m_Rigidbody.velocity.x) < 0.1f && Mathf.Abs(m_Rigidbody.velocity.z) < 0.1f && m_IsStageObjectHit == false)
             {
                 //m_Rigidbody.isKinematic = true;
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -144,6 +145,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
                 GameObject colliderStop = this.transform.Find("Collider_Stop").gameObject;
                 if (colliderStop != null) colliderStop.SetActive(false);
             }
+
+            // 遠くに行き過ぎた場合は削除する
+            if (Mathf.Abs(this.transform.position.y - m_InitPosition.y) >= 100) Explosion();
         }
     }
 
@@ -184,23 +188,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         yield return new WaitForSeconds(Time.deltaTime);
 
         m_HitObjects.Remove(obj);
-        //// 削除するオブジェクトを捜して削除する
-        //for (int i = 0; i != m_PrevHitObjects.Count; ++i)
-        //{
-        //    GameObject obj = m_PrevHitObjects[i];
-        //    for (int j = 0; j != m_HitObjects.Count; ++i)
-        //    {
-        //        if (obj != m_HitObjects[j]) continue;
-        //        // 同一のオブジェクト
-        //        m_HitObjects.Remove(obj);
-        //        m_PrevHitObjects.Remove(obj);
-        //        // 削除するオブジェクトがない場合はbreakする
-        //        if (m_PrevHitObjects.Count == 0)
-        //            break;
-        //    }
-        //    if (m_PrevHitObjects.Count == 0)
-        //        break;
-        //}
     }
 
     private void AddObject(GameObject obj)
@@ -209,6 +196,23 @@ public class StageObject : MonoBehaviour, IGeneralEvent
 
         // if (m_HitObjects.IndexOf(obj) != -1) return;
         if (m_HitObjects.IndexOf(obj) < 0) m_HitObjects.Add(obj);
+    }
+
+    // 爆発させます
+    private void Explosion()
+    {
+        // パーティクルを生成して、自身を削除する
+        Instantiate(m_Particle, this.transform.position, this.transform.rotation);
+        // 持ち上げられていた場合は、他のオブジェクトも削除する
+        if (this.transform.parent.name == "LiftObject")
+        {
+            //for(int i = 0; i != this.transform.childCount; ++i)
+            //{
+            //    this.transform.GetChild(i)
+            //}
+        }
+
+        Destroy(gameObject);
     }
 
     // 参照しているオブジェクトのクリア
@@ -329,12 +333,8 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         if (!m_IsBrake) return;
 
         m_HP = Mathf.Max(m_HP - amount, 0);
-        if (m_HP == 0)
-        {
-            // パーティクルを生成して、自身を削除する
-            Instantiate(m_Particle, this.transform.position, this.transform.rotation);
-            Destroy(gameObject);
-        }
+        // 耐久値が0になったら、爆発させる
+        if (m_HP == 0) Explosion();
     }
 
     public void onShock() { }
@@ -344,7 +344,6 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     public void onLift(GameObject obj) {
         if(this.transform.parent.name == "LiftObject")
         {
-            //var stageObj = liftObj.GetChild(0).GetComponent<StageObject>();
             //// 相手の持ち上げポイントを取得する
             OrderLift lift = obj.GetComponent<OrderLift>();
             if (lift == null) return;

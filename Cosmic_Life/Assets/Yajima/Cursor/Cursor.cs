@@ -22,14 +22,21 @@ public class Cursor : MonoBehaviour {
     // 移動時間
     [SerializeField]
     private float m_MoveTime = 0.1f;
+
     // 現在のボタンのカウント
     private int m_ButtonCount;
     // カーソルが動くか
     private bool m_IsMove = true;
+    // 現在の時間
+    private float m_Timer;
+    // 制御時間
+    private float m_DelayTime = 1.0f;
 
     // Use this for initialization
     void Start () {
         m_ButtonCount = 0;
+        m_Timer = 0.0f;
+
         // カーソルの座標をボタンの座標にする
         this.transform.position = m_Buttones[m_ButtonCount].transform.position;
         m_Buttones[m_ButtonCount].Flash();
@@ -51,6 +58,9 @@ public class Cursor : MonoBehaviour {
             var door = GameObject.Find("Door");
             if (door != null) m_ChangeScene = door.GetComponent<ChangeScene>();
         }
+
+        m_Timer += Time.deltaTime;
+        if (m_Timer < m_DelayTime) return;
 
         if (!m_IsMove) return;
 

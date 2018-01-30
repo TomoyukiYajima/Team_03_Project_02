@@ -534,6 +534,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
     #region pubiuc関数
     #region ステータス関数
+    // 現在の状態を返します
+    public OrderStatus GetOrderStatus(OrderNumber number) { return m_OrderStatus[number]; }
     // 回転速度を取得します
     public float GetRotateSpeed() { return m_RotateSpeed; }
     // 命令クラスを取得します

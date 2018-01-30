@@ -38,7 +38,8 @@ public class StageManager : MonoBehaviour
 
         m_microphoneLength = Microphone.devices.Length;
 
-        //SoundManager.Instance.PlayBgm(m_bgmName);
+        SoundManager.Instance.PlayBgm(m_bgmName);
+
         if (m_spawnObj.Length > 0)
         {
             foreach (var obj in m_spawnObj)
