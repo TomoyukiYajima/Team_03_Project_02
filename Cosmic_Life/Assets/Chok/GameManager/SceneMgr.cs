@@ -30,6 +30,9 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
     // 遷移の作業
     private AsyncOperation m_async;
 
+    [SerializeField]
+    private Flash m_Flash;
+
     /// <summary>
     /// Fadeしてから遷移
     /// </summary>
@@ -79,6 +82,8 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
     IEnumerator transitionAsync(SceneType name, float duration)
     {
         FadeMgr.Instance.EnableAnimation(true);
+
+        m_Flash.SetFalse();
         
         yield return new WaitWhile(() => m_isFade);
 
@@ -132,7 +137,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
             //FadeMgr.Instance.SetCounter(0);
             //MyDebug.Log(name.ToString() + "_Scene : LoadComplete!!");
         }
-
+        m_Flash.ResetFlash();
         m_isEnd = true;
     }
 

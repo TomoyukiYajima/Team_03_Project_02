@@ -42462,11 +42462,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114364752067130380, guid: 5a9dfac83bac29d4ab4b21247c93e682,
-        type: 2}
-      propertyPath: m_currentScene
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a9dfac83bac29d4ab4b21247c93e682, type: 2}
   m_IsPrefabParent: 0
@@ -50175,7 +50170,6 @@ SpriteRenderer:
   m_Size: {x: 18, y: 18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!1001 &2046822468
 Prefab:
   m_ObjectHideFlags: 0

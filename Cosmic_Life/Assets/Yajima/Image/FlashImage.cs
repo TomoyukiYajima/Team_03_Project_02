@@ -33,6 +33,7 @@ public class FlashImage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //print(m_Image.color.ToString());
+        //StartCoroutine(Flash());
     }
 
     public void StartFlash()

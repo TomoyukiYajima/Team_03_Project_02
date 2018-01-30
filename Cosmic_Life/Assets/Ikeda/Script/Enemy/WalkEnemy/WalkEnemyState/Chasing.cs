@@ -34,7 +34,7 @@ public class Chasing : EnemyState {
             //ターゲットの場所へ向かう
             l_WalkEnemy.m_Agent.destination = l_WalkEnemy.CheckPlayerAndRobot().transform.position;
             //ターゲットとの距離
-            float distance = Vector3.Distance(l_WalkEnemy.GetEnemyPosition(), l_WalkEnemy.CheckPlayerAndRobot().transform.position);
+            float distance = Vector3.Distance(l_WalkEnemy.transform.position, l_WalkEnemy.CheckPlayerAndRobot().transform.position);
 
             //ターゲットによって止まる距離を決める
             CheckStopDistance(enemy);
