@@ -6,7 +6,7 @@ using DG.Tweening;
 public class HintsPoint : MonoBehaviour {
     // 元画像
     [SerializeField]
-    private Sprite m_Sprite;
+    private SpriteRenderer m_Sprite;
     // 発光スプライト
     [SerializeField]
     private FlashSprite m_FlashSprite;
@@ -39,9 +39,11 @@ public class HintsPoint : MonoBehaviour {
     }
 
     // 発光処理
-    private void Flash()
+    public void Flash()
     {
+        gameObject.SetActive(true);
         m_IsFlash = true;
+        m_Sprite.color = Color.white;
         //m_Sprite
         m_FlashSprite.StartFlash();
     }
@@ -53,5 +55,19 @@ public class HintsPoint : MonoBehaviour {
         m_IsPrevActive = false;
 
         // m_FadeTime
+        // フェードの呼び出し
+        StartCoroutine(FadeEnd());
+    }
+
+    private IEnumerator FadeEnd()
+    {
+        // 透明化
+        m_Sprite.DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), m_FadeTime);
+        // ディレイ
+        yield return new WaitForSeconds(m_FadeTime);
+        // 非アクティブ状態に変更
+        gameObject.SetActive(false);
+
+        yield return null;
     }
 }

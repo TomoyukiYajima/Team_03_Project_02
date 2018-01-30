@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301b6abf19dd84c80a99995430a39dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headLook: {fileID: 0}
+  headLook: {fileID: 114617141746621554}
 --- !u!114 &114114662429008758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2585,6 +2585,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!212 &212903671321607024
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -2625,3 +2626,4 @@ SpriteRenderer:
   m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1

@@ -56,13 +56,11 @@ public class FlashSprite : MonoBehaviour {
         m_Renderer.DOColor(new Color(1.0f, 1.0f, 1.0f, 0.0f), m_FadeTime / 2);
         // 再帰呼び出し
         yield return new WaitForSeconds(m_FadeTime / 2 + m_FlashDelay);
-        //// 停止状態ならブレイクする
-        //if (m_IsStop)
-        //{
-        //    // 終了時に設定されたメソッドを実行
-        //    m_EndAction();
-        //    yield break;
-        //}
+        // 停止状態ならブレイクする
+        if (m_IsStop)
+        {
+            yield break;
+        }
         StartCoroutine(Flash());
     }
 
@@ -71,6 +69,7 @@ public class FlashSprite : MonoBehaviour {
     {
         // 停止処理
         EndFlash();
+        if (m_Renderer == null) m_Renderer = this.GetComponent<SpriteRenderer>();
         // ツインの強制終了
         m_Renderer.DOKill();
         Color color = Color.white;

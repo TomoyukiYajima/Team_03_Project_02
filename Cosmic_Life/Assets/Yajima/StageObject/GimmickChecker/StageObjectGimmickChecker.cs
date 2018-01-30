@@ -20,6 +20,9 @@ public class StageObjectGimmickChecker : GimmickChecker
     // 条件達成時にアクティブ状態にするか
     [SerializeField]
     private bool m_IsActive;
+
+    // 発光させたか？
+    private bool m_IsFlash = false;
     // ステージオブジェクト
     private StageObject m_StageObject;
 
@@ -37,7 +40,6 @@ public class StageObjectGimmickChecker : GimmickChecker
 	// Update is called once per frame
 	public override void Update () {
 
-        //bool isActive = true;
         bool isActive = !m_IsActive;
 
         if (IsCheck()) isActive = m_IsActive;
@@ -57,20 +59,6 @@ public class StageObjectGimmickChecker : GimmickChecker
         m_InfluenceObject.SetActive(isActive);
         //gameObject.SetActive(isActive);
 
-        //// サポートUIの表示
-        //if (m_SupportUI != null)
-        //{
-        //    var undroid = GameObject.Find("Undroid");
-        //    if (undroid == null) return;
-        //    var liftobj = undroid.transform.Find("LiftObject");
-        //    // アンドロイドがステージオブジェクトを持っていたら、表示する
-        //    if (liftobj.childCount != 0)
-        //    {
-        //        m_SupportUI.SetActive(true);
-        //    }
-        //    else m_SupportUI.SetActive(false);
-        //}
-
         // サポートUIの表示
         if (m_SupportUI != null)
         {
@@ -78,17 +66,38 @@ public class StageObjectGimmickChecker : GimmickChecker
             if (undroid == null) return;
             var liftobj = undroid.transform.Find("LiftObject");
             // アンドロイドがステージオブジェクトを持っていたら、表示する
-            if (Input.GetKeyDown(KeyCode.W))
+            if (liftobj.childCount != 0)
             {
-                //m_SupportUI.gameObject.SetActive(true);
+                if (m_IsFlash) return; 
+                m_IsFlash = true;
+                m_SupportUI.Flash();
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else
             {
+                if (!m_IsFlash) return;
+                m_IsFlash = false;
                 m_SupportUI.EndFlash();
-                //m_SupportUI.gameObject.SetActive(false);
-
             }
         }
+
+        //// サポートUIの表示
+        //if (m_SupportUI != null)
+        //{
+        //    var undroid = GameObject.Find("Undroid");
+        //    if (undroid == null) return;
+        //    var liftobj = undroid.transform.Find("LiftObject");
+        //    // アンドロイドがステージオブジェクトを持っていたら、表示する
+        //    if (Input.GetKeyDown(KeyCode.W))
+        //    {
+        //        m_SupportUI.Flash();
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        m_SupportUI.EndFlash();
+        //        //m_SupportUI.gameObject.SetActive(false);
+
+        //    }
+        //}
     }
 
     public override bool IsCheck() {
