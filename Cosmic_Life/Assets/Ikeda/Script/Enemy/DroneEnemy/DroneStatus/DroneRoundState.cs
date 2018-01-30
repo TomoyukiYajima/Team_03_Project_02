@@ -33,7 +33,7 @@ public class DroneRoundState : EnemyState
             ArrivedProcessing(enemy);
         }
 
-        //m_DroneEnemy.ChangeColor();
+        m_DroneEnemy.ChangeColor();
 
         if (m_DroneEnemy.IsSeePlayer() || m_DroneEnemy.IsSeeRobot())
         {

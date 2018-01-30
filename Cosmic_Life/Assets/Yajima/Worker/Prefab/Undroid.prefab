@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33230304690700992}
   - component: {fileID: 65441995938768930}
   - component: {fileID: 23704016991214768}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 65471988435441416}
   - component: {fileID: 23852239634302510}
   - component: {fileID: 114912959108109450}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemySearchCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 23763725153116970}
   - component: {fileID: 33823670619302908}
   - component: {fileID: 114961391142431188}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 33649351021915016}
   - component: {fileID: 135969566216183618}
   - component: {fileID: 23990538796754118}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LookObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 4262381746483940}
   - component: {fileID: 136784929595228710}
   - component: {fileID: 114392623561910842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,7 +1763,7 @@ GameObject:
   - component: {fileID: 33012735863575808}
   - component: {fileID: 23893793244181664}
   - component: {fileID: 114847302073929664}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
@@ -1783,7 +1783,7 @@ GameObject:
   - component: {fileID: 33406150578545738}
   - component: {fileID: 23196805143197274}
   - component: {fileID: 114867208903162008}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 4048251152213052}
   - component: {fileID: 136945241070015078}
   - component: {fileID: 114587777622412228}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2307,7 +2307,7 @@ GameObject:
   - component: {fileID: 4443002658836388}
   - component: {fileID: 33817336566618576}
   - component: {fileID: 23043918809495496}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3163,7 +3163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4302320134557664}
   - component: {fileID: 135869125025904402}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3245,7 +3245,7 @@ GameObject:
   - component: {fileID: 33402159748322382}
   - component: {fileID: 23845994651474482}
   - component: {fileID: 114962284671674032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: AttackColliderP
   m_Icon: {fileID: 0}
@@ -3264,7 +3264,7 @@ GameObject:
   - component: {fileID: 136974529878976868}
   - component: {fileID: 23571033842458930}
   - component: {fileID: 114997121279404046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CheckLiftCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3330,7 +3330,7 @@ GameObject:
   - component: {fileID: 23414748655963356}
   - component: {fileID: 114456676732122774}
   - component: {fileID: 195645754207922970}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Undroid
   m_TagString: Robot
   m_Icon: {fileID: 0}
@@ -4519,7 +4519,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1985220034696986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 27.34908, y: 1.06, z: 19.242582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4597825884174422}
@@ -8144,7 +8144,6 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
 --- !u!222 &222097013659175486
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -190,7 +190,8 @@ public class WalkEnemy : Enemy
         Vector3 directionToPlayer = m_PlayerLookPoint.position - m_EyePoint.position;
 
         RaycastHit hitInfo;
-        bool hit = Physics.Raycast(m_EyePoint.position, directionToPlayer, out hitInfo);
+        LayerMask mask = LayerMask.NameToLayer("Undroid");
+        bool hit = Physics.Raycast(m_EyePoint.position, directionToPlayer, out hitInfo, mask.value);
 
         //プレイヤーにRayが当たったかどうか返却する
         return (hit && hitInfo.collider.tag == "Player");

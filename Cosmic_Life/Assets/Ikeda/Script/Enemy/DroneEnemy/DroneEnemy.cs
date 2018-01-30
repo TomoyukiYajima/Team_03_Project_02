@@ -14,14 +14,18 @@ public class DroneEnemy : Enemy
     //見つけたPlayerかロボットを入れる変数
     private GameObject m_Target;
 
+    [SerializeField, Tooltip("回転状態にするか設定")]
+    private bool m_IsTurn;
 
     // Use this for initialization
     public override void Start()
     {
         base.Start();
 
-        //最初の状態を設定する
-        ChangeState(EnemyStatus.RoundState);
+        if (m_IsTurn)
+            ChangeState(EnemyStatus.NonRoundState);
+        else
+            ChangeState(EnemyStatus.RoundState);          //最初の状態を設定する
     }
 
     // Update is called once per frame
