@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4460039255682328}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CatWalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4511010264567022}
   - component: {fileID: 111096193476744792}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Catwalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 33742965264041684}
   - component: {fileID: 23772261849439062}
   - component: {fileID: 64078314384960766}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: catwalk_01_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
