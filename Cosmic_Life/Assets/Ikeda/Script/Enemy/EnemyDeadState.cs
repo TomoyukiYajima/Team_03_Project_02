@@ -20,5 +20,6 @@ public class EnemyDeadState : EnemyState
     public override void Action(float deltaTime, Enemy enemy)
     {
         //何もしない
+        
     }
 }

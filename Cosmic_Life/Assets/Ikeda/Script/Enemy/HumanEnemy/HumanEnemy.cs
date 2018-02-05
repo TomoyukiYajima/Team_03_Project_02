@@ -201,7 +201,11 @@ public class HumanEnemy : Enemy
     public override void Dead()
     {
         if (IsDead())
+        {
+            transform.FindChild("enemy").transform.parent = null;
             ChangeState(EnemyStatus.DeadState);
+            Destroy(gameObject);
+        }
     }
 
     public void OnDrawGizmos()

@@ -796,6 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentScene: 4
+  m_Flash: {fileID: 0}
 --- !u!114 &114390658498441606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,7 +1501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.000061, y: -280.00003}
+  m_AnchoredPosition: {x: 230, y: -280.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224379828090505746
