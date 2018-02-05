@@ -206,10 +206,13 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         // 持ち上げられていた場合は、他のオブジェクトも削除する
         if (this.transform.parent.name == "LiftObject")
         {
-            //for(int i = 0; i != this.transform.childCount; ++i)
-            //{
-            //    this.transform.GetChild(i)
-            //}
+            if(this.transform.childCount != 0)
+            {
+                for (int i = this.transform.childCount - 1; i < 0; --i)
+                {
+                    Destroy(this.transform.GetChild(i).gameObject);
+                }
+            }
         }
 
         Destroy(gameObject);
