@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967279
   m_IsActive: 1
 --- !u!1 &1740102623614250
 GameObject:
@@ -40,12 +40,12 @@ GameObject:
   - component: {fileID: 4440316568734940}
   - component: {fileID: 212426946182677364}
   - component: {fileID: 114881220645943438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiniMapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967279
   m_IsActive: 1
 --- !u!4 &4440316568734940
 Transform:

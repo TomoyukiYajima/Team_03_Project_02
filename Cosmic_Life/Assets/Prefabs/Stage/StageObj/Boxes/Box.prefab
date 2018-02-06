@@ -1913,6 +1913,7 @@ MonoBehaviour:
   m_LiftPoint: {fileID: 4478385296389068}
   m_MiniMapImage: {fileID: 4995356146180246}
   m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_ExplosionSEName: SE_ObjectDelete
   m_IsBrake: 1
 --- !u!114 &114973147008141070
 MonoBehaviour:

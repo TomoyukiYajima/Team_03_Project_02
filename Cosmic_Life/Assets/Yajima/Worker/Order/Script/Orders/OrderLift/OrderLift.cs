@@ -86,6 +86,7 @@ public class OrderLift : Order {
         else if(actionObj != null && actionObj.tag != "StageObject")
         {
             // 命令失敗
+            ChangeFaildText("持テルモノヲ指定シテクダサイ");
             FaildOrder(obj);
             return;
         }

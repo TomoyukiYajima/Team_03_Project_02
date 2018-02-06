@@ -10,6 +10,8 @@ public class OrderFollow : Order {
     private float m_InitSeDelay = 0.5f;
     // SE再生間隔
     private float m_SeDelay;
+    // アニメーションを変更したか
+    private bool m_IsChangeAnim = false;
 
     // Use this for initialization
     public override void Start()
@@ -37,7 +39,11 @@ public class OrderFollow : Order {
 
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+        float len = 1.5f;
+        if (m_Undroid.GetPlayerLength() >= len) ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+        else ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+        m_IsChangeAnim = true;
+
         // 命令承認SEの再生
         SoundManager.Instance.PlaySe("SE_Undroid_Order");
     }
@@ -66,7 +72,9 @@ public class OrderFollow : Order {
             if (m_Undroid.GetNavMeshAgent().isStopped) return;
             m_Undroid.AgentStop();
             // アニメーションの変更
+            //if (!m_IsChangeAnim) 
             ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+            m_IsChangeAnim = false;
             m_SeDelay = m_InitSeDelay;
         }
         else
@@ -88,7 +96,9 @@ public class OrderFollow : Order {
             // 移動の再開
             m_Undroid.GetNavMeshAgent().isStopped = false;
             // アニメーションの変更
+            //if (!m_IsChangeAnim)
             ChangeAnimation(obj, UndroidAnimationStatus.WALK);
+            m_IsChangeAnim = false;
             // 初期SE再生
             SoundManager.Instance.PlaySe("SE_Undroid_Move");
         }

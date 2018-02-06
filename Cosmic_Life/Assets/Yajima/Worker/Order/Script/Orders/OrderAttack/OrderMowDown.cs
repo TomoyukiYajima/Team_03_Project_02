@@ -54,6 +54,13 @@ public class OrderMowDown : OrderAttack {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
+        // 持っているオブジェクトが無ければ、状態遷移する
+        if(m_LiftObject == null)
+        {
+            EndOrder(obj);
+            return;
+        }
+
         // 持ち上げているオブジェクトの角度を調整する
         Vector3 vec = m_LiftObject.transform.position - obj.transform.position;
         float angleX = Vector2.Angle(

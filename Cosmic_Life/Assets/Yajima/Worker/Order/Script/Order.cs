@@ -215,6 +215,7 @@ public class Order : MonoBehaviour {
     }
     // 表示するテキストの変更
     protected void ChangeOrderText(string text) { m_StartOrderText = text; }
+    protected void ChangeFaildText(string text) { m_FaildText = text; }
     // テキストを表示するのか
     public bool IsDrawText
     {

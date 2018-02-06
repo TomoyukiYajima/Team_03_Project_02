@@ -1891,6 +1891,7 @@ MonoBehaviour:
   m_LiftPoint: {fileID: 4294975660614482}
   m_MiniMapImage: {fileID: 4881777622417748}
   m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
+  m_ExplosionSEName: SE_ObjectDelete
   m_IsBrake: 1
 --- !u!136 &136212854672230024
 CapsuleCollider:

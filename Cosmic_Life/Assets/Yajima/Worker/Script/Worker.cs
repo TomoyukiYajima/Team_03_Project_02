@@ -74,6 +74,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     // エージェントが参照しているポイント
     //private Transform m_AgentMovePoint;
     private Vector3 m_AgentMovePoint;
+    // プレイヤー
+    private GameObject m_Player;
     // IK
     private Transform m_LeftHandPoint;
     private Transform m_RightHandPoint;
@@ -150,6 +152,8 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         addAnimations();
 
         ChangeOrder(OrderStatus.FOLLOW);
+
+        m_Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -159,6 +163,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         if (m_Hp == 0) return;
         // ジャミング状態なら返す
         //if (m_IsJamming) return;
+        if(m_Player == null) m_Player = GameObject.Find("Player");
 
         //var player = GameObject.Find("Player");
         //var pos = player.transform.position;
@@ -186,17 +191,19 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         if (m_IsDebug)
         {
             // OKボタンが押されたら、移動命令を行う
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_OK)) ChangeOrder(OrderStatus.MOVE);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_CANCEL)) ChangeOrder(OrderStatus.ALLSTOP);
+            //if (PlayerInputManager.GetInputDown(InputState.INPUT_OK)) ChangeOrder(OrderStatus.MOVE);
+            //if (PlayerInputManager.GetInputDown(InputState.INPUT_CANCEL)) ChangeOrder(OrderStatus.ALLSTOP);
 
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.THROW);
+            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
+            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.THROW);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
             //// 持ち上げサンプル
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
-            if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT);
+            if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
+            if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
+            if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
+            if (Input.GetKeyDown(KeyCode.C)) ChangeOrder(OrderStatus.LIFT);
 
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
@@ -586,6 +593,13 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
 
     // エージェントの移動座標との距離を返します
     public float GetAgentPointLength() { return Vector3.Distance(this.transform.position, m_AgentMovePoint); }
+
+    // プレイヤーとの距離を返します
+    public float GetPlayerLength()
+    {
+        if (m_Player == null) return 0.0f;
+        return Vector3.Distance(this.transform.position, m_Player.transform.position);
+    }
 
     // エージェントがゴールに辿り着いたかを返します
     public bool IsGoalPoint()

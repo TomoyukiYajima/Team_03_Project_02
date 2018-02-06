@@ -411,10 +411,9 @@ GameObject:
   - component: {fileID: 23071059136010088}
   - component: {fileID: 208763977833486664}
   - component: {fileID: 114184174323692778}
-  - component: {fileID: 114930349413385082}
   m_Layer: 8
   m_Name: LargeContainer
-  m_TagString: StageObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1784,6 +1783,7 @@ MonoBehaviour:
   m_LiftPoint: {fileID: 4962298857819448}
   m_MiniMapImage: {fileID: 4956802674782794}
   m_Particle: {fileID: 1198738970051032, guid: c25db413145d71b49b7fa0e9efd997aa, type: 2}
+  m_ExplosionSEName: SE_ObjectDelete
   m_IsBrake: 1
 --- !u!114 &114227990071510672
 MonoBehaviour:
@@ -1841,21 +1841,6 @@ MonoBehaviour:
   m_CenterPoint: {fileID: 4598211579274328}
   m_LeftPoint: {fileID: 4317614874169512}
   m_RightPoint: {fileID: 4317315427660964}
---- !u!114 &114930349413385082
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1621000451500614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 2
-  eraseRenderer: 0
-  originalLayer: 0
-  originalMaterials: []
 --- !u!114 &114999916913456092
 MonoBehaviour:
   m_ObjectHideFlags: 1

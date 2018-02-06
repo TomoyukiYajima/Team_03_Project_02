@@ -27,6 +27,9 @@ public class StageObject : MonoBehaviour, IGeneralEvent
     // 破壊時のパーティクル
     [SerializeField]
     private GameObject m_Particle;
+    // 爆発時のSE名
+    [SerializeField]
+    private string m_ExplosionSEName = "SE_Explosion";
     // 破壊可能か？
     [SerializeField]
     private bool m_IsBrake = true;
@@ -206,16 +209,22 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         // 持ち上げられていた場合は、他のオブジェクトも削除する
         if (this.transform.parent.name == "LiftObject")
         {
-            if(this.transform.childCount != 0)
+            if(this.transform.parent.childCount != 0)
             {
-                for (int i = this.transform.childCount - 1; i < 0; --i)
+                int count = this.transform.parent.childCount;
+                for (int i = this.transform.parent.childCount - 1; i >= 1; --i)
                 {
-                    Destroy(this.transform.GetChild(i).gameObject);
+                    Destroy(this.transform.parent.GetChild(i).gameObject);
                 }
             }
+            // IKを初期化する
+            var undroid = this.transform.parent.parent.GetComponent<Worker>();
+            undroid.InitIK();
         }
 
         Destroy(gameObject);
+        // SEの再生
+        SoundManager.Instance.PlaySe(m_ExplosionSEName);
     }
 
     // 参照しているオブジェクトのクリア

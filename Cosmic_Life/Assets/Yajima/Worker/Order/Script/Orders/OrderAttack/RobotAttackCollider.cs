@@ -21,6 +21,8 @@ public class RobotAttackCollider : MonoBehaviour
         // パーティクルの生成
         var hitPos = other.ClosestPointOnBounds(this.transform.position);
         Instantiate(m_Particle, hitPos, new Quaternion());
+        // SEの再生
+        SoundManager.Instance.PlaySe("SE_ObjectHit");
 
         if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(other.gameObject)) return;
         // 実行(ダメージ処理)
