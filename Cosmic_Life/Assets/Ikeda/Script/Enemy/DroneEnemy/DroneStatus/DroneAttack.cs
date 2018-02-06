@@ -55,7 +55,11 @@ public class DroneAttack : EnemyState
             if (Vector3.Distance(m_DroneEnemy.transform.position, m_DroneEnemy.GetTarget().transform.position) > m_StopDistance)
             {
                 Vector3 relativePos = (m_DroneEnemy.GetTarget().transform.position + m_DroneEnemy.transform.up * 1.0f) - m_DroneEnemy.transform.position;
-                m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * Time.deltaTime, Space.World);
+                m_DroneEnemy.transform.Translate(relativePos.normalized * m_DroneEnemy.m_Speed * deltaTime, Space.World);
+
+                relativePos.y = 0;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                m_DroneEnemy.transform.rotation = Quaternion.Slerp(m_DroneEnemy.transform.rotation, rotation, deltaTime * 2.0f);
             }
             else
             {
@@ -65,12 +69,12 @@ public class DroneAttack : EnemyState
         }
         else if (m_AttackState == DroneAttackState.Explosion)
         {
-            if (m_SetExplosionTime > m_Timer) m_Timer += Time.deltaTime;
+            if (m_SetExplosionTime > m_Timer) m_Timer += deltaTime;
             
             else
             {
                 Instantiate(m_Collide, m_DroneEnemy.transform.position, m_DroneEnemy.transform.rotation);
-                Instantiate(m_DroneExplosion, m_DroneExplosion.transform.position, m_DroneEnemy.transform.rotation);
+                Instantiate(m_DroneExplosion, m_DroneEnemy.transform.position, m_DroneEnemy.transform.rotation);
                 Destroy(m_DroneEnemy.gameObject);
             }
         }

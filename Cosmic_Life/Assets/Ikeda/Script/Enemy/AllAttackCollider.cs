@@ -26,7 +26,7 @@ public class AllAttackCollider : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Enemy") return;
+        if (other.tag != "Player"/* && other.tag != "Enemy"*/) return;
         if (!ExecuteEvents.CanHandleEvent<IGeneralEvent>(other.gameObject)) return;
         //実行
         ExecuteEvents.Execute<IGeneralEvent>(other.gameObject, null, (e, d) => { e.onDamage(m_Damage); });

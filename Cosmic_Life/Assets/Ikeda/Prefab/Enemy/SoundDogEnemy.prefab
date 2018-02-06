@@ -282,8 +282,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059213790613786}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 0.5, z: -17.95}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1008987, y: 1.5, z: -15.378434}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 4856429725490154}
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a6f66ad3998a544b713bb0ac23a3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerStopDistance: 2.3
+  m_PlayerStopDistance: 2.5
   m_AttackCollider: {fileID: 1743208433091382}
   m_AttackTime: 0.3
   m_SetCoolTime: 3
@@ -573,11 +573,13 @@ MonoBehaviour:
   m_RoundPoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_Hp: 1
   m_Explosion: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc,
     type: 2}
   m_ViewingDistance: 5
-  m_ViewingAngle: 10
+  m_ViewingAngle: 180
   m_HearRange: 100
 --- !u!135 &135714647218194726
 SphereCollider:
