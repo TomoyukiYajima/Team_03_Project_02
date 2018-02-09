@@ -287,7 +287,7 @@ public class WalkEnemy : Enemy
 
     IEnumerator WaitDeadAnimation()
     {
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(0.7f);
 
         Instantiate(m_Explosion, transform.position + new Vector3(0, -0.5f, 0f), transform.rotation);
         Destroy(gameObject);
