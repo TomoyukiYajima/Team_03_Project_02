@@ -938,8 +938,8 @@ MonoBehaviour:
       Value: 16
     - Key: lift
       Value: 64
-    - Key: mow
-      Value: 8192
+    - Key: enemyattack
+      Value: 1048576
     - Key: put
       Value: 512
     - Key: liftup
@@ -950,8 +950,6 @@ MonoBehaviour:
       Value: 262144
     - Key: follow
       Value: 524288
-    - Key: enemyattack
-      Value: 1048576
   m_directionrDictionary:
     list:
     - Key: "\u307E\u3048"
