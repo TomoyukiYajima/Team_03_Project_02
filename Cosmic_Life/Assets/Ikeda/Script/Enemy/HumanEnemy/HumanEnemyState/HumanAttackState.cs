@@ -92,6 +92,7 @@ public class HumanAttackState : EnemyState
         else
         {
             l_HumanEnemy.m_Agent.isStopped = false;
+            transform.parent.FindChild("RoundState").GetComponent<HumanRoundState>().SetRound(true);
             l_HumanEnemy.ChangeState(EnemyStatus.RoundState);
         }
     }

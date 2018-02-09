@@ -71,20 +71,20 @@ public class WalkEnemy : Enemy
     public GameObject CheckPlayerAndRobot()
     {
         //どっちも見えている場合、プレイヤー優先
-        if (CanSeePlayer() && CanSeeRobot())
-        {
-            return m_Player;
-        }
-        else if (CanSeePlayer())
-        {
-            return m_Player;
-        }
-        else if (CanSeeRobot())
-        {
-            return m_Robot;
-        }
+        //if (CanSeePlayer() && CanSeeRobot())
+        //{
+        //    return m_Player;
+        //}
+        //if (CanSeePlayer())
+        //{
+        //    return m_Player;
+        //}
+        //else if (CanSeeRobot())
+        //{
+        //    return m_Robot;
+        //}
 
-        return null;
+        return m_Player;
     }
 
     public bool CanSeeRobot()
@@ -190,8 +190,8 @@ public class WalkEnemy : Enemy
         Vector3 directionToPlayer = m_PlayerLookPoint.position - m_EyePoint.position;
 
         RaycastHit hitInfo;
-        LayerMask mask = LayerMask.NameToLayer("Undroid");
-        bool hit = Physics.Raycast(m_EyePoint.position, directionToPlayer, out hitInfo, mask.value);
+        //LayerMask mask = LayerMask.NameToLayer("Undroid");
+        bool hit = Physics.Raycast(m_EyePoint.position, directionToPlayer, out hitInfo/*, mask.value*/);
 
         //プレイヤーにRayが当たったかどうか返却する
         return (hit && hitInfo.collider.tag == "Player");

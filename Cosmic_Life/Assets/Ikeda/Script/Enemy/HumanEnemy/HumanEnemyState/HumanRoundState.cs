@@ -54,4 +54,9 @@ public class HumanRoundState : EnemyState
     {
         return m_IsRound;
     }
+
+    public void SetRound(bool value)
+    {
+        m_IsRound = value;
+    }
 }
