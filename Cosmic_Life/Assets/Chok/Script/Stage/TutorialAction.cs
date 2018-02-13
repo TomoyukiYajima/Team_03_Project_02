@@ -24,7 +24,7 @@ public class TutorialAction : StageAction {
         m_isEnd = true;
         m_canvas.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(this.gameObject);
 
         yield return null;

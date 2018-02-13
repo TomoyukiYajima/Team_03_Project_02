@@ -62,7 +62,7 @@ public class ThirdPersonCamera : MonoBehaviour
             m_parent.RotateAround(lookAt, Vector3.up, x);
 
             if (transform.forward.y > 0.3f && y < 0.0f) y = 0.0f;
-            if (transform.forward.y < -0.9f && y > 0.0f) y = 0.0f;
+            if (transform.forward.y < -0.5f && y > 0.0f) y = 0.0f;
 
             m_parent.RotateAround(lookAt, transform.right, y);
 

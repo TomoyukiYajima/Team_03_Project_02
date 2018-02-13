@@ -8,6 +8,7 @@ public class StageAction : MonoBehaviour
 {
 
     [SerializeField] protected bool m_isEnd = false;
+    [SerializeField] protected bool m_isLoop = true;
     [SerializeField] private bool m_isFadeOut = true;
     [SerializeField] private bool m_isFadeIn = true;
     [SerializeField] private float m_duration = 1.0f;
@@ -46,7 +47,7 @@ public class StageAction : MonoBehaviour
         m_cameraIndex = 0;
         m_gimmickActivateIndex = 0;
         m_gimmickIndex = 0;
-        m_isEnd = false;
+        if(m_isLoop)m_isEnd = false;
     }
 
     public virtual IEnumerator Action(Pausable pause)

@@ -33,4 +33,11 @@ public class VolumeCheck : MonoBehaviour {
         }
         return a * 4.0f;
     }
+
+    private void OnDestroy()
+    {
+        Microphone.End(null);
+    }
+
+
 }

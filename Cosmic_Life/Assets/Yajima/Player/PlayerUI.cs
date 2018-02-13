@@ -14,6 +14,7 @@ public class PlayerUI : MonoBehaviour
     ////[SerializeField] private RectTransform m_hpBar;
     //[SerializeField] private float width;
     //[SerializeField] private float height;
+    [SerializeField] private GameObject m_gameOverUI;
     [SerializeField] private PostProcessingProfile m_profile;
     private Player m_player;
     //private Animator m_animator;
@@ -76,6 +77,11 @@ public class PlayerUI : MonoBehaviour
             setting.luminanceContribution = 0.8f - Mathf.Min(0.8f, 0.8f * ((m_player.MaxHP - hp) / m_player.MaxHP));
             setting.size = 1.5f + Mathf.Min(1.5f, 1.5f * ((m_player.MaxHP - hp) / m_player.MaxHP));
             m_profile.grain.settings = setting;
+
+            if (hp <= 0)
+            {
+                StartCoroutine(GameOver());
+            }
         }
 
         //m_animator.SetFloat("Health", hp);
@@ -92,6 +98,13 @@ public class PlayerUI : MonoBehaviour
         //{
         //    m_particles[i].SetActive(true);
         //}
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2.0f);
+        m_gameOverUI.SetActive(true);
+
     }
 
     //private IEnumerator FadeBackground()

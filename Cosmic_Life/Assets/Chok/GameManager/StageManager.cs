@@ -71,12 +71,12 @@ public class StageManager : MonoBehaviour
             return;
         }
 #endif
+        if (m_isActivated) return;
 
         if (Input.GetButtonDown("Start"))
         {
             Pause();
         }
-        if (m_isActivated) return;
         //if (Input.GetButtonDown("Triggrt_Right"))
         //{
         //    m_isActivated = true;

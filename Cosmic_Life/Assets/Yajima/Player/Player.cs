@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
     private float m_attackTimer;
+    private float m_vulerableTimer;
 
     private GameObject m_liftObj;
     public GameObject LiftObject { get { return m_liftObj; } set { m_liftObj = value; } }
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         m_groundCheckDistance = 0.3f;
         m_origGroundCheckDistance = m_groundCheckDistance;
         m_attackTimer = 0.0f;
-
+        m_vulerableTimer = 0.0f;
         m_liftObj = null;
 
         m_maxHp = m_status.hp;
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private void FixedUpdate()
     {
         if (!SceneMgr.Instance.IsEnd) return;
+        if (m_vulerableTimer >= 0.0f) m_vulerableTimer -= Time.fixedDeltaTime;
         if (m_isCanWalk)
         {
             if (m_attackTimer > 0) m_attackTimer -= Time.fixedDeltaTime;
@@ -88,6 +90,8 @@ public class Player : MonoBehaviour, IGeneralEvent
                 {
                     if(m_attackTimer <= 0.0f)
                     {
+                        var model = transform.FindChild("Model").transform;
+                        model.eulerAngles = new Vector3(model.eulerAngles.x, m_camera.eulerAngles.y, model.eulerAngles.z);
                         m_attackTimer = 0.5f;
                         ChangeState(Attack());
                     }
@@ -394,7 +398,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         yield return new WaitForSeconds(5.0f);
 
         // GameOverUI
-        SceneMgr.Instance.SceneTransition(SceneType.Title);
+        //SceneMgr.Instance.SceneTransition(SceneType.Title);
         yield return null;
     }
 
@@ -502,7 +506,10 @@ public class Player : MonoBehaviour, IGeneralEvent
     #region Event
     public void onDamage(int amount)
     {
+        if (m_vulerableTimer > 0.0f) return;
         if (m_isDamaged) return;
+
+        m_vulerableTimer = 1.5f;
         m_status.hp = Mathf.Max(0, --m_status.hp);
         if (onCollide != null) onCollide(m_status.hp);
 
