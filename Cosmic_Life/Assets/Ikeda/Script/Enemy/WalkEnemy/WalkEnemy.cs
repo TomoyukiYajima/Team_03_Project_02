@@ -280,6 +280,7 @@ public class WalkEnemy : Enemy
         if (IsDead())
         {
             AgentStop();
+            transform.GetComponent<CapsuleCollider>().enabled = false;
             ChangeState(EnemyStatus.DeadState);
             StartCoroutine(WaitDeadAnimation());
         }

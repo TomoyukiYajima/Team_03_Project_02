@@ -34,10 +34,7 @@ public class DogEnemyChasing : EnemyState {
             //ターゲットの場所へ向かう
             m_SoundDogEnemy.m_Agent.destination = m_SoundDogEnemy.CheckPlayer().transform.position;
             //ターゲットとの距離
-            float distance = Vector3.Distance(m_SoundDogEnemy.GetEnemyPosition(), m_SoundDogEnemy.CheckPlayer().transform.position);
-
-            //ターゲットによって止まる距離を決める
-            //CheckStopDistance(enemy);
+            float distance = Vector3.Distance(transform.position, m_SoundDogEnemy.CheckPlayer().transform.position);
 
             //ターゲットとの距離を調べて、近ければ攻撃状態へ
             if (distance < m_StopDistance)
