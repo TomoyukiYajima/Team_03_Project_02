@@ -33,6 +33,8 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
     [SerializeField]
     private Flash m_Flash;
 
+    public bool IsEnd { get { return m_isEnd; } private set { } }
+
     /// <summary>
     /// Fadeしてから遷移
     /// </summary>

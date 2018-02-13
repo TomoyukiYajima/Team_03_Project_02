@@ -9,6 +9,7 @@ public class TutorialAction : StageAction {
 
     public override IEnumerator Action(Pausable pause)
     {
+        if (m_isEnd) StopAllCoroutines();
         m_canvas.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         pause.pausing = true;

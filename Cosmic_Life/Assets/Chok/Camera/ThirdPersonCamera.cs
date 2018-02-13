@@ -8,6 +8,7 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField, Tooltip("ターゲットとの距離")] private float m_distance = 2.0f;
     [SerializeField, Tooltip("感度")] private float m_sensitivity = 100.0f;
     [SerializeField, Tooltip("横ずらし")] private float m_slide = 0.0f;
+    [SerializeField] private GameObject m_lockOnUI;
 
     private GameObject m_player;
     private GameObject m_target;
@@ -48,7 +49,8 @@ public class ThirdPersonCamera : MonoBehaviour
                 if (Input.GetButtonDown("Triggrt_Left"))
                 {
                     m_isLockOn = true;
-                    m_target = m_cameraRay.CollideObj.transform.Find("CenterPoint").gameObject;
+                    m_lockOnUI.SetActive(true);
+                    m_target = m_cameraRay.CollideObj;
                     return;
                 }
             }
@@ -148,10 +150,13 @@ public class ThirdPersonCamera : MonoBehaviour
             if (Input.GetButtonDown("Triggrt_Left"))
             {
                 m_isLockOn = false;
+                m_lockOnUI.SetActive(false);
                 return;
             }
             // 中心点を設定します
             var lookAt = m_player.transform.position + Vector3.up * m_height;
+
+            m_lockOnUI.transform.position = m_target.transform.position;
 
             Vector3 playerTotarget = m_target.transform.position - m_player.transform.position;
             playerTotarget.y = 0;

@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IGeneralEvent
     private bool m_isGrounded;
     private float m_groundCheckDistance;
     private float m_origGroundCheckDistance;
+    private float m_attackTimer;
 
     private GameObject m_liftObj;
     public GameObject LiftObject { get { return m_liftObj; } set { m_liftObj = value; } }
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         //ChangeState(Move());
         m_groundCheckDistance = 0.3f;
         m_origGroundCheckDistance = m_groundCheckDistance;
+        m_attackTimer = 0.0f;
 
         m_liftObj = null;
 
@@ -76,11 +78,20 @@ public class Player : MonoBehaviour, IGeneralEvent
 
     private void FixedUpdate()
     {
+        if (!SceneMgr.Instance.IsEnd) return;
         if (m_isCanWalk)
         {
+            if (m_attackTimer > 0) m_attackTimer -= Time.fixedDeltaTime;
             if (Input.GetButtonDown("OK"))
             {
-                if (m_liftObj == null) ChangeState(Attack());
+                if (m_liftObj == null)
+                {
+                    if(m_attackTimer <= 0.0f)
+                    {
+                        m_attackTimer = 0.5f;
+                        ChangeState(Attack());
+                    }
+                }
                 else LiftObj();
                 return;
             }
@@ -112,11 +123,13 @@ public class Player : MonoBehaviour, IGeneralEvent
 
             if (m_charaCon.isGrounded)
             {
+                m_animator.SetBool("Ground", true);
                 m_velocity = -velocity;
                 m_velocity = transform.TransformDirection(m_velocity);
                 m_velocity *= m_Speed;
                 if (Input.GetButtonDown("Cancel"))
                 {
+                    m_animator.SetBool("Ground", false);
                     m_velocity.y = 8.0f;
                 }
 
