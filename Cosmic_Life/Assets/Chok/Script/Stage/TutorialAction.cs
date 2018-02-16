@@ -25,6 +25,7 @@ public class TutorialAction : StageAction {
         m_canvas.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.2f);
+        Destroy(transform.FindChild("Collide").gameObject);
         Destroy(this.gameObject);
 
         yield return null;
