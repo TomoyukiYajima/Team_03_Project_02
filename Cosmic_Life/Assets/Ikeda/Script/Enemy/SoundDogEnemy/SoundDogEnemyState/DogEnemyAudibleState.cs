@@ -27,7 +27,8 @@ public class DogEnemyAudibleState : EnemyState
 
         if (m_SoundDogEnemy.CanSeePlayerAndRobot())
         {
-            m_SoundDogEnemy.SetAngle(180);
+            //m_SoundDogEnemy.SetAngle(180);
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             m_SoundDogEnemy.ChangeState(EnemyStatus.Chasing);
         }
         else if (m_SoundDogEnemy.HasArrived())

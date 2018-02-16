@@ -24,6 +24,7 @@ public class DogEnemyRoundState : EnemyState {
         //見えた時
         if (m_SoundDogEnemy.CanSeePlayerAndRobot())
         {
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             enemy.ChangeState(EnemyStatus.Chasing);
         }
         //聞こえた場合

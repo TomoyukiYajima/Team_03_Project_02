@@ -38,6 +38,7 @@ public class DroneRoundState : EnemyState
         if (m_DroneEnemy.IsSeePlayer() || m_DroneEnemy.IsSeeRobot())
         {
             m_DroneEnemy.ChangeRedColor();
+            SoundManager.Instance.PlaySe("SE_Droid_Discovery");
             m_DroneEnemy.ChangeState(EnemyStatus.Attack);
         }
     }
