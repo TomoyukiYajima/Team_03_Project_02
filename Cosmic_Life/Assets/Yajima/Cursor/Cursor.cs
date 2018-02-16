@@ -68,7 +68,8 @@ public class Cursor : MonoBehaviour {
         if (Vector3.Distance(m_Buttones[m_ButtonCount].transform.position, this.transform.position) > 0.1f) return;
         else
         {
-            if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.75f) m_Buttones[m_ButtonCount].Flash();
+            if (Mathf.Abs(Input.GetAxis("Vertical")) < 0.75f)
+                m_Buttones[m_ButtonCount].Flash();
         }
 
         if (Input.GetButtonDown("OK"))

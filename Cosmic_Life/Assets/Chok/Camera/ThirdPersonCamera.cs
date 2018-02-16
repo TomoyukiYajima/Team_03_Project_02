@@ -156,7 +156,7 @@ public class ThirdPersonCamera : MonoBehaviour
             // 中心点を設定します
             var lookAt = m_player.transform.position + Vector3.up * m_height;
 
-            m_lockOnUI.transform.position = m_target.transform.position;
+            m_lockOnUI.GetComponent<LockOnUi>().m_Target = m_target ;
 
             Vector3 playerTotarget = m_target.transform.position - m_player.transform.position;
             playerTotarget.y = 0;

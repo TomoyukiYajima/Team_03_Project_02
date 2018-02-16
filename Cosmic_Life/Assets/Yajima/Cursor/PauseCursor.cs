@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PauseCursor : MonoBehaviour {
+public class PauseCursor : MonoBehaviour
+{
     // ボタン配列
     [SerializeField]
     private GameObject m_Buttones;
@@ -34,8 +35,14 @@ public class PauseCursor : MonoBehaviour {
     // 発光画像
     private List<FlashImage> m_FlashImages = new List<FlashImage>();
 
+    //Yの位置を保存用変数
+    private int m_StorageCursorColumn;
+    //Xの位置を保存用変数
+    private int m_StorageCursorRow;
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // 初期座標を子オブジェクトの0番の座標とする
         this.transform.position = GetCurButton().position;
         // カーソルの幅も合わせる
@@ -47,10 +54,18 @@ public class PauseCursor : MonoBehaviour {
         var right = m_RightCursor.transform.Find("Flash").GetComponent<FlashImage>();
         m_FlashImages.Add(left);
         m_FlashImages.Add(right);
+
+        //最初の位置のボタンを光らせる
+        m_Buttones.transform.GetChild(0).GetChild(0).FindChild("FlashImage").GetComponent<FlashImage>().StartFlash();
+
+        //X,Y保存用変数の初期化
+        m_StorageCursorColumn = 0;
+        m_StorageCursorRow = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         // ドアが動いている間は動かさないようにする
         if (m_ChangeScene != null)
         {
@@ -82,7 +97,6 @@ public class PauseCursor : MonoBehaviour {
             GetCurButton().GetComponent<PushButton>().DownAction();
             m_IsMoving = false;
             // カーソルの発光を停止させる
-
             return;
         }
 
@@ -97,6 +111,15 @@ public class PauseCursor : MonoBehaviour {
         // ツインを利用した移動
         // カーソルが指定座標に辿り着いる場合は返す。
         if (m_CursorColumn == column && m_CursorRow == row) return;
+        else
+        {
+            //選択していた発光を初期化、選択しているものを発光させる
+            m_Buttones.transform.GetChild(m_StorageCursorRow).GetChild(m_StorageCursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().InitFlash(null);
+            m_Buttones.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().StartFlash();
+            //保存用変数に入れる
+            m_StorageCursorColumn = m_CursorColumn;
+            m_StorageCursorRow = m_CursorRow;
+        }
         SoundManager.Instance.PlaySe("SE_Select");
         this.transform.DOMove(GetCurButton().position, m_MoveTime);
         // カーソルの幅も合わせる
@@ -115,7 +138,7 @@ public class PauseCursor : MonoBehaviour {
     public void Init()
     {
         // 発光画像の初期化
-        for(int i = 0; i != m_FlashImages.Count; ++i)
+        for (int i = 0; i != m_FlashImages.Count; ++i)
         {
             m_FlashImages[i].InitFlash(null);
         }
