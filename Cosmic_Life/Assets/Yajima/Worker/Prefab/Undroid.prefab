@@ -7192,7 +7192,7 @@ MonoBehaviour:
   m_MoveSpeed: 5
   m_RotateSpeed: 90
   m_ThrowPowor: 10
-  m_IsDebug: 0
+  m_IsDebug: 1
 --- !u!114 &114456845448272570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8144,6 +8144,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
 --- !u!222 &222097013659175486
 CanvasRenderer:
   m_ObjectHideFlags: 1

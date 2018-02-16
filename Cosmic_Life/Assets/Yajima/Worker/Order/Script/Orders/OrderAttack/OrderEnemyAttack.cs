@@ -166,6 +166,7 @@ public class OrderEnemyAttack : MultOrder {
         var orderAttack = m_MultOrders[OrderStatus.ATTACK].GetComponent<OrderAttack>();
         if (!orderAttack.IsAttackEnd()) return;
 
+        // 呼ばれていない
         // 攻撃終了後の処理
         // 攻撃命令の終了
         m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
