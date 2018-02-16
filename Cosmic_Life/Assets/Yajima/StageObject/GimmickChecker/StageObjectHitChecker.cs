@@ -31,7 +31,8 @@ public class StageObjectHitChecker : MonoBehaviour
         {
             m_IsCheckObjectHit = true;
             StageObject obj = other.GetComponent<StageObject>();
-            if (m_IsExclusion == true && obj != null) obj.Exclusion();
+            //
+            //if (m_IsExclusion == true && obj != null) obj.Exclusion();
             //{
             //    other.tag = "Untagged";
             //    StageObject obj = other.GetComponent<StageObject>();

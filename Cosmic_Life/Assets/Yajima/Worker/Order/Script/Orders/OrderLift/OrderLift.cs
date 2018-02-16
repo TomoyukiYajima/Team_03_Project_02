@@ -193,7 +193,7 @@ public class OrderLift : Order {
                 ChangeAnimation(obj, UndroidAnimationStatus.TURN);
                 return;
             }
-            else if (robot.IsGoalPoint())
+            else if (robot.IsGoalPoint(m_LiftObject))
             {
                 // ロボットのエージェントを停止させる
                 robot.AgentStop();
@@ -405,7 +405,10 @@ public class OrderLift : Order {
                     {
                         Transform point = points.GetChild(i).GetChild(j);
                         float pointLenght = Vector3.Distance(point.position, obj.transform.position);
-                        if (length > pointLenght)
+
+                        //print(robot.IsMoveAgent(point.position));
+                        // 距離が前回の距離より短ければ、ポイントを更新する
+                        if (length > pointLenght && robot.IsMoveAgent(point.position))
                         {
                             movePoint = point;
                             length = pointLenght;
@@ -421,7 +424,7 @@ public class OrderLift : Order {
                 }
 
                 // 移動ポイントの更新
-                print(movePoint.name);
+                //print(movePoint.name);
                 robot.ChangeAgentMovePoint(movePoint.position);
                 //robot.GetNavMeshAgent().isStopped = false;
 

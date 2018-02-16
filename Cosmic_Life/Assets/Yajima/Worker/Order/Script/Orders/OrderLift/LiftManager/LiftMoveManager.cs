@@ -60,7 +60,7 @@ public class LiftMoveManager : MonoBehaviour {
         body.useGravity = true;
         // ナビメッシュオブジェクトをアクティブ状態に変更
         var nav = m_LiftObject.transform.GetComponent<NavMeshObstacle>();
-        nav.enabled = false;
+        nav.enabled = true;
         // ステージオブジェクトの親を初期化する
         stageObj.InitParent();
         stageObj.InitCollider();

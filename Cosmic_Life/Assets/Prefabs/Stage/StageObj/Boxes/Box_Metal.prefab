@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_MiniMapImage: {fileID: 4117669951853698}
   m_Particle: {fileID: 1420549868259824, guid: 69140bf62f690bf459bc6c8bd0f46ecc, type: 2}
   m_ExplosionSEName: SE_ObjectDelete
-  m_IsBrake: 1
+  m_IsBrake: 0
 --- !u!114 &114148960833161466
 MonoBehaviour:
   m_ObjectHideFlags: 1

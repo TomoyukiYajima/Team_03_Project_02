@@ -28,11 +28,11 @@ public class OrderTurn : DirectionOrder {
 
     protected override void UpdateAction(float deltaTime, GameObject obj)
     {
-        if (m_ActionObject != null)
-        {
-            UpdateAction(deltaTime, obj, m_ActionObject);
-            return;
-        }
+        //if (m_ActionObject != null)
+        //{
+        //    UpdateAction(deltaTime, obj, m_ActionObject);
+        //    return;
+        //}
 
         //base.UpdateAction(deltaTime, obj);
         //print("Turn");
@@ -54,36 +54,39 @@ public class OrderTurn : DirectionOrder {
     {
         //if()
         //base.UpdateAction(deltaTime, obj, actionObj);
-        if(actionObj == null)
-        {
-            EndOrder(obj);
-            return;
-        }
+        //if(actionObj == null)
+        //{
+        //    EndOrder(obj);
+        //    return;
+        //}
 
-        // 対象との角度計算
-        //var player = GameObject.Find("Player");
-        var pos = actionObj.transform.position;
-        pos.y = obj.transform.position.y;
-        var dir = actionObj.transform.position - obj.transform.position;
-        dir = dir.normalized;
-        var cross = Vector3.Cross(obj.transform.forward, dir);
-        // cross.y < 0.0f 左
-        //print(cross);
-        var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
-        degree += obj.transform.forward.z * 270;
-        if (degree < 0.0f) degree += 360;
-        if (degree > 360) degree -= 360;
-        if (cross.y < 0.0f) m_Direction = -1;
-        else m_Direction = 1;
+        //// 対象との角度計算
+        ////var player = GameObject.Find("Player");
+        //var pos = actionObj.transform.position;
+        //pos.y = obj.transform.position.y;
+        //var dir = actionObj.transform.position - obj.transform.position;
+        //dir = dir.normalized;
+        //var cross = Vector3.Cross(obj.transform.forward, dir);
+        //// cross.y < 0.0f 左
+        ////print(cross);
+        //var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
+        //degree += obj.transform.forward.z * 270;
+        //if (degree < 0.0f) degree += 360;
+        //if (degree > 360) degree -= 360;
+        //if (cross.y < 0.0f) m_Direction = -1;
+        //else m_Direction = 1;
 
-        if (Mathf.Abs(cross.y) < 0.05f && (degree < m_Undroid.GetRotateSpeed() && degree > -m_Undroid.GetRotateSpeed()))
-        {
-            obj.transform.Rotate(obj.transform.up, Mathf.Abs(degree) * m_Direction * deltaTime);
-            EndOrder(obj);
-            return;
-        }
+        //if (Mathf.Abs(cross.y) < 0.05f && (degree < m_Undroid.GetRotateSpeed() && degree > -m_Undroid.GetRotateSpeed()))
+        //{
+        //    obj.transform.Rotate(obj.transform.up, Mathf.Abs(degree) * m_Direction * deltaTime);
+        //    EndOrder(obj);
+        //    return;
+        //}
 
         //if(degree)
+
+        // 持っているオブジェクトが、何か(ステージオブジェクト以外)に衝突している場合は返す
+        if (IsLiftHit(obj)) return;
         // 回転
         obj.transform.Rotate(obj.transform.up, m_Undroid.GetRotateSpeed() * m_Direction * deltaTime);
 

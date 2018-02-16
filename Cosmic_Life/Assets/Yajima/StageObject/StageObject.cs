@@ -138,7 +138,10 @@ public class StageObject : MonoBehaviour, IGeneralEvent
         // アンドロイドがオブジェクトを持っていない場合
         if(this.transform.parent.name != "LiftObject")
         {
-            if (Mathf.Abs(m_Rigidbody.velocity.x) < 0.1f && Mathf.Abs(m_Rigidbody.velocity.z) < 0.1f && m_IsStageObjectHit == false)
+            // 判定する幅
+            float stopVelo = 0.2f;
+            // if (Mathf.Abs(m_Rigidbody.velocity.x) < stopVelo && Mathf.Abs(m_Rigidbody.velocity.z) < stopVelo && m_IsStageObjectHit == false)
+            if (Mathf.Abs(m_Rigidbody.velocity.x) < stopVelo && Mathf.Abs(m_Rigidbody.velocity.z) < stopVelo)
             {
                 //m_Rigidbody.isKinematic = true;
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;

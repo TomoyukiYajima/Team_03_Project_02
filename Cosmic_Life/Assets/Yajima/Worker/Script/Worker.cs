@@ -160,7 +160,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     public virtual void Update()
     {
         // 耐久値が0なら返す
-        if (m_Hp == 0) return;
+        //if (m_Hp == 0) return;
         // ジャミング状態なら返す
         //if (m_IsJamming) return;
         if(m_Player == null) m_Player = GameObject.Find("Player");
@@ -202,8 +202,12 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //// 持ち上げサンプル
             if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
             if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
+            if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.TURN);
+            if (Input.GetKeyDown(KeyCode.Z)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
             if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
+            if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.LIFT_UP);
             if (Input.GetKeyDown(KeyCode.C)) ChangeOrder(OrderStatus.LIFT);
+            if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.THROW);
 
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
@@ -572,6 +576,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     //    m_Agent.destination = point.position;
     //}
 
+    // 指定したポイントが辿り着けるかを返します
+    // trueなら辿り着ける
+    public bool IsMoveAgent(Vector3 position) { return m_Agent.CalculatePath(position, m_Agent.path); }
+
     // エージェントの移動するポイントの変更を行います
     public void ChangeAgentMovePoint(Vector3 point)
     {
@@ -602,13 +610,16 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
     }
 
     // エージェントがゴールに辿り着いたかを返します
-    public bool IsGoalPoint()
+    public bool IsGoalPoint(GameObject obj)
     {
         //Vector3 playerPos = this.transform.position - Vector3.up * (m_BodyHeight / 2);
         Vector3 agentPos = m_AgentMovePoint; //.position;
+        //Vector3 agentPos = obj.transform.position;
         float up = this.transform.position.y - m_AgentMovePoint.y; //.position.y;
+        //float up = this.transform.position.y - agentPos.y;
         if (Mathf.Abs(up) > 0.2f) agentPos.y = this.transform.position.y;
-        float length = Vector3.Distance(agentPos, this.transform.position);
+        //float length = Vector3.Distance(agentPos, this.transform.position);
+        float length = Vector2.Distance(new Vector2(agentPos.x, agentPos.z), new Vector2(this.transform.position.x, this.transform.position.z));
         return length < 0.22f;
     }
 
