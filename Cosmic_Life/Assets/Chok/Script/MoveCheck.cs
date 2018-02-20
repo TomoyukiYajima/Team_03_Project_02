@@ -15,7 +15,7 @@ public class MoveCheck : MonoBehaviour,IOrderEvent {
         throw new NotImplementedException();
     }
 
-    public void endOrder(OrderNumber number)
+    public void endOrder(OrderNumber number, bool isStop = false)
     {
         throw new NotImplementedException();
     }

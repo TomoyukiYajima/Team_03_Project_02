@@ -65,12 +65,15 @@ public class OrderEnemyAttack : MultOrder {
             // 攻撃命令の取得
             var orderAttack = m_MultOrders[OrderStatus.ATTACK].GetComponent<OrderAttack>();
             if (!orderAttack.IsAttackEnd()) return;
-            m_MultOrders[OrderStatus.MOVE].EndOrder(obj);
-            m_MultOrders[OrderStatus.TURN].EndOrder(obj);
-            m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
+            m_MultOrders[OrderStatus.MOVE].EndOrder(obj, true);
+            m_MultOrders[OrderStatus.TURN].EndOrder(obj, true);
+            m_MultOrders[OrderStatus.ATTACK].EndOrder(obj, true);
             EndOrder(obj);
             return;
         }
+
+        // 攻撃できるかのチェック
+        AttackCheck(obj, actionObj);
 
         if (m_IsAttack)
         {
@@ -78,6 +81,130 @@ public class OrderEnemyAttack : MultOrder {
             //return;
         }
 
+        // 移動
+        //Move(obj, actionObj);
+
+        //base.UpdateAction(deltaTime, obj, actionObj);
+
+        // 移動が完了したら、攻撃に遷移
+        //m_MultOrders[OrderStatus.MOVE].Update();
+
+        // 攻撃を実行する
+        //Attack(deltaTime, obj, actionObj);
+    }
+
+    // 攻撃処理
+    public void Attack(float deltaTime, GameObject obj, GameObject actionObj)
+    {
+        // 攻撃命令の取得
+        var orderAttack = m_MultOrders[OrderStatus.ATTACK].GetComponent<OrderAttack>();
+        if (!orderAttack.IsAttackEnd()) return;
+
+        // 攻撃終了後の処理
+        // 攻撃命令の終了
+        m_MultOrders[OrderStatus.ATTACK].EndOrder(obj, true);
+
+        // 相手を倒していたら、停止状態に遷移する
+        if (actionObj == null)
+        {
+            //m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
+            EndOrder(obj);
+            return;
+        }
+        else
+        {
+            // 目標との距離が遠ければ、相手に対して移動する
+            float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+            if (length > 2.0f)
+            {
+                // 移動再開
+                SetActionObj(obj, actionObj);
+                ChangeOrder(obj, OrderStatus.MOVE);
+                m_IsAttack = false;
+                //m_IsRotate = false;
+
+                //Worker worker = obj.GetComponent<Worker>();
+                //worker.ChangeAgentMovePoint(actionObj.transform.position);
+            }
+            //m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
+
+            
+            return;
+        }
+
+        //// 角度の計算
+        //// 相手との距離を求める
+        //var pos = actionObj.transform.position;
+        //pos.y = obj.transform.position.y;
+        //var dir = actionObj.transform.position - obj.transform.position;
+        //var cross = Vector3.Cross(obj.transform.forward, dir);
+        //cross = cross.normalized;
+        //var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
+        //degree += obj.transform.forward.z * 270;
+        //if (degree < 0.0f) degree += 360;
+        //if (degree > 360) degree -= 360;
+
+        //// cross.y < 0.0f 左
+        //if (Mathf.Abs(cross.y) > 0.05f && (degree > 10.0f || degree < -10.0f))
+        //{
+        //    SetActionObj(obj, actionObj);
+        //    // 回転命令
+        //    ChangeOrder(obj, OrderStatus.TURN, OrderDirection.LEFT);
+        //    //m_IsRotate = true;
+        //    m_IsRotate = true;
+        //    return;
+        //}
+
+        //// 目標との距離が遠ければ、相手に対して移動する
+        //float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        //if (length > 1.0f)
+        //{
+        //    Worker worker = obj.GetComponent<Worker>();
+        //    worker.ChangeAgentMovePoint(actionObj.transform.position);
+        //    m_IsRotate = false;
+        //    return;
+        //}
+
+        //else
+        //{
+        //    // 目標との角度差が大きければ、方向転換する
+        //    Vector3 dir = actionObj.transform.position - this.transform.position;
+        //    Vector3 forward = this.transform.position + this.transform.forward;
+        //    float angle;
+        //    //if()
+
+
+        //    // 目標との距離が遠ければ、相手に対して移動する
+        //    float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        //    if (length > 1.0f)
+        //    {
+        //        Worker worker = obj.GetComponent<Worker>();
+        //        worker.ChangeAgentMovePoint(actionObj.transform.position);
+        //        return;
+        //    }
+        //}
+    }
+
+    public void AttackCheck(GameObject obj, GameObject actionObj)
+    {
+        var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
+        if (length < 2.0f)
+        {
+            if (!m_IsAttack)
+            {
+                // 移動停止
+                m_MultOrders[OrderStatus.MOVE].EndOrder(obj, true);
+                // 攻撃
+                SetActionObj(obj, actionObj);
+                ChangeOrder(obj, OrderStatus.ATTACK);
+                // 攻撃
+                m_IsAttack = true;
+            }
+        }
+    }
+
+    public void Move(GameObject obj, GameObject actionObj)
+    {
         var length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
         if (length < 2.0f)
         {
@@ -146,104 +273,6 @@ public class OrderEnemyAttack : MultOrder {
                 m_IsGoal = false;
             }
         }
-        //base.UpdateAction(deltaTime, obj, actionObj);
-
-        // 移動が完了したら、攻撃に遷移
-        //m_MultOrders[OrderStatus.MOVE].Update();
-
-        // 攻撃を実行する
-        //Attack(deltaTime, obj, actionObj);
-    }
-
-    // 攻撃処理
-    public void Attack(float deltaTime, GameObject obj, GameObject actionObj)
-    {
-        // 攻撃中
-        //base.UpdateAction(deltaTime, obj, actionObj);
-        //m_MultOrders[OrderStatus.ATTACK].Update();
-
-        // 攻撃命令の取得
-        var orderAttack = m_MultOrders[OrderStatus.ATTACK].GetComponent<OrderAttack>();
-        if (!orderAttack.IsAttackEnd()) return;
-
-        // 呼ばれていない
-        // 攻撃終了後の処理
-        // 攻撃命令の終了
-        m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
-        // 相手を倒していたら、停止状態に遷移する
-        if (actionObj == null)
-        {
-            m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
-            EndOrder(obj);
-            return;
-        }
-        else
-        {
-            // 目標との距離が遠ければ、相手に対して移動する
-            float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
-            if (length > 2.0f)
-            {
-                Worker worker = obj.GetComponent<Worker>();
-                worker.ChangeAgentMovePoint(actionObj.transform.position);
-            }
-            //m_MultOrders[OrderStatus.ATTACK].EndOrder(obj);
-
-            m_IsAttack = false;
-            m_IsRotate = false;
-            return;
-        }
-
-        //// 角度の計算
-        //// 相手との距離を求める
-        //var pos = actionObj.transform.position;
-        //pos.y = obj.transform.position.y;
-        //var dir = actionObj.transform.position - obj.transform.position;
-        //var cross = Vector3.Cross(obj.transform.forward, dir);
-        //cross = cross.normalized;
-        //var degree = Mathf.Atan2(dir.z, dir.x) * 180 / Mathf.PI;
-        //degree += obj.transform.forward.z * 270;
-        //if (degree < 0.0f) degree += 360;
-        //if (degree > 360) degree -= 360;
-
-        //// cross.y < 0.0f 左
-        //if (Mathf.Abs(cross.y) > 0.05f && (degree > 10.0f || degree < -10.0f))
-        //{
-        //    SetActionObj(obj, actionObj);
-        //    // 回転命令
-        //    ChangeOrder(obj, OrderStatus.TURN, OrderDirection.LEFT);
-        //    //m_IsRotate = true;
-        //    m_IsRotate = true;
-        //    return;
-        //}
-
-        //// 目標との距離が遠ければ、相手に対して移動する
-        //float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
-        //if (length > 1.0f)
-        //{
-        //    Worker worker = obj.GetComponent<Worker>();
-        //    worker.ChangeAgentMovePoint(actionObj.transform.position);
-        //    m_IsRotate = false;
-        //    return;
-        //}
-
-        //else
-        //{
-        //    // 目標との角度差が大きければ、方向転換する
-        //    Vector3 dir = actionObj.transform.position - this.transform.position;
-        //    Vector3 forward = this.transform.position + this.transform.forward;
-        //    float angle;
-        //    //if()
-
-
-        //    // 目標との距離が遠ければ、相手に対して移動する
-        //    float length = Vector3.Distance(actionObj.transform.position, obj.transform.position);
-        //    if (length > 1.0f)
-        //    {
-        //        Worker worker = obj.GetComponent<Worker>();
-        //        worker.ChangeAgentMovePoint(actionObj.transform.position);
-        //        return;
-        //    }
-        //}
     }
 
     public override void EndAction(GameObject obj)

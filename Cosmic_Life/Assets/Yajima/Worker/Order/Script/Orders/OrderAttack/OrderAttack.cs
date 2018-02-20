@@ -55,6 +55,7 @@ public class OrderAttack : Order {
         m_MoveObject.transform.DOLocalMove(m_StopPoint.localPosition, m_AttackTime);
         m_Timer = 0.0f;
         m_IsEndOrder = false;
+        m_IsAttack = false;
         m_IsAttackEnd = false;
 
         ChangeAnimation(obj, UndroidAnimationStatus.ATTACK);

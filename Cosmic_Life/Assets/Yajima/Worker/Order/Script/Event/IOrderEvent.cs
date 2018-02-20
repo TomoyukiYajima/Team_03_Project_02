@@ -12,7 +12,7 @@ public interface IOrderEvent : IEventSystemHandler {
     // 命令の停止
     void stopOrder(OrderStatus order);
     // 命令の終了
-    void endOrder(OrderNumber number);
+    void endOrder(OrderNumber number, bool isStop = false);
     // 参照するオブジェクトの設定
     void setObject(GameObject obj);
     // アニメーションの変更

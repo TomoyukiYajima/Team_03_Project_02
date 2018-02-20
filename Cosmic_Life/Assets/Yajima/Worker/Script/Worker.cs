@@ -495,11 +495,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         }
     }
     // イベントでの終了処理呼び出し
-    public void endOrder(OrderNumber number)
+    public void endOrder(OrderNumber number, bool isStop = false)
     {
         ChangeOrder(OrderStatus.STOP, number);
-        ChangeOrder(OrderStatus.FOLLOW);
-        //ChangeOrder(OrderStatus.STOP, number);
+        if (!isStop) ChangeOrder(OrderStatus.FOLLOW);
     }
     // イベントでの参照オブジェクトの設定処理の呼び出し
     public void setObject(GameObject obj)

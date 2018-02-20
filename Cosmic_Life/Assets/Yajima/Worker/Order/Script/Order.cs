@@ -153,7 +153,7 @@ public class Order : MonoBehaviour {
     }
 
     // 命令の終了
-    public void EndOrder(GameObject obj)
+    public void EndOrder(GameObject obj, bool isStop = false)
     {
         // 相手側にイベントがなければ返す
         if (!ExecuteEvents.CanHandleEvent<IOrderEvent>(obj)) return;
@@ -161,7 +161,7 @@ public class Order : MonoBehaviour {
         ExecuteEvents.Execute<IOrderEvent>(
             obj,
             null,
-            (e, d) => { e.endOrder(m_OrderNumber); });
+            (e, d) => { e.endOrder(m_OrderNumber, isStop); });
     }
 
     protected void SetActionObj(GameObject obj, GameObject actionObj)
