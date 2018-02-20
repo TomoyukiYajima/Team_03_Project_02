@@ -891,7 +891,6 @@ GameObject:
   - component: {fileID: 114172957274357772}
   - component: {fileID: 114114662429008758}
   - component: {fileID: 114631313552681994}
-  - component: {fileID: 114493626857938994}
   - component: {fileID: 114237733123499414}
   m_Layer: 2
   m_Name: PlayerCamera
@@ -2394,19 +2393,6 @@ MonoBehaviour:
   Rows: 1
   Columns: 1
   AnimationMode: 0
---- !u!114 &114493626857938994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1845497712619828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8553447a4a32b4db5ff4e0fc93a981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_gameOverUI: {fileID: 0}
-  m_profile: {fileID: 11400000, guid: b494b6a83edd9a14a83d72d637ed3d1b, type: 2}
 --- !u!114 &114617141746621554
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isEnd: 0
-  m_isLoop: 1
+  m_isLoop: 0
   m_isFadeOut: 1
   m_isFadeIn: 1
   m_duration: 1
