@@ -16,7 +16,7 @@ public class RobotAttackCollider : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") return;
+        if (other.tag == "Player" || other.tag == "Robot" || other.tag == "Untagged") return;
 
         // パーティクルの生成
         var hitPos = other.ClosestPointOnBounds(this.transform.position);

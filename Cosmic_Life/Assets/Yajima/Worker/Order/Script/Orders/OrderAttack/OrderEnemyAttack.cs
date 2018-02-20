@@ -282,7 +282,7 @@ public class OrderEnemyAttack : MultOrder {
         // 持っている命令を全て停止させる
         foreach(var orders in m_MultOrders)
         {
-            m_MultOrders[orders.Key].EndOrder(obj);
+            m_MultOrders[orders.Key].EndOrder(obj, true);
         }
     }
 

@@ -29,7 +29,8 @@ public class HandPoints : MonoBehaviour {
         pos = m_CenterPoint.position + m_Distance * m_CenterLength;
         pos.y = this.transform.position.y;
         this.transform.position = pos;
-        this.transform.localRotation = Quaternion.Inverse(m_CenterPoint.parent.rotation);
+        this.transform.localRotation = Quaternion.Inverse(m_CenterPoint.parent.localRotation);
+        //this.transform.localRotation = Quaternion.Inverse(m_CenterPoint.parent.rotation);
 
         //// ハンドポイントの座標更新
         //var leftPos = m_LeftPoint.position;

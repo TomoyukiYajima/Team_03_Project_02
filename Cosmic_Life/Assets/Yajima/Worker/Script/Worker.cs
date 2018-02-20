@@ -200,9 +200,10 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
             //// 持ち上げサンプル
-            if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
-            if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
-            if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.TURN);
+            //if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
+            // if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
+            if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.ATTACK);
+            //if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.ATTACK);
             if (Input.GetKeyDown(KeyCode.Z)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
             if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
             if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.LIFT_UP);
@@ -455,7 +456,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
         // if (motion == AnimalAnimatorNumber.ANIMATOR_NULL || (int)motion == m_MotionNumber) return;
         if (m_AnimState == state) return;
         // アニメーションの変更
-        m_Animator.CrossFade(m_Animations[state], 0.1f, 0);
+        m_Animator.CrossFade(m_Animations[state], 0.01f, 0);
         m_AnimState = state;
     }
     #endregion
