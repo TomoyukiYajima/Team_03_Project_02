@@ -17,7 +17,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private GameObject m_gameOverUI;
     [SerializeField] private PostProcessingProfile m_profile;
     private Player m_player;
-    //private Animator m_animator;
+    private Animator m_animator;
 
 
     private void Awake()
@@ -38,18 +38,18 @@ public class PlayerUI : MonoBehaviour
         //        m_particles[i] = GameObject.Find("ParticleCanvas").transform.FindChild("LifeParticle" + i).gameObject;
         //    }
         //}
-        m_profile.grain.enabled = false;
-        var setting = m_profile.grain.settings;
-        setting.intensity = 0.5f;
-        setting.luminanceContribution = 0.8f;
-        setting.size = 1.5f;
-        m_profile.grain.settings = setting;
+        //m_profile.grain.enabled = false;
+        //var setting = m_profile.grain.settings;
+        //setting.intensity = 0.5f;
+        //setting.luminanceContribution = 0.8f;
+        //setting.size = 1.5f;
+        //m_profile.grain.settings = setting;
 
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         if (m_player != null) m_player.onCollide += UpdateHPUI;
 
-        //m_animator = GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
         //StartCoroutine(FadeBackground());
     }
 
@@ -62,29 +62,30 @@ public class PlayerUI : MonoBehaviour
     {
         if (hp >= m_player.MaxHP)
         {
-            m_profile.grain.enabled = false;
-            var setting = m_profile.grain.settings;
-            setting.intensity = 0.5f;
-            setting.luminanceContribution = 0.8f;
-            setting.size = 1.5f;
-            m_profile.grain.settings = setting;
+            //m_profile.grain.enabled = false;
+            //var setting = m_profile.grain.settings;
+            //setting.intensity = 0.5f;
+            //setting.luminanceContribution = 0.8f;
+            //setting.size = 1.5f;
+            //m_profile.grain.settings = setting;
         }
         else
         {
-            m_profile.grain.enabled = true;
-            var setting = m_profile.grain.settings;
-            setting.intensity = 0.5f + Mathf.Min(0.5f,0.5f * (( m_player.MaxHP - hp ) / m_player.MaxHP ));
-            setting.luminanceContribution = 0.8f - Mathf.Min(0.8f, 0.8f * ((m_player.MaxHP - hp) / m_player.MaxHP));
-            setting.size = 1.5f + Mathf.Min(1.5f, 1.5f * ((m_player.MaxHP - hp) / m_player.MaxHP));
-            m_profile.grain.settings = setting;
+            //m_profile.grain.enabled = true;
+            //var setting = m_profile.grain.settings;
+            //setting.intensity = 0.5f + Mathf.Min(0.5f,0.5f * (( m_player.MaxHP - hp ) / m_player.MaxHP ));
+            //setting.luminanceContribution = 0.8f - Mathf.Min(0.8f, 0.8f * ((m_player.MaxHP - hp) / m_player.MaxHP));
+            //setting.size = 1.5f + Mathf.Min(1.5f, 1.5f * ((m_player.MaxHP - hp) / m_player.MaxHP));
+            //m_profile.grain.settings = setting;
 
-            if (hp <= 0)
-            {
-                StartCoroutine(GameOver());
-            }
         }
 
-        //m_animator.SetFloat("Health", hp);
+        m_animator.SetFloat("Health", hp);
+        if (hp <= 0)
+        {
+            StartCoroutine(GameOver());
+        }
+
         //m_hpBar.sizeDelta = new Vector2(hp * width, height);
         //foreach(var ui in m_utilities)
         //{

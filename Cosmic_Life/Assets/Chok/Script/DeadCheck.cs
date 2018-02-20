@@ -8,6 +8,7 @@ public class DeadCheck : MonoBehaviour
     [SerializeField] private GameObject m_drop;
     [SerializeField] private StageAction m_action;
     [SerializeField] private GameObject m_image;
+    [SerializeField] private float m_positionY;
 
     private bool m_isEnd;
 
@@ -27,7 +28,7 @@ public class DeadCheck : MonoBehaviour
         if (m_enemy == null)
         {
             m_isEnd = true;
-            m_drop.transform.position = new Vector3(m_position.x, m_position.y + 1.6f, m_position.z);
+            m_drop.transform.position = new Vector3(m_position.x, m_positionY, m_position.z);
             m_drop.SetActive(true);
             if (m_image != null) m_image.SetActive(true);
             if (m_action != null) StageManager.GetInstance().StartAction(m_action);

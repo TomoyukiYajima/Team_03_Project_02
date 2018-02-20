@@ -12,7 +12,8 @@ public class CameraRay : MonoBehaviour
     [SerializeField] private cakeslice.Outline m_playerOutline;
 
     private GameObject m_colliderObj;   // 当たったオブジェクトを格納する関数
-    public GameObject CollideObj { get { return m_colliderObj; } private set { }
+    private GameObject m_colliderObject;
+    public GameObject CollideObj { get { return m_colliderObject; } private set { }
     }
     private Transform m_rayPos;         // レイ開始位置
     private Transform m_player;         // プレイヤー
@@ -37,6 +38,8 @@ public class CameraRay : MonoBehaviour
             outline.enabled = false;
         }
         //m_playerOutline.enabled = false;
+
+        m_colliderObject = null;
     }
 
     // Update is called once per frame
@@ -80,14 +83,22 @@ public class CameraRay : MonoBehaviour
         // オブジェクトがStageObjectコンポーネントを実装しているかをチェック
         cakeslice.Outline material = null;
         //StageObject material = m_colliderObj.GetComponent<StageObject>();
-        if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) == null) return;
-        // 点滅開始
-        material.enabled = true;
-        m_playerOutline.enabled = true;
+        if ((material = m_colliderObj.GetComponent<cakeslice.Outline>()) == null)
+        {
+            m_colliderObject = null;
+        }
+        else
+        {
+            // 点滅開始
+            material.enabled = true;
+            m_playerOutline.enabled = true;
 
-        if (onRayHit != null) onRayHit(true);
+            m_colliderObject = m_colliderObj;
 
-        //m_colliderObj.transform.FindChild("Infomation").gameObject.SetActive(true);
+            if (onRayHit != null) onRayHit(true);
+
+            //m_colliderObj.transform.FindChild("Infomation").gameObject.SetActive(true);
+        }
     }
 
     private void EndFlash(GameObject obj)
@@ -109,8 +120,14 @@ public class CameraRay : MonoBehaviour
         m_colliderObj = obj;
         // 更新されたオブジェクトをロボットに送る
         SendObject(m_colliderObj);
-        if (m_colliderObj == null) return;
-        StartFlash(new Color(0.5f, 0.5f, 0.5f), 1.0f);
+        if (m_colliderObj == null)
+        {
+            m_colliderObject = null;
+        }
+        else
+        {
+            StartFlash(new Color(0.5f, 0.5f, 0.5f), 1.0f);
+        }
     }
 
     private void SendObject(GameObject obj)

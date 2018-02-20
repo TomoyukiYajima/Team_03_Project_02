@@ -134,7 +134,7 @@ public class Player : MonoBehaviour, IGeneralEvent
                 if (Input.GetButtonDown("Cancel"))
                 {
                     m_animator.SetBool("Ground", false);
-                    m_velocity.y = 8.0f;
+                    m_velocity.y = 7.0f;
                 }
 
                 #region Unused
