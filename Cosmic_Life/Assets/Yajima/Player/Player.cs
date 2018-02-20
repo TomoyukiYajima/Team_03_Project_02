@@ -264,7 +264,6 @@ public class Player : MonoBehaviour, IGeneralEvent
 
         yield return new WaitForEndOfFrame();
 
-        m_animator.SetBool("Attack", false);
 
         yield return new WaitForSeconds(0.4f);
 
@@ -276,6 +275,7 @@ public class Player : MonoBehaviour, IGeneralEvent
         // モーション変更
 
         yield return new WaitForSeconds(0.5f);
+        m_animator.SetBool("Attack", false);
 
         EndState();
         yield return null;

@@ -35,17 +35,6 @@ public class GetObject : MonoBehaviour
                 return;
 
             }
-            else
-            {
-                m_dropUI.SetActive(false);
-                m_pause.pausing = false;
-                m_activate = false;
-
-                if (m_isEnd) return;
-                if (m_image != null) m_image.SetActive(true);
-                m_isEnd = true;
-                StageManager.GetInstance().StartAction(m_action);
-            }
 
     }
 
@@ -55,12 +44,13 @@ public class GetObject : MonoBehaviour
         if (m_activate)
         {
             m_dropUI.SetActive(false);
-            m_pause.pausing = false;
+            //m_pause.pausing = false;
             m_activate = false;
 
             if (m_isEnd) return;
             if (m_image != null) m_image.SetActive(true);
             m_isEnd = true;
+            if (m_action == null) return;
             StageManager.GetInstance().StartAction(m_action);
         }
 
