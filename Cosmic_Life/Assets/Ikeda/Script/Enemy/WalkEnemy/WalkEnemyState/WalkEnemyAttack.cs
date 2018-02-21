@@ -109,7 +109,7 @@ public class WalkEnemyAttack : EnemyState
                     CheckStopDistance(enemy);
 
                     //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
-                    float distance = (Vector3.Distance(m_WalkEnemy.GetEnemyPosition(), m_TargetObject.transform.position));
+                    float distance = (Vector3.Distance(m_WalkEnemy.transform.position, m_TargetObject.transform.position));
                     if (distance < m_DistanceCompare)
                     {
                         //近ければプレイヤーの方向を向いて攻撃

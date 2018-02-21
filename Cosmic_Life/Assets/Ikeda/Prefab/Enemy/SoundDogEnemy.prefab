@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 33892558184356490}
   - component: {fileID: 135714647218194726}
   - component: {fileID: 23686377213324476}
+  - component: {fileID: 114129859608454082}
   m_Layer: 0
   m_Name: SoundAttackCollide
   m_TagString: Untagged
@@ -765,7 +766,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059213790613786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.1008987, y: 1.5, z: -15.378434}
+  m_LocalPosition: {x: -4.744995, y: 1.5, z: -4.3282485}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 4856429725490154}
@@ -995,7 +996,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743208433091382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -1064,6 +1065,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114129859608454082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743208433091382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2405e77ccb7c8469c226eb4baa3aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damage: 1
 --- !u!114 &114137910082726832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1330,4 +1343,3 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
