@@ -144,12 +144,13 @@ public class StageObject : MonoBehaviour, IGeneralEvent
             if (Mathf.Abs(m_Rigidbody.velocity.x) < stopVelo && Mathf.Abs(m_Rigidbody.velocity.z) < stopVelo)
             {
                 //m_Rigidbody.isKinematic = true;
-                m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                //m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                
                 // 衝突判定も消す
                 GameObject collider = this.transform.Find("Collider").gameObject;
                 if (collider != null) collider.SetActive(false);
-                GameObject colliderStop = this.transform.Find("Collider_Stop").gameObject;
-                if (colliderStop != null) colliderStop.SetActive(false);
+                //GameObject colliderStop = this.transform.Find("Collider_Stop").gameObject;
+                //if (colliderStop != null) colliderStop.SetActive(false);
             }
 
             // 遠くに行き過ぎた場合は削除する

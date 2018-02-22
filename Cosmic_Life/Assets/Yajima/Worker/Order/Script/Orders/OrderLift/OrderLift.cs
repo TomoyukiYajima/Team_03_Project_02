@@ -214,6 +214,7 @@ public class OrderLift : Order {
         m_LiftObject.transform.parent = liftObj;
         var colliders = m_LiftObject.transform.Find("Colliders");
         colliders.transform.parent = liftObj;
+        colliders.gameObject.SetActive(true);
         // 剛体のキネマティックをオンにする
         var body = m_LiftObject.transform.GetComponent<Rigidbody>();
         body.isKinematic = true;

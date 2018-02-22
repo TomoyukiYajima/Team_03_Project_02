@@ -49,6 +49,7 @@ public class LiftMoveManager : MonoBehaviour {
 
         var stageObj = m_LiftObject.transform.GetComponent<StageObject>();
         //colliders.transform.parent = m_LiftObject.transform;
+        colliders.SetActive(false);
         colliders.transform.parent = m_LiftObject.transform;
         //colliders.transform.localPosition = Vector3.zero;
 

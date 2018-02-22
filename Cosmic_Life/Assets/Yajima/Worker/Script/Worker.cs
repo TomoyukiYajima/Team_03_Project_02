@@ -206,7 +206,7 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             //if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.ATTACK);
             if (Input.GetKeyDown(KeyCode.Z)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
             if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
-            if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.LIFT_UP);
+            if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.MOVE);
             if (Input.GetKeyDown(KeyCode.C)) ChangeOrder(OrderStatus.LIFT);
             if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.THROW);
 
