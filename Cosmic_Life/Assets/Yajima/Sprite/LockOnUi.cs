@@ -21,6 +21,7 @@ public class LockOnUi : MonoBehaviour
     {
         if (m_Target == null) return;
         //ワールド座標からscreen座標へ変換
+        //var ui = Camera.main.WorldToScreenPoint(m_Target.transform.position);
         var uiPos = RectTransformUtility.WorldToScreenPoint(Camera.main, m_Target.transform.position);
         m_Rect.position = uiPos;
     }
