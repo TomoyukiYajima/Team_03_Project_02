@@ -56,7 +56,7 @@ public class PauseCursor : MonoBehaviour
         m_FlashImages.Add(right);
 
         //最初の位置のボタンを光らせる
-        m_Buttones.transform.GetChild(0).GetChild(0).FindChild("FlashImage").GetComponent<FlashImage>().StartFlash();
+        m_Buttones.transform.GetChild(0).GetChild(0).GetComponent<PushButton>().Flash();
 
         //X,Y保存用変数の初期化
         m_StorageCursorColumn = 0;
@@ -114,8 +114,10 @@ public class PauseCursor : MonoBehaviour
         else
         {
             //選択していた発光を初期化、選択しているものを発光させる
-            m_Buttones.transform.GetChild(m_StorageCursorRow).GetChild(m_StorageCursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().InitFlash(null);
-            m_Buttones.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().StartFlash();
+            //m_Buttones.transform.GetChild(m_StorageCursorRow).GetChild(m_StorageCursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().InitFlash(null);
+            m_Buttones.transform.GetChild(m_StorageCursorRow).GetChild(m_StorageCursorColumn).GetComponent<PushButton>().StopFlash();
+            //m_Buttones.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).FindChild("FlashImage").GetComponent<FlashImage>().StartFlash();
+            m_Buttones.transform.GetChild(m_CursorRow).GetChild(m_CursorColumn).GetComponent<PushButton>().Flash();
             //保存用変数に入れる
             m_StorageCursorColumn = m_CursorColumn;
             m_StorageCursorRow = m_CursorRow;
@@ -154,5 +156,13 @@ public class PauseCursor : MonoBehaviour
         {
             m_FlashImages[i].StartFlash();
         }
+    }
+
+    public Vector2 GetCursorPosition()
+    {
+        Vector2 result;
+        result.x = m_CursorColumn;
+        result.y = m_CursorRow;
+        return result;
     }
 }

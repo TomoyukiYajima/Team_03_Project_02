@@ -25,6 +25,9 @@ public class PauseManager : MonoBehaviour {
     // 押されたボタン
     private PushButton m_Button;
 
+    [SerializeField]
+    private GameObject m_Buttones;
+
     // Use this for initialization
     void Start () {
 		
@@ -43,6 +46,7 @@ public class PauseManager : MonoBehaviour {
                 m_Cursor.Flash();
                 // ボタン処理を初期化
                 m_Button.Init();
+                m_Buttones.transform.GetChild((int)m_Cursor.GetCursorPosition().y).GetChild((int)m_Cursor.GetCursorPosition().x).GetComponent<PushButton>().Flash();
             }
         }
     }

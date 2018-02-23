@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class FlashImage : MonoBehaviour {
+public class FlashImage : MonoBehaviour
+{
 
     // フェード時間
     [SerializeField]
@@ -24,14 +25,16 @@ public class FlashImage : MonoBehaviour {
     // 終了時に実行する処理
     private Action m_EndAction = () => { };
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         m_Image = this.GetComponent<Image>();
         if (m_IsStartFlash) StartCoroutine(Flash());
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         //print(m_Image.color.ToString());
         //StartCoroutine(Flash());
     }
@@ -62,7 +65,8 @@ public class FlashImage : MonoBehaviour {
         if (m_IsStop)
         {
             // 終了時に設定されたメソッドを実行
-            if (m_EndAction != null) m_EndAction();
+            if (m_EndAction != null)
+                m_EndAction();
             yield break;
         }
         StartCoroutine(Flash());

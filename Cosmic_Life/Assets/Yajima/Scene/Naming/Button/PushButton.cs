@@ -34,7 +34,7 @@ public class PushButton : MonoBehaviour {
     // 発光
     public void Flash()
     {
-        if (m_ShadowImage.color.a <= 0.0f) return;
+        //if (m_ShadowImage.color.a <= 0.0f) return;
         m_FlashImage.gameObject.SetActive(true);
         // 発光
         m_FlashImage.StartFlash();
