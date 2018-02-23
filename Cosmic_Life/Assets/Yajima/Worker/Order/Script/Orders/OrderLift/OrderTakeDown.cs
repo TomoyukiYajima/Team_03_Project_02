@@ -33,6 +33,8 @@ public class OrderTakeDown : Order {
 
         SetStartOrderText();
 
+        ChangeAnimation(obj, UndroidAnimationStatus.IDEL);
+
         // 親子関係を解除する
         var colliders = m_LiftManager.GetLiftObject().transform.parent.Find("Colliders").gameObject;
         m_LiftManager.ReleaseObject(obj, colliders);
