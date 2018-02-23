@@ -7,7 +7,7 @@ public class Stage3BossAction : StageAction
 
     public override IEnumerator Action(Pausable pause)
     {
-        pause.pausing = true;
+        //pause.pausing = true;
 
         FadeMgr.Instance.FadeOut(
             1.0f,
@@ -48,7 +48,7 @@ public class Stage3BossAction : StageAction
 
 
         FadeMgr.Instance.FadeIn(0.5f);
-        pause.pausing = false;
+        //pause.pausing = false;
 
         yield return null;
     }
