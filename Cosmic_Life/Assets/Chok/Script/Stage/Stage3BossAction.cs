@@ -46,9 +46,9 @@ public class Stage3BossAction : StageAction
 
         yield return new WaitForSeconds(0.5f);
 
-        pause.pausing = false;
 
         FadeMgr.Instance.FadeIn(0.5f);
+        pause.pausing = false;
 
         yield return null;
     }
