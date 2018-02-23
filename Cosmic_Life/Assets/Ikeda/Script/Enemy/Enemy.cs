@@ -147,7 +147,7 @@ public class Enemy : MonoBehaviour, IEnemyEvent {
         if (IsDead())
         {
             //SoundManager.Instance.PlaySe("");
-            transform.GetComponent<CapsuleCollider>().enabled = false;
+            //transform.GetComponent<CapsuleCollider>().enabled = false;
             Instantiate(m_Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
