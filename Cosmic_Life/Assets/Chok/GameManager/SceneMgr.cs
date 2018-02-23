@@ -53,7 +53,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
         if (!m_isEnd) return;
         m_isFade = true;
         m_isEnd = false;
-        FadeMgr.Instance.FadeOut(duration, () => { m_isFade = false; });
+        FadeMgr.Instance.FadeOutSimple(duration, () => { m_isFade = false; });
         StartCoroutine(transition(name, duration));
     }
 
@@ -68,7 +68,7 @@ public class SceneMgr : SingletonBehaviour<SceneMgr>
 
         if (duration != 0)
         {
-            FadeMgr.Instance.FadeIn(duration, () =>
+            FadeMgr.Instance.FadeInSimple(duration, () =>
             {
                 Debug.Log(name.ToString() + "_Scene : LoadComplete!!");
             });
