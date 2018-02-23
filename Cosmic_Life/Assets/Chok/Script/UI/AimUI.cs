@@ -32,6 +32,7 @@ public class AimUI : MonoBehaviour
 
     private void UpdateAimUI(bool hit)
     {
+        if (!m_aim.enabled) return;
         if (hit) m_aim.sprite = m_aimEffect;
         else m_aim.sprite = m_aimBlack;
     }

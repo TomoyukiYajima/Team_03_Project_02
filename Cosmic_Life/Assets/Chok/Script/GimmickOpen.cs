@@ -27,6 +27,7 @@ public class GimmickOpen : GimmickBase{
         for(int i = 0; i < m_doors.Length; ++i)
         {
             m_doors[i].DOMove(m_positions[i].position, 2.0f);
+            m_doors[i].DORotate(m_positions[i].eulerAngles, 2.0f);
         }
     }
 

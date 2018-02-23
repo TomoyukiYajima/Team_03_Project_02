@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThirdPersonCamera1 : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ThirdPersonCamera1 : MonoBehaviour
     [SerializeField, Tooltip("感度")] private float m_sensitivity = 100.0f;
     [SerializeField, Tooltip("横ずらし")] private float m_slide = 0.0f;
     [SerializeField] private GameObject m_lockOnUI;
+
+    [SerializeField] private Image[] m_images;
 
     private GameObject m_player;
     private GameObject m_target;
@@ -53,6 +56,10 @@ public class ThirdPersonCamera1 : MonoBehaviour
                     m_target = m_cameraRay.CollideObj;
                     m_lockOnUI.GetComponent<LockOnUi>().m_Target = m_target;
 
+                    foreach(var m  in m_images)
+                    {
+                        m.enabled = false;
+                    }
                     return;
                 }
             }
@@ -161,6 +168,11 @@ public class ThirdPersonCamera1 : MonoBehaviour
             {
                 m_isLockOn = false;
                 m_lockOnUI.SetActive(false);
+                foreach (var m in m_images)
+                {
+                    m.enabled = true;
+                }
+
                 return;
             }
             // 中心点を設定します
