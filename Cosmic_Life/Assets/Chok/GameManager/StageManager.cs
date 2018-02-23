@@ -6,21 +6,36 @@ using UnityEngine.AI;
 
 public class StageManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] m_playerPos;
-    [SerializeField] private Transform[] m_robotPos;
-    [SerializeField] private GameObject[] m_cameras;
-    [SerializeField] private GameObject[] m_doors;
-    [SerializeField] private GameObject[] m_spawnObj;
-    [SerializeField] private System.Action[] m_action;
-    [SerializeField] private Pausable m_pause;
-    [SerializeField] private string m_bgmName;
-    [SerializeField] private GameObject m_gameClearUI;
-    [SerializeField] private GameObject m_gameOverUI;
-    [SerializeField] private GameObject m_disconnectUI;
-    [SerializeField] private ChangeScene m_ChangeScene;
-    [SerializeField] private GameObject m_Stages;
-    [SerializeField] private GameObject m_playerCamera;
-    [SerializeField] private StageAction[] m_actions;
+    [SerializeField]
+    private Transform[] m_playerPos;
+    [SerializeField]
+    private Transform[] m_robotPos;
+    [SerializeField]
+    private GameObject[] m_cameras;
+    [SerializeField]
+    private GameObject[] m_doors;
+    [SerializeField]
+    private GameObject[] m_spawnObj;
+    [SerializeField]
+    private System.Action[] m_action;
+    [SerializeField]
+    private Pausable m_pause;
+    [SerializeField]
+    private string m_bgmName;
+    [SerializeField]
+    private GameObject m_gameClearUI;
+    [SerializeField]
+    private GameObject m_gameOverUI;
+    [SerializeField]
+    private GameObject m_disconnectUI;
+    [SerializeField]
+    private ChangeScene m_ChangeScene;
+    [SerializeField]
+    private GameObject m_Stages;
+    [SerializeField]
+    private GameObject m_playerCamera;
+    [SerializeField]
+    private StageAction[] m_actions;
 
     private bool m_isDisconnect;
     private bool m_prevPause;
@@ -30,10 +45,16 @@ public class StageManager : MonoBehaviour
 
     private int m_microphoneLength;
 
+    private int m_Count;
+
+    [SerializeField]
+    private GameObject m_Buttones;
+    [SerializeField]
+    private PauseCursor m_Cursor;
+
     // Use this for initialization
     void Start()
     {
-
         m_isActivated = false;
 
         m_microphoneLength = Microphone.devices.Length;
@@ -76,6 +97,11 @@ public class StageManager : MonoBehaviour
         if (Input.GetButtonDown("Start"))
         {
             Pause();
+            m_Count++;
+            if (m_Count == 1)
+                m_Buttones.transform.GetChild((int)m_Cursor.GetCursorPosition().y).GetChild((int)m_Cursor.GetCursorPosition().x).GetComponent<PushButton>().Flash();
+            else
+                m_Count = 0;
         }
         //if (Input.GetButtonDown("Triggrt_Right"))
         //{
@@ -308,5 +334,4 @@ public class StageManager : MonoBehaviour
         PauseManager.GetInstance().UIActive(m_pause.pausing);
         //if (m_pause.pausing) PauseManager.GetInstance().Init();
     }
-
 }

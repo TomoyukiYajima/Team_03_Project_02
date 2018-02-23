@@ -64,20 +64,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e6536c07a8bf44784fd53a2df92023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_doors:
-  - {fileID: 0}
+  m_playerPos: []
+  m_doors: []
   m_spawnObj:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -92,21 +82,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0172abe4b1b0b45834bbb027999a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPos:
-  - {fileID: 0}
-  m_robotPos:
-  - {fileID: 0}
-  m_cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  m_doors:
-  - {fileID: 0}
-  m_spawnObj:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_playerPos: []
+  m_robotPos: []
+  m_cameras: []
+  m_doors: []
+  m_spawnObj: []
   m_pause: {fileID: 0}
-  m_bgmName: Stage2BGM
+  m_bgmName: Stage3BGM
   m_gameClearUI: {fileID: 0}
   m_gameOverUI: {fileID: 0}
   m_disconnectUI: {fileID: 0}
@@ -114,3 +96,5 @@ MonoBehaviour:
   m_Stages: {fileID: 0}
   m_playerCamera: {fileID: 0}
   m_actions: []
+  m_Buttones: {fileID: 0}
+  m_Cursor: {fileID: 0}

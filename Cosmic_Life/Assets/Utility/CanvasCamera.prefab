@@ -6278,7 +6278,7 @@ MonoBehaviour:
   m_StartDelayTime: 1
   m_MoveTime: 1
   m_ChangeSceneTime: 1
-  m_ChangeSceneType: 1
+  m_ChangeSceneType: 7
 --- !u!114 &114072614823858474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11315,6 +11315,7 @@ MonoBehaviour:
   - {fileID: 114365476543223656}
   m_PauseButtonUI: {fileID: 1998739130917500}
   m_Cursor: {fileID: 114034625534031122}
+  m_Buttones: {fileID: 1542756386444816}
 --- !u!114 &114727898162725006
 MonoBehaviour:
   m_ObjectHideFlags: 1
