@@ -95,7 +95,7 @@ public class HumanRobotEnemyAttack : EnemyState
 
 
                 //攻撃後のプレイヤーとの距離を測って、離れていたら追跡中に変更
-                float distance = (Vector3.Distance(l_HumanRobotEnemy.GetEnemyPosition(), l_TargetPosition));
+                float distance = (Vector3.Distance(l_HumanRobotEnemy.transform.position, l_TargetPosition));
                 if (distance < m_DistanceCompare)
                 {
                     //近ければプレイヤーの方向を向いて攻撃

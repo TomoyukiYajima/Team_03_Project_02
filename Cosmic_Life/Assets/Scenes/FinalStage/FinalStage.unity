@@ -2631,30 +2631,6 @@ Transform:
   m_Father: {fileID: 58877917}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &133715111
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1280
-  m_Height: 720
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &135037111
 Prefab:
   m_ObjectHideFlags: 0
@@ -4064,6 +4040,26 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114083054864343816, guid: 126c8e39776d20a479c870ff4abdd8ee,
+        type: 2}
+      propertyPath: m_HumanEnemy
+      value: 
+      objectReference: {fileID: 1082457432}
+    - target: {fileID: 114919946197129920, guid: 126c8e39776d20a479c870ff4abdd8ee,
+        type: 2}
+      propertyPath: m_HumanEnemy
+      value: 
+      objectReference: {fileID: 1082457432}
+    - target: {fileID: 114008534287710012, guid: 126c8e39776d20a479c870ff4abdd8ee,
+        type: 2}
+      propertyPath: m_PlayerStopDistance
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114008534287710012, guid: 126c8e39776d20a479c870ff4abdd8ee,
+        type: 2}
+      propertyPath: m_RobotStopDistance
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 126c8e39776d20a479c870ff4abdd8ee, type: 2}
@@ -8731,30 +8727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damage: 1
---- !u!84 &517496475
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 1280
-  m_Height: 720
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapMode: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &520490924
 GameObject:
   m_ObjectHideFlags: 0
@@ -13068,7 +13040,7 @@ Prefab:
         type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 517496475}
+      objectReference: {fileID: 2050928802}
     - target: {fileID: 4075411141311896, guid: cfcf6b047ff9aec459e444d3e0f29620, type: 2}
       propertyPath: m_LocalRotation.y
       value: 1
@@ -26660,6 +26632,30 @@ Transform:
   m_Father: {fileID: 45570002}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1668196149
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1280
+  m_Height: 720
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &1670007438 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4247831897660610, guid: d8794d3cab1f245478b697ea3a518113,
@@ -32529,6 +32525,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 261aab8d93aebeb4a9e5fe48c5a1b390, type: 2}
   m_IsPrefabParent: 0
+--- !u!84 &2050928802
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 1280
+  m_Height: 720
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2052280748
 GameObject:
   m_ObjectHideFlags: 0

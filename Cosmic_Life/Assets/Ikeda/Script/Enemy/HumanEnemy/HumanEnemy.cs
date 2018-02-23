@@ -150,6 +150,8 @@ public class HumanEnemy : Enemy
     {
         for (int i = 0; i < m_HumanRobotEnemys.Length; i++)
         {
+            if (m_HumanRobotEnemys[i] == null) return false;
+
             if (m_HumanRobotEnemys[i].CanSeePlayerAndRobot())
             {
                 //どのEnemyが見つけたか保存

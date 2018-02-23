@@ -39,7 +39,7 @@ public class HumanRobotEnemyChasing : EnemyState {
             m_HumanRobotEnemy.m_Agent.destination = m_HumanRobotEnemy.CheckPlayerAndRobot().transform.position;
 
             //ターゲットとの距離
-            float distance = Vector3.Distance(m_HumanRobotEnemy.GetEnemyPosition(), m_HumanRobotEnemy.CheckPlayerAndRobot().transform.position);
+            float distance = Vector3.Distance(m_HumanRobotEnemy.transform.position, m_HumanRobotEnemy.CheckPlayerAndRobot().transform.position);
 
             //ターゲットによって止まる距離を決める
             CheckStopDistance(enemy);
