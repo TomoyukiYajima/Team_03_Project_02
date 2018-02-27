@@ -18,6 +18,16 @@ public class DrawButton : PushButton {
 		
 	}
 
+    public override void Flash()
+    {
+        m_FlashImage.gameObject.SetActive(true);
+        // 発光
+        m_FlashImage.StartFlash();
+        Color color = m_ShadowImage.color;
+        color.a = 0.0f;
+        m_ShadowImage.color = color;
+    }
+
     public override void DownAction()
     {
         m_IsDown = true;

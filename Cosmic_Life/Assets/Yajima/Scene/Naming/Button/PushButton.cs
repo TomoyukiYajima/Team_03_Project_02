@@ -10,10 +10,10 @@ public class PushButton : MonoBehaviour {
     private SceneType m_Type = SceneType.LogoScene;
     // フラッシュイメージ
     [SerializeField]
-    private FlashImage m_FlashImage;
+    public FlashImage m_FlashImage;
     // シャドウイメージ
     [SerializeField]
-    private Image m_ShadowImage;
+    public Image m_ShadowImage;
 
     // ボタンが押されたか？
     protected bool m_IsDown;
@@ -32,9 +32,9 @@ public class PushButton : MonoBehaviour {
     public virtual void Init() { }
 
     // 発光
-    public void Flash()
+    public virtual void Flash()
     {
-        //if (m_ShadowImage.color.a <= 0.0f) return;
+        if (m_ShadowImage.color.a <= 0.0f) return;
         m_FlashImage.gameObject.SetActive(true);
         // 発光
         m_FlashImage.StartFlash();
