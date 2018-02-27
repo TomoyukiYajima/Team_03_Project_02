@@ -17,7 +17,7 @@ public class OrderMowDown : OrderAttack {
         base.Start();
     }
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         m_Timer = 0.0f;
         m_IsEndOrder = false;

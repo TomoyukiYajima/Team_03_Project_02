@@ -71,7 +71,7 @@ public class OrderLift : Order {
         m_SeDelay = m_InitSeDelay;
     }
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         m_ActionObject = actionObj;
         // 持っているオブジェクトを、元の親に戻す
@@ -93,6 +93,8 @@ public class OrderLift : Order {
 
         // オブジェクトの捜索
         FindLiftObject(obj, actionObj);
+        // テキストの表示
+        SetStartOrderText();
 
         // リフトクラスを継承した子クラスのオブジェクトチェック関数を呼ぶ
         // m_LiftCheck[checkNumber].CheckObject(obj);
@@ -240,7 +242,7 @@ public class OrderLift : Order {
 
             // UIに命令テキストの設定
             ChangeOrderText("軽イデス");
-            SetStartOrderText();
+            //SetStartOrderText();
             ChangeAnimation(obj, UndroidAnimationStatus.LIFT);
         }
         else
@@ -455,7 +457,7 @@ public class OrderLift : Order {
 
         float angle2 = Vector2.Angle(otherDir, forward);
 
-        print(angle.ToString());
+        //print(angle.ToString());
         if (Mathf.Abs(angle2) <= 3.0f)
         {
             // 回転が終了したら、持ち上げリストに追加

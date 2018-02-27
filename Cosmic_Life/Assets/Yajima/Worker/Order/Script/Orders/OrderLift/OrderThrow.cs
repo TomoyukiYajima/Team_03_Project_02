@@ -37,7 +37,7 @@ public class OrderThrow : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj = null)
+    public override void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         base.StartAction(obj, actionObj);
 
@@ -68,6 +68,6 @@ public class OrderThrow : Order {
         SoundManager.Instance.PlaySe("SE_Container_Bound");
 
         // 空の状態に遷移
-        ChangeOrder(obj, OrderStatus.STOP);
+        //ChangeOrder(obj, OrderStatus.STOP);
     }
 }

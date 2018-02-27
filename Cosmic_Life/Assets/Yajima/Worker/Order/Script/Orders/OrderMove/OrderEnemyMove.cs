@@ -24,7 +24,7 @@ public class OrderEnemyMove : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         base.StartAction(obj);
         // 相手との距離を求める

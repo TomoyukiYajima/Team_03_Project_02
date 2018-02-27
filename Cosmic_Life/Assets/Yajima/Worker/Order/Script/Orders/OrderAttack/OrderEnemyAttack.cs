@@ -26,7 +26,7 @@ public class OrderEnemyAttack : MultOrder {
 
     //public override void Start
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         m_IsAttack = false;
         m_IsGoal = false;

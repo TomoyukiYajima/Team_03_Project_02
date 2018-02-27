@@ -26,13 +26,13 @@ public class OrderFollow : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj = null)
+    public override void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         //base.StartAction(obj, actionObj);
         //m_ActionNumber = ActionNumber.OBJECT_ACTION;
 
         // UIに命令テキストの設定
-        //SetStartOrderText();
+        SetStartOrderText();
 
         m_Undroid = obj.GetComponent<Worker>();
         m_Undroid.GetNavMeshAgent().isStopped = false;

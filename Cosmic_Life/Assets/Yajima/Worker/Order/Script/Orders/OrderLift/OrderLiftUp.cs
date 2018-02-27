@@ -15,7 +15,7 @@ public class OrderLiftUp : OrderLift {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         m_ActionObject = actionObj;
         // 持っているオブジェクトを、元の親に戻す

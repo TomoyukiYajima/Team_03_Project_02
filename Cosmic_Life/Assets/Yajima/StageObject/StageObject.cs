@@ -390,6 +390,12 @@ public class StageObject : MonoBehaviour, IGeneralEvent
             m_IsStageObjectHit = true;
         }
 
+        if(collision.transform.tag == "Wall")
+        {
+            // SEを鳴らす
+            SoundManager.Instance.PlaySe("SE_Container_Bound");
+        }
+
         CollideEnter(collision);
     }
 

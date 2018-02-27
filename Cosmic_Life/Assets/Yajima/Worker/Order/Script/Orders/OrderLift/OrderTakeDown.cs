@@ -20,7 +20,7 @@ public class OrderTakeDown : Order {
         m_LiftManager = this.transform.parent.GetComponent<LiftMoveManager>();
     }
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         // 何も持っていなければ、空の命令に変更
         if (!m_LiftManager.CheckLiftObject(obj))

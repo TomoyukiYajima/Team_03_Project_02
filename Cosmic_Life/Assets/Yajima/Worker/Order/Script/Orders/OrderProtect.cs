@@ -21,7 +21,7 @@ public class OrderProtect : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj)
+    public override void StartAction(GameObject obj, GameObject actionObj, bool isText = false)
     {
         // バリアの表示
         if (m_Barrier.activeSelf) return;

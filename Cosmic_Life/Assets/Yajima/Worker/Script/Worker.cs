@@ -187,45 +187,42 @@ public class Worker : MonoBehaviour, IOrderEvent, IGeneralEvent
             m_Orders[m_OrderNumbers[i]][m_OrderStatus[m_OrderNumbers[i]]].Action(time, gameObject);
         }
 
-        // 命令(仮)　音声認識でプレイヤーから命令してもらう
-        if (m_IsDebug)
-        {
-            // OKボタンが押されたら、移動命令を行う
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_OK)) ChangeOrder(OrderStatus.MOVE);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_CANCEL)) ChangeOrder(OrderStatus.ALLSTOP);
+        //// 命令(仮)　音声認識でプレイヤーから命令してもらう
+        //if (m_IsDebug)
+        //{
+        //    // OKボタンが押されたら、移動命令を行う
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_OK)) ChangeOrder(OrderStatus.MOVE);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_CANCEL)) ChangeOrder(OrderStatus.ALLSTOP);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.THROW);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
 
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.THROW);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_LEFT)) ChangeOrder(OrderStatus.TURN, OrderDirection.LEFT);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_TRIGGER_RIGHT)) ChangeOrder(OrderStatus.TURN, OrderDirection.RIGHT);
+        //    // 持ち上げサンプル
+        //    //if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
+        //    //if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
+        //    if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.ATTACK);
+        //    //if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.ATTACK);
+        //    if (Input.GetKeyDown(KeyCode.Z)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
+        //    if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
+        //    if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.MOVE);
+        //    if (Input.GetKeyDown(KeyCode.C)) ChangeOrder(OrderStatus.LIFT);
+        //    if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.THROW);
 
-            //// 持ち上げサンプル
-            //if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.FOLLOW);
-            // if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.STOP);
-            if (Input.GetKeyDown(KeyCode.B)) ChangeOrder(OrderStatus.ATTACK);
-            //if (Input.GetKeyDown(KeyCode.A)) ChangeOrder(OrderStatus.ATTACK);
-            if (Input.GetKeyDown(KeyCode.Z)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
-            if (Input.GetKeyDown(KeyCode.X)) ChangeOrder(OrderStatus.TAKE_DOWN);
-            if (Input.GetKeyDown(KeyCode.S)) ChangeOrder(OrderStatus.MOVE);
-            if (Input.GetKeyDown(KeyCode.C)) ChangeOrder(OrderStatus.LIFT);
-            if (Input.GetKeyDown(KeyCode.V)) ChangeOrder(OrderStatus.THROW);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_MOW_DOWN);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.PULL_OUT);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.TAKE_DOWN);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) stopOrder(OrderStatus.ATTACK_HIGH);
 
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.LOOK, OrderDirection.UP);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_ENEMY);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.LIFT_UP);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_MOW_DOWN);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.PULL_OUT);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.TAKE_DOWN);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) stopOrder(OrderStatus.ATTACK_HIGH);
-
-            // 攻撃サンプル
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.MOVE, OrderDirection.RIGHT);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_HIGH);
-            //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_LOW);
-
-        }
-
+        //    // 攻撃サンプル
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.MOVE, OrderDirection.RIGHT);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_X)) ChangeOrder(OrderStatus.ATTACK_HIGH);
+        //    //if (PlayerInputManager.GetInputDown(InputState.INPUT_Y)) ChangeOrder(OrderStatus.ATTACK_LOW);
+        //}
 
         switch (m_OrderDir)
         {

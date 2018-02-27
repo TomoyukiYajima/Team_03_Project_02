@@ -18,7 +18,7 @@ public class DirectionOrder : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj = null)
+    public override void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         base.StartAction(obj, actionObj);
         // 方向の設定

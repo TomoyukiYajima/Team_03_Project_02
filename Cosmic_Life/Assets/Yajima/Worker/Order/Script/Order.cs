@@ -15,6 +15,10 @@ public class Order : MonoBehaviour {
     // 表示する命令テキスト(初回時)
     [SerializeField]
     private string m_StartOrderText = "実行";
+    // 任意タイミングで表示するテキスト
+    [SerializeField]
+    private string m_OrderText = "実行中";
+    // 失敗時に表示する命令テキスト
     [SerializeField]
     private string m_FaildText = "実行デキマセン";
     // 表示する命令テキスト(更新時)
@@ -68,7 +72,7 @@ public class Order : MonoBehaviour {
     public virtual void Update() { }
 
     // 最初の行動
-    public virtual void StartAction(GameObject obj, GameObject actionObj = null)
+    public virtual void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         m_ActionObject = actionObj;
         m_Dir = obj.GetComponent<Worker>().GetOrderDir();
@@ -206,6 +210,12 @@ public class Order : MonoBehaviour {
     protected void SetStartOrderText()
     {
         if (setText != null) setText(m_StartOrderText);
+    }
+
+    // 途中から表示するテキストの表示
+    protected void SetOrderText()
+    {
+        if (setText != null) setText(m_OrderText);
     }
 
     // 失敗時に表示する命令テキスト

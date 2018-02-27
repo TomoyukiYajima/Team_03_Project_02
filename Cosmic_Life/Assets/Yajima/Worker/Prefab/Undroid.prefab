@@ -7247,6 +7247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5B9F\u884C"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114029384165535848
 MonoBehaviour:
@@ -7287,6 +7288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30DD\u30A4\u30C3\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u6295\u30B2\u30EB\u7269\u30AC\u30A2\u30EA\u30DE\u30BB\u30F3"
 --- !u!114 &114048694224861526
 MonoBehaviour:
@@ -7300,6 +7302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5F85\u6A5F\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114080584866655254
 MonoBehaviour:
@@ -7326,6 +7329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5B9F\u884C"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114100511571798266
 MonoBehaviour:
@@ -7339,6 +7343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30E8\u30A4\u30B7\u30E7\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5F15\u30AD\u629C\u30AF\u7269\u30AC\u30A2\u30EA\u30DE\u30BB\u30F3"
   m_ObjectChecker: {fileID: 114024458277937554}
   m_CheckLiftObject: {fileID: 114392623561910842}
@@ -7355,6 +7360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5F85\u6A5F\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114178649504197276
 MonoBehaviour:
@@ -7392,6 +7398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u81EA\u7206"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114269200845413062
 MonoBehaviour:
@@ -7417,6 +7424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30AF\u30E9\u30A8\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u653B\u6483\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_StartPoint: {fileID: 4887122143515354}
   m_StopPoint: {fileID: 4744274044642424}
@@ -7546,6 +7554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30AF\u30E9\u30A8\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_StartPoint: {fileID: 4525776876700554}
   m_StopPoint: {fileID: 4029427878977340}
@@ -7599,6 +7608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u518D\u5B9F\u884C\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114502538523700266
 MonoBehaviour:
@@ -7612,6 +7622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u79FB\u52D5\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u79FB\u52D5\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_MoveSpeed: 3
   m_TurnSpeed: 10
@@ -7653,7 +7664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da801ca4a2d0629438d54be49012199b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartOrderText: "\u91CD\u30A4\u30C7\u30B9"
+  m_StartOrderText: "\u904B\u30D3\u30DE\u30B9"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u30B9\u30C7\u30CB\u7269\u30F2\u6301\u30C3\u30C6\u30A4\u30DE\u30B9"
   m_ObjectChecker: {fileID: 114024458277937554}
   m_CheckLiftObject: {fileID: 114587777622412228}
@@ -7669,7 +7681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a4ccaab0dc5c44faf8fde3270400b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartOrderText: "\u30E2\u30AF\u30D2\u30E7\u30A6\u30F2\u30AF\u30C1\u30AF\u30B9\u30EB\uFF01"
+  m_StartOrderText: "\u5012\u30B7\u30DE\u30B9\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u6575\u30AC\u6307\u5B9A\u30B5\u30EC\u30C6\u30A4\u30DE\u30BB\u30F3"
 --- !u!114 &114587777622412228
 MonoBehaviour:
@@ -7694,6 +7707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5F85\u6A5F\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114596838642316314
 MonoBehaviour:
@@ -7718,6 +7732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30A6\u30AA\u30AA\u30AA\u30AA\u30AA\u30AA\u30AA\u30AA"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u6301\u30C1\u4E0A\u30B2\u30EB\u7269\u30AC\u30A2\u30EA\u30DE\u30BB\u30F3"
   m_ObjectChecker: {fileID: 114024458277937554}
   m_CheckLiftObject: {fileID: 114997121279404046}
@@ -7734,6 +7749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30BD\u30A4\u30C3\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u653B\u6483\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_StartPoint: {fileID: 4648567005437900}
   m_StopPoint: {fileID: 4154145990891056}
@@ -7780,6 +7796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u5B9F\u884C"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114736162242616964
 MonoBehaviour:
@@ -7881,6 +7898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u6575\u306B\u5411\u304B\u3063\u3066\u79FB\u52D5\u4E2D"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_Collider: {fileID: 114912959108109450}
   m_Speed: 10
@@ -7909,6 +7927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30AF\u30E9\u30A8\uFF01"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
   m_StartPoint: {fileID: 4987508456724098}
   m_StopPoint: {fileID: 4952774427734686}
@@ -7969,6 +7988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30C9\u30C3\u30B3\u30E9\u30BB\u30C3\u30C8"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u7F6E\u30AF\u7269\u30AC\u30A2\u30EA\u30DE\u30BB\u30F3"
   m_Point: {fileID: 4748687077054356}
 --- !u!114 &114863989339667394
@@ -7983,6 +8003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u30AA\u4F9B\u30B7\u30DE\u30B9"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u30D7\u30EC\u30A4\u30E4\u30FC\u30AC\u5C45\u30DE\u30BB\u30F3"
 --- !u!114 &114867208903162008
 MonoBehaviour:
@@ -8037,6 +8058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartOrderText: "\u76EE\u30AC\u56DE\u30EB\uFF5E"
+  m_OrderText: "\u5B9F\u884C\u4E2D"
   m_FaildText: "\u5B9F\u884C\u30C7\u30AD\u30DE\u30BB\u30F3"
 --- !u!114 &114912959108109450
 MonoBehaviour:

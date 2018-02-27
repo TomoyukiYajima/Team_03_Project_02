@@ -15,11 +15,13 @@ public class OrderStop : Order {
 
     //}
 
-    public override void StartAction(GameObject obj, GameObject actionObj = null)
+    public override void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         //base.StartAction(obj, actionObj);
         m_ActionObject = actionObj;
         //m_Dir = obj.GetComponent<Worker>().GetOrderDir();
+        // テキストを表示するなら、UIに命令テキストの設定
+        //if(isText)
         // UIに命令テキストの設定
         SetStartOrderText();
         //ChangeAnimation(obj, UndroidAnimationStatus.IDEL);

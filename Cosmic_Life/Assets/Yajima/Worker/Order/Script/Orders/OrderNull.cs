@@ -5,7 +5,7 @@ using UnityEngine;
 // 命令なしクラス
 public class OrderNull : Order {
 
-    public override void StartAction(GameObject obj, GameObject actionObj = null)
+    public override void StartAction(GameObject obj, GameObject actionObj = null, bool isText = false)
     {
         base.StartAction(obj, actionObj);
 
