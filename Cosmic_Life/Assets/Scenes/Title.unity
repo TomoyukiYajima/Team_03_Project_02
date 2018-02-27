@@ -9401,6 +9401,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 4.42
       objectReference: {fileID: 0}
+    - target: {fileID: 1731433612078826, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
   m_IsPrefabParent: 0
@@ -16994,6 +16998,10 @@ Prefab:
     - target: {fileID: 1187147762301686, guid: 5271601334b707248b5d6784973d46dd, type: 2}
       propertyPath: m_Name
       value: SteelFrame (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130502256817828, guid: 5271601334b707248b5d6784973d46dd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5271601334b707248b5d6784973d46dd, type: 2}
@@ -33495,6 +33503,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1731433612078826, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
   m_IsPrefabParent: 0
@@ -37974,6 +37986,10 @@ Prefab:
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 14.240002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731433612078826, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
@@ -47743,6 +47759,10 @@ Prefab:
     - target: {fileID: 4083903819815126, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
       propertyPath: m_LocalPosition.z
       value: -11.869999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1731433612078826, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63c6869bf815f9c488cf4d34855103e0, type: 2}

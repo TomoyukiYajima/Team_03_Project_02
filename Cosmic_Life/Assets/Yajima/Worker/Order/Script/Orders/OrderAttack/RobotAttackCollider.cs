@@ -46,7 +46,7 @@ public class RobotAttackCollider : MonoBehaviour
         ExecuteEvents.Execute<IGeneralEvent>(
             parent.gameObject,
             null,
-            (e, d) => { e.onDamage(damage); });
+            (e, d) => { e.onDamage(1); });
     }
 
     // ダメージ量の取得
