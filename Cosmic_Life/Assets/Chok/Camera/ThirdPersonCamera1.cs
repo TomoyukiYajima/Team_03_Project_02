@@ -164,7 +164,7 @@ public class ThirdPersonCamera1 : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Triggrt_Left"))
+            if (Input.GetButtonDown("Triggrt_Left") || m_target == null)
             {
                 m_isLockOn = false;
                 m_lockOnUI.SetActive(false);
@@ -179,14 +179,6 @@ public class ThirdPersonCamera1 : MonoBehaviour
             var lookAt = m_player.transform.position + Vector3.up * m_height;
 
             //m_lockOnUI.GetComponent<LockOnUi>().m_Target = m_target ;
-
-            if (m_target == null)
-            {
-                m_isLockOn = false;
-                m_lockOnUI.SetActive(false);
-
-                return;
-            }
             
             Vector3 playerTotarget = m_target.transform.position - m_player.transform.position;
             playerTotarget.y = 0;
