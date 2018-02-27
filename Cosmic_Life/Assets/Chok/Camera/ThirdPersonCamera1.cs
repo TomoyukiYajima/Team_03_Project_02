@@ -180,6 +180,14 @@ public class ThirdPersonCamera1 : MonoBehaviour
 
             //m_lockOnUI.GetComponent<LockOnUi>().m_Target = m_target ;
 
+            if (m_target == null)
+            {
+                m_isLockOn = false;
+                m_lockOnUI.SetActive(false);
+
+                return;
+            }
+            
             Vector3 playerTotarget = m_target.transform.position - m_player.transform.position;
             playerTotarget.y = 0;
             playerTotarget.Normalize();
