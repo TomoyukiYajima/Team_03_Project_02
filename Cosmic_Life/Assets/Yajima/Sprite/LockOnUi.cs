@@ -21,8 +21,13 @@ public class LockOnUi : MonoBehaviour
     {
         if (m_Target == null) return;
         //ワールド座標からscreen座標へ変換
+        Camera camera = transform.root.GetComponent<Camera>();
+
         //var ui = Camera.main.WorldToScreenPoint(m_Target.transform.position);
-        var uiPos = RectTransformUtility.WorldToScreenPoint(Camera.main, m_Target.transform.position);
-        m_Rect.position = uiPos;
+        var uiPos = RectTransformUtility.WorldToScreenPoint(Camera.main, m_Target.transform.position + new Vector3(0, 0.8f, 0));
+
+        var pos = Vector2.zero;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(m_Canvas.GetComponent<RectTransform>(), uiPos, camera, out pos);
+        m_Rect.localPosition = pos;
     }
 }

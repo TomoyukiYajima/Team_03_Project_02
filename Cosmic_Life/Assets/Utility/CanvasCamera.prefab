@@ -6278,7 +6278,7 @@ MonoBehaviour:
   m_StartDelayTime: 1
   m_MoveTime: 1
   m_ChangeSceneTime: 1
-  m_ChangeSceneType: 7
+  m_ChangeSceneType: 5
 --- !u!114 &114072614823858474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33195,7 +33195,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!223 &223538302084524478
 Canvas:
@@ -33215,7 +33215,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!223 &223911679051550882
 Canvas:
@@ -33225,7 +33225,7 @@ Canvas:
   m_GameObject: {fileID: 1974760929657516}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 20571497175859936}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -33235,7 +33235,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &224000480476514462
 RectTransform:
