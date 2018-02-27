@@ -14,10 +14,9 @@ public class ExhibitionManager : SingletonBehaviour<ExhibitionManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButton("Start") && Input.GetButton("Select"))
+		if((Input.GetButton("Start") && Input.GetButton("Select")) || Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneMgr.Instance.GetCurrentSceneType() == SceneType.Title) return;
-            SceneMgr.Instance.SceneTransition(SceneType.Title);
+            Application.Quit();
         }
 	}
 }
