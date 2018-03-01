@@ -41,6 +41,8 @@ public class Stage2BossAction : StageAction
         yield return new WaitForSeconds(1.0f);
         FadeMgr.Instance.FadeIn(1.0f);
 
+        Destroy(this.gameObject, 0.5f);
+
         yield return null;
     }
 }
